@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import PrivateComponent from 'components/PrivateComponent';
+import PublicComponent from 'components/PublicComponent';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Container = styled.div``
+
+class App extends React.Component {
+  state = {
+    isLoggedIn: localStorage.getItem('token') ? true : false
+  }
+  render() {
+    const { isLoggedIn } = this.state;
+    return (
+      <Container>
+        {isLoggedIn ? <PrivateComponent /> : <PublicComponent />}
+      </Container>
+    );
+  }
 }
 
 export default App;
