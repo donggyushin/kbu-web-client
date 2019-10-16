@@ -1,13 +1,59 @@
 import React from 'react';
-import styled from 'styled-components';
+import Main from './private/Main/Main';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
+import QRCodeComponent from './private/QRCode/QRCode';
+import anime from 'animejs/lib/anime.es.js';
+import DrawerComponent from './private/Main/Drawer/Drawer';
+import CopyrightComponent from './private/Copyright/Copyright';
 
-const Container = styled.div``
+
 
 class PrivateComponent extends React.Component {
+
+    state = {
+        QRCode: false
+    }
+
     render() {
-        return <Container>
-            Private component
-        </Container>
+        const { QRCode } = this.state;
+        const { QRCodeOn, QRCodeOff } = this;
+        return <Router>
+            <DrawerComponent />
+            <Switch>
+                <Route path="/">
+                    <Main QRCodeOn={QRCodeOn} />
+                </Route>
+                <Route>
+                    <Main />
+                </Route>
+            </Switch>
+            <CopyrightComponent />
+            <QRCodeComponent QRCodeOff={QRCodeOff} view={QRCode} />
+        </Router>
+    }
+
+    QRCodeOn = () => {
+        this.setState({
+            QRCode: true
+        })
+        anime({
+            targets: '.qrcode-container',
+            translateY: -500
+        })
+    }
+
+    QRCodeOff = () => {
+        this.setState({
+            QRCode: false
+        })
+        anime({
+            targets: '.qrcode-container',
+            translateY: 500
+        })
     }
 }
 
