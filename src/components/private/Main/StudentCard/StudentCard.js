@@ -91,7 +91,9 @@ const LowerArrow = styled.i`
     color:#dcdde1;
     
 `
-
+const Logo = styled.div`
+    font-weight: 700;
+`
 
 
 class StudentCard extends React.Component {
@@ -110,7 +112,8 @@ class StudentCard extends React.Component {
                     <Name>신동규</Name>
                     <BoldText>201303024</BoldText>
                     <NormalText>컴퓨터소프트웨어학과</NormalText>
-                    <UnivMark src={require('assets/한국성서대학교.png')} />
+                    {/* <UnivMark src={require('assets/한국성서대학교.png')} /> */}
+                    <Logo>KOREAN BIBLE UNIVERSITY</Logo>
                 </Lower>
             </Card>
         </Container>
