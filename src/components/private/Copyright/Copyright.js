@@ -11,6 +11,7 @@ const Container = styled.div`
     text-transform:uppercase;
     letter-spacing: 0.7px;
     font-weight: 600;
+    
 `
 
 const CopyrightComponent = () => <Container>

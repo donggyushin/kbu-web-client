@@ -41,6 +41,8 @@ const NormalText = styled.div`
     margin-top: 15px;
     margin-bottom: 10px;
     letter-spacing: 0.7px;
+    font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Nanum Gothic Coding', monospace;
 `
 
 const ProfilePhoto = styled.img`
@@ -56,6 +58,7 @@ const Name = styled.div`
     margin-top: 10px;
     font-weight: 600;
     color: #487eb0;
+    font-family: 'Nanum Gothic', sans-serif;
 `
 
 const BoldText = styled.div`
@@ -107,7 +110,7 @@ class StudentCard extends React.Component {
                     <Name>신동규</Name>
                     <BoldText>201303024</BoldText>
                     <NormalText>컴퓨터소프트웨어학과</NormalText>
-                    <UnivMark src={require('assets/한국성서대학교2.png')} />
+                    <UnivMark src={require('assets/한국성서대학교.png')} />
                 </Lower>
             </Card>
         </Container>
