@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Input, Tooltip, Icon, Button } from 'antd';
-import './styles.css'
+import LoginDrawer from './LoginDrawer/LoginDrawer';
+
 
 const Container = styled.div`
     width:100%;
-    height:100vh;
+    height:85vh;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -16,8 +17,9 @@ const InputContainer = styled.div`
     display:flex;
     flex-direction:column;
     width:80%;
-
 `
+
+
 
 class Login2Component extends React.Component {
 
@@ -31,6 +33,7 @@ class Login2Component extends React.Component {
         const { id, password, buttonDisabled } = this.state;
         const { handleInput } = this;
         return <Container>
+            <LoginDrawer />
             <InputContainer>
                 <Input
                     id={'id'}
@@ -38,7 +41,7 @@ class Login2Component extends React.Component {
                     name={'id'}
                     className={'input'}
                     onChange={handleInput}
-                    placeholder="Enter your username"
+                    placeholder="아이디"
                     prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     suffix={
                         <Tooltip title="Extra information">
@@ -54,7 +57,7 @@ class Login2Component extends React.Component {
                     name={'password'}
                     onChange={handleInput}
                     prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    className={'input'} placeholder="input password" />
+                    className={'input'} placeholder="비밀번호" />
 
                 <br />
                 <br />
