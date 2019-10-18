@@ -16,7 +16,6 @@ class FirstPrivatePage extends React.Component {
     render() {
         const { QRCodeOn } = this.props;
         return <Container>
-
             <StudentCard />
             <br />
             <br />

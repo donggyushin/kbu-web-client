@@ -9,7 +9,8 @@ const Container = styled.div`
     align-items:center;
     justify-content:center;
     position: relative;
-    height:60px;
+    height:50px;
+    background:#1e3799;
 `
 
 const Icon = styled.i`
@@ -17,11 +18,17 @@ const Icon = styled.i`
     cursor: pointer;
     position: absolute;
     left:30px;
-    color:#b2bec3;
+    color:white;
 `
 
 const KBUImage = styled.img`
     width:100px;
+`
+
+const KBUText = styled.div`
+    color:white;
+    font-size: 20px;
+    font-weight: 700;
 `
 
 const MenuItem = styled.p`
@@ -54,7 +61,8 @@ class DrawerComponent extends React.Component {
         return (
             <Container>
                 <a href={'/'}>
-                    <KBUImage src={require('assets/한국성서대학교2.png')} />
+                    {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
+                    <KBUText>Korea Bible University</KBUText>
                 </a>
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />
                 <Drawer

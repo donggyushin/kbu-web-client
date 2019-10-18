@@ -9,13 +9,12 @@ const Container = styled.div`
     width:100%;
     height:100px;
     text-transform:uppercase;
-    letter-spacing: 0.7px;
     font-weight: 600;
     
 `
 
 const CopyrightComponent = () => <Container>
-    Copyright ⓒ 2019 All rights reserved by 피자호빵.
+    Copyright(C) 2019. 피자호빵. All Rights reserved.
 </Container>
 
 export default CopyrightComponent

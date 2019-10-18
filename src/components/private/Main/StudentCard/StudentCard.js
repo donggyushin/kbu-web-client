@@ -7,16 +7,20 @@ const Container = styled.div`
     flex-direction:column;
     align-items:center;
     background:#ecf0f1;
-    padding-top:15px;
+    padding-top:25px;
+    padding-bottom:10px;
     
 `
 
 const Card = styled.div`
     background:white;
-    width:90%;
+    width:85%;
     display:flex;
     flex-direction:column;
     align-items:center;
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
 `
 
 const Upper = styled.div`
@@ -95,6 +99,10 @@ const Logo = styled.div`
     font-weight: 700;
 `
 
+const Margin = styled.div`
+    height:20px;
+`
+
 
 class StudentCard extends React.Component {
     render() {
@@ -102,10 +110,11 @@ class StudentCard extends React.Component {
             <Card>
                 <Upper>
                     <MobileIDCard>MOBILE ID CARD</MobileIDCard>
-                    <ArrowContainer>
+                    <Margin />
+                    {/* <ArrowContainer>
                         <UpperArrow className={'fas fa-chevron-up'} />
                         <LowerArrow className={'fas fa-chevron-down'} />
-                    </ArrowContainer>
+                    </ArrowContainer> */}
                     <ProfilePhoto src={'https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg'} />
                 </Upper>
                 <Lower>
