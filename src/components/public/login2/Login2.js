@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Input, Tooltip, Icon, Button } from 'antd';
 import LoginDrawer from './LoginDrawer/LoginDrawer';
+import axios from 'axios'
+import REST_API_ENDPOINT from 'constants/endpoint';
 
 
 const Container = styled.div`
@@ -31,7 +33,7 @@ class Login2Component extends React.Component {
 
     render() {
         const { id, password, buttonDisabled } = this.state;
-        const { handleInput } = this;
+        const { handleInput, loginButtonClicked } = this;
         return <Container>
             <LoginDrawer />
             <InputContainer>
@@ -61,9 +63,27 @@ class Login2Component extends React.Component {
 
                 <br />
                 <br />
-                <Button className={'button'} disabled={buttonDisabled} type={"primary"}>LOGIN</Button>
+                <Button onClick={loginButtonClicked} className={'button'} disabled={buttonDisabled} type={"primary"}>LOGIN</Button>
             </InputContainer>
         </Container>
+    }
+
+    loginButtonClicked = () => {
+        const { id, password } = this.state;
+        axios.post(REST_API_ENDPOINT + `user/login`, {
+            id,
+            password
+        }).then(res => res.data)
+            .then(data => {
+                const { ok, error, token } = data;
+                if (ok) {
+                    window.localStorage.setItem('token', token);
+                    window.location.href = "/"
+                } else {
+                    alert(error)
+                }
+            })
+            .catch(err => console.error)
     }
 
     handleInput = e => {

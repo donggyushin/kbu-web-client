@@ -10,16 +10,25 @@ import {
 import CopyrightComponent from './private/Copyright/Copyright';
 import NewAccount from './public/NewAccount/NewAccount';
 import VerifyPhoneComponent from './public/NewAccount/VerifyPhone/VerifyPhone';
+import IntranetVerifyView from './public/IntranetVerifyView/IntranetVerifyView';
 
 
 
 class PublicComponent extends React.Component {
     state = {
-        verifyPhoneComponentView: false
+        verifyPhoneComponentView: false,
+        intranetVerifyView: false,
+        intranetVerified: false,
+        name: "",
+        phoneNumber: ""
     }
     render() {
-        const { turnDownVerifyPhoneComponent, turnOnVerifyPhoneComponent } = this;
-        const { verifyPhoneComponentView } = this.state;
+        const { turnDownVerifyPhoneComponent, turnOnVerifyPhoneComponent,
+            turnOnIntranetVerify,
+            turnDownIntranetVerify,
+            verifyIntranetAccount
+        } = this;
+        const { verifyPhoneComponentView, intranetVerifyView, intranetVerified } = this.state;
         return <Router>
 
             <Switch>
@@ -30,6 +39,8 @@ class PublicComponent extends React.Component {
                     <NewAccount
                         turnDownVerifyPhoneComponent={turnDownVerifyPhoneComponent}
                         turnOnVerifyPhoneComponent={turnOnVerifyPhoneComponent}
+                        turnOnIntranetVerify={turnOnIntranetVerify}
+                        intranetVerified={intranetVerified}
                     />
                 </Route>
                 <Route>
@@ -37,9 +48,27 @@ class PublicComponent extends React.Component {
                 </Route>
             </Switch>
             <CopyrightComponent />
-            {verifyPhoneComponentView && <VerifyPhoneComponent turnDownVerifyPhoneComponent={turnDownVerifyPhoneComponent} />}
-            {/* <VerifyPhoneComponent turnDownVerifyPhoneComponent={turnDownVerifyPhoneComponent} /> */}
+            {/* {verifyPhoneComponentView && <VerifyPhoneComponent turnDownVerifyPhoneComponent={turnDownVerifyPhoneComponent} />} */}
+            {intranetVerifyView && <IntranetVerifyView verifyIntranetAccount={verifyIntranetAccount} turnDownIntranetVerify={turnDownIntranetVerify} />}
         </Router>
+    }
+
+    verifyIntranetAccount = () => {
+        this.setState({
+            intranetVerified: true
+        })
+    }
+
+    turnOnIntranetVerify = () => {
+        this.setState({
+            intranetVerifyView: true
+        })
+    }
+
+    turnDownIntranetVerify = () => {
+        this.setState({
+            intranetVerifyView: false
+        })
     }
 
     turnOnVerifyPhoneComponent = () => {

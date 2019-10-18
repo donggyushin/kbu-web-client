@@ -11,11 +11,20 @@ class App extends React.Component {
   }
   render() {
     const { isLoggedIn } = this.state;
+    const { logout } = this;
     return (
       <Container>
-        {isLoggedIn ? <PrivateComponent /> : <PublicComponent />}
+        {isLoggedIn ? <PrivateComponent logout={logout} /> : <PublicComponent />}
       </Container>
     );
+  }
+
+  logout = () => {
+    this.setState({
+      isLoggedIn: false
+    })
+    window.localStorage.removeItem('token')
+    window.location.href = "/"
   }
 }
 

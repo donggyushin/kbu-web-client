@@ -1,5 +1,6 @@
 import React from 'react';
 import { Drawer, Button, Radio } from 'antd';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -21,6 +22,10 @@ const Icon = styled.i`
 
 const KBUImage = styled.img`
     width:100px;
+`
+
+const MenuItem = styled.p`
+    cursor: pointer;
 `
 
 class DrawerComponent extends React.Component {
@@ -45,9 +50,12 @@ class DrawerComponent extends React.Component {
     };
 
     render() {
+        const { logout } = this.props;
         return (
             <Container>
-                <KBUImage src={require('assets/한국성서대학교2.png')} />
+                <a href={'/'}>
+                    <KBUImage src={require('assets/한국성서대학교2.png')} />
+                </a>
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />
                 <Drawer
                     title="MENU"
@@ -56,9 +64,16 @@ class DrawerComponent extends React.Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
-                    <p>이경민</p>
-                    <p>신동규</p>
-                    <p>신민철</p>
+                    <MenuItem>이경민</MenuItem>
+                    <MenuItem>신동규</MenuItem>
+                    <MenuItem>신민철</MenuItem>
+                    <a style={{
+                        textDecoration: 'none',
+                        color: 'black'
+                    }} href={'/admin'}>
+                        <MenuItem>관리자 페이지</MenuItem>
+                    </a>
+                    <MenuItem onClick={logout}>로그아웃</MenuItem>
                 </Drawer>
             </Container>
         );

@@ -26,6 +26,7 @@ code {
 .ant-input {
   padding-left: 50px !important;
   font-size: 22px !important;
+  height: 64px !important;
 }
 
 .ant-btn {

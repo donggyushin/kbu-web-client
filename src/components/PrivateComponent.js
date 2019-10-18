@@ -9,6 +9,7 @@ import QRCodeComponent from './private/QRCode/QRCode';
 import anime from 'animejs/lib/anime.es.js';
 import DrawerComponent from './private/Main/Drawer/Drawer';
 import CopyrightComponent from './private/Copyright/Copyright';
+import AdminPage from './private/AdminPage/AdminPage';
 
 
 
@@ -21,15 +22,20 @@ class PrivateComponent extends React.Component {
     render() {
         const { QRCode } = this.state;
         const { QRCodeOn, QRCodeOff } = this;
+        const { logout } = this.props;
         return <Router>
-            <DrawerComponent />
+            <DrawerComponent logout={logout} />
             <Switch>
+                <Route path="/admin">
+                    <AdminPage />
+                </Route>
                 <Route path="/">
                     <Main QRCodeOn={QRCodeOn} />
                 </Route>
                 <Route>
                     <Main />
                 </Route>
+
             </Switch>
             <CopyrightComponent />
             <QRCodeComponent QRCodeOff={QRCodeOff} view={QRCode} />
