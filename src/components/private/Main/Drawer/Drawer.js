@@ -35,6 +35,14 @@ const MenuItem = styled.p`
     cursor: pointer;
 `
 
+const XButton = styled.i`
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    font-size: 26px;
+    cursor: pointer;
+`
+
 class DrawerComponent extends React.Component {
     state = { visible: false, placement: 'left' };
 
@@ -60,11 +68,14 @@ class DrawerComponent extends React.Component {
         const { logout } = this.props;
         return (
             <Container>
+
                 <a href={'/'}>
                     {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
                     <KBUText>Korea Bible University</KBUText>
                 </a>
+
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />
+
                 <Drawer
                     title="MENU"
                     placement={this.state.placement}
@@ -72,6 +83,7 @@ class DrawerComponent extends React.Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
+                    <XButton onClick={this.onClose} className={'fas fa-times'} />
                     <MenuItem>이경민</MenuItem>
                     <MenuItem>신동규</MenuItem>
                     <MenuItem>신민철</MenuItem>
@@ -86,6 +98,8 @@ class DrawerComponent extends React.Component {
             </Container>
         );
     }
+
+
 }
 
 export default DrawerComponent

@@ -33,6 +33,7 @@ class AdminPage extends React.Component {
             this.setState({
                 result: data
             })
+            // Send data to arduino server
         }
     }
     handleError = err => {

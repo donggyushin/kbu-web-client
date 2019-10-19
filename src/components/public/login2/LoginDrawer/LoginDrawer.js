@@ -19,6 +19,14 @@ const Icon = styled.div`
     color:#b2bec3;
 `
 
+const XButton = styled.i`
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    font-size: 26px;
+    cursor: pointer;
+`
+
 class LoginDrawer extends React.Component {
     state = { visible: false, placement: 'left' };
 
@@ -51,6 +59,7 @@ class LoginDrawer extends React.Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
+                    <XButton onClick={this.onClose} className={'fas fa-times'} />
                     <Link style={{
                         textDecoration: 'none',
                         color: 'black'

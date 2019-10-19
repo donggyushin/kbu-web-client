@@ -45,7 +45,8 @@ class PrivateComponent extends React.Component {
 
             </Switch>
             <CopyrightComponent />
-            <QRCodeComponent QRCodeOff={QRCodeOff} view={QRCode} />
+            {QRCode && <QRCodeComponent QRCodeOff={QRCodeOff} view={QRCode} />}
+
         </Router>
     }
 
@@ -53,10 +54,7 @@ class PrivateComponent extends React.Component {
         this.setState({
             QRCode: true
         })
-        anime({
-            targets: '.qrcode-container',
-            translateY: -500
-        })
+
     }
 
     QRCodeOff = () => {
