@@ -57,7 +57,9 @@ class NewAccount extends React.Component {
             <InputContainer>
                 <Button onClick={turnOnIntranetVerify} disabled={intranetVerified} type={'primary'}>인트라넷 인증</Button>
                 <br />
-                {phoneVerified ? <Input
+
+
+                <Input
                     id={'name'}
                     value={name}
                     name={'name'}
@@ -67,35 +69,20 @@ class NewAccount extends React.Component {
                     disabled={true}
                     prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
 
-                /> : <Input
-                        id={'name'}
-                        value={name}
-                        name={'name'}
-                        className={'input'}
-                        onChange={handleInput}
-                        placeholder="이름"
-                        disabled={!intranetVerified}
-                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                />
 
-                    />}
 
                 <br />
 
-                {phoneVerified ? <Input
+
+                <Input
                     id={'studentId'}
                     value={studentId}
                     name={'studentId'}
                     onChange={handleInput}
                     disabled={true}
                     prefix={<Icon type="idcard" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    className={'input'} placeholder="학번" /> : <Input
-                        id={'studentId'}
-                        value={studentId}
-                        name={'studentId'}
-                        onChange={handleInput}
-                        disabled={!intranetVerified}
-                        prefix={<Icon type="idcard" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        className={'input'} placeholder="학번" />}
+                    className={'input'} placeholder="학번" />
 
                 <br />
                 {phoneVerified ? <Input
@@ -149,21 +136,16 @@ class NewAccount extends React.Component {
                         className={'input'} placeholder="비밀번호 확인" />}
 
                 <br />
-                {phoneVerified ? <Input
+
+
+                <Input
                     id={'phoneNumber'}
                     value={phoneNumber}
                     name={'phoneNumber'}
                     onChange={handleInput}
                     disabled={true}
                     prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    className={'input'} placeholder="핸드폰 번호" /> : <Input
-                        id={'phoneNumber'}
-                        value={phoneNumber}
-                        name={'phoneNumber'}
-                        onChange={handleInput}
-                        disabled={!intranetVerified}
-                        prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        className={'input'} placeholder="핸드폰 번호" />}
+                    className={'input'} placeholder="핸드폰 번호" />
 
                 <br />
                 {phoneVerified === false && <Button onClick={turnOnVerifyPhoneComponent} className={'button'} disabled={phoneVerifiedButton} type={"primary"}>핸드폰 번호 인증</Button>}

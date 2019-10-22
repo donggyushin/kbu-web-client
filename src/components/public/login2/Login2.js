@@ -4,6 +4,8 @@ import { Input, Tooltip, Icon, Button } from 'antd';
 import LoginDrawer from './LoginDrawer/LoginDrawer';
 import axios from 'axios'
 import REST_API_ENDPOINT from 'constants/endpoint';
+import { generateJsonWebToken } from 'utils/jsonwebtoken';
+
 
 
 const Container = styled.div`
@@ -74,16 +76,24 @@ class Login2Component extends React.Component {
             id,
             password
         }).then(res => res.data)
-            .then(data => {
-                const { ok, error, token } = data;
-                if (ok) {
-                    window.localStorage.setItem('token', token);
-                    window.location.href = "/"
+            .then(result => {
+                console.log(result);
+                if (result.is_ok) {
+                    const token = generateJsonWebToken(id, password);
+                    console.log('token: ', token);
+                    window.localStorage.setItem('token', token)
+                    window.location.href = '/'
                 } else {
-                    alert(error)
+                    alert(result.result)
+                    this.setState({
+                        id: "",
+                        password: ""
+                    })
+                    return;
                 }
+
             })
-            .catch(err => console.error)
+            .catch(err => console.error(err.message))
     }
 
     handleInput = e => {

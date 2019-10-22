@@ -11,6 +11,9 @@ const Container = styled.div`
     position: relative;
     height:50px;
     background:#1e3799;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 `
 
 const Icon = styled.i`
@@ -65,7 +68,7 @@ class DrawerComponent extends React.Component {
     };
 
     render() {
-        const { logout } = this.props;
+        const { logout, user } = this.props;
         return (
             <Container>
 
@@ -87,12 +90,13 @@ class DrawerComponent extends React.Component {
                     <MenuItem>이경민</MenuItem>
                     <MenuItem>신동규</MenuItem>
                     <MenuItem>신민철</MenuItem>
-                    <a style={{
+                    {(user.id === '201303024' || user.id === '201504018' || user.id === '201504021') && <a style={{
                         textDecoration: 'none',
                         color: 'black'
                     }} href={'/admin'}>
                         <MenuItem>관리자 페이지</MenuItem>
-                    </a>
+                    </a>}
+
                     <MenuItem onClick={logout}>로그아웃</MenuItem>
                 </Drawer>
             </Container>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import AwesomeLoadingComponent from 'components/global/Loading/LoadingComponent';
 
 const Container = styled.div`
     display:flex;
@@ -29,7 +30,7 @@ const Upper = styled.div`
     align-items:center;
     width:100%;
     border-bottom: 1px solid gainsboro;
-
+    height:206px;
 `
 
 const Lower = styled.div`
@@ -39,6 +40,7 @@ const Lower = styled.div`
     background:#f5f6fa;
     width:100%;
     padding-bottom:10px;
+    height:211px;
 `
 
 const NormalText = styled.div`
@@ -52,7 +54,7 @@ font-family: 'Nanum Gothic Coding', monospace;
 const ProfilePhoto = styled.img`
     width: 130px;
     height: 130px;
-    border-radius: 50%;
+    border-radius: 15%;
     object-fit: cover;
     margin-bottom: 15px;
 `
@@ -61,7 +63,7 @@ const Name = styled.div`
     font-size: 19px;
     margin-top: 10px;
     font-weight: 600;
-    color: #487eb0;
+    color: ${props => props.status === '재학' ? '#487eb0' : '#e74c3c'} ;
     font-family: 'Nanum Gothic', sans-serif;
 `
 
@@ -103,27 +105,116 @@ const Margin = styled.div`
     height:20px;
 `
 
+const BasicInfo = styled.div`
+    display:flex;
+    flex-direction:column;
+    margin-bottom: 12px;
+    width: 150px;
+    align-items: flex-start;
+`
+
+const Row = styled.div`
+    display:flex;
+    align-items:center;
+    width:100%;
+    position: relative;
+    justify-content:center;
+`
+const BasicInfoLabel = styled.div`
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight:900;
+    position: absolute;
+    left:0px;
+    
+`
+
+const BasicInfoText = styled.div`
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic Coding', monospace;
+    
+`
+
+const LoadingContainer = styled.div`
+    height:417px;
+    width:100%;
+    position: relative;
+`
+
+const WhitePartInLoading = styled.div`
+    width:100%;
+    position: absolute;
+    top:0;
+    display:flex;
+    align-items:center;
+    height:206px;
+    border-bottom: 1px solid gainsboro;
+`
+
+const GrayPartInLoading = styled.div`
+    height:211px;
+    position: absolute;
+    bottom:0;
+    width:100%;
+    display:flex;
+    align-items:center;
+    background:#f5f6fa;
+`
+
+const UserEmail = styled.div``
+
 
 class StudentCard extends React.Component {
     render() {
+        const { user, loading } = this.props;
         return <Container>
             <Card>
-                <Upper>
-                    <MobileIDCard>MOBILE ID CARD</MobileIDCard>
-                    <Margin />
-                    {/* <ArrowContainer>
-                        <UpperArrow className={'fas fa-chevron-up'} />
-                        <LowerArrow className={'fas fa-chevron-down'} />
-                    </ArrowContainer> */}
-                    <ProfilePhoto src={'https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg'} />
-                </Upper>
-                <Lower>
-                    <Name>신동규</Name>
-                    <BoldText>201303024</BoldText>
-                    <NormalText>컴퓨터소프트웨어학과</NormalText>
-                    {/* <UnivMark src={require('assets/한국성서대학교.png')} /> */}
-                    <Logo>KOREAN BIBLE UNIVERSITY</Logo>
-                </Lower>
+                {loading ? <LoadingContainer>
+                    <WhitePartInLoading />
+                    <GrayPartInLoading />
+                    <AwesomeLoadingComponent loading={loading} />
+                </LoadingContainer> : <>
+
+                        <Upper>
+                            <MobileIDCard>MOBILE ID CARD</MobileIDCard>
+                            <Margin />
+                            {user.id === '201303024' && <ProfilePhoto src={require('assets/leo.png')} />}
+                            {user.id !== '201303024' &&
+                                <ProfilePhoto src={user.img ? 'data:image/png;base64,' + user.img : 'https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg'} />
+                            }
+
+                        </Upper>
+                        <Lower>
+                            <Name status={user.status}>{user.name}</Name>
+                            <BoldText>{user.id}</BoldText>
+                            <UserEmail>
+                                {user.email}
+                            </UserEmail>
+                            <NormalText>{user.major}</NormalText>
+                            {/* <UnivMark src={require('assets/한국성서대학교.png')} /> */}
+                            <BasicInfo>
+                                <Row>
+                                    <BasicInfoLabel>
+                                        학년
+                                </BasicInfoLabel>
+                                    <BasicInfoText>
+                                        {user.grade}
+                                    </BasicInfoText>
+                                </Row>
+                                <Row>
+                                    <BasicInfoLabel>
+                                        상태
+                                </BasicInfoLabel>
+                                    <BasicInfoText>
+                                        {user.status}
+                                    </BasicInfoText>
+                                </Row>
+
+
+                            </BasicInfo>
+                            <Logo>KOREAN BIBLE UNIVERSITY</Logo>
+                        </Lower>
+                    </>}
             </Card>
         </Container>
     }

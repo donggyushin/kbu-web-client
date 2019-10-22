@@ -9,9 +9,9 @@ import {
 } from "react-router-dom";
 import CopyrightComponent from './private/Copyright/Copyright';
 import NewAccount from './public/NewAccount/NewAccount';
-import VerifyPhoneComponent from './public/NewAccount/VerifyPhone/VerifyPhone';
 import IntranetVerifyView from './public/IntranetVerifyView/IntranetVerifyView';
-
+import Axios from 'axios';
+import REST_API_ENDPOINT from 'constants/endpoint';
 
 
 class PublicComponent extends React.Component {
@@ -47,16 +47,39 @@ class PublicComponent extends React.Component {
                     <Login2Component />
                 </Route>
             </Switch>
-            <CopyrightComponent />
+            {/* <CopyrightComponent /> */}
             {/* {verifyPhoneComponentView && <VerifyPhoneComponent turnDownVerifyPhoneComponent={turnDownVerifyPhoneComponent} />} */}
             {intranetVerifyView && <IntranetVerifyView verifyIntranetAccount={verifyIntranetAccount} turnDownIntranetVerify={turnDownIntranetVerify} />}
         </Router>
     }
 
-    verifyIntranetAccount = () => {
-        this.setState({
-            intranetVerified: true
+    verifyIntranetAccount = (id, password) => {
+
+        // Send intranet id and password to server
+        // And get response. 
+
+        Axios.post(REST_API_ENDPOINT + 'user//verify/intranet', {
+            id,
+            password
         })
+            .then(res => res.data)
+            .then(result => {
+
+                const { ok, error, data } = result;
+                console.log('data: ', data)
+                if (ok) {
+                    this.setState({
+                        intranetVerified: true
+                    })
+                } else {
+
+                }
+
+            })
+            .catch(err => console.error(err))
+
+
+
     }
 
     turnOnIntranetVerify = () => {

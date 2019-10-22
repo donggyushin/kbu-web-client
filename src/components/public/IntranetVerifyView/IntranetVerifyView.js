@@ -101,10 +101,9 @@ class IntranetVerifyView extends React.Component {
     verifyButtonClicked = () => {
         const { intranetPassword, intranetId } = this.state
         const { verifyIntranetAccount, turnDownIntranetVerify } = this.props;
-        console.log('id:', intranetId);
-        console.log('password: ', intranetPassword)
 
-        verifyIntranetAccount()
+
+        verifyIntranetAccount(intranetId, intranetPassword)
         turnDownIntranetVerify()
 
         this.setState({

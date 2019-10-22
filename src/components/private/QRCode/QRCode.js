@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import QRCode from 'qrcode.react';
 import anime from 'animejs/lib/anime.es.js';
+import Axios from 'axios';
+import REST_API_ENDPOINT from 'constants/endpoint';
+import { decodeJsonWebToken } from 'utils/jsonwebtoken';
+import base64format from 'constants/base64format'
 
 let interval
 let timeout
@@ -52,15 +56,28 @@ const LeftTime = styled.div`
 const CodeContainer = styled.div`
     position:relative;
     top:500px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `
+
+const QrCodeImage = styled.img`
+    width:280px;
+    
+`
+
 // I think I will need web or socket.io server here
 // Because I have to get signal when the server received QR code information 
 
 class QRCodeComponent extends React.Component {
 
     state = {
-        leftTime: 15
+        leftTime: 15,
+        loading: true,
+        qrcodeImg: ""
     }
+
+
 
 
     constructor(props) {
@@ -70,28 +87,51 @@ class QRCodeComponent extends React.Component {
     }
 
     componentDidMount() {
-        anime({
-            targets: '.qrcode-container',
-            translateY: -500
-        })
+        const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
+        Axios.post(REST_API_ENDPOINT + 'qr/', {
+            id: decoded.id,
+            password: decoded.password
+        }).then(res => res.data)
+            .then(data => {
+                console.log(data)
+                if (data.is_ok) {
 
-        this.setState({
-            leftTime: 15
-        })
+                    this.setState({
+                        qrcodeImg: base64format + data.result.img,
+                        loading: false
+                    })
 
-        interval = setInterval(() => {
-            this.setState({
-                leftTime: this.state.leftTime - 1
-            })
-        }, 1000);
 
+                    // 여기부터
+                    anime({
+                        targets: '.qrcode-container',
+                        translateY: -500
+                    })
+
+                    this.setState({
+                        leftTime: 15
+                    })
+
+                    interval = setInterval(() => {
+                        this.setState({
+                            leftTime: this.state.leftTime - 1
+                        })
+                    }, 1000);
+
+                    timeout = setTimeout(() => {
+                        const { QRCodeOff } = this.props;
+                        QRCodeOff()
+                    }, 15000);
+                    // 여기까지 loading false 로 바꾸면 그때부터 시작
+
+                } else {
+
+                }
+
+            }).catch(err => console.error(err))
 
 
         document.addEventListener('mousedown', this.handleClickOutside);
-        timeout = setTimeout(() => {
-            const { QRCodeOff } = this.props;
-            QRCodeOff()
-        }, 15000);
     }
 
     componentWillUnmount() {
@@ -126,22 +166,27 @@ class QRCodeComponent extends React.Component {
 
     render() {
         const { view } = this.props;
-        const { leftTime } = this.state;
+        const { leftTime, loading, qrcodeImg } = this.state;
         return <Container view={view}>
-            <TextContainer>
-                <DateText>
-                    {'2019년 12월 24일 11시 55분 58초에'}
-                </DateText>
-                <DateText>{'만료됩니다.'}</DateText>
-                <LeftTime>
-                    {leftTime}
-                </LeftTime>
-            </TextContainer>
-            <CodeContainer className={'qrcode-container'} ref={this.setWrapperRef}>
-                <QRCode
-                    size={200}
-                    value={'https://www.dgsh.nl/'} />
-            </CodeContainer>
+            {loading ? '' : <>
+
+                <TextContainer>
+                    {/* <DateText>
+                        {'2019년 12월 24일 11시 55분 58초에'}
+                    </DateText> */}
+                    {/* <DateText>{'만료됩니다.'}</DateText> */}
+                    <LeftTime>
+                        {leftTime}
+                    </LeftTime>
+                </TextContainer>
+                <CodeContainer className={'qrcode-container'} ref={this.setWrapperRef}>
+                    {/* 이부분을 나중에 이미지로 대체합니다.  */}
+                    {/* <QRCode
+                        size={200}
+                        value={'https://www.dgsh.nl/'} /> */}
+                    <QrCodeImage src={qrcodeImg} />
+                </CodeContainer>
+            </>}
         </Container>
     }
 }

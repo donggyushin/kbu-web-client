@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import CodeButton from './CodeButton/CodeButton';
 import StudentCard from './StudentCard/StudentCard';
+import { decodeJsonWebToken } from 'utils/jsonwebtoken';
+import Axios from 'axios';
+import REST_API_ENDPOINT from 'constants/endpoint';
 
 
 const Container = styled.div`
@@ -13,14 +16,20 @@ const Container = styled.div`
 `
 
 class FirstPrivatePage extends React.Component {
+
+
+
+
     render() {
-        const { QRCodeOn } = this.props;
+        const { QRCodeOn, user, loading } = this.props;
+
         return <Container>
-            <StudentCard />
+            <StudentCard loading={loading} user={user} />
+
             <br />
             <br />
             <br />
-            <CodeButton QRCodeOn={QRCodeOn} />
+            <CodeButton loading={loading} QRCodeOn={QRCodeOn} />
         </Container>
     }
 }
