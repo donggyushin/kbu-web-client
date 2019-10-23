@@ -178,15 +178,15 @@ class StudentCard extends React.Component {
                         <Upper>
                             <MobileIDCard>MOBILE ID CARD</MobileIDCard>
                             <Margin />
-                            {user.id === '201303024' && <ProfilePhoto src={require('assets/leo.png')} />}
-                            {user.id !== '201303024' &&
+                            {user.sid === '201303024' && <ProfilePhoto src={require('assets/leo.png')} />}
+                            {user.sid !== '201303024' &&
                                 <ProfilePhoto src={user.img ? 'data:image/png;base64,' + user.img : 'https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg'} />
                             }
 
                         </Upper>
                         <Lower>
                             <Name status={user.status}>{user.name}</Name>
-                            <BoldText>{user.id}</BoldText>
+                            <BoldText>{user.sid}</BoldText>
                             <UserEmail>
                                 {user.email}
                             </UserEmail>

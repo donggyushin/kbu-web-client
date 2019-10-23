@@ -11,6 +11,16 @@ const Container = styled.div`
 
 class AdminPage extends React.Component {
 
+    componentDidMount() {
+        const { user } = this.props;
+        const sid = user.sid;
+        if (sid !== '201303024' || sid !== '201504018' || sid !== '201504021') {
+            window.location.href('/');
+            return;
+        }
+    }
+
+
     state = {
         result: 'No result'
     }

@@ -88,9 +88,11 @@ class QRCodeComponent extends React.Component {
 
     componentDidMount() {
         const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
+        const { user } = this.props;
         Axios.post(REST_API_ENDPOINT + 'qr/', {
             id: decoded.id,
-            password: decoded.password
+            sid: user.sid,
+            token: localStorage.getItem('kbu')
         }).then(res => res.data)
             .then(data => {
                 console.log(data)
@@ -117,6 +119,13 @@ class QRCodeComponent extends React.Component {
                             leftTime: this.state.leftTime - 1
                         })
                     }, 1000);
+
+                    setTimeout(() => {
+                        anime({
+                            targets: '.qrcode-container',
+                            translateY: 500
+                        })
+                    }, 14000);
 
                     timeout = setTimeout(() => {
                         const { QRCodeOff } = this.props;

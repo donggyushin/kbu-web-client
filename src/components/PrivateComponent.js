@@ -30,7 +30,7 @@ class PrivateComponent extends React.Component {
             email: "",
             gender: "",
             grade: "",
-            id: "",
+            sid: "",
             img: "",
             img_height: 0,
             img_width: 0,
@@ -53,11 +53,14 @@ class PrivateComponent extends React.Component {
             }).then(res => res.data)
                 .then(data => {
                     console.log(data)
+                    console.log(data.token)
+                    localStorage.setItem('kbu', data.token);
                     if (data.is_ok) {
                         this.setState({
                             user: data.result,
                             loading: false
                         })
+                        console.log('this.state.user: ', this.state.user);
                     } else {
                         alert('정보를 불러오는데 실패하였습니다. ')
                         window.localStorage.removeItem('token');
@@ -77,7 +80,7 @@ class PrivateComponent extends React.Component {
             {/* <RedLine /> */}
             <Switch>
                 <Route path="/admin">
-                    <AdminPage />
+                    <AdminPage user={user} />
                 </Route>
                 <Route path="/">
                     <Main user={user} loading={loading} QRCodeOn={QRCodeOn} />
@@ -88,7 +91,7 @@ class PrivateComponent extends React.Component {
 
             </Switch>
             {/* <CopyrightComponent /> */}
-            {QRCode && <QRCodeComponent QRCodeOff={QRCodeOff} view={QRCode} />}
+            {QRCode && <QRCodeComponent user={user} QRCodeOff={QRCodeOff} view={QRCode} />}
 
         </Router>
     }

@@ -90,7 +90,7 @@ class DrawerComponent extends React.Component {
                     <MenuItem>이경민</MenuItem>
                     <MenuItem>신동규</MenuItem>
                     <MenuItem>신민철</MenuItem>
-                    {(user.id === '201303024' || user.id === '201504018' || user.id === '201504021') && <a style={{
+                    {(user.sid === '201303024' || user.sid === '201504018' || user.id === '201504021') && <a style={{
                         textDecoration: 'none',
                         color: 'black'
                     }} href={'/admin'}>
