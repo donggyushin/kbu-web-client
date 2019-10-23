@@ -8,9 +8,20 @@ const Container = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
+    position: relative;
+`
+
+const GreenBorder = styled.div`
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 6px solid #2ecc71;
+    z-index: 3;
+    display:${props => props.greenLine ? 'block' : 'none'};
 `
 
 class AdminPage extends React.Component {
+
 
 
     componentWillReceiveProps(nextProps) {
@@ -27,9 +38,11 @@ class AdminPage extends React.Component {
 
 
     state = {
-        result: 'No result'
+        result: 'No result',
+        greenLine: false
     }
     render() {
+        const { greenLine } = this.state;
         return <Container>
             <QrReader
                 delay={500}
@@ -40,24 +53,23 @@ class AdminPage extends React.Component {
                 }}
                 className={'qrcodereader'}
             />
-            <p>{this.state.result}</p>
+            {/* <p>{this.state.result}</p> */}
+            <GreenBorder greenLine={greenLine} />
         </Container>
     }
 
     handleScan = data => {
         if (data) {
             this.setState({
-                result: data
+                result: data,
+                greenLine: true
             })
-            // Send data to arduino server
-            const element = document.querySelector('.qrcodereader')
-            element.style.boxShadow = "#2ecc71";
-            console.log('element: ', element)
-
-
             setTimeout(() => {
-                element.style.boxShadow = "rgba(255, 0, 0, 0.5) 0px 0px 0px 5px inset";
-            }, 3000);
+                this.setState({
+                    greenLine: false
+                })
+            }, 500);
+
         }
     }
     handleError = err => {

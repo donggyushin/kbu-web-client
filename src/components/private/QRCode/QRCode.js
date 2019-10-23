@@ -66,6 +66,13 @@ const QrCodeImage = styled.img`
     
 `
 
+const CloseIcon = styled.i`
+    color:white;
+    font-size: 68px;
+    position: absolute;
+    bottom: 58px;
+`
+
 // I think I will need web or socket.io server here
 // Because I have to get signal when the server received QR code information 
 
@@ -103,13 +110,6 @@ class QRCodeComponent extends React.Component {
                         loading: false
                     })
 
-
-                    // 여기부터
-                    // anime({
-                    //     targets: '.qrcode-container',
-                    //     translateY: -500
-                    // })
-
                     this.setState({
                         leftTime: 15
                     })
@@ -120,21 +120,14 @@ class QRCodeComponent extends React.Component {
                         })
                     }, 1000);
 
-                    // setTimeout(() => {
-                    //     anime({
-                    //         targets: '.qrcode-container',
-                    //         translateY: 500
-                    //     })
-                    // }, 14000);
-
                     timeout = setTimeout(() => {
                         const { QRCodeOff } = this.props;
                         QRCodeOff()
-                    }, 15000);
+                    }, 150000);
                     // 여기까지 loading false 로 바꾸면 그때부터 시작
 
                 } else {
-
+                    console.log('result: ', data.result)
                 }
 
             }).catch(err => console.error(err))
@@ -168,35 +161,35 @@ class QRCodeComponent extends React.Component {
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
             const { QRCodeOff } = this.props;
-            QRCodeOff()
+            // QRCodeOff()
         }
     }
 
 
     render() {
         const { view } = this.props;
+        const { closeIconClicked } = this;
         const { leftTime, loading, qrcodeImg } = this.state;
         return <Container view={view}>
             {loading ? '' : <>
 
                 <TextContainer>
-                    {/* <DateText>
-                        {'2019년 12월 24일 11시 55분 58초에'}
-                    </DateText> */}
-                    {/* <DateText>{'만료됩니다.'}</DateText> */}
+                    <CloseIcon onClick={closeIconClicked} className={'fas fa-times-circle'} />
                     <LeftTime>
                         {leftTime}
                     </LeftTime>
                 </TextContainer>
                 <CodeContainer className={'qrcode-container'} ref={this.setWrapperRef}>
-                    {/* 이부분을 나중에 이미지로 대체합니다.  */}
-                    {/* <QRCode
-                        size={200}
-                        value={'https://www.dgsh.nl/'} /> */}
                     <QrCodeImage src={qrcodeImg} />
                 </CodeContainer>
             </>}
         </Container>
+    }
+
+
+    closeIconClicked = () => {
+        const { QRCodeOff } = this.props;
+        QRCodeOff();
     }
 }
 
