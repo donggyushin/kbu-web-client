@@ -15,7 +15,7 @@ class AdminPage extends React.Component {
         const { user } = this.props;
         const sid = user.sid;
         if (sid !== '201303024' || sid !== '201504018' || sid !== '201504021') {
-            window.location.href('/');
+            window.location.href = '/';
             return;
         }
     }

@@ -55,7 +55,7 @@ const LeftTime = styled.div`
 
 const CodeContainer = styled.div`
     position:relative;
-    top:500px;
+    /* top:500px; */
     display:flex;
     justify-content:center;
     align-items:center;
@@ -105,10 +105,10 @@ class QRCodeComponent extends React.Component {
 
 
                     // 여기부터
-                    anime({
-                        targets: '.qrcode-container',
-                        translateY: -500
-                    })
+                    // anime({
+                    //     targets: '.qrcode-container',
+                    //     translateY: -500
+                    // })
 
                     this.setState({
                         leftTime: 15
@@ -120,12 +120,12 @@ class QRCodeComponent extends React.Component {
                         })
                     }, 1000);
 
-                    setTimeout(() => {
-                        anime({
-                            targets: '.qrcode-container',
-                            translateY: 500
-                        })
-                    }, 14000);
+                    // setTimeout(() => {
+                    //     anime({
+                    //         targets: '.qrcode-container',
+                    //         translateY: 500
+                    //     })
+                    // }, 14000);
 
                     timeout = setTimeout(() => {
                         const { QRCodeOff } = this.props;
