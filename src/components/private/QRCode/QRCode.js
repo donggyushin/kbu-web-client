@@ -123,7 +123,7 @@ class QRCodeComponent extends React.Component {
                     timeout = setTimeout(() => {
                         const { QRCodeOff } = this.props;
                         QRCodeOff()
-                    }, 150000);
+                    }, 15000);
                     // 여기까지 loading false 로 바꾸면 그때부터 시작
 
                 } else {
