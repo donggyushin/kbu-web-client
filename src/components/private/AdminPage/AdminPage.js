@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import QrReader from 'react-qr-reader';
+import Axios from 'axios';
+import REST_API_ENDPOINT from 'constants/endpoint';
+
+
+
+const successAudio = new Audio('/assets/success.wav');
+const failAudio = new Audio('/assets/fail.wav');
 
 
 const Container = styled.div`
@@ -18,6 +25,24 @@ const GreenBorder = styled.div`
     border: 6px solid #2ecc71;
     z-index: 3;
     display:${props => props.greenLine ? 'block' : 'none'};
+`
+
+const CarrotBorder = styled.div`
+position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 6px solid #e67e22;
+    z-index: 3;
+    display:${props => props.carrotLine ? 'block' : 'none'};
+`
+
+const PuppleBorder = styled.div`
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 6px solid #e67e22;
+    z-index: 3;
+    display:${props => props.carrotLine ? 'block' : 'none'};
 `
 
 class AdminPage extends React.Component {
@@ -39,13 +64,15 @@ class AdminPage extends React.Component {
 
     state = {
         result: 'No result',
-        greenLine: false
+        greenLine: false,
+        carrotLine: false,
+        puppleLine: false
     }
     render() {
-        const { greenLine } = this.state;
+        const { greenLine, carrotLine, puppleLine } = this.state;
         return <Container>
             <QrReader
-                delay={500}
+                delay={1500}
                 onError={this.handleError}
                 onScan={this.handleScan}
                 style={{
@@ -55,20 +82,54 @@ class AdminPage extends React.Component {
             />
             {/* <p>{this.state.result}</p> */}
             <GreenBorder greenLine={greenLine} />
+            <CarrotBorder carrotLine={carrotLine} />
+            <PuppleBorder puppleLine={puppleLine} />
         </Container>
     }
 
     handleScan = data => {
         if (data) {
+
             this.setState({
-                result: data,
-                greenLine: true
+                carrotLine: true
             })
             setTimeout(() => {
                 this.setState({
-                    greenLine: false
+                    carrotLine: false
                 })
-            }, 500);
+            }, 400);
+            console.log(data)
+            Axios.post(REST_API_ENDPOINT + 'qr/send', {
+                token: localStorage.getItem('kbu')
+            }).then(res => res.data)
+                .then(data => {
+                    console.log(data)
+                    if (data.is_ok === 1) {
+                        console.log(data)
+
+                        this.setState({
+                            greenLine: true
+                        })
+                        setTimeout(() => {
+                            this.setState({
+                                greenLine: false
+                            })
+
+                        }, 500);
+                    } else {
+
+                        this.setState({
+                            puppleLine: true
+                        })
+                        setTimeout(() => {
+                            this.setState({
+                                puppleLine: false
+                            })
+                        }, 400);
+                    }
+                })
+                .catch(err => console.error(err))
+
 
         }
     }

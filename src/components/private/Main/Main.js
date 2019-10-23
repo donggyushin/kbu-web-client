@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import CodeButton from './CodeButton/CodeButton';
 import StudentCard from './StudentCard/StudentCard';
-import { decodeJsonWebToken } from 'utils/jsonwebtoken';
-import Axios from 'axios';
-import REST_API_ENDPOINT from 'constants/endpoint';
 
 
 const Container = styled.div`
