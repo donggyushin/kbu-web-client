@@ -52,15 +52,15 @@ class PrivateComponent extends React.Component {
                 password: userPassword
             }).then(res => res.data)
                 .then(data => {
-                    console.log(data)
-                    console.log(data.token)
+
+
                     localStorage.setItem('kbu', data.token);
                     if (data.is_ok) {
                         this.setState({
                             user: data.result,
                             loading: false
                         })
-                        console.log('this.state.user: ', this.state.user);
+
                     } else {
                         alert('정보를 불러오는데 실패하였습니다. ')
                         window.localStorage.removeItem('token');
@@ -79,11 +79,12 @@ class PrivateComponent extends React.Component {
             <DrawerComponent user={user} logout={logout} />
             {/* <RedLine /> */}
             <Switch>
+
+                <Route exact path="/">
+                    <Main user={user} loading={loading} QRCodeOn={QRCodeOn} />
+                </Route>
                 <Route path="/admin">
                     <AdminPage user={user} />
-                </Route>
-                <Route path="/">
-                    <Main user={user} loading={loading} QRCodeOn={QRCodeOn} />
                 </Route>
                 <Route>
                     <Main />
