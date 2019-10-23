@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import QrReader from 'react-qr-reader';
 
+
 const Container = styled.div`
     display:flex;
     flex-direction:column;
@@ -31,12 +32,13 @@ class AdminPage extends React.Component {
     render() {
         return <Container>
             <QrReader
-                delay={300}
+                delay={500}
                 onError={this.handleError}
                 onScan={this.handleScan}
                 style={{
                     width: '100%'
                 }}
+                className={'qrcodereader'}
             />
             <p>{this.state.result}</p>
         </Container>
@@ -48,10 +50,19 @@ class AdminPage extends React.Component {
                 result: data
             })
             // Send data to arduino server
+            const element = document.querySelector('.qrcodereader')
+            element.style.boxShadow = "#2ecc71";
+            console.log('element: ', element)
+
+
+            setTimeout(() => {
+                element.style.boxShadow = "rgba(255, 0, 0, 0.5) 0px 0px 0px 5px inset";
+            }, 3000);
         }
     }
     handleError = err => {
         console.error(err)
+
     }
 }
 
