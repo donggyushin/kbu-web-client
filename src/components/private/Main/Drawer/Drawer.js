@@ -2,6 +2,7 @@ import React from 'react';
 import { Drawer, Button, Radio } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import themeColor from 'constants/themeColor'
 
 const Container = styled.div`
     width:100%;
@@ -10,7 +11,7 @@ const Container = styled.div`
     justify-content:center;
     position: relative;
     height:50px;
-    background:#1e3799;
+    background:${themeColor.theme};
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -32,6 +33,7 @@ const KBUText = styled.div`
     color:white;
     font-size: 20px;
     font-weight: 700;
+    font-family: 'Nanum Gothic', sans-serif;
 `
 
 const MenuItem = styled.p`
@@ -74,7 +76,7 @@ class DrawerComponent extends React.Component {
 
                 <a href={'/'}>
                     {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
-                    <KBUText>Korea Bible University</KBUText>
+                    <KBUText>한국성서대학교</KBUText>
                 </a>
 
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />

@@ -5,6 +5,7 @@ import LoginDrawer from './LoginDrawer/LoginDrawer';
 import axios from 'axios'
 import REST_API_ENDPOINT from 'constants/endpoint';
 import { generateJsonWebToken } from 'utils/jsonwebtoken';
+import ThemeColor from 'constants/themeColor';
 
 
 
@@ -22,7 +23,26 @@ const InputContainer = styled.div`
     flex-direction:column;
     width:80%;
 `
+const LogoContainer = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+    bottom:43px;
 
+`
+
+
+const KbuCardLogo = styled.img`
+    width: 150px;
+`
+
+const LogoText = styled.div`
+    color:${ThemeColor.theme};
+    font-size: 26px;
+    font-weight: 600;
+`
 
 
 class Login2Component extends React.Component {
@@ -39,6 +59,10 @@ class Login2Component extends React.Component {
         return <Container>
             <LoginDrawer />
             <InputContainer>
+                <LogoContainer>
+                    <KbuCardLogo src={require('../../../assets/kbucardlogo.png')} />
+                    <LogoText>KBU CARD</LogoText>
+                </LogoContainer>
                 <Input
                     id={'id'}
                     value={id}
@@ -58,6 +82,7 @@ class Login2Component extends React.Component {
                 <Input.Password
                     id={'password'}
                     value={password}
+                    onKeyDown={this.onEnterPressed}
                     name={'password'}
                     onChange={handleInput}
                     prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -68,6 +93,12 @@ class Login2Component extends React.Component {
                 <Button onClick={loginButtonClicked} className={'button'} disabled={buttonDisabled} type={"primary"}>LOGIN</Button>
             </InputContainer>
         </Container>
+    }
+
+    onEnterPressed = e => {
+        if (e.key === 'Enter') {
+            this.loginButtonClicked();
+        }
     }
 
     loginButtonClicked = () => {

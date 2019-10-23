@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core'
 import { PacmanLoader } from 'react-spinners'
 import styled from 'styled-components';
+import ThemeColor from 'constants/themeColor'
 
 const Container = styled.div`
     width:100%;
@@ -26,7 +27,7 @@ class AwesomeLoadingComponent extends React.Component {
                 css={override}
                 sizeUnit={"px"}
                 size={40}
-                color={'#36D7B7'}
+                color={ThemeColor.theme}
                 loading={true}
             />
         </Container>

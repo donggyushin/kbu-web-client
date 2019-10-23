@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import themeColor from 'constants/themeColor'
 
 const Container = styled.button`  
     color: white;
@@ -16,19 +17,24 @@ const Container = styled.button`
 
 const Border = styled.div`
     
-    border-radius:5px;
-    border :${props => props.loading ? '1px solid gray' : '1px solid #e67e22'} ;
+    border-radius:50%;
+    padding:10px;
+    border : 1px solid ${themeColor.theme} ;
 `
 
 const Icon = styled.i`
-    color:${props => props.loading ? 'gray' : '#1e3799'};
-    font-size:50px;
+    color:${props => props.loading ? 'gray' : themeColor.theme};
+    font-size:61px;
 `
 
-const CodeButton = ({ QRCodeOn, loading }) => <Border loading={loading}>
-    <Container disabled={loading} onClick={QRCodeOn}>
-        <Icon loading={loading} className={'fas fa-qrcode'} />
-    </Container>
+const ButtonImage = styled.img``
+
+const CodeButton = ({ QRCodeOn, loading }) => <Border><Container disabled={loading} onClick={QRCodeOn}>
+    <Icon loading={loading} className={'fas fa-qrcode'} />
+    {/* <ButtonImage src={require('assets/qrcodebutton.png')} /> */}
+</Container>
 </Border>
+
+
 
 export default CodeButton

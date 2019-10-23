@@ -127,6 +127,7 @@ class AdminPage extends React.Component {
                                 puppleLine: false
                             })
                         }, 400);
+                        alert(data.result)
                     }
                 })
                 .catch(err => console.error(err))
