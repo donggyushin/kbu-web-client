@@ -6,10 +6,6 @@ import REST_API_ENDPOINT from 'constants/endpoint';
 
 
 
-const successAudio = new Audio('/assets/success.wav');
-const failAudio = new Audio('/assets/fail.wav');
-
-
 const Container = styled.div`
     display:flex;
     flex-direction:column;
@@ -45,7 +41,13 @@ const PuppleBorder = styled.div`
     display:${props => props.carrotLine ? 'block' : 'none'};
 `
 
+const Audio = styled.audio`
+    display:none;
+`
+
 class AdminPage extends React.Component {
+
+
 
 
 
@@ -84,6 +86,7 @@ class AdminPage extends React.Component {
             <GreenBorder greenLine={greenLine} />
             <CarrotBorder carrotLine={carrotLine} />
             <PuppleBorder puppleLine={puppleLine} />
+            {/* <Audio id={'success'} src={'/a'} /> */}
         </Container>
     }
 
@@ -98,15 +101,13 @@ class AdminPage extends React.Component {
                     carrotLine: false
                 })
             }, 400);
-            console.log(data)
             Axios.post(REST_API_ENDPOINT + 'qr/send', {
-                token: localStorage.getItem('kbu')
+                token: data
             }).then(res => res.data)
                 .then(data => {
                     console.log(data)
                     if (data.is_ok === 1) {
                         console.log(data)
-
                         this.setState({
                             greenLine: true
                         })
