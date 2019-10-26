@@ -11,12 +11,14 @@ const Container = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
+    
 `
 
 const override = css`
     position: relative;
     right:20px;
     bottom:20px;
+    z-index:2;
 `
 
 class AwesomeLoadingComponent extends React.Component {
@@ -24,10 +26,11 @@ class AwesomeLoadingComponent extends React.Component {
         const { loading } = this.props;
         return <Container>
             <PacmanLoader
+
                 css={override}
                 sizeUnit={"px"}
                 size={40}
-                color={ThemeColor.theme}
+                color={'#34495e'}
                 loading={true}
             />
         </Container>

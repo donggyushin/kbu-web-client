@@ -18,6 +18,8 @@ const LogoBackgroundImage = styled.img`
     position: absolute;
     width: 44%;
     opacity: 0.2;
+    max-width: 250px;
+    z-index:1;
 `
 
 
@@ -87,10 +89,6 @@ const Name = styled.div`
 const BoldText = styled.div`
     font-weight: 700;
     z-index:2;
-`
-
-const UnivMark = styled.img`
-    width:90px;
 `
 
 const MobileIDCard = styled.div`

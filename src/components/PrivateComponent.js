@@ -8,7 +8,6 @@ import {
 import QRCodeComponent from './private/QRCode/QRCode';
 import anime from 'animejs/lib/anime.es.js';
 import DrawerComponent from './private/Main/Drawer/Drawer';
-import CopyrightComponent from './private/Copyright/Copyright';
 import AdminPage from './private/AdminPage/AdminPage';
 import styled from 'styled-components'
 import { decodeJsonWebToken } from 'utils/jsonwebtoken';
@@ -43,9 +42,19 @@ class PrivateComponent extends React.Component {
 
     }
 
+
+
+
+
+
     componentDidMount() {
+
         const userCache = window.localStorage.getItem('user');
-        if (userCache === null) {
+        const today = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
+        const cachedata = localStorage.getItem('cachedate')
+        console.log('today: ', today);
+        console.log('cache data: ', cachedata)
+        if (userCache === null || today !== cachedata) {
             const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
             const userId = decoded.id;
             const userPassword = decoded.password;
@@ -58,6 +67,8 @@ class PrivateComponent extends React.Component {
                         localStorage.setItem('kbu', data.token);
                         console.log('user info:', data.result)
                         localStorage.setItem('user', JSON.stringify(data.result))
+                        let cachedata = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
+                        localStorage.setItem('cachedate', cachedata)
                         if (data.is_ok) {
                             this.setState({
                                 user: data.result,

@@ -71,6 +71,7 @@ class DrawerComponent extends React.Component {
 
     render() {
         const { logout, user } = this.props;
+        const { refresh } = this;
         return (
             <Container>
 
@@ -89,20 +90,27 @@ class DrawerComponent extends React.Component {
                     visible={this.state.visible}
                 >
                     <XButton onClick={this.onClose} className={'fas fa-times'} />
-                    <MenuItem>이경민</MenuItem>
+                    {/* <MenuItem>이경민</MenuItem>
                     <MenuItem>신동규</MenuItem>
-                    <MenuItem>신민철</MenuItem>
+                    <MenuItem>신민철</MenuItem> */}
                     {(user.sid === '201303024' || user.sid === '201504018' || user.sid === '201504021') && <a style={{
                         textDecoration: 'none',
                         color: 'black'
                     }} href={'/admin'}>
                         <MenuItem>관리자 페이지</MenuItem>
                     </a>}
-
-                    <MenuItem onClick={logout}>로그아웃</MenuItem>
+                    <MenuItem onClick={refresh}>새로고침</MenuItem>
+                    <MenuItem style={{
+                        color: '#e74c3c'
+                    }} onClick={logout}>로그아웃</MenuItem>
                 </Drawer>
             </Container>
         );
+    }
+
+    refresh = () => {
+        window.localStorage.removeItem('user')
+        window.location.href = '/'
     }
 
 
