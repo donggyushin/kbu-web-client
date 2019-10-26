@@ -60,12 +60,12 @@ class LoginDrawer extends React.Component {
                     visible={this.state.visible}
                 >
                     <XButton onClick={this.onClose} className={'fas fa-times'} />
-                    <Link style={{
+                    {/* <Link style={{
                         textDecoration: 'none',
                         color: 'black'
                     }} to={'/new'}>
                         <p>회원가입</p>
-                    </Link>
+                    </Link> */}
                 </Drawer>
             </Container>
         );

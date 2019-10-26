@@ -16,9 +16,12 @@ const Container = styled.button`
 `
 
 const Border = styled.div`
-    
     border-radius:50%;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     padding:10px;
+    overflow:hidden;
     border : 1px solid ${themeColor.theme} ;
 `
 

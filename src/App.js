@@ -9,6 +9,12 @@ class App extends React.Component {
   state = {
     isLoggedIn: localStorage.getItem('token') ? true : false
   }
+
+  componentWillUnmount() {
+    window.localStorage.removeItem('user')
+  }
+
+
   render() {
     const { isLoggedIn } = this.state;
     const { logout } = this;

@@ -10,8 +10,16 @@ const Container = styled.div`
     background:#ecf0f1;
     padding-top:25px;
     padding-bottom:10px;
-    
+    position: relative;
+    justify-content:center;
 `
+
+const LogoBackgroundImage = styled.img`
+    position: absolute;
+    width: 44%;
+    opacity: 0.2;
+`
+
 
 const Card = styled.div`
     background:white;
@@ -20,8 +28,9 @@ const Card = styled.div`
     flex-direction:column;
     align-items:center;
     -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    
 `
 
 const Upper = styled.div`
@@ -31,6 +40,7 @@ const Upper = styled.div`
     width:100%;
     border-bottom: 1px solid gainsboro;
     height:206px;
+    
 `
 
 const Lower = styled.div`
@@ -41,6 +51,7 @@ const Lower = styled.div`
     width:100%;
     padding-bottom:10px;
     height:211px;
+    
 `
 
 const NormalText = styled.div`
@@ -48,7 +59,8 @@ const NormalText = styled.div`
     margin-bottom: 10px;
     letter-spacing: 0.7px;
     font-family: 'Nanum Gothic', sans-serif;
-font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Nanum Gothic Coding', monospace;
+    z-index:2;
 `
 
 const ProfilePhoto = styled.img`
@@ -57,6 +69,10 @@ const ProfilePhoto = styled.img`
     border-radius: 15%;
     object-fit: cover;
     margin-bottom: 15px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    z-index:2;
 `
 
 const Name = styled.div`
@@ -65,10 +81,12 @@ const Name = styled.div`
     font-weight: 600;
     color: ${props => props.status === '재학' ? '#487eb0' : '#e74c3c'} ;
     font-family: 'Nanum Gothic', sans-serif;
+    z-index:2;
 `
 
 const BoldText = styled.div`
     font-weight: 700;
+    z-index:2;
 `
 
 const UnivMark = styled.img`
@@ -82,6 +100,7 @@ const MobileIDCard = styled.div`
     letter-spacing: 4px;
     margin-bottom: 10px;
     font-weight: 500;
+    z-index:2;
 `
 
 const ArrowContainer = styled.div`
@@ -111,6 +130,7 @@ const BasicInfo = styled.div`
     margin-bottom: 12px;
     width: 150px;
     align-items: flex-start;
+    z-index:2;
 `
 
 const Row = styled.div`
@@ -126,12 +146,14 @@ const BasicInfoLabel = styled.div`
     font-weight:900;
     position: absolute;
     left:0px;
+    z-index:2;
     
 `
 
 const BasicInfoText = styled.div`
     font-family: 'Nanum Gothic', sans-serif;
     font-family: 'Nanum Gothic Coding', monospace;
+    z-index:2;
     
 `
 
@@ -168,6 +190,7 @@ class StudentCard extends React.Component {
     render() {
         const { user, loading } = this.props;
         return <Container>
+            <LogoBackgroundImage src={require('assets/watermark.png')} />
             <Card>
                 {loading ? <LoadingContainer>
                     <WhitePartInLoading />
@@ -182,7 +205,6 @@ class StudentCard extends React.Component {
                             {user.sid !== '201303024' &&
                                 <ProfilePhoto src={user.img ? 'data:image/png;base64,' + user.img : 'https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg'} />
                             }
-
                         </Upper>
                         <Lower>
                             <Name status={user.status}>{user.name}</Name>

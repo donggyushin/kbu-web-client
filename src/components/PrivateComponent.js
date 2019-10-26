@@ -39,36 +39,46 @@ class PrivateComponent extends React.Component {
             status: "",
             name: ""
         },
-        loading: true
+        loading: true,
+
     }
 
     componentDidMount() {
-        const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
-        const userId = decoded.id;
-        const userPassword = decoded.password;
-        if (userId && userPassword) {
-            Axios.post(REST_API_ENDPOINT + 'user/getuser', {
-                id: userId,
-                password: userPassword
-            }).then(res => res.data)
-                .then(data => {
+        const userCache = window.localStorage.getItem('user');
+        if (userCache === null) {
+            const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
+            const userId = decoded.id;
+            const userPassword = decoded.password;
+            if (userId && userPassword) {
+                Axios.post(REST_API_ENDPOINT + 'user/getuser', {
+                    id: userId,
+                    password: userPassword
+                }).then(res => res.data)
+                    .then(data => {
+                        localStorage.setItem('kbu', data.token);
+                        console.log('user info:', data.result)
+                        localStorage.setItem('user', JSON.stringify(data.result))
+                        if (data.is_ok) {
+                            this.setState({
+                                user: data.result,
+                                loading: false
+                            })
 
-
-                    localStorage.setItem('kbu', data.token);
-                    if (data.is_ok) {
-                        this.setState({
-                            user: data.result,
-                            loading: false
-                        })
-
-                    } else {
-                        alert('정보를 불러오는데 실패하였습니다. ')
-                        window.localStorage.removeItem('token');
-                        window.location.href = '/'
-                    }
-                })
-                .catch(err => console.error(err))
+                        } else {
+                            alert('정보를 불러오는데 실패하였습니다. ')
+                            window.localStorage.removeItem('token');
+                            window.location.href = '/'
+                        }
+                    })
+                    .catch(err => console.error(err))
+            }
+        } else {
+            this.setState({
+                user: JSON.parse(userCache),
+                loading: false
+            })
         }
+
     }
 
     render() {
