@@ -45,6 +45,7 @@ const XButton = styled.i`
     right: 15px;
     top: 14px;
     font-size: 26px;
+    color:white;
     cursor: pointer;
 `
 

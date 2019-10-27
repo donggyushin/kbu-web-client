@@ -58,3 +58,12 @@ code {
 .ant-drawer-body {
   font-size: 18px !important;
 }
+
+.ant-drawer-header {
+  background: #6F1E51 !important;
+  border-radius: 0 !important;
+}
+
+.ant-drawer-title {
+  color: white !important;
+}
