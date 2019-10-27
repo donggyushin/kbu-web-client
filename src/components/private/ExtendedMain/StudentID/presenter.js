@@ -21,7 +21,8 @@ const Container = styled.div`
     top:0;
     left:0;
     width:100%;
-    height:100%;
+    height:100vh;
+    overflow:hidden;
     background:rgba(0,0,0,0.5);
     display:flex;
     flex-direction:column;
@@ -92,7 +93,7 @@ const StudentInfoContainer = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding-left: 27px;
+    padding-left: 18px;
 `
 const Name = styled.div`
 font-family: 'Nanum Gothic',sans-serif;
