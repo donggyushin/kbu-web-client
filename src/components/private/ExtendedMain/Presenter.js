@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CopyrightComponent from '../Copyright/Copyright';
+import StudentID from './StudentID';
 
 const Container = styled.div`
     width:100%;
@@ -29,6 +30,9 @@ const HorizontalCard = styled.div`
     height:100px;
     box-shadow: 0px 2px 3px 1px rgba(163,163,163,1);
     display:flex;
+    &:active {
+        background: #dfe4ea;
+    }
 `
 const TextContainer = styled.div`
     width:65%;
@@ -70,6 +74,9 @@ const VerticalCard = styled.div`
     width:32%;
     height:210px;
     box-shadow: 0px 2px 3px 1px rgba(163,163,163,1);
+    &:active {
+        background: #dfe4ea;
+    }
 `
 const TextContainerForVerticalCard = styled.div`
     width:100%;
@@ -81,7 +88,7 @@ const TextContainerForVerticalCard = styled.div`
 `
 
 const IconContainerForVerticalCard = styled.div`
-width:100%;
+    width:100%;
     height:50%;
     display:flex;
     flex-direction:column;
@@ -104,6 +111,9 @@ const NormalCard = styled.div`
     height:120px;
     display:flex;
     box-shadow: 0px 2px 3px 1px rgba(163,163,163,1);
+    &:active {
+        background: #dfe4ea;
+    }
 `
 
 const TextContainerForNomralCard = styled.div`
@@ -124,7 +134,11 @@ width:40%;
     align-items:center;
 `
 
-export default function ExtendedMainPresenter() {
+export default function ExtendedMainPresenter({ studentId,
+    TurnOffStudentIDCard,
+    TurnOnStudentIDCard,
+    user
+}) {
     return <Container>
         <MarginVertical />
         <Row>
@@ -210,7 +224,7 @@ export default function ExtendedMainPresenter() {
                     </IconContainer>
                 </HorizontalCard>
                 <MarginVertical />
-                <HorizontalCard >
+                <HorizontalCard onClick={TurnOnStudentIDCard} >
                     <TextContainer>
                         <MainText>모바일 학생증</MainText>
                         <SubText>Student ID</SubText>
@@ -222,5 +236,6 @@ export default function ExtendedMainPresenter() {
             </Column>
         </Row>
         <CopyrightComponent />
+        {studentId && <StudentID user={user} TurnOffStudentIDCard={TurnOffStudentIDCard} />}
     </Container>
 }

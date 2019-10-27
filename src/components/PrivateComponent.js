@@ -9,7 +9,6 @@ import QRCodeComponent from './private/QRCode/QRCode';
 import anime from 'animejs/lib/anime.es.js';
 import DrawerComponent from './private/Main/Drawer/Drawer';
 import AdminPage from './private/AdminPage/AdminPage';
-import styled from 'styled-components'
 import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 import Axios from 'axios';
 import REST_API_ENDPOINT from 'constants/endpoint';
@@ -45,46 +44,37 @@ class PrivateComponent extends React.Component {
 
     componentDidMount() {
 
-        const userCache = window.localStorage.getItem('user');
-        const today = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
-        const cachedata = localStorage.getItem('cachedate')
-        console.log('today: ', today);
-        console.log('cache data: ', cachedata)
-        if (userCache === null || today !== cachedata) {
-            const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
-            const userId = decoded.id;
-            const userPassword = decoded.password;
-            if (userId && userPassword) {
-                Axios.post(REST_API_ENDPOINT + 'user/getuser', {
-                    id: userId,
-                    password: userPassword
-                }).then(res => res.data)
-                    .then(data => {
-                        localStorage.setItem('kbu', data.token);
-                        console.log('user info:', data.result)
-                        localStorage.setItem('user', JSON.stringify(data.result))
-                        let cachedata = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
-                        localStorage.setItem('cachedate', cachedata)
-                        if (data.is_ok) {
-                            this.setState({
-                                user: data.result,
-                                loading: false
-                            })
 
-                        } else {
-                            alert('정보를 불러오는데 실패하였습니다. ')
-                            window.localStorage.removeItem('token');
-                            window.location.href = '/'
-                        }
-                    })
-                    .catch(err => console.error(err))
-            }
-        } else {
-            this.setState({
-                user: JSON.parse(userCache),
-                loading: false
-            })
+
+        const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
+        const userId = decoded.id;
+        const userPassword = decoded.password;
+        if (userId && userPassword) {
+            Axios.post(REST_API_ENDPOINT + 'user/getuser', {
+                id: userId,
+                password: userPassword
+            }).then(res => res.data)
+                .then(data => {
+                    localStorage.setItem('kbu', data.token);
+                    console.log('user info:', data.result)
+                    localStorage.setItem('user', JSON.stringify(data.result))
+                    let cachedata = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
+                    localStorage.setItem('cachedate', cachedata)
+                    if (data.is_ok) {
+                        this.setState({
+                            user: data.result,
+                            loading: false
+                        })
+
+                    } else {
+                        alert('정보를 불러오는데 실패하였습니다. ')
+                        window.localStorage.removeItem('token');
+                        window.location.href = '/'
+                    }
+                })
+                .catch(err => console.error(err))
         }
+
 
     }
 
@@ -98,7 +88,7 @@ class PrivateComponent extends React.Component {
             <Switch>
 
                 <Route exact path="/">
-                    <ExtendedMain />
+                    <ExtendedMain user={user} />
                 </Route>
                 <Route path="/admin">
                     <AdminPage user={user} />
