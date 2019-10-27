@@ -13,12 +13,8 @@ import styled from 'styled-components'
 import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 import Axios from 'axios';
 import REST_API_ENDPOINT from 'constants/endpoint';
+import ExtendedMain from './private/ExtendedMain';
 
-const RedLine = styled.div`
-    height:4px;
-    width:100%;
-    background:#c0392b;
-`
 
 
 class PrivateComponent extends React.Component {
@@ -102,7 +98,7 @@ class PrivateComponent extends React.Component {
             <Switch>
 
                 <Route exact path="/">
-                    <Main user={user} loading={loading} QRCodeOn={QRCodeOn} />
+                    <ExtendedMain />
                 </Route>
                 <Route path="/admin">
                     <AdminPage user={user} />

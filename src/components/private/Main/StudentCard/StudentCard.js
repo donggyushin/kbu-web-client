@@ -17,7 +17,7 @@ const Container = styled.div`
 const LogoBackgroundImage = styled.img`
     position: absolute;
     width: 44%;
-    opacity: 0.2;
+    opacity: 0.1;
     max-width: 250px;
     z-index:1;
 `
@@ -28,6 +28,7 @@ const Card = styled.div`
     width:85%;
     display:flex;
     flex-direction:column;
+    justify-content:center;
     align-items:center;
     -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
@@ -62,7 +63,7 @@ const NormalText = styled.div`
     letter-spacing: 0.7px;
     font-family: 'Nanum Gothic', sans-serif;
     font-family: 'Nanum Gothic Coding', monospace;
-    z-index:2;
+    
 `
 
 const ProfilePhoto = styled.img`
@@ -74,7 +75,7 @@ const ProfilePhoto = styled.img`
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    z-index:2;
+    
 `
 
 const Name = styled.div`
@@ -83,12 +84,12 @@ const Name = styled.div`
     font-weight: 600;
     color: ${props => props.status === '재학' ? '#487eb0' : '#e74c3c'} ;
     font-family: 'Nanum Gothic', sans-serif;
-    z-index:2;
+    
 `
 
 const BoldText = styled.div`
     font-weight: 700;
-    z-index:2;
+    
 `
 
 const MobileIDCard = styled.div`
@@ -98,7 +99,7 @@ const MobileIDCard = styled.div`
     letter-spacing: 4px;
     margin-bottom: 10px;
     font-weight: 500;
-    z-index:2;
+    
 `
 
 const ArrowContainer = styled.div`
@@ -128,7 +129,7 @@ const BasicInfo = styled.div`
     margin-bottom: 12px;
     width: 150px;
     align-items: flex-start;
-    z-index:2;
+    
 `
 
 const Row = styled.div`
@@ -144,14 +145,14 @@ const BasicInfoLabel = styled.div`
     font-weight:900;
     position: absolute;
     left:0px;
-    z-index:2;
+    
     
 `
 
 const BasicInfoText = styled.div`
     font-family: 'Nanum Gothic', sans-serif;
     font-family: 'Nanum Gothic Coding', monospace;
-    z-index:2;
+    
     
 `
 
@@ -188,14 +189,15 @@ class StudentCard extends React.Component {
     render() {
         const { user, loading } = this.props;
         return <Container>
-            <LogoBackgroundImage src={require('assets/watermark.png')} />
+
             <Card>
                 {loading ? <LoadingContainer>
+                    <LogoBackgroundImage src={require('assets/watermark.png')} />
                     <WhitePartInLoading />
                     <GrayPartInLoading />
                     <AwesomeLoadingComponent loading={loading} />
                 </LoadingContainer> : <>
-
+                        <LogoBackgroundImage src={require('assets/watermark.png')} />
                         <Upper>
                             <MobileIDCard>MOBILE ID CARD</MobileIDCard>
                             <Margin />

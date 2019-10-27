@@ -1,4 +1,4 @@
-const THEME = '#0984e3'
+const THEME = '#6F1E51'
 
 const themeColor = {
     theme: THEME

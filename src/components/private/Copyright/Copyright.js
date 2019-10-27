@@ -9,12 +9,15 @@ const Container = styled.div`
     width:100%;
     height:100px;
     text-transform:uppercase;
-    font-weight: 600;
+    font-weight: 300;
+    font-size:12px;
+    color:#b2bec3;
+    text-transform:uppercase;
     
 `
 
 const CopyrightComponent = () => <Container>
-    Copyright(C) 2019. 피자호빵. All Rights reserved.
+    copyright korean bible university all rights reserved
 </Container>
 
 export default CopyrightComponent

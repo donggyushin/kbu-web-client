@@ -27,7 +27,7 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 
 const Icon = styled.i`
     color:${props => props.loading ? 'gray' : themeColor.theme};
-    font-size:61px;
+    font-size:39px;
 `
 
 const ButtonImage = styled.img``
