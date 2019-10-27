@@ -93,7 +93,7 @@ const StudentInfoContainer = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding-left: 18px;
+    padding-left: 10px;
 `
 const Name = styled.div`
 font-family: 'Nanum Gothic',sans-serif;
