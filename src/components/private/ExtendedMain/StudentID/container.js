@@ -6,6 +6,15 @@ class StudentIDContainer extends React.Component {
         qrcode: false,
         qrcodeimg: ""
     }
+
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'unset';
+    }
+
     render() {
         const { TurnOffStudentIDCard, user } = this.props;
         const { requestQrcode, shutdownQrcode } = this;
