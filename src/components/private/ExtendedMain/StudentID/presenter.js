@@ -97,12 +97,12 @@ const StudentInfoContainer = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding-left: 10px;
+    padding-left: 29px;
 `
 const Name = styled.div`
 font-family: 'irop';
 letter-spacing: 7.3px;
-font-size: 20px;
+font-size: 27px;
     font-weight: bolder;
     color:black;
 `
@@ -116,7 +116,7 @@ const NormalText = styled.div`
 font-family: 'irop';
     letter-spacing: 1px;
     font-size: 13px;
-    color:gray;
+    color:${props => props.red ? '#e74c3c' : 'gray'};
 `
 const ProfileImageContainer = styled.div`
     width:50%;
@@ -195,9 +195,11 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                         <Name>{user.name}</Name>
                         <StudentIDNumber>{user.sid}</StudentIDNumber>
                         <MarginHeight />
-                        <NormalText>{user.status}</NormalText>
                         <NormalText>{user.major}</NormalText>
-                        <NormalText>{user.grade}학년</NormalText>
+                        <Row>
+                            <NormalText red={user.status !== '재학'}>{user.grade}학년&nbsp;</NormalText>
+                            <NormalText red={user.status !== '재학'}>{user.status}</NormalText>
+                        </Row>
                     </StudentInfoContainer>
                     <ProfileImageContainer>
                         <ProfileImage src={user.sid === '201303024' ? require('assets/leo.png') : base64formatter(user.img)} />
