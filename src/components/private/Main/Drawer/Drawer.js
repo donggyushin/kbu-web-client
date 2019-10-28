@@ -106,7 +106,10 @@ class DrawerComponent extends React.Component {
                         <KBUText>한국성서대학교</KBUText>
 
                     </a>
-                    <PageTitle>{pageTitle === 'schedule' && '학사일정'}</PageTitle>
+                    <PageTitle>
+                        {pageTitle === 'schedule' && '학사일정'}
+                        {pageTitle === 'map' && '캠퍼스 맵'}
+                    </PageTitle>
                 </TitleContainer>
 
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />

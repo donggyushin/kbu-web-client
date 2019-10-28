@@ -7,7 +7,11 @@ class ExtendedMainContainer extends React.Component {
     }
     render() {
         const { studentId } = this.state;
-        const { TurnOffStudentIDCard, TurnOnStudentIDCard, sheduleClicked } = this;
+        const { TurnOffStudentIDCard,
+            TurnOnStudentIDCard,
+            sheduleClicked,
+            campusMapClicked
+        } = this;
         const { user } = this.props;
         return <ExtendedMainPresenter
             TurnOffStudentIDCard={TurnOffStudentIDCard}
@@ -15,7 +19,12 @@ class ExtendedMainContainer extends React.Component {
             studentId={studentId}
             user={user}
             sheduleClicked={sheduleClicked}
+            campusMapClicked={campusMapClicked}
         />
+    }
+
+    campusMapClicked = () => {
+        window.location.href = '/map'
     }
 
     sheduleClicked = () => {

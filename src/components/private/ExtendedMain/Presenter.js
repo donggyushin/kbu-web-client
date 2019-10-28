@@ -139,7 +139,8 @@ export default function ExtendedMainPresenter({ studentId,
     TurnOffStudentIDCard,
     TurnOnStudentIDCard,
     user,
-    sheduleClicked
+    sheduleClicked,
+    campusMapClicked
 }) {
     return <Container>
         <MarginVertical />
@@ -206,7 +207,7 @@ export default function ExtendedMainPresenter({ studentId,
         <MarginVertical />
         <Row>
 
-            <VerticalCard>
+            <VerticalCard onClick={campusMapClicked}>
                 <TextContainerForVerticalCard>
                     <MainText>캠퍼스 맵</MainText>
                     <SubText>Campus Map</SubText>
@@ -215,6 +216,7 @@ export default function ExtendedMainPresenter({ studentId,
                     <Icon src={require('assets/map.png')} />
                 </IconContainerForVerticalCard>
             </VerticalCard>
+
             <MarginHorizontal />
             <Column>
                 <HorizontalCard >
