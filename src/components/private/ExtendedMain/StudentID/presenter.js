@@ -131,7 +131,7 @@ const ProfileImageContainer = styled.div`
 `
 
 const ProfileImage = styled.img`
-    width:100%;
+    height:100%;
     object-fit:cover;
     border-top-right-radius: 16px;
     z-index:1;
@@ -191,7 +191,9 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                 <RedLine>모바일 학생증</RedLine>
                 {/* <MarginHeight /> */}
                 <Row style={{
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    height: '33%',
+                    width: '100%'
                 }} >
                     <StudentInfoContainer>
                         <Name>{user.name}</Name>
