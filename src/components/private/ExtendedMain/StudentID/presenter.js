@@ -27,12 +27,13 @@ const Container = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
+    padding-top:35px;
 `
 
 const CardContainer = styled.div`
     width:80%;
-    height: 60%;
+    height: 70%;
     min-height: 488px;
     display:flex;
     flex-direction:column;
