@@ -1,5 +1,7 @@
 import React from 'react';
 import StudentID from './presenter';
+import axios from 'axios'
+import REST_API_ENDPOINT from 'constants/endpoint';
 
 class StudentIDContainer extends React.Component {
     state = {
@@ -31,6 +33,10 @@ class StudentIDContainer extends React.Component {
 
     requestQrcode = () => {
         // 서버에 qrcode 를 요청하고 img base64 code 를 받아오면
+        // const
+        // axios.post(REST_API_ENDPOINT + 'qr/', {
+
+        // })
         this.setState({
             qrcode: true,
             qrcodeimg: "qrcode base64 code"

@@ -67,3 +67,15 @@ code {
 .ant-drawer-title {
   color: white !important;
 }
+
+@font-face{
+  font-family: '1997';
+  src: url('./fonts/typossangmoondong.ttf');
+}
+
+
+@font-face {
+  font-family: 'irop';
+  src: url('./fonts/IropkeBatangM.eot'),
+  url('./fonts/IropkeBatangM.woff');
+}

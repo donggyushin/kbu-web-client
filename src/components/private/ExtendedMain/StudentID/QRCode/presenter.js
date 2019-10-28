@@ -23,8 +23,7 @@ const MarginHeight = styled.div`
 const Timer = styled.div`
     font-size: 20px;
     font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-font-family: 'Jomolhari', serif;
+    font-family:'1997';
 `
 
 export default function QrcodePresenter({ img, timer }) {

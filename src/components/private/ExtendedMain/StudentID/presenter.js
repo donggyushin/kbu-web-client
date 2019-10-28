@@ -32,7 +32,8 @@ const Container = styled.div`
 
 const CardContainer = styled.div`
     width:80%;
-    height:80%;
+    height: 60%;
+    min-height: 488px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -56,6 +57,7 @@ const Card = styled.div`
     flex-direction:column;
     align-items:center;
     overflow:hidden;
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
     
 `
 
@@ -81,7 +83,8 @@ const RedLine = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family: 'Nanum Gothic',sans-serif;
+    font-family: 'irop';
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.75);
 `
 const Row = styled.div`
     display:flex;
@@ -96,19 +99,20 @@ const StudentInfoContainer = styled.div`
     padding-left: 10px;
 `
 const Name = styled.div`
-font-family: 'Nanum Gothic',sans-serif;
+font-family: 'irop';
+letter-spacing: 7.3px;
 font-size: 20px;
     font-weight: bolder;
     color:black;
 `
 
 const StudentIDNumber = styled.div`
-font-family: 'Nanum Gothic',sans-serif;
+font-family: 'irop';
 font-size: 20px;
 color:black;
 `
 const NormalText = styled.div`
-font-family: 'Nanum Gothic',sans-serif;
+font-family: 'irop';
     letter-spacing: 1px;
     font-size: 13px;
     color:gray;
@@ -127,6 +131,7 @@ const ProfileImage = styled.img`
     object-fit:cover;
     border-radius: 10px;
     z-index:1;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 `
 
 
