@@ -188,7 +188,8 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                 <RedLine>모바일 학생증</RedLine>
                 <MarginHeight />
                 <Row style={{
-                    height: '32%'
+                    height: '32%',
+                    marginTop: 20
                 }}>
                     <StudentInfoContainer>
                         <Name>{user.name}</Name>
