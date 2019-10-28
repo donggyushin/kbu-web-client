@@ -78,11 +78,12 @@ const WaterMark = styled.img`
 
 const RedLine = styled.div`
     width:100%;
-    height:50px;
+    height:70px;
     color:white;
     background:${themeColor.theme};
     display:flex;
     justify-content:center;
+    font-size: 22px;
     align-items:center;
     font-family: 'irop';
     box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.75);
@@ -97,7 +98,8 @@ const StudentInfoContainer = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding-left: 29px;
+    padding-left: 23px;
+    padding-top: 7px;
 `
 const Name = styled.div`
 font-family: 'irop';
@@ -119,18 +121,18 @@ font-family: 'irop';
     color:${props => props.red ? '#e74c3c' : 'gray'};
 `
 const ProfileImageContainer = styled.div`
-    width:50%;
+    width:48%;
     height:100%;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:7px;
+    
 `
 
 const ProfileImage = styled.img`
     width:100%;
     object-fit:cover;
-    border-radius: 10px;
+    border-top-right-radius: 16px;
     z-index:1;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 `
@@ -186,11 +188,10 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
 
             <Card>
                 <RedLine>모바일 학생증</RedLine>
-                <MarginHeight />
+                {/* <MarginHeight /> */}
                 <Row style={{
-                    height: '32%',
-                    marginTop: 20
-                }}>
+                    justifyContent: 'space-between'
+                }} >
                     <StudentInfoContainer>
                         <Name>{user.name}</Name>
                         <StudentIDNumber>{user.sid}</StudentIDNumber>
