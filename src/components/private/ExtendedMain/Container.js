@@ -7,14 +7,19 @@ class ExtendedMainContainer extends React.Component {
     }
     render() {
         const { studentId } = this.state;
-        const { TurnOffStudentIDCard, TurnOnStudentIDCard } = this;
+        const { TurnOffStudentIDCard, TurnOnStudentIDCard, sheduleClicked } = this;
         const { user } = this.props;
         return <ExtendedMainPresenter
             TurnOffStudentIDCard={TurnOffStudentIDCard}
             TurnOnStudentIDCard={TurnOnStudentIDCard}
             studentId={studentId}
             user={user}
+            sheduleClicked={sheduleClicked}
         />
+    }
+
+    sheduleClicked = () => {
+        window.location.href = '/shedule.pdf'
     }
 
     TurnOnStudentIDCard = () => {

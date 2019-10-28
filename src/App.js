@@ -19,9 +19,11 @@ class App extends React.Component {
     const { isLoggedIn } = this.state;
     const { logout } = this;
     return (
+
       <Container>
         {isLoggedIn ? <PrivateComponent logout={logout} /> : <PublicComponent />}
       </Container>
+
     );
   }
 

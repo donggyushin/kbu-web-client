@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CopyrightComponent from '../Copyright/Copyright';
 import StudentID from './StudentID';
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     width:100%;
@@ -137,7 +138,8 @@ width:40%;
 export default function ExtendedMainPresenter({ studentId,
     TurnOffStudentIDCard,
     TurnOnStudentIDCard,
-    user
+    user,
+    sheduleClicked
 }) {
     return <Container>
         <MarginVertical />
@@ -180,7 +182,7 @@ export default function ExtendedMainPresenter({ studentId,
         </Row>
         <MarginVertical />
         <Row>
-            <NormalCard>
+            <NormalCard onClick={sheduleClicked}>
                 <TextContainerForNomralCard>
                     <MainText>학사일정</MainText>
                     <SubText>Schedule</SubText>
@@ -189,6 +191,7 @@ export default function ExtendedMainPresenter({ studentId,
                     <Icon src={require('assets/schedule.png')} />
                 </IconContainerForNormalCard>
             </NormalCard>
+
             <MarginHorizontal />
             <NormalCard >
                 <TextContainerForNomralCard>

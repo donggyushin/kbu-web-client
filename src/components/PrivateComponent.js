@@ -13,6 +13,7 @@ import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 import Axios from 'axios';
 import REST_API_ENDPOINT from 'constants/endpoint';
 import ExtendedMain from './private/ExtendedMain';
+import ShedulePDF from './private/Shedule/Shedule';
 
 
 
@@ -92,6 +93,9 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route path="/admin">
                     <AdminPage user={user} />
+                </Route>
+                <Route path={'/shedule'}>
+                    <ShedulePDF />
                 </Route>
                 <Route>
                     <Main />
