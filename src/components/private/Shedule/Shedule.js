@@ -60,7 +60,7 @@ class Shedule extends Component {
                     <Page pageNumber={pageNumber} />
                 </Document>
                 <Row>
-                    {0 < this.state.pageNumber && <ArrowButton onClick={goPrevious} style={{
+                    {1 < this.state.pageNumber && <ArrowButton onClick={goPrevious} style={{
                         position: 'absolute',
                         left: 50
                     }} className={'fas fa-arrow-circle-left'} />}
