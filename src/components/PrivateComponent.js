@@ -94,7 +94,7 @@ class PrivateComponent extends React.Component {
                 <Route path="/admin">
                     <AdminPage user={user} />
                 </Route>
-                <Route path={'/shedule'}>
+                <Route path={'/schedule'}>
                     <ShedulePDF />
                 </Route>
                 <Route>

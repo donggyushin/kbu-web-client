@@ -49,8 +49,32 @@ const XButton = styled.i`
     cursor: pointer;
 `
 
+const TitleContainer = styled.div`
+    width:80%;
+    position:relative;
+    display:flex;
+    justify-content:center;
+`
+
+const PageTitle = styled.div`
+    position:absolute;
+    bottom:0px;
+    right:0;
+    color:white;
+`
+
 class DrawerComponent extends React.Component {
-    state = { visible: false, placement: 'left' };
+    state = {
+        visible: false,
+        placement: 'left',
+        pageTitle: ""
+    };
+
+    componentDidMount() {
+        this.setState({
+            pageTitle: window.location.href.split('/')[3]
+        })
+    }
 
     showDrawer = () => {
         this.setState({
@@ -73,13 +97,17 @@ class DrawerComponent extends React.Component {
     render() {
         const { logout, user } = this.props;
         const { refresh } = this;
+        const { pageTitle } = this.state;
         return (
             <Container>
+                <TitleContainer>
+                    <a href={'/'}>
+                        {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
+                        <KBUText>한국성서대학교</KBUText>
 
-                <a href={'/'}>
-                    {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
-                    <KBUText>한국성서대학교</KBUText>
-                </a>
+                    </a>
+                    <PageTitle>{pageTitle === 'schedule' && '학사일정'}</PageTitle>
+                </TitleContainer>
 
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />
 

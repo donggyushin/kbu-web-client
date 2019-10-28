@@ -16,6 +16,7 @@ const Row = styled.div`
     justify-content:center;
     align-items:center;
     margin-top:30px;
+    margin-bottom:30px;
 `
 
 const PageText = styled.div`
@@ -23,11 +24,25 @@ const PageText = styled.div`
     font-family: '1997';
 `
 
+const ArrowButton = styled.i`
+    font-size:27px;
+`
+
+
+
 class Shedule extends Component {
     state = {
         numPages: null,
         pageNumber: 2,
     }
+
+    componentDidMount() {
+        this.setState({
+            pageNumber: new Date().getMonth() + 2
+        })
+    }
+
+
 
     onDocumentLoadSuccess = ({ numPages }) => {
         this.setState({ numPages });
@@ -35,7 +50,7 @@ class Shedule extends Component {
 
     render() {
         const { pageNumber, numPages } = this.state;
-
+        const { goPrevious, goNext } = this;
         return (
             <Container>
                 <Document
@@ -45,10 +60,33 @@ class Shedule extends Component {
                     <Page pageNumber={pageNumber} />
                 </Document>
                 <Row>
+                    {0 < this.state.pageNumber && <ArrowButton onClick={goPrevious} style={{
+                        position: 'absolute',
+                        left: 50
+                    }} className={'fas fa-arrow-circle-left'} />}
+
                     <PageText>{pageNumber} of {numPages}</PageText>
+                    {this.state.pageNumber < this.state.numPages && <ArrowButton onClick={goNext} style={{
+                        position: 'absolute',
+                        right: 50
+                    }} className={'fas fa-arrow-circle-right'} />}
+
                 </Row>
             </Container>
         );
+    }
+
+
+    goPrevious = () => {
+        this.setState({
+            pageNumber: this.state.pageNumber - 1
+        })
+    }
+
+    goNext = () => {
+        this.setState({
+            pageNumber: this.state.pageNumber + 1
+        })
     }
 }
 

@@ -19,7 +19,7 @@ class ExtendedMainContainer extends React.Component {
     }
 
     sheduleClicked = () => {
-        window.location.href = '/shedule'
+        window.location.href = '/schedule'
     }
 
     TurnOnStudentIDCard = () => {
