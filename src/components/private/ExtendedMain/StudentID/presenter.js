@@ -97,7 +97,8 @@ const StudentInfoContainer = styled.div`
     height:100%;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
+    margin-top:15px;
     padding-left: 23px;
     padding-top: 7px;
 `
