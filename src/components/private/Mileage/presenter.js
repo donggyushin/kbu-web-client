@@ -23,7 +23,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Container = styled.div``
+const Container = styled.div`
+    width:100vw;
+`
 
 const NormalText = styled.div``
 
