@@ -15,6 +15,9 @@ import REST_API_ENDPOINT from 'constants/endpoint';
 import ExtendedMain from './private/ExtendedMain';
 import ShedulePDF from './private/Shedule/Shedule';
 import KBUCampus from './private/CampusMap';
+import Lecture from './private/Lecture';
+import Mileage from './private/Mileage';
+import Cafeteria from './private/Cafeteria';
 
 
 
@@ -88,7 +91,6 @@ class PrivateComponent extends React.Component {
             <DrawerComponent user={user} logout={logout} />
             {/* <RedLine /> */}
             <Switch>
-
                 <Route exact path="/">
                     <ExtendedMain user={user} />
                 </Route>
@@ -100,6 +102,15 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route path={'/map'}>
                     <KBUCampus />
+                </Route>
+                <Route path={'/lecture'}>
+                    <Lecture />
+                </Route>
+                <Route path={'/mileage'}>
+                    <Mileage />
+                </Route>
+                <Route path={'/cafeteria'}>
+                    <Cafeteria />
                 </Route>
                 <Route>
                     <Main />

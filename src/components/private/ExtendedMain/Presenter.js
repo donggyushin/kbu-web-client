@@ -140,7 +140,10 @@ export default function ExtendedMainPresenter({ studentId,
     TurnOnStudentIDCard,
     user,
     sheduleClicked,
-    campusMapClicked
+    campusMapClicked,
+    cafeteriaClicked,
+    mileageClicked,
+    lectureClicked
 }) {
     return <Container>
         <MarginVertical />
@@ -156,7 +159,7 @@ export default function ExtendedMainPresenter({ studentId,
                     </IconContainer>
                 </HorizontalCard>
                 <MarginVertical />
-                <HorizontalCard>
+                <HorizontalCard onClick={lectureClicked}>
                     <TextContainer>
                         <MainText>수업</MainText>
                         <SubText>Lecture</SubText>
@@ -167,7 +170,7 @@ export default function ExtendedMainPresenter({ studentId,
                 </HorizontalCard>
             </Column>
             <MarginHorizontal />
-            <VerticalCard>
+            <VerticalCard onClick={mileageClicked}>
                 <TextContainerForVerticalCard>
                     <MainText>
                         마일리지
@@ -219,7 +222,7 @@ export default function ExtendedMainPresenter({ studentId,
 
             <MarginHorizontal />
             <Column>
-                <HorizontalCard >
+                <HorizontalCard onClick={cafeteriaClicked} >
                     <TextContainer>
                         <MainText>교내식당</MainText>
                         <SubText>Cafeteria</SubText>

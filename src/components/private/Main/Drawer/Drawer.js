@@ -12,6 +12,7 @@ const Container = styled.div`
     position: relative;
     height:50px;
     background:${themeColor.theme};
+    background:${props => props.darkBlue && themeColor.darkBlue};
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -67,13 +68,19 @@ class DrawerComponent extends React.Component {
     state = {
         visible: false,
         placement: 'left',
-        pageTitle: ""
+        pageTitle: "",
+        darkBlue: false
     };
 
     componentDidMount() {
         this.setState({
             pageTitle: window.location.href.split('/')[3]
         })
+        if (window.location.href.split('/')[3] === 'cafeteria') {
+            this.setState({
+                darkBlue: true
+            })
+        }
     }
 
     showDrawer = () => {
@@ -97,18 +104,18 @@ class DrawerComponent extends React.Component {
     render() {
         const { logout, user } = this.props;
         const { refresh } = this;
-        const { pageTitle } = this.state;
+        const { pageTitle, darkBlue } = this.state;
         return (
-            <Container>
+            <Container darkBlue={darkBlue} >
                 <TitleContainer>
                     <a href={'/'}>
                         {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
                         <KBUText>한국성서대학교</KBUText>
-
                     </a>
                     <PageTitle>
                         {pageTitle === 'schedule' && '학사일정'}
                         {pageTitle === 'map' && '캠퍼스 맵'}
+                        {pageTitle === 'cafeteria' && '학식'}
                     </PageTitle>
                 </TitleContainer>
 

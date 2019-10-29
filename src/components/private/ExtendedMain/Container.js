@@ -10,7 +10,10 @@ class ExtendedMainContainer extends React.Component {
         const { TurnOffStudentIDCard,
             TurnOnStudentIDCard,
             sheduleClicked,
-            campusMapClicked
+            campusMapClicked,
+            cafeteriaClicked,
+            mileageClicked,
+            lectureClicked
         } = this;
         const { user } = this.props;
         return <ExtendedMainPresenter
@@ -20,7 +23,22 @@ class ExtendedMainContainer extends React.Component {
             user={user}
             sheduleClicked={sheduleClicked}
             campusMapClicked={campusMapClicked}
+            cafeteriaClicked={cafeteriaClicked}
+            mileageClicked={mileageClicked}
+            lectureClicked={lectureClicked}
         />
+    }
+
+    cafeteriaClicked = () => {
+        window.location.href = '/cafeteria'
+    }
+
+    mileageClicked = () => {
+        window.location.href = '/mileage'
+    }
+
+    lectureClicked = () => {
+        window.location.href = '/lecture'
     }
 
     campusMapClicked = () => {
