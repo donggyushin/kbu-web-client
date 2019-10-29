@@ -93,6 +93,7 @@ const Row = styled.div`
 `
 
 const StudentInfoContainer = styled.div`
+    
     width:50%;
     height:100%;
     display:flex;
@@ -132,6 +133,8 @@ const ProfileImageContainer = styled.div`
 
 const ProfileImage = styled.img`
     height:100%;
+    margin-top:5px;
+    padding-right:5px;
     object-fit:cover;
     border-top-right-radius: 16px;
     z-index:1;
@@ -195,7 +198,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                     height: '33%',
                     width: '100%'
                 }} >
-                    <StudentInfoContainer>
+                    <StudentInfoContainer >
                         <Name>{user.name}</Name>
                         <StudentIDNumber>{user.sid}</StudentIDNumber>
                         <MarginHeight />
