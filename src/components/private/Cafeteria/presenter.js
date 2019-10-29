@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import themeColor from 'constants/themeColor';
 
+
 const Container = styled.div`
     display:flex;
     flex-direction:column;
@@ -50,6 +51,11 @@ const MarginHeight = styled.div`
     height:10px;
 `
 
+const Divider = styled.div`
+    width:80%;
+    border-bottom:0.5px solid ${themeColor.textInDarkBlue};
+`
+
 
 export default function CafeteriaPresenter({ today }) {
     return <Container>
@@ -79,6 +85,9 @@ export default function CafeteriaPresenter({ today }) {
                     <NormalText>오이소박이</NormalText>
                 </Card>
             </Row>
+            <MarginHeight />
+            <MarginHeight />
+            <Divider />
             <MarginHeight />
             <MarginHeight />
             <Row>

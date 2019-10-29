@@ -14,6 +14,14 @@ background: #dfe6e9 !important;
 min-height: 100vh;
 }
 
+.makeStyles-table-3 {
+  min-width: 100px !important;
+}
+
+.MuiTableCell-alignRight {
+  text-align: left !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
