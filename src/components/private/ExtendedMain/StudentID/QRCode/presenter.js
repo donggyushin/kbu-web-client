@@ -10,6 +10,7 @@ const Container = styled.div`
     justify-content:center;
     position: relative;
     top: 300px;
+    color:black;
 `
 
 const QRCodeImage = styled.img`
@@ -26,11 +27,16 @@ const Timer = styled.div`
     font-family:'1997';
 `
 
-export default function QrcodePresenter({ img, timer }) {
+export default function QrcodePresenter({ img, timer,
+    qrcodeImgUrl,
+    loading
+}) {
     return <Container className={'qrcodecontainer'}>
-        <QRCodeImage src={require('assets/sampleqrcode.png')} />
-        <MarginHeight />
-        <Timer>{timer}</Timer>
+        {loading ? 'QR code 읽어오는중...' : <>
+            <QRCodeImage src={qrcodeImgUrl} />
+            <MarginHeight />
+            <Timer>{timer}</Timer>
+        </>}
     </Container>
 
 

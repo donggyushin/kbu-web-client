@@ -228,7 +228,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
 
                 <MarginHeight />
                 <QrcodeContainer>
-                    {qrcode ? <QRCode shutdownQrcode={shutdownQrcode} img={qrcodeimg} /> : <Fab onClick={requestQrcode} variant="extended" aria-label="delete" className={classes.fab}>
+                    {qrcode ? <QRCode user={user} shutdownQrcode={shutdownQrcode} img={qrcodeimg} /> : <Fab onClick={requestQrcode} variant="extended" aria-label="delete" className={classes.fab}>
                         <NavigationIcon className={classes.extendedIcon} />
                         QR CODE
                     </Fab>}
