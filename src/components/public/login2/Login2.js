@@ -29,7 +29,7 @@ const LogoContainer = styled.div`
     align-items:center;
     justify-content:center;
     position: relative;
-    bottom:43px;
+    bottom:30px;
 
 `
 
@@ -60,8 +60,7 @@ class Login2Component extends React.Component {
             <LoginDrawer />
             <InputContainer>
                 <LogoContainer>
-                    <KbuCardLogo src={require('../../../assets/kbucardlogo.png')} />
-                    <LogoText>KBU CARD</LogoText>
+                    <KbuCardLogo src={require('../../../assets/logo.png')} />
                 </LogoContainer>
                 <Input
                     id={'id'}

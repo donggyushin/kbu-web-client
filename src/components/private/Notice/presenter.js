@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import ReactLoading from 'react-loading';
 const Container = styled.div`
     display:flex;
     width:100%;
@@ -96,19 +96,26 @@ const DownArrowIcon = styled.i`
     font-size:30px;
 `
 
-export default function NoticePresenter({ notices }) {
+export default function NoticePresenter({ notices, loading, noticeClicked,
+    nextRequest,
+    loading2
+}) {
     return <Container>
-        <Paper>
-            준비중입니다...
-            {/* {notices.map(notice => <Row>
-                <TitleContainer>
-                    <Title>{notice.title}</Title>
-                    <Date>{notice.date}</Date>
-                </TitleContainer>
-            </Row>)} */}
+        {loading ? 'loading... ' : <Paper>
 
-        </Paper>
-        <DownButton>
+            {notices.map(notice => <Row>
+
+                <TitleContainer onClick={() => {
+                    noticeClicked(notice[5])
+                }}>
+                    <Title>{notice[1]}</Title>
+                    <Date>{notice[3]}</Date>
+                </TitleContainer>
+            </Row>)}
+
+        </Paper>}
+        {loading2 && <ReactLoading height={64} width={64} />}
+        <DownButton onClick={nextRequest}>
             <DownArrowIcon className={'fas fa-chevron-down'} />
         </DownButton>
 
