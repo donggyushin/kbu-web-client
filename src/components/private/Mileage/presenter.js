@@ -76,7 +76,7 @@ export default function MileagePresenter({ rows, loading }) {
             </TableHeader>
             {loading ? 'loading... ' : <TableBody>
                 {rows.map(row => {
-                    if (row.CST_USE_POINT !== 0) {
+                    if (row.CST_USE_POINT !== "0") {
 
                         return <Row>
                             <Date>{row.SALE_DATE}</Date>
