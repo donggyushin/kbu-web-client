@@ -41,6 +41,7 @@ const TitleLabel = styled.div`
 const Row = styled.div`
     display:flex;
     align-items:center;
+    margin-bottom:10px;
     &:active {
         background: rgba(0,0,0,0.15);
 
