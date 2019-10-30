@@ -130,6 +130,10 @@ class DrawerComponent extends React.Component {
                         {pageTitle === 'schedule' && '학사일정'}
                         {pageTitle === 'map' && '캠퍼스 맵'}
                         {pageTitle === 'cafeteria' && '학식'}
+                        {pageTitle === 'notice' && '공지사항'}
+                        {pageTitle === 'lecture' && '수업'}
+                        {pageTitle === 'mileage' && '마일리지'}
+                        {pageTitle === 'chapel' && '채플'}
                     </PageTitle>
                 </TitleContainer>
 

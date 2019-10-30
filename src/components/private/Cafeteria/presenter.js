@@ -43,6 +43,7 @@ const Card = styled.div`
 
 const TitleText = styled.div`
     font-size:25px;
+    color:#ffeaa7;
 `
 
 const NormalText = styled.div``
