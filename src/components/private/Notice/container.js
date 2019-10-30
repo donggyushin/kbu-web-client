@@ -9,7 +9,7 @@ class NoticeContainer extends React.Component {
         page: 1,
         notices: [],
         loading: true,
-        loading2: false
+        loading2: true
     }
 
     componentDidMount() {
@@ -25,6 +25,7 @@ class NoticeContainer extends React.Component {
                     this.setState({
                         notices: data.result.table_body,
                         loading: false,
+                        loading2: false,
                         page: this.state.page + 1
                     })
                 } else {

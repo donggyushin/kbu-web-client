@@ -101,7 +101,7 @@ export default function NoticePresenter({ notices, loading,
     loading2
 }) {
     return <Container>
-        {loading ? 'loading... ' : <Paper>
+        {loading === false && <Paper>
 
             {notices.map(notice => <Row>
                 <a style={{
@@ -116,9 +116,10 @@ export default function NoticePresenter({ notices, loading,
 
         </Paper>}
         {loading2 && <ReactLoading height={64} width={64} />}
-        <DownButton onClick={nextRequest}>
+        {loading2 === false && <DownButton onClick={nextRequest}>
             <DownArrowIcon className={'fas fa-chevron-down'} />
-        </DownButton>
+        </DownButton>}
+
 
     </Container>
 }
