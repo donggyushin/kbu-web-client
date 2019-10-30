@@ -99,12 +99,13 @@ const DownArrowIcon = styled.i`
 export default function NoticePresenter({ notices }) {
     return <Container>
         <Paper>
-            {notices.map(notice => <Row>
+            준비중입니다...
+            {/* {notices.map(notice => <Row>
                 <TitleContainer>
                     <Title>{notice.title}</Title>
                     <Date>{notice.date}</Date>
                 </TitleContainer>
-            </Row>)}
+            </Row>)} */}
 
         </Paper>
         <DownButton>
