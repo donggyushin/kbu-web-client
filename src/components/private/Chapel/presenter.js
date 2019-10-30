@@ -114,38 +114,42 @@ const CountNumber = styled.div`
     margin-right:10px;
 `
 
-export default function ChapelPresenter({ summary, chapels, chapelLength }) {
+export default function ChapelPresenter({ summary, chapels, chapelLength, loading }) {
     return <Container>
         <Paper>
-            <Row>
-                <ButtonContainer>
-                    <Button>
-                        <WhiteCardButton />
-                        <ButtonText>출석</ButtonText>
-                    </Button>
-                    <Button>
-                        <YellowCardButton />
-                        <ButtonText>지각</ButtonText>
-                    </Button>
-                </ButtonContainer>
-                <InfoTextContainer>
-                    <SmallText>출석: {summary.attendance}</SmallText>
-                    <SmallText>지각: {summary.late}</SmallText>
-                    <SmallText>확정: {summary.sure}</SmallText>
-                    <SmallText>남은 일수: {summary.duty - summary.sure}</SmallText>
-                </InfoTextContainer>
-            </Row>
-            <BodyContainer>
-                <Body>
-                    {chapels.map((chapel, i) => {
-                        const time = chapel[3];
-                        const hour = time.substr(0, 2);
-                        const minute = time.substr(3, 2);
-                        return <TextRow><CountNumber>{chapelLength - i}.</CountNumber> <Text>{chapel[1]}월 {chapel[2]}일 {chapel[4]} {hour}시 {minute}분 {chapel[7]}</Text></TextRow>
-                    })}
+            {loading ? 'loading... ' : <>
+                <Row>
+                    <ButtonContainer>
+                        <Button>
+                            <WhiteCardButton />
+                            <ButtonText>출석</ButtonText>
+                        </Button>
+                        <Button>
+                            <YellowCardButton />
+                            <ButtonText>지각</ButtonText>
+                        </Button>
+                    </ButtonContainer>
+                    <InfoTextContainer>
+                        <SmallText>출석: {summary.attendance}</SmallText>
+                        <SmallText>지각: {summary.late}</SmallText>
+                        <SmallText>확정: {summary.sure}</SmallText>
+                        <SmallText>남은 일수: {summary.duty - summary.sure}</SmallText>
+                    </InfoTextContainer>
+                </Row>
+                <BodyContainer>
+                    <Body>
+                        {chapels.map((chapel, i) => {
+                            const time = chapel[3];
+                            const hour = time.substr(0, 2);
+                            const minute = time.substr(3, 2);
+                            return <TextRow><CountNumber>{chapelLength - i}.</CountNumber> <Text>{chapel[1]}월 {chapel[2]}일 {chapel[4]} {hour}시 {minute}분 {chapel[7]}</Text></TextRow>
+                        })}
 
-                </Body>
-            </BodyContainer>
+                    </Body>
+                </BodyContainer>
+
+            </>}
         </Paper>
+
     </Container>
 }

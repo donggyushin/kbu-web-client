@@ -24,12 +24,11 @@ const TableHeader = styled.div`
     display:flex;
     align-items:center;
     width:100%;
-    margin-bottom:5px;
+    margin-bottom:15px;
 `
 
 const TableBody = styled.div`
     display:flex;
-    /* align-items:center; */
     width:100%;
     flex-direction:column;
     justify-content:center;
@@ -66,7 +65,7 @@ font-size:11px;
 
 const Price = styled.div``
 
-export default function MileagePresenter({ rows }) {
+export default function MileagePresenter({ rows, loading }) {
 
     return <Container>
         <Paper>
@@ -75,23 +74,24 @@ export default function MileagePresenter({ rows }) {
                 <History>내역</History>
                 <Price>가격</Price>
             </TableHeader>
-            <TableBody>
+            {loading ? 'loading... ' : <TableBody>
                 {rows.map(row => {
                     return <Row>
-                        <Date>{row.date}</Date>
+                        <Date>{row.SALE_DATE}</Date>
                         <History>
                             <Story>
-                                {row.history}
+                                {row.PROD_NM}
                             </Story>
                             <Row>
-                                <Quantity>{row.number}</Quantity>
-                                <Location>{row.location}</Location>
+                                <Quantity>{row.SALE_QTY}</Quantity>
+                                <Location>{row.SHOP_NM}</Location>
                             </Row>
                         </History>
-                        <Price>{row.price}</Price>
+                        <Price>{row.CST_USE_POINT}</Price>
                     </Row>
                 })}
-            </TableBody>
+            </TableBody>}
+
         </Paper>
     </Container>
 }

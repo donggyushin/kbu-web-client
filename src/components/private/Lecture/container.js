@@ -1,5 +1,8 @@
 import React from 'react';
 import LecturePresenter from './presenter';
+import axios from 'axios';
+import REST_API_ENDPOINT from 'constants/endpoint';
+import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 
 class LectureContainer extends React.Component {
     state = {
@@ -19,16 +22,34 @@ class LectureContainer extends React.Component {
                 ['네트워크프로그래밍', '정보2실', '09:00', '10:15'],
                 ['무선및모바일통신', '정보2실', '13:30', '14:45']
             ], []
-        ]
+        ],
+        loading: true
     }
 
     componentDidMount() {
-        console.log('lets see schedule[0]: ', this.state.schedule[0])
+        const decoded = decodeJsonWebToken(window.localStorage.getItem('token'))
+        axios.post(REST_API_ENDPOINT + 'lecture', {
+            id: decoded.id,
+            pw: decoded.password
+        })
+            .then(res => res.data)
+            .then(data => {
+                if (data.is_ok) {
+                    this.setState({
+                        schedule: data.result.table_body,
+                        loading: false
+                    })
+                } else {
+                    alert('시간표를 가져오지 못하였습니다. 관리자에게 문의해주세요!')
+                }
+
+            })
+            .catch(err => console.error(err))
     }
 
     render() {
-        const { schedule } = this.state;
-        return <LecturePresenter schedule={schedule} />
+        const { schedule, loading } = this.state;
+        return <LecturePresenter loading={loading} schedule={schedule} />
     }
 }
 

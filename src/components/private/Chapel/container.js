@@ -1,21 +1,50 @@
 import React from 'react';
 import ChapelPresenter from './presenter';
+import axios from 'axios';
+import REST_API_ENDPOINT from 'constants/endpoint';
+import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 
 
 class ChapelContainer extends React.Component {
     state = {
-        chapels: [['2019', '10', '29', '11:57:36', '화', '주', '출석', '출석', ' '], ['2019', '10', '16', '11:58:34', '수', '주', '출석', '출석', ' '], ['2019', '10', '11', '11:58:24', '금', '주', '출석', '출석', ' '], ['2019', '10', '10', '12:09:03', '목', '주', '지각', '지각', ' '], ['2019', '10', '08', '11:58:11', '화', '주', '출석', '출석', ' '], ['2019', '10', '02', '12:59:00', '수', '주', '출석', '출석', '미지참              (2019-10-07)'], ['2019', '10', '01', '11:55:32', '화', '주', '출석', '출석', ' '], ['2019', '09', '27', '11:58:58', '금', '주', '출석', '출석', ' '], ['2019', '09', '26', '11:58:59', '목', '주', '출석', '출석', ' '], ['2019', '09', '25', '11:57:13', '수', '주', '출석', '출석', ' '], ['2019', '09', '24', '11:59:00', '화', '주', '출석', '출석', '허가원              (2019-10-08)'], ['2019', '09', '23', '11:52:29', '월', '주', '출석', '출석', ' '], ['2019', '09', '20', '11:55:35', '금', '주', '출석', '출석', ' '], ['2019', '09', '19', '11:58:28', '목', '주', '출석', '출석', ' '], ['2019', '09', '18', '12:59:00', '수', '주', '출석', '출석', '미지참              (2019-10-24)'], ['2019', '09', '17', '11:58:10', '화', '주', '출석', '출석', ' '], ['2019', '09', '16', '11:50:56', '월', '주', '출석', '출석', ' '], ['2019', '09', '11', '11:59:15', '수', '주', '출석', '출석', ' '], ['2019', '09', '10', '11:58:27', '화', '주', '출석', '출석', ' '], ['2019', '09', '09', '11:51:53', '월', '주', '출석', '출석', ' '], ['2019', '09', '05', '11:59:00', '목', '주', '출석', '출석', '미지참              (2019-09-06)'], ['2019', '09', '04', '11:56:34', '수', '주', '출석', '출석', ' '], ['2019', '09', '03', '11:56:58', '화', '주', '출석', '출석', ' '], ['2019', '09', '02', '11:55:40', '월', '주', '출석', '출석', ' '], ['2019', '08', '30', '11:54:34', '금', '주', '출석', '출석', ' '], ['2019', '08', '27', '11:58:43', '화', '주', '출석', '출석', ' ']],
+        chapels: [],
         summary: {
-            attendance: 27,
-            late: 3,
-            sure: 29,
-            duty: 50
+            attendance: 0,
+            late: 0,
+            sure: 0,
+            duty: 0
         },
         chapelLength: 0,
-
+        loading: true
     }
 
     componentDidMount() {
+        const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
+        axios.post(REST_API_ENDPOINT + 'chapel', {
+            id: decoded.id,
+            pw: decoded.password
+        })
+            .then(res => res.data)
+            .then(data => {
+                console.log('data: ', data)
+                if (data.is_ok === true) {
+                    this.setState({
+                        summary: {
+                            attendance: data.result.summary.출석,
+                            late: data.result.summary.지각,
+                            sure: data.result.summary.확정,
+                            duty: data.result.summary.규정일수
+                        },
+                        chapels: data.result.table_body,
+                        loading: false,
+                        chapelLength: data.result.table_body.length
+                    })
+                } else {
+                    alert('채플 내역을 불러오지 못했습니다! 관리자에게 문의해주세요!')
+                }
+            })
+            .catch(err => console.error(err))
+
         this.setState({
             chapelLength: this.state.chapels.length
         })
@@ -23,9 +52,9 @@ class ChapelContainer extends React.Component {
     }
 
     render() {
-        const { chapels, summary, chapelLength } = this.state;
+        const { chapels, summary, chapelLength, loading } = this.state;
 
-        return <ChapelPresenter chapelLength={chapelLength} summary={summary} chapels={chapels} />
+        return <ChapelPresenter loading={loading} chapelLength={chapelLength} summary={summary} chapels={chapels} />
     }
 
 }

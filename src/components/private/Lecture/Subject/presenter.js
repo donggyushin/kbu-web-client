@@ -9,7 +9,7 @@ const Box = styled.div`
     padding-left:4px;
     padding-top:10px;
     justify-content:flex-start;
-    height:120px;
+    height:140px;
     border: 0.1px solid rgba(0,0,0,0.1);
     background: ${props => props.selected};
     color:white;

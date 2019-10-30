@@ -65,7 +65,7 @@ const NormalText = styled.div`
 
 `
 
-export default function LecturePresenter({ schedule }) {
+export default function LecturePresenter({ schedule, loading }) {
     return <Container>
         <Schedule>
             <Header>
@@ -75,7 +75,7 @@ export default function LecturePresenter({ schedule }) {
                 <Day>목</Day>
                 <Day>금</Day>
             </Header>
-            <Body>
+            {loading ? 'loading...' : <Body>
                 {schedule.map(day => {
                     return <Column>{day.map(subject => {
                         const index = Math.floor(counter % 10);
@@ -83,7 +83,7 @@ export default function LecturePresenter({ schedule }) {
                         return <Subject index={index} subject={subject} />
                     })}</Column>
                 })}
-            </Body>
+            </Body>}
         </Schedule>
     </Container>
 }

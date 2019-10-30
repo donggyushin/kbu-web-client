@@ -70,20 +70,20 @@ export default function CafeteriaPresenter({ today }) {
                 <Card>
                     <TitleText>중식</TitleText>
                     <MarginHeight />
-                    <NormalText>북어국</NormalText>
-                    <NormalText>흰 밥</NormalText>
-                    <NormalText>돈육야채볶음</NormalText>
-                    <NormalText>가지무침</NormalText>
-                    <NormalText>오이소박이</NormalText>
+                    <NormalText>큐브목살스테이크덮밥</NormalText>
+                    <NormalText>유부장국</NormalText>
+                    <NormalText>그린샐러드&케찹</NormalText>
+                    <NormalText>배추김치</NormalText>
                 </Card>
                 <Card>
                     <TitleText>석식</TitleText>
                     <MarginHeight />
-                    <NormalText>북어국</NormalText>
-                    <NormalText>흰 밥</NormalText>
-                    <NormalText>돈육야채볶음</NormalText>
-                    <NormalText>가지무침</NormalText>
-                    <NormalText>오이소박이</NormalText>
+                    <NormalText>쌀밥</NormalText>
+                    <NormalText>청국장찌개</NormalText>
+                    <NormalText>메추리알조림</NormalText>
+                    <NormalText>쏘야볶음</NormalText>
+                    <NormalText>미역줄기볶음</NormalText>
+                    <NormalText>깍두기</NormalText>
                 </Card>
             </Row>
             <MarginHeight />
@@ -95,20 +95,20 @@ export default function CafeteriaPresenter({ today }) {
                 <Card>
                     <TitleText>데일리</TitleText>
                     <MarginHeight />
-                    <NormalText>북어국</NormalText>
+                    {/* <NormalText>북어국</NormalText>
                     <NormalText>흰 밥</NormalText>
                     <NormalText>돈육야채볶음</NormalText>
                     <NormalText>가지무침</NormalText>
-                    <NormalText>오이소박이</NormalText>
+                    <NormalText>오이소박이</NormalText> */}
                 </Card>
                 <Card>
                     <TitleText>고정 메뉴</TitleText>
                     <MarginHeight />
-                    <NormalText>북어국</NormalText>
+                    {/* <NormalText>북어국</NormalText>
                     <NormalText>흰 밥</NormalText>
                     <NormalText>돈육야채볶음</NormalText>
                     <NormalText>가지무침</NormalText>
-                    <NormalText>오이소박이</NormalText>
+                    <NormalText>오이소박이</NormalText> */}
                 </Card>
             </Row>
         </BlackBoard>
