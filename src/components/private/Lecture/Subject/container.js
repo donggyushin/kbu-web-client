@@ -9,8 +9,12 @@ class SubjectContainer extends React.Component {
 
     componentDidMount() {
         const randomNum = this.getRandomInt(0, 9);
+        // this.setState({
+        //     selected: this.state.colors[randomNum]
+        // })
+
         this.setState({
-            selected: this.state.colors[randomNum]
+            selected: this.state.colors[this.props.index]
         })
     }
 

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Subject from './Subject';
 
 
+let counter = 0;
+
 const Container = styled.div`
     display:flex;
     flex-direction:column;
@@ -76,7 +78,9 @@ export default function LecturePresenter({ schedule }) {
             <Body>
                 {schedule.map(day => {
                     return <Column>{day.map(subject => {
-                        return <Subject subject={subject} />
+                        const index = Math.floor(counter % 10);
+                        counter = counter + 1;
+                        return <Subject index={index} subject={subject} />
                     })}</Column>
                 })}
             </Body>
