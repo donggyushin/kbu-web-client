@@ -73,8 +73,8 @@ const Logo = styled.img`
 const A = styled.a`
 display: flex;
     align-items: center;
-    position: relative;
-    right: 10px;
+    /* position: relative;
+    right: 10px; */
 `
 
 class DrawerComponent extends React.Component {
@@ -139,7 +139,7 @@ class DrawerComponent extends React.Component {
                     }} href={'/'}>
                         <Logo src={require('../../../../assets/logo.png')} />
                         {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
-                        <KBUText>성서봇2</KBUText>
+                        {/* <KBUText>성서봇2</KBUText> */}
                     </A>
                     <PageTitle>
                         {pageTitle === 'schedule' && '학사일정'}
