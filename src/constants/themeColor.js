@@ -1,4 +1,4 @@
-const THEME = '#6F1E51'
+const THEME = '#A03535'
 const DARK_BLUE = '#333333';
 const TEXT_IN_DARK_BLUE = '#DEC08D';
 const GRAY = '#b2bec3';

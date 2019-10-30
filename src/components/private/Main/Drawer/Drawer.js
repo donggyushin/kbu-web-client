@@ -66,6 +66,17 @@ const PageTitle = styled.div`
     color:white;
 `
 
+const Logo = styled.img`
+    width:50px;
+`
+
+const A = styled.a`
+display: flex;
+    align-items: center;
+    position: relative;
+    right: 10px;
+`
+
 class DrawerComponent extends React.Component {
     state = {
         visible: false,
@@ -120,12 +131,16 @@ class DrawerComponent extends React.Component {
         const { refresh } = this;
         const { pageTitle, darkBlue, gray, chapel } = this.state;
         return (
-            <Container chapel={chapel} gray={gray} darkBlue={darkBlue} >
+            <Container darkBlue={darkBlue} >
                 <TitleContainer>
-                    <a href={'/'}>
+                    <A style={{
+                        display: 'flex',
+                        alignItems: 'center'
+                    }} href={'/'}>
+                        <Logo src={require('../../../../assets/logo.png')} />
                         {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
-                        <KBUText>한국성서대학교</KBUText>
-                    </a>
+                        <KBUText>성서봇2</KBUText>
+                    </A>
                     <PageTitle>
                         {pageTitle === 'schedule' && '학사일정'}
                         {pageTitle === 'map' && '캠퍼스 맵'}
