@@ -76,19 +76,22 @@ export default function MileagePresenter({ rows, loading }) {
             </TableHeader>
             {loading ? 'loading... ' : <TableBody>
                 {rows.map(row => {
-                    return <Row>
-                        <Date>{row.SALE_DATE}</Date>
-                        <History>
-                            <Story>
-                                {row.PROD_NM}
-                            </Story>
-                            <Row>
-                                <Quantity>{row.SALE_QTY}</Quantity>
-                                <Location>{row.SHOP_NM}</Location>
-                            </Row>
-                        </History>
-                        <Price>{row.CST_USE_POINT}</Price>
-                    </Row>
+                    if (row.CST_USE_POINT !== 0) {
+
+                        return <Row>
+                            <Date>{row.SALE_DATE}</Date>
+                            <History>
+                                <Story>
+                                    {row.PROD_NM}
+                                </Story>
+                                <Row>
+                                    <Quantity>{row.SALE_QTY}</Quantity>
+                                    <Location>{row.SHOP_NM}</Location>
+                                </Row>
+                            </History>
+                            <Price>{row.CST_USE_POINT}</Price>
+                        </Row>
+                    }
                 })}
             </TableBody>}
 

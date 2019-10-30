@@ -124,6 +124,7 @@ font-family: 'irop';
     color:${props => props.red ? '#e74c3c' : '#2f3640'};
 `
 const ProfileImageContainer = styled.div`
+margin-top:3px;
     width: 48%;
     height: 100%;
     display: -webkit-box;

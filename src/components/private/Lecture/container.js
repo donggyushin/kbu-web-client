@@ -27,6 +27,7 @@ class LectureContainer extends React.Component {
     }
 
     componentDidMount() {
+
         const decoded = decodeJsonWebToken(window.localStorage.getItem('token'))
         axios.post(REST_API_ENDPOINT + 'lecture', {
             id: decoded.id,
@@ -39,12 +40,14 @@ class LectureContainer extends React.Component {
                         schedule: data.result.table_body,
                         loading: false
                     })
+                    window.localStorage.setItem('schedule', data.result.table_body.toString())
                 } else {
                     alert('시간표를 가져오지 못하였습니다. 관리자에게 문의해주세요!')
                 }
 
             })
             .catch(err => console.error(err))
+
     }
 
     render() {
