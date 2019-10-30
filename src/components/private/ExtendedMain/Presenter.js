@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import CopyrightComponent from '../Copyright/Copyright';
 import StudentID from './StudentID';
-import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     width:100%;
@@ -127,7 +126,7 @@ const TextContainerForNomralCard = styled.div`
 `
 
 const IconContainerForNormalCard = styled.div`
-width:40%;
+    width:40%;
     height:100%;
     display:flex;
     flex-direction:column;
@@ -143,13 +142,14 @@ export default function ExtendedMainPresenter({ studentId,
     campusMapClicked,
     cafeteriaClicked,
     mileageClicked,
-    lectureClicked
+    lectureClicked,
+    noticeClicked
 }) {
     return <Container>
         <MarginVertical />
         <Row>
             <Column>
-                <HorizontalCard>
+                <HorizontalCard onClick={noticeClicked}>
                     <TextContainer>
                         <MainText>공지사항</MainText>
                         <SubText>Notice</SubText>
@@ -195,7 +195,6 @@ export default function ExtendedMainPresenter({ studentId,
                     <Icon src={require('assets/schedule.png')} />
                 </IconContainerForNormalCard>
             </NormalCard>
-
             <MarginHorizontal />
             <NormalCard >
                 <TextContainerForNomralCard>
@@ -209,7 +208,6 @@ export default function ExtendedMainPresenter({ studentId,
         </Row>
         <MarginVertical />
         <Row>
-
             <VerticalCard onClick={campusMapClicked}>
                 <TextContainerForVerticalCard>
                     <MainText>캠퍼스 맵</MainText>
@@ -219,7 +217,6 @@ export default function ExtendedMainPresenter({ studentId,
                     <Icon src={require('assets/map.png')} />
                 </IconContainerForVerticalCard>
             </VerticalCard>
-
             <MarginHorizontal />
             <Column>
                 <HorizontalCard onClick={cafeteriaClicked} >

@@ -140,18 +140,18 @@ const ProfileImageContainer = styled.div`
     align-items: center;
     border-top-right-radius: 16px;
     overflow: hidden;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
     
 `
 
 const ProfileImage = styled.img`
     height:100%;
-    margin-top:5px;
+    /* margin-top:5px; */
     padding-right:5px;
     object-fit:cover;
     border-top-right-radius: 16px;
     z-index:1;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
 `
 
 

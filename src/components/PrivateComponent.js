@@ -18,6 +18,7 @@ import KBUCampus from './private/CampusMap';
 import Lecture from './private/Lecture';
 import Mileage from './private/Mileage';
 import Cafeteria from './private/Cafeteria';
+import Notice from './private/Notice';
 
 
 
@@ -111,6 +112,9 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route path={'/cafeteria'}>
                     <Cafeteria />
+                </Route>
+                <Route path={'/notice'}>
+                    <Notice />
                 </Route>
                 <Route>
                     <Main />
