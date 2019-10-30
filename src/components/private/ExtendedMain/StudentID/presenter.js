@@ -47,6 +47,7 @@ const WatermarkBottom = styled.img`
     position: absolute;
     bottom: 27px;
     right: 20px;
+    max-width: 200px;
 `
 
 const Card = styled.div`
@@ -85,7 +86,7 @@ const RedLine = styled.div`
     justify-content:center;
     font-size: 22px;
     align-items:center;
-    font-family: 'irop';
+    font-family: 'Nanum Gothic',sans-serif;
     box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.75);
 `
 const Row = styled.div`
@@ -100,11 +101,11 @@ const StudentInfoContainer = styled.div`
     flex-direction:column;
     justify-content:flex-start;
     margin-top:15px;
-    padding-left: 23px;
+    padding-left: 17px;
     padding-top: 7px;
 `
 const Name = styled.div`
-font-family: 'irop';
+font-family: 'Nanum Gothic',sans-serif;
 letter-spacing: 7.3px;
 font-size: 27px;
     font-weight: bolder;
@@ -120,14 +121,26 @@ const NormalText = styled.div`
 font-family: 'irop';
     letter-spacing: 1px;
     font-size: 13px;
-    color:${props => props.red ? '#e74c3c' : 'gray'};
+    color:${props => props.red ? '#e74c3c' : '#2f3640'};
 `
 const ProfileImageContainer = styled.div`
-    width:48%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    width: 48%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-top-right-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     
 `
 
