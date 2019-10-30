@@ -18,7 +18,7 @@ class StudentIDContainer extends React.Component {
     }
 
     render() {
-        const { TurnOffStudentIDCard, user } = this.props;
+        const { TurnOffStudentIDCard, user, loading } = this.props;
         const { requestQrcode, shutdownQrcode } = this;
         const { qrcode, qrcodeimg } = this.state;
         return <StudentID
@@ -28,6 +28,7 @@ class StudentIDContainer extends React.Component {
             qrcode={qrcode}
             qrcodeimg={qrcodeimg}
             user={user}
+            loading={loading}
         />
     }
 

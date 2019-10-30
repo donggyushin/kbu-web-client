@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import { base64formatter } from 'utils/base64formatter'
+import AwesomeLoadingComponent from 'components/global/Loading/LoadingComponent';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -195,7 +196,8 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
     shutdownQrcode,
     qrcode,
     qrcodeimg,
-    user
+    user,
+    loading
 }) {
     const classes = useStyles();
     return <Container>
@@ -207,7 +209,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
             <Card>
                 <RedLine>모바일 학생증</RedLine>
                 {/* <MarginHeight /> */}
-                <Row style={{
+                {loading ? <AwesomeLoadingComponent /> : <Row style={{
                     justifyContent: 'space-between',
                     height: '33%',
                     width: '100%'
@@ -225,7 +227,8 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                     <ProfileImageContainer>
                         <ProfileImage src={user.sid === '201303024' ? require('assets/leo.png') : base64formatter(user.img)} />
                     </ProfileImageContainer>
-                </Row>
+                </Row>}
+
 
                 <MarginHeight />
                 <QrcodeContainer>

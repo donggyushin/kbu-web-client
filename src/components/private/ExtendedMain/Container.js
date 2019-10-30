@@ -17,8 +17,9 @@ class ExtendedMainContainer extends React.Component {
             noticeClicked,
             chapelClicked
         } = this;
-        const { user } = this.props;
+        const { user, loading } = this.props;
         return <ExtendedMainPresenter
+            loading={loading}
             TurnOffStudentIDCard={TurnOffStudentIDCard}
             TurnOnStudentIDCard={TurnOnStudentIDCard}
             studentId={studentId}

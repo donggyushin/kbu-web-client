@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import ReactLoading from 'react-loading';
+import themeColor from 'constants/themeColor';
 
 
 const Container = styled.div`
@@ -117,7 +118,7 @@ const CountNumber = styled.div`
 export default function ChapelPresenter({ summary, chapels, chapelLength, loading }) {
     return <Container>
         <Paper>
-            {loading ? 'loading... ' : <>
+            {loading ? <ReactLoading color={themeColor.theme} /> : <>
                 <Row>
                     <ButtonContainer>
                         <Button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ReactLoading from 'react-loading';
+import themeColor from 'constants/themeColor';
 const Container = styled.div`
     display:flex;
     width:100%;
@@ -115,7 +116,7 @@ export default function NoticePresenter({ notices, loading,
             </Row>)}
 
         </Paper>}
-        {loading2 && <ReactLoading height={64} width={64} />}
+        {loading2 && <ReactLoading color={themeColor.theme} height={64} width={64} />}
         {loading2 === false && <DownButton onClick={nextRequest}>
             <DownArrowIcon className={'fas fa-chevron-down'} />
         </DownButton>}

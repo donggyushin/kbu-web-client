@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Subject from './Subject';
-
+import ReactLoading from 'react-loading';
+import themeColor from 'constants/themeColor';
 
 let counter = 0;
 
@@ -65,6 +66,14 @@ const NormalText = styled.div`
 
 `
 
+const LoadingContainer = styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`
+
 export default function LecturePresenter({ schedule, loading }) {
     return <Container>
         <Schedule>
@@ -75,7 +84,7 @@ export default function LecturePresenter({ schedule, loading }) {
                 <Day>목</Day>
                 <Day>금</Day>
             </Header>
-            {loading ? 'loading...' : <Body>
+            {loading ? <LoadingContainer><ReactLoading color={themeColor.theme} /></LoadingContainer> : <Body>
                 {schedule.map(day => {
                     return <Column>{day.map(subject => {
                         const index = Math.floor(counter % 10);

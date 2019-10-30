@@ -144,7 +144,8 @@ export default function ExtendedMainPresenter({ studentId,
     mileageClicked,
     lectureClicked,
     noticeClicked,
-    chapelClicked
+    chapelClicked,
+    loading
 }) {
     return <Container>
         <MarginVertical />
@@ -242,6 +243,6 @@ export default function ExtendedMainPresenter({ studentId,
             </Column>
         </Row>
         <CopyrightComponent />
-        {studentId && <StudentID user={user} TurnOffStudentIDCard={TurnOffStudentIDCard} />}
+        {studentId && <StudentID loading={loading} user={user} TurnOffStudentIDCard={TurnOffStudentIDCard} />}
     </Container>
 }

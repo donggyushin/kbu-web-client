@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactLoading from 'react-loading';
+import themeColor from 'constants/themeColor';
 
 const Container = styled.div`
     display:flex;
@@ -74,7 +76,7 @@ export default function MileagePresenter({ rows, loading }) {
                 <History>내역</History>
                 <Price>가격</Price>
             </TableHeader>
-            {loading ? 'loading... ' : <TableBody>
+            {loading ? <ReactLoading color={themeColor.theme} /> : <TableBody>
                 {rows.map(row => {
                     if (row.CST_USE_POINT !== "0") {
 

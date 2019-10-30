@@ -94,7 +94,7 @@ class PrivateComponent extends React.Component {
             {/* <RedLine /> */}
             <Switch>
                 <Route exact path="/">
-                    <ExtendedMain user={user} />
+                    <ExtendedMain loading={loading} user={user} />
                 </Route>
                 <Route path="/admin">
                     <AdminPage user={user} />
@@ -126,7 +126,7 @@ class PrivateComponent extends React.Component {
 
             </Switch>
             {/* <CopyrightComponent /> */}
-            {QRCode && <QRCodeComponent user={user} QRCodeOff={QRCodeOff} view={QRCode} />}
+            {QRCode && <QRCodeComponent loading={loading} user={user} QRCodeOff={QRCodeOff} view={QRCode} />}
 
         </Router>
     }

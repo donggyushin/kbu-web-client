@@ -30,7 +30,7 @@ class AwesomeLoadingComponent extends React.Component {
                 css={override}
                 sizeUnit={"px"}
                 size={40}
-                color={'#34495e'}
+                color={ThemeColor.theme}
                 loading={true}
             />
         </Container>
