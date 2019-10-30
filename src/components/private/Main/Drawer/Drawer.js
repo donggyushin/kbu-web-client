@@ -80,6 +80,7 @@ class DrawerComponent extends React.Component {
             this.setState({
                 darkBlue: true
             })
+
         }
     }
 
@@ -87,6 +88,7 @@ class DrawerComponent extends React.Component {
         this.setState({
             visible: true,
         });
+
     };
 
     onClose = () => {

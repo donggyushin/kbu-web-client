@@ -199,11 +199,11 @@ export default function ExtendedMainPresenter({ studentId,
             <MarginHorizontal />
             <NormalCard >
                 <TextContainerForNomralCard>
-                    <MainText>학적</MainText>
-                    <SubText>Register</SubText>
+                    <MainText>채플</MainText>
+                    <SubText>Chapel</SubText>
                 </TextContainerForNomralCard>
                 <IconContainerForNormalCard>
-                    <Icon src={require('assets/register.png')} />
+                    <Icon src={require('assets/chapel.png')} />
                 </IconContainerForNormalCard>
             </NormalCard>
         </Row>

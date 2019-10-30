@@ -80,6 +80,10 @@ code {
   border-radius: 0 !important;
 }
 
+.darkblue {
+  background: #333333 !important;
+}
+
 .ant-drawer-title {
   color: white !important;
 }
