@@ -96,7 +96,7 @@ const DownArrowIcon = styled.i`
     font-size:30px;
 `
 
-export default function NoticePresenter({ notices, loading, noticeClicked,
+export default function NoticePresenter({ notices, loading,
     nextRequest,
     loading2
 }) {
@@ -104,13 +104,14 @@ export default function NoticePresenter({ notices, loading, noticeClicked,
         {loading ? 'loading... ' : <Paper>
 
             {notices.map(notice => <Row>
-
-                <TitleContainer onClick={() => {
-                    noticeClicked(notice[5])
-                }}>
-                    <Title>{notice[1]}</Title>
-                    <Date>{notice[3]}</Date>
-                </TitleContainer>
+                <a style={{
+                    color: '#2c3e50'
+                }} href={notice[5]} target="_blank" >
+                    <TitleContainer >
+                        <Title>{notice[1]}</Title>
+                        <Date>{notice[3]}</Date>
+                    </TitleContainer>
+                </a>
             </Row>)}
 
         </Paper>}
