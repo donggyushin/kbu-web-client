@@ -55,7 +55,7 @@ const History = styled.div`
 const Story = styled.div``
 const Row = styled.div`
     display:flex;
-    margin-bottom:3px;
+    margin-bottom: 12px;
 `
 const Quantity = styled.div`
 font-size:11px;
