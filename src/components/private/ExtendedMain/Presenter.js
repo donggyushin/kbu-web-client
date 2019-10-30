@@ -143,7 +143,8 @@ export default function ExtendedMainPresenter({ studentId,
     cafeteriaClicked,
     mileageClicked,
     lectureClicked,
-    noticeClicked
+    noticeClicked,
+    chapelClicked
 }) {
     return <Container>
         <MarginVertical />
@@ -196,7 +197,7 @@ export default function ExtendedMainPresenter({ studentId,
                 </IconContainerForNormalCard>
             </NormalCard>
             <MarginHorizontal />
-            <NormalCard >
+            <NormalCard onClick={chapelClicked}>
                 <TextContainerForNomralCard>
                     <MainText>채플</MainText>
                     <SubText>Chapel</SubText>

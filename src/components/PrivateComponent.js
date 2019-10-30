@@ -19,6 +19,7 @@ import Lecture from './private/Lecture';
 import Mileage from './private/Mileage';
 import Cafeteria from './private/Cafeteria';
 import Notice from './private/Notice';
+import Chapel from './private/Chapel';
 
 
 
@@ -115,6 +116,9 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route path={'/notice'}>
                     <Notice />
+                </Route>
+                <Route path={'/chapel'}>
+                    <Chapel />
                 </Route>
                 <Route>
                     <Main />

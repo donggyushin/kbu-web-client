@@ -14,6 +14,7 @@ const Container = styled.div`
     background:${themeColor.theme};
     background:${props => props.darkBlue && themeColor.darkBlue};
     background:${props => props.gray && themeColor.gray};
+    background:${props => props.chapel && '#2c3e50'};
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -71,7 +72,8 @@ class DrawerComponent extends React.Component {
         placement: 'left',
         pageTitle: "",
         darkBlue: false,
-        gray: false
+        gray: false,
+        chapel: false
     };
 
     componentDidMount() {
@@ -86,6 +88,10 @@ class DrawerComponent extends React.Component {
         } else if (window.location.href.split('/')[3] === 'lecture') {
             this.setState({
                 gray: true
+            })
+        } else if (window.location.href.split('/')[3] === 'chapel') {
+            this.setState({
+                chapel: true
             })
         }
     }
@@ -112,9 +118,9 @@ class DrawerComponent extends React.Component {
     render() {
         const { logout, user } = this.props;
         const { refresh } = this;
-        const { pageTitle, darkBlue, gray } = this.state;
+        const { pageTitle, darkBlue, gray, chapel } = this.state;
         return (
-            <Container gray={gray} darkBlue={darkBlue} >
+            <Container chapel={chapel} gray={gray} darkBlue={darkBlue} >
                 <TitleContainer>
                     <a href={'/'}>
                         {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
