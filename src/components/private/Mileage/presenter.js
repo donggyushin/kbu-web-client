@@ -1,89 +1,97 @@
 import React from 'react';
 import styled from 'styled-components';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-    },
-    paper: {
-        marginTop: theme.spacing(3),
-        width: '100%',
-        overflowX: 'auto',
-        marginBottom: theme.spacing(2),
-    },
-    table: {
-        minWidth: 650,
-    },
-}));
 
 const Container = styled.div`
-    width:100vw;
-`
-
-const NormalText = styled.div``
-
-const SmallText = styled.div`
-    font-size: 12px;
-`
-
-const Column = styled.div`
     display:flex;
     flex-direction:column;
-    align-items:flex-start;
+    align-items:center;
+    width:100%;
 `
 
+const Paper = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    background:white;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
+    margin-top:30px;
+    padding-top:4px;
+    padding-bottom:4px;
+`
+
+const TableHeader = styled.div`
+    display:flex;
+    align-items:center;
+    width:100%;
+    margin-bottom:5px;
+`
+
+const TableBody = styled.div`
+    display:flex;
+    /* align-items:center; */
+    width:100%;
+    flex-direction:column;
+    justify-content:center;
+
+`
+
+const DateTitle = styled.div`
+    width:20%;
+    padding-left:4px;
+`
+
+const Date = styled.div`
+    width:20%;
+    font-size:11px;
+    padding-left:4px;
+`
+
+const History = styled.div`
+    display:flex;
+    flex-direction:column;
+    width:60%;
+`
+const Story = styled.div``
 const Row = styled.div`
     display:flex;
+    margin-bottom:3px;
+`
+const Quantity = styled.div`
+font-size:11px;
+`
+const Location = styled.div`
+font-size:11px;
 `
 
+const Price = styled.div``
+
 export default function MileagePresenter({ rows }) {
-    const classes = useStyles();
+
     return <Container>
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <Table className={classes.table} size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>날짜</TableCell>
-                            <TableCell align="right">내역</TableCell>
-                            <TableCell align="right">가격</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map(row => (
-                            <TableRow>
-                                <TableCell component="th" scope="row">
-                                    <SmallText>
-                                        {row.date}
-                                    </SmallText>
-                                </TableCell>
-                                <TableCell align="right">
-                                    <Column>
-                                        <NormalText>
-                                            {row.history}
-                                        </NormalText>
-                                        <Row>
-                                            <SmallText>
-                                                {row.number}&nbsp;{row.location}
-                                            </SmallText>
-                                        </Row>
-                                    </Column>
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.price}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
-        </div>
+        <Paper>
+            <TableHeader>
+                <DateTitle>날짜</DateTitle>
+                <History>내역</History>
+                <Price>가격</Price>
+            </TableHeader>
+            <TableBody>
+                {rows.map(row => {
+                    return <Row>
+                        <Date>{row.date}</Date>
+                        <History>
+                            <Story>
+                                {row.history}
+                            </Story>
+                            <Row>
+                                <Quantity>{row.number}</Quantity>
+                                <Location>{row.location}</Location>
+                            </Row>
+                        </History>
+                        <Price>{row.price}</Price>
+                    </Row>
+                })}
+            </TableBody>
+        </Paper>
     </Container>
 }

@@ -6,7 +6,7 @@ class MileageContainer extends React.Component {
         rows: [
             {
                 date: '191002(수)',
-                history: '*2108총장배소프트웨어경진대회',
+                history: '*2108 총장배 소프트웨어 경진 대회',
                 number: '1',
                 location: '성서대.마트',
                 price: '-7000000'
