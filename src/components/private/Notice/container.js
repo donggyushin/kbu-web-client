@@ -12,8 +12,10 @@ class NoticeContainer extends React.Component {
         loading2: true
     }
 
+
     componentDidMount() {
         const { page } = this.state;
+
         axios.post(REST_API_ENDPOINT + 'notice', {
             page
         })
@@ -35,6 +37,7 @@ class NoticeContainer extends React.Component {
             })
             .catch(err => console.error(err))
     }
+
 
     render() {
         const { notices, loading, loading2 } = this.state;

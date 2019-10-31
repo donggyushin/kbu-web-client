@@ -63,8 +63,8 @@ const TitleContainer = styled.div`
     align-items:flex-start;
     width: 100%;
     padding-left: 5px;
-    padding-top: 5px;
-    padding-bottom:5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 `
 
 const Title = styled.div`
