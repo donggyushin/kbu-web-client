@@ -38,6 +38,7 @@ class StudentIDContainer extends React.Component {
         // axios.post(REST_API_ENDPOINT + 'qr/', {
 
         // })
+
         this.setState({
             qrcode: true,
             qrcodeimg: "qrcode base64 code"

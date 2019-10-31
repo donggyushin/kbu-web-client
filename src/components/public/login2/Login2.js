@@ -79,7 +79,7 @@ class Login2Component extends React.Component {
                     }
                 />
                 <br />
-                <br />
+
                 <Input.Password
                     id={'password'}
                     value={password}

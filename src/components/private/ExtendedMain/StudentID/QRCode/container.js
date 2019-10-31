@@ -15,13 +15,15 @@ class QRCodeContainer extends React.Component {
     }
 
     componentDidMount() {
+        const { user } = this.props;
 
         const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
         // qrcode image 요청
         axios.post(REST_API_ENDPOINT + 'qr/', {
             id: decoded.id,
             token: localStorage.getItem('kbu'),
-            sid: this.props.user.sid
+            sid: this.props.user.sid,
+            name: user.name
         })
             .then(res => res.data)
             .then(data => {
