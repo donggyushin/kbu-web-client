@@ -14,11 +14,12 @@ const Container = styled.div`
     width:100%;
     height:100vh;
     display:flex;
-    padding-top:30px;
+    padding-top:85px;
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
     background:${ThemeColor.theme};
+    padding-bottom:250px;
 `
 
 const InputContainer = styled.div`
