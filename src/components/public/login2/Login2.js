@@ -72,7 +72,7 @@ class Login2Component extends React.Component {
             <InputContainer>
 
                 <LogoContainer>
-                    <LogoText>성서봇 2</LogoText>
+                    <LogoText>성서봇2</LogoText>
                     <KbuCardLogo src={require('../../../assets/logo.png')} />
                 </LogoContainer>
                 <Input
