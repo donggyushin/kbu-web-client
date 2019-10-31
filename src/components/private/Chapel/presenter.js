@@ -65,12 +65,14 @@ const ButtonText = styled.div`
 
 const SmallText = styled.div`
     font-family:'irop';
-    font-size: 17px;
+    font-size: 16px;
     margin-right:4px;
+    font-weight:bolder;
 `
 
 const InfoTextContainer = styled.div`
     display:flex;
+    margin-right:5px;
 `
 
 const BodyContainer = styled.div`
@@ -108,6 +110,13 @@ const TextRow = styled.div`
     padding-left:4px;
     justify-content:space-between;
 `
+
+const ContentAndResultContainer = styled.div`
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+`
+
 const Text = styled.div`
     font-size:16px;
     color:${props => props.late && '#e74c3c'};
@@ -147,7 +156,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             const minute = time.substr(3, 2);
                             const late = chapel[7] !== '출석'
                             console.log(chapelLength - i);
-                            return <TextRow><CountNumber>{chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i}.</CountNumber> <Text>{chapel[1]}월 {chapel[2]}일 {chapel[4]} {hour}시 {minute}분</Text><Text late={late}>{chapel[7]}</Text></TextRow>
+                            return <TextRow><CountNumber>{chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i}.</CountNumber>  <ContentAndResultContainer><Text>{chapel[1]}월 {chapel[2]}일 {chapel[4]} {hour}시 {minute}분</Text><Text late={late}>{chapel[7]}</Text></ContentAndResultContainer></TextRow>
                         })}
 
                     </Body>
