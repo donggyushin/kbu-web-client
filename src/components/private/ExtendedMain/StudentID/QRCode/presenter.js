@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const Container = styled.div`
-    width:50%;
+    width:70%;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -25,6 +25,7 @@ const Timer = styled.div`
     font-size: 20px;
     font-weight: 500;
     font-family:'1997';
+    margin-top:-15px;
 `
 
 export default function QrcodePresenter({ img, timer,
@@ -34,7 +35,7 @@ export default function QrcodePresenter({ img, timer,
     return <Container className={'qrcodecontainer'}>
         {loading ? 'QR code 읽어오는중...' : <>
             <QRCodeImage src={qrcodeImgUrl} />
-            <MarginHeight />
+
             <Timer>{timer}</Timer>
         </>}
     </Container>

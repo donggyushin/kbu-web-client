@@ -46,7 +46,7 @@ const CardContainer = styled.div`
 const WatermarkBottom = styled.img`
     width:59%;
     position: absolute;
-    bottom: 27px;
+    bottom: 17px;
     right: 20px;
     max-width: 200px;
 `
