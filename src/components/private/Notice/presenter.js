@@ -106,7 +106,8 @@ export default function NoticePresenter({ notices, loading,
 
             {notices.map(notice => <Row>
                 <a style={{
-                    color: '#2c3e50'
+                    color: '#2c3e50',
+                    width: '100%'
                 }} href={notice[5]} target="_blank" >
                     <TitleContainer >
                         <Title>{notice[1]}</Title>
