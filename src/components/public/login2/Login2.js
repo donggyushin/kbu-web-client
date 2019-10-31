@@ -19,7 +19,7 @@ const Container = styled.div`
     align-items:center;
     justify-content:flex-start;
     background:${ThemeColor.theme};
-    padding-bottom:250px;
+    padding-bottom:150px;
 `
 
 const InputContainer = styled.div`
