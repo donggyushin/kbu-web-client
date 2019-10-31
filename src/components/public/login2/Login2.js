@@ -14,9 +14,10 @@ const Container = styled.div`
     width:100%;
     height:100vh;
     display:flex;
+    padding-top:30px;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
     background:${ThemeColor.theme};
 `
 
@@ -30,9 +31,9 @@ const LogoContainer = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    position: relative;
-    bottom:30px;
-
+    margin-bottom: 100px;
+    /* position: relative; */
+    /* bottom: 73px; */
 `
 
 
@@ -44,6 +45,13 @@ const LogoText = styled.div`
     color:${ThemeColor.theme};
     font-size: 26px;
     font-weight: 600;
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+    display:flex;
+    justify-content:center;
+    font-family: baemin;
+    font-size: 33px;
 `
 
 
@@ -59,9 +67,11 @@ class Login2Component extends React.Component {
         const { id, password, buttonDisabled } = this.state;
         const { handleInput, loginButtonClicked } = this;
         return <Container>
-            <LoginDrawer />
+            {/* <LoginDrawer /> */}
             <InputContainer>
+
                 <LogoContainer>
+                    <LogoText>성서봇 2</LogoText>
                     <KbuCardLogo src={require('../../../assets/logo.png')} />
                 </LogoContainer>
                 <Input

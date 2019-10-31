@@ -94,6 +94,10 @@ code {
   src: url('./fonts/typossangmoondong.ttf');
 }
 
+@font-face{
+  font-family:'baemin';
+  src:url('./fonts/BMJUA_otf.otf');
+}
 
 @font-face {
   font-family: 'irop';
