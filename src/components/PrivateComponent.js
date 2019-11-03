@@ -41,6 +41,36 @@ class PrivateComponent extends React.Component {
             name: ""
         },
         loading: true,
+        notice: {
+            page: 1,
+            notices: [],
+            loading: true,
+            loading2: true,
+            error: ""
+        },
+        lecture: {
+            schedule: [],
+            loading: true,
+            error: ""
+        },
+        location: "",
+        mileage: {
+            rows: [],
+            loading: true,
+            error: ""
+        },
+        chapel: {
+            chapels: [],
+            summary: {
+                attendance: 0,
+                late: 0,
+                sure: 0,
+                duty: 0
+            },
+            chapelLength: 0,
+            loading: true,
+            error: ""
+        }
 
     }
 
@@ -63,7 +93,7 @@ class PrivateComponent extends React.Component {
             }).then(res => res.data)
                 .then(data => {
                     localStorage.setItem('kbu', data.token);
-                    console.log('user info:', data.result)
+
                     localStorage.setItem('user', JSON.stringify(data.result))
                     let cachedata = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
                     localStorage.setItem('cachedate', cachedata)
@@ -80,21 +110,148 @@ class PrivateComponent extends React.Component {
                     }
                 })
                 .catch(err => console.error(err))
+
+            const { page } = this.state.notice;
+            Axios.post(REST_API_ENDPOINT + 'notice', {
+                page
+            }).then(res => res.data)
+                .then(data => {
+                    if (data.is_ok) {
+                        this.setState({
+                            notice: {
+                                notices: data.result.table_body,
+                                loading: false,
+                                loading2: false,
+                                page: this.state.notice.page + 1
+                            }
+                        })
+                    } else {
+                        this.setState({
+                            notice: {
+                                error: "공지사항을 불러오는데 실패하였습니다. ",
+                                loading: false,
+                                loading2: false
+                            }
+                        })
+                    }
+                })
+                .catch(err => console.error(err))
+
+
+            Axios.post(REST_API_ENDPOINT + 'lecture', {
+                id: decoded.id,
+                pw: decoded.password
+            })
+                .then(res => res.data)
+                .then(data => {
+                    if (data.is_ok) {
+                        this.setState({
+                            lecture: {
+                                ...this.state.lecture,
+                                schedule: data.result.table_body,
+                                loading: false
+                            }
+                        })
+                    } else {
+                        this.setState({
+                            lecture: {
+                                ...this.state.lecture,
+                                error: '시간표를 가져오지 못하였습니다. 관리자에게 문의해주세요. '
+                            }
+                        })
+                    }
+                })
+                .catch(err => console.error(err))
+
+            Axios.post(REST_API_ENDPOINT + 'mileage', {
+                id: decoded.id,
+                pw: decoded.password
+            })
+                .then(res => res.data)
+                .then(data => {
+                    if (data.is_ok) {
+                        this.setState({
+                            mileage: {
+                                ...this.state.mileage,
+                                rows: data.result,
+                                loading: false
+                            }
+                        })
+                    } else {
+                        this.setState({
+                            mileage: {
+                                ...this.state.mileage,
+                                error: "마일리지 내역을 가져오는데 실패하였습니다. ",
+                                loading: false
+                            }
+                        })
+                    }
+                })
+                .catch(err => console.error(err))
+
+            Axios.post(REST_API_ENDPOINT + 'chapel', {
+                id: decoded.id,
+                pw: decoded.password
+            })
+                .then(res => res.data)
+                .then(data => {
+                    if (data.is_ok) {
+                        this.setState({
+                            chapel: {
+                                ...this.state.chapel,
+                                summary: {
+                                    attendance: data.result.summary.출석,
+                                    late: data.result.summary.지각,
+                                    sure: data.result.summary.확정,
+                                    duty: data.result.summary.규정일수
+                                },
+                                chapels: data.result.table_body,
+                                loading: false,
+                                chapelLength: data.result.table_body.length
+                            }
+                        })
+                    } else {
+                        this.setState({
+                            chapel: {
+                                ...this.state.chapel,
+                                error: "채플 내역을 불러오지 못했습니다. 관리자에게 문의해주세요. "
+                            }
+                        })
+                    }
+                })
+                .catch(err => console.error(err))
+
         }
 
 
     }
 
     render() {
-        const { QRCode, user, loading } = this.state;
-        const { QRCodeOn, QRCodeOff } = this;
+        const { QRCode, user, loading, notice, lecture, location, mileage,
+            chapel
+        } = this.state;
+        const { QRCodeOn, QRCodeOff, noticeRequestNext, handleLocation, noticeClicked, mainClicked,
+            lectureClicked,
+            mileageClicked,
+            scheduleClicked,
+            chapelClicked,
+            mapClicked,
+            cafeteriaClicked
+        } = this;
         const { logout } = this.props;
         return <Router>
-            <DrawerComponent user={user} logout={logout} />
+            <DrawerComponent mainClicked={mainClicked} location={location} user={user} logout={logout} />
             {/* <RedLine /> */}
             <Switch>
                 <Route exact path="/">
-                    <ExtendedMain loading={loading} user={user} />
+                    <ExtendedMain
+                        chapelClicked={chapelClicked}
+                        scheduleClicked={scheduleClicked}
+                        mileageClicked={mileageClicked}
+                        lectureClicked={lectureClicked}
+                        mapClicked={mapClicked}
+                        cafeteriaClicked={cafeteriaClicked}
+                        noticeClicked={noticeClicked} handleLocation={handleLocation} loading={loading} user={user} />
                 </Route>
                 <Route path="/admin">
                     <AdminPage user={user} />
@@ -106,19 +263,19 @@ class PrivateComponent extends React.Component {
                     <KBUCampus />
                 </Route>
                 <Route path={'/lecture'}>
-                    <Lecture />
+                    <Lecture lecture={lecture} />
                 </Route>
                 <Route path={'/mileage'}>
-                    <Mileage />
+                    <Mileage mileage={mileage} />
                 </Route>
                 <Route path={'/cafeteria'}>
                     <Cafeteria />
                 </Route>
                 <Route path={'/notice'}>
-                    <Notice />
+                    <Notice noticeRequestNext={noticeRequestNext} notice={notice} />
                 </Route>
                 <Route path={'/chapel'}>
-                    <Chapel />
+                    <Chapel chapel={chapel} />
                 </Route>
                 <Route>
                     <Main />
@@ -130,6 +287,101 @@ class PrivateComponent extends React.Component {
 
         </Router>
     }
+
+    noticeRequestNext = () => {
+
+        const { loading2, page } = this.state.notice;
+        if (loading2) {
+            return;
+        }
+        this.setState({
+            notice: {
+                ...this.state.notice,
+                loading2: true
+            }
+        })
+        Axios.post(REST_API_ENDPOINT + 'notice', {
+            page
+        })
+            .then(res => res.data)
+            .then(data => {
+                if (data.is_ok) {
+
+                    this.setState({
+                        notice: {
+                            ...this.state.notice,
+                            notices: this.state.notice.notices.concat(data.result.table_body),
+                            loading2: false,
+                            page: this.state.notice.page + 1
+                        }
+                    })
+                } else {
+                    this.setState({
+                        notice: {
+                            loading2: false,
+                            error: '공지사항을 불러오는데 실패하였습니다. 관리자에게 문의해주세요. '
+                        }
+                    })
+                }
+            })
+            .catch(err => console.error(err))
+    }
+
+    handleLocation = () => {
+        this.setState({
+            location: window.location.href.split('/')[3]
+        })
+    }
+
+    cafeteriaClicked = () => {
+        this.setState({
+            location: '교내 식당'
+        })
+    }
+
+    mapClicked = () => {
+        this.setState({
+            location: "캠퍼스 맵"
+        })
+    }
+
+    chapelClicked = () => {
+        this.setState({
+            location: "채플"
+        })
+    }
+
+    scheduleClicked = () => {
+        this.setState({
+            location: "학사일정"
+        })
+    }
+
+    mileageClicked = () => {
+        this.setState({
+            location: "마일리지"
+        })
+    }
+
+    lectureClicked = () => {
+        this.setState({
+            location: "수업"
+        })
+    }
+
+    mainClicked = () => {
+        this.setState({
+            location: ""
+        })
+    }
+
+    noticeClicked = () => {
+        this.setState({
+            location: '공지사항'
+        })
+    }
+
+
 
     QRCodeOn = () => {
         this.setState({

@@ -9,58 +9,43 @@ class ExtendedMainContainer extends React.Component {
         const { studentId } = this.state;
         const { TurnOffStudentIDCard,
             TurnOnStudentIDCard,
-            sheduleClicked,
-            campusMapClicked,
-            cafeteriaClicked,
-            mileageClicked,
-            lectureClicked,
-            noticeClicked,
-            chapelClicked
+
+
+
+
+
         } = this;
-        const { user, loading } = this.props;
+        const { user, loading, handleLocation, noticeClicked, lectureClicked
+            , mileageClicked,
+            scheduleClicked,
+            chapelClicked,
+            mapClicked,
+            cafeteriaClicked
+        } = this.props;
         return <ExtendedMainPresenter
             loading={loading}
             TurnOffStudentIDCard={TurnOffStudentIDCard}
             TurnOnStudentIDCard={TurnOnStudentIDCard}
             studentId={studentId}
             user={user}
-            sheduleClicked={sheduleClicked}
-            campusMapClicked={campusMapClicked}
+            scheduleClicked={scheduleClicked}
+            mapClicked={mapClicked}
             cafeteriaClicked={cafeteriaClicked}
             mileageClicked={mileageClicked}
             lectureClicked={lectureClicked}
             noticeClicked={noticeClicked}
             chapelClicked={chapelClicked}
+            handleLocation={handleLocation}
         />
     }
 
-    chapelClicked = () => {
-        window.location.href = '/chapel'
-    }
 
-    noticeClicked = () => {
-        window.location.href = '/notice'
-    }
 
-    cafeteriaClicked = () => {
-        window.location.href = '/cafeteria'
-    }
 
-    mileageClicked = () => {
-        window.location.href = '/mileage'
-    }
 
-    lectureClicked = () => {
-        window.location.href = '/lecture'
-    }
 
-    campusMapClicked = () => {
-        window.location.href = '/map'
-    }
 
-    sheduleClicked = () => {
-        window.location.href = '/schedule'
-    }
+
 
     TurnOnStudentIDCard = () => {
         this.setState({

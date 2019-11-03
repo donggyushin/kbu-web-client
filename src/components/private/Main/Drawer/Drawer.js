@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Button, Radio } from 'antd';
+import { Drawer } from 'antd';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import themeColor from 'constants/themeColor'
@@ -28,16 +28,6 @@ const Icon = styled.i`
     color:white;
 `
 
-const KBUImage = styled.img`
-    width:100px;
-`
-
-const KBUText = styled.div`
-    color:white;
-    font-size: 20px;
-    font-weight: 700;
-    font-family: 'Nanum Gothic', sans-serif;
-`
 
 const MenuItem = styled.p`
     cursor: pointer;
@@ -73,8 +63,7 @@ const Logo = styled.img`
 const A = styled.a`
 display: flex;
     align-items: center;
-    /* position: relative;
-    right: 10px; */
+    
 `
 
 class DrawerComponent extends React.Component {
@@ -87,25 +76,6 @@ class DrawerComponent extends React.Component {
         chapel: false
     };
 
-    componentDidMount() {
-        this.setState({
-            pageTitle: window.location.href.split('/')[3]
-        })
-        if (window.location.href.split('/')[3] === 'cafeteria') {
-            this.setState({
-                darkBlue: true
-            })
-
-        } else if (window.location.href.split('/')[3] === 'lecture') {
-            this.setState({
-                gray: true
-            })
-        } else if (window.location.href.split('/')[3] === 'chapel') {
-            this.setState({
-                chapel: true
-            })
-        }
-    }
 
     showDrawer = () => {
         this.setState({
@@ -127,28 +97,29 @@ class DrawerComponent extends React.Component {
     };
 
     render() {
-        const { logout, user } = this.props;
+        const { logout, user, location, mainClicked } = this.props;
         const { refresh } = this;
-        const { pageTitle, darkBlue, gray, chapel } = this.state;
+        const { darkBlue } = this.state;
         return (
             <Container darkBlue={darkBlue} >
                 <TitleContainer>
-                    <A style={{
+                    <Link onClick={mainClicked} style={{
                         display: 'flex',
                         alignItems: 'center'
-                    }} href={'/'}>
+                    }} to={'/'} href={'/'}>
                         <Logo src={require('../../../../assets/logo.png')} />
                         {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
                         {/* <KBUText>성서봇2</KBUText> */}
-                    </A>
+                    </Link>
                     <PageTitle>
-                        {pageTitle === 'schedule' && '학사일정'}
+                        {/* {pageTitle === 'schedule' && '학사일정'}
                         {pageTitle === 'map' && '캠퍼스 맵'}
                         {pageTitle === 'cafeteria' && '학식'}
                         {pageTitle === 'notice' && '공지사항'}
                         {pageTitle === 'lecture' && '수업'}
                         {pageTitle === 'mileage' && '마일리지'}
-                        {pageTitle === 'chapel' && '채플'}
+                        {pageTitle === 'chapel' && '채플'} */}
+                        {location}
                     </PageTitle>
                 </TitleContainer>
 
@@ -165,12 +136,12 @@ class DrawerComponent extends React.Component {
                     {/* <MenuItem>이경민</MenuItem>
                     <MenuItem>신동규</MenuItem>
                     <MenuItem>신민철</MenuItem> */}
-                    {(user.sid === '201303024' || user.sid === '201504018' || user.sid === '201504021') && <a style={{
+                    {(user.sid === '201303024' || user.sid === '201504018' || user.sid === '201504021') && <Link onClick={this.onClose} style={{
                         textDecoration: 'none',
                         color: 'black'
-                    }} href={'/admin'}>
+                    }} to={'/admin'}>
                         <MenuItem>관리자 페이지</MenuItem>
-                    </a>}
+                    </Link>}
                     <MenuItem onClick={refresh}>새로고침</MenuItem>
                     <MenuItem style={{
                         color: '#e74c3c'

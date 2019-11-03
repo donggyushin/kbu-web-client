@@ -99,29 +99,36 @@ const DownArrowIcon = styled.i`
 
 export default function NoticePresenter({ notices, loading,
     nextRequest,
-    loading2
+    loading2,
+    noticeRequestNext,
+    error
 }) {
-    return <Container>
-        {loading === false && <Paper>
+    if (error) {
+        alert(error);
+        window.location.href = '/'
+    } else {
+        return <Container>
+            {loading === false && <Paper>
 
-            {notices.map(notice => <Row>
-                <a style={{
-                    color: '#2c3e50',
-                    width: '100%'
-                }} href={notice[5]} target="_blank" >
-                    <TitleContainer >
-                        <Title>{notice[1]}</Title>
-                        <Date>{notice[3]}</Date>
-                    </TitleContainer>
-                </a>
-            </Row>)}
+                {notices.map(notice => <Row>
+                    <a style={{
+                        color: '#2c3e50',
+                        width: '100%'
+                    }} href={notice[5]} target="_blank" >
+                        <TitleContainer >
+                            <Title>{notice[1]}</Title>
+                            <Date>{notice[3]}</Date>
+                        </TitleContainer>
+                    </a>
+                </Row>)}
 
-        </Paper>}
-        {loading2 && <ReactLoading color={themeColor.theme} height={64} width={64} />}
-        {loading2 === false && <DownButton onClick={nextRequest}>
-            <DownArrowIcon className={'fas fa-chevron-down'} />
-        </DownButton>}
+            </Paper>}
+            {loading2 && <ReactLoading color={themeColor.theme} height={64} width={64} />}
+            {loading2 === false && <DownButton onClick={noticeRequestNext}>
+                <DownArrowIcon className={'fas fa-chevron-down'} />
+            </DownButton>}
 
 
-    </Container>
+        </Container>
+    }
 }

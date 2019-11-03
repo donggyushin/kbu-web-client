@@ -225,7 +225,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                         </Row>
                     </StudentInfoContainer>
                     <ProfileImageContainer>
-                        <ProfileImage src={user.sid === '201303024' ? base64formatter(user.img) : base64formatter(user.img)} />
+                        <ProfileImage src={user.sid === '201303024' ? require('assets/leo.png') : base64formatter(user.img)} />
                     </ProfileImageContainer>
                 </Row>}
 

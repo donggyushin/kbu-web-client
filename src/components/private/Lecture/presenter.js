@@ -74,25 +74,31 @@ const LoadingContainer = styled.div`
     align-items:center;
 `
 
-export default function LecturePresenter({ schedule, loading }) {
-    return <Container>
-        <Schedule>
-            <Header>
-                <Day>월</Day>
-                <Day>화</Day>
-                <Day>수</Day>
-                <Day>목</Day>
-                <Day>금</Day>
-            </Header>
-            {loading ? <LoadingContainer><ReactLoading color={themeColor.theme} /></LoadingContainer> : <Body>
-                {schedule.map(day => {
-                    return <Column>{day.map(subject => {
-                        const index = Math.floor(counter % 10);
-                        counter = counter + 1;
-                        return <Subject index={index} subject={subject} />
-                    })}</Column>
-                })}
-            </Body>}
-        </Schedule>
-    </Container>
+export default function LecturePresenter({ schedule, loading, error }) {
+    if (error) {
+        alert(error);
+        window.location.href = '/'
+    } else {
+
+        return <Container>
+            <Schedule>
+                <Header>
+                    <Day>월</Day>
+                    <Day>화</Day>
+                    <Day>수</Day>
+                    <Day>목</Day>
+                    <Day>금</Day>
+                </Header>
+                {loading ? <LoadingContainer><ReactLoading color={themeColor.theme} /></LoadingContainer> : <Body>
+                    {schedule.map(day => {
+                        return <Column>{day.map(subject => {
+                            const index = Math.floor(counter % 10);
+                            counter = counter + 1;
+                            return <Subject index={index} subject={subject} />
+                        })}</Column>
+                    })}
+                </Body>}
+            </Schedule>
+        </Container>
+    }
 }

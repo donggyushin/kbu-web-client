@@ -68,7 +68,7 @@ class MileageContainer extends React.Component {
     }
 
     render() {
-        const { rows, loading } = this.state;
+        const { rows, loading } = this.props.mileage;
         return <MileagePresenter loading={loading} rows={rows} />
     }
 }

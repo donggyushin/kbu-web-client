@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CopyrightComponent from '../Copyright/Copyright';
 import StudentID from './StudentID';
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     width:100%;
@@ -43,6 +44,7 @@ const TextContainer = styled.div`
     justify-content:center;
 `
 const MainText = styled.div`
+color:rgba(0, 0, 0, 0.65);
 font-family: 'Nanum Gothic',sans-serif;
 font-size: 17px;
     font-weight: bolder;
@@ -138,98 +140,122 @@ export default function ExtendedMainPresenter({ studentId,
     TurnOffStudentIDCard,
     TurnOnStudentIDCard,
     user,
-    sheduleClicked,
-    campusMapClicked,
+
+    scheduleClicked,
+    mapClicked,
     cafeteriaClicked,
-    mileageClicked,
-    lectureClicked,
-    noticeClicked,
     chapelClicked,
-    loading
+    loading,
+    noticeClicked,
+    lectureClicked,
+    mileageClicked
+
 }) {
     return <Container>
         <MarginVertical />
         <Row>
             <Column>
-                <HorizontalCard onClick={noticeClicked}>
-                    <TextContainer>
-                        <MainText>공지사항</MainText>
-                        <SubText>Notice</SubText>
-                    </TextContainer>
-                    <IconContainer>
-                        <Icon src={require('assets/notice.png')} />
-                    </IconContainer>
-                </HorizontalCard>
+                <Link onClick={noticeClicked} to={'/notice'}>
+                    <HorizontalCard >
+                        <TextContainer>
+                            <MainText>공지사항</MainText>
+                            <SubText>Notice</SubText>
+                        </TextContainer>
+                        <IconContainer>
+                            <Icon src={require('assets/notice.png')} />
+                        </IconContainer>
+                    </HorizontalCard>
+                </Link>
                 <MarginVertical />
-                <HorizontalCard onClick={lectureClicked}>
-                    <TextContainer>
-                        <MainText>수업</MainText>
-                        <SubText>Lecture</SubText>
-                    </TextContainer>
-                    <IconContainer>
-                        <Icon src={require('assets/lecture.png')} />
-                    </IconContainer>
-                </HorizontalCard>
+                <Link onClick={lectureClicked} to={'/lecture'}>
+                    <HorizontalCard >
+                        <TextContainer>
+                            <MainText>수업</MainText>
+                            <SubText>Lecture</SubText>
+                        </TextContainer>
+                        <IconContainer>
+                            <Icon src={require('assets/lecture.png')} />
+                        </IconContainer>
+                    </HorizontalCard>
+                </Link>
             </Column>
             <MarginHorizontal />
-            <VerticalCard onClick={mileageClicked}>
-                <TextContainerForVerticalCard>
-                    <MainText>
-                        마일리지
+            <Link onClick={mileageClicked} style={{
+                width: '32%'
+            }} to={'/mileage'}>
+                <VerticalCard style={{ width: '100%' }} >
+                    <TextContainerForVerticalCard>
+                        <MainText>
+                            마일리지
                     </MainText>
-                    <SubText>
-                        Mileage
+                        <SubText>
+                            Mileage
                     </SubText>
-                </TextContainerForVerticalCard>
-                <IconContainerForVerticalCard>
-                    <Icon src={require('assets/mileage.png')} />
-                </IconContainerForVerticalCard>
-            </VerticalCard>
+                    </TextContainerForVerticalCard>
+                    <IconContainerForVerticalCard>
+                        <Icon src={require('assets/mileage.png')} />
+                    </IconContainerForVerticalCard>
+                </VerticalCard>
+            </Link>
         </Row>
         <MarginVertical />
         <Row>
-            <NormalCard onClick={sheduleClicked}>
-                <TextContainerForNomralCard>
-                    <MainText>학사일정</MainText>
-                    <SubText>Schedule</SubText>
-                </TextContainerForNomralCard>
-                <IconContainerForNormalCard>
-                    <Icon src={require('assets/schedule.png')} />
-                </IconContainerForNormalCard>
-            </NormalCard>
+            <Link onClick={scheduleClicked} style={{
+                width: '46%'
+            }} to={'/schedule'}>
+                <NormalCard style={{
+                    width: '100%'
+                }}>
+                    <TextContainerForNomralCard>
+                        <MainText>학사일정</MainText>
+                        <SubText>Schedule</SubText>
+                    </TextContainerForNomralCard>
+                    <IconContainerForNormalCard>
+                        <Icon src={require('assets/schedule.png')} />
+                    </IconContainerForNormalCard>
+                </NormalCard>
+            </Link>
             <MarginHorizontal />
-            <NormalCard onClick={chapelClicked}>
-                <TextContainerForNomralCard>
-                    <MainText>채플</MainText>
-                    <SubText>Chapel</SubText>
-                </TextContainerForNomralCard>
-                <IconContainerForNormalCard>
-                    <Icon src={require('assets/chapel.png')} />
-                </IconContainerForNormalCard>
-            </NormalCard>
+            <Link onClick={chapelClicked} style={{
+                width: '46%'
+            }} to={'/chapel'}>
+                <NormalCard style={{ width: '100%' }} >
+                    <TextContainerForNomralCard>
+                        <MainText>채플</MainText>
+                        <SubText>Chapel</SubText>
+                    </TextContainerForNomralCard>
+                    <IconContainerForNormalCard>
+                        <Icon src={require('assets/chapel.png')} />
+                    </IconContainerForNormalCard>
+                </NormalCard>
+            </Link>
         </Row>
         <MarginVertical />
         <Row>
-            <VerticalCard onClick={campusMapClicked}>
-                <TextContainerForVerticalCard>
-                    <MainText>캠퍼스 맵</MainText>
-                    <SubText>Campus Map</SubText>
-                </TextContainerForVerticalCard>
-                <IconContainerForVerticalCard>
-                    <Icon src={require('assets/map.png')} />
-                </IconContainerForVerticalCard>
-            </VerticalCard>
+            <Link onClick={mapClicked} to={'/map'} style={{ width: '32%' }}>
+                <VerticalCard style={{ width: '100%' }}>
+                    <TextContainerForVerticalCard>
+                        <MainText>캠퍼스 맵</MainText>
+                        <SubText>Campus Map</SubText>
+                    </TextContainerForVerticalCard>
+                    <IconContainerForVerticalCard>
+                        <Icon src={require('assets/map.png')} />
+                    </IconContainerForVerticalCard>
+                </VerticalCard>
+            </Link>
             <MarginHorizontal />
             <Column>
-                <HorizontalCard onClick={cafeteriaClicked} >
-                    <TextContainer>
-                        <MainText>교내식당</MainText>
-                        <SubText>Cafeteria</SubText>
-                    </TextContainer>
-                    <IconContainer>
-                        <Icon src={require('assets/cafeteria.png')} />
-                    </IconContainer>
-                </HorizontalCard>
+                <Link onClick={cafeteriaClicked} to={'/cafeteria'}>
+                    <HorizontalCard >
+                        <TextContainer>
+                            <MainText>교내식당</MainText>
+                            <SubText>Cafeteria</SubText>
+                        </TextContainer>
+                        <IconContainer>
+                            <Icon src={require('assets/cafeteria.png')} />
+                        </IconContainer>
+                    </HorizontalCard>
+                </Link>
                 <MarginVertical />
                 <HorizontalCard onClick={TurnOnStudentIDCard} >
                     <TextContainer>
