@@ -65,7 +65,7 @@ const ButtonText = styled.div`
 
 const SmallText = styled.div`
     font-family:'1997';
-    font-size: 16px;
+    font-size: 15px;
     margin-right:4px;
     font-weight:bolder;
 `
@@ -131,7 +131,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
         <Paper>
             {loading ? <ReactLoading color={themeColor.theme} /> : <>
                 <Row>
-                    <ButtonContainer>
+                    {/* <ButtonContainer>
                         <Button>
                             <WhiteCardButton />
                             <ButtonText>출석</ButtonText>
@@ -140,7 +140,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             <YellowCardButton />
                             <ButtonText>지각</ButtonText>
                         </Button>
-                    </ButtonContainer>
+                    </ButtonContainer> */}
                     <InfoTextContainer>
                         <SmallText>출석: {summary.attendance}</SmallText>
                         <SmallText>지각: {summary.late}</SmallText>
