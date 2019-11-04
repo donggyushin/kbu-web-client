@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Box = styled.div`
-    width:100%;
+    width:98%;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
@@ -13,6 +13,7 @@ const Box = styled.div`
     border: 0.1px solid rgba(0,0,0,0.1);
     background: ${props => props.selected};
     color:white;
+    margin-bottom:4px;
 `
 
 const BigText = styled.div`
@@ -25,8 +26,9 @@ const NormalText = styled.div`
 
 `
 
-export default function SubjectPresenter({ subject, selected }) {
-    return <Box selected={selected}>
+export default function SubjectPresenter({ subject, selected, colorMatches }) {
+    console.log('color matches: ', colorMatches)
+    return <Box selected={colorMatches[subject[4]]}>
         <BigText>{subject[0]}</BigText>
         <NormalText>{subject[1]}</NormalText>
         <NormalText>{subject[2]}</NormalText>

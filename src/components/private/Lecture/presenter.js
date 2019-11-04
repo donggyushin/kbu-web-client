@@ -41,6 +41,7 @@ const Column = styled.div`
     display:flex;
     flex-direction:column;
     width:20%;
+    align-items:center;
 `
 
 const Box = styled.div`
@@ -74,7 +75,7 @@ const LoadingContainer = styled.div`
     align-items:center;
 `
 
-export default function LecturePresenter({ schedule, loading, error }) {
+export default function LecturePresenter({ schedule, loading, error, colorMatches }) {
     if (error) {
         alert(error);
         window.location.href = '/'
@@ -94,7 +95,7 @@ export default function LecturePresenter({ schedule, loading, error }) {
                         return <Column>{day.map(subject => {
                             const index = Math.floor(counter % 10);
                             counter = counter + 1;
-                            return <Subject index={index} subject={subject} />
+                            return <Subject colorMatches={colorMatches} index={index} subject={subject} />
                         })}</Column>
                     })}
                 </Body>}

@@ -3,24 +3,24 @@ import SubjectPresenter from './presenter';
 
 class SubjectContainer extends React.Component {
     state = {
-        colors: ['#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#c7ecee', '#6a89cc', '#fad390', '#f8c291', '#6a89cc'],
+        colors: ['#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#c7ecee', '#6a89cc', '#fad390', '#f8c291', '#6a89cc', '#81ecec', '#f6e58d'],
         selected: ''
     }
 
     componentDidMount() {
-        const randomNum = this.getRandomInt(0, 9);
-        // this.setState({
-        //     selected: this.state.colors[randomNum]
-        // })
+        const subjectTile = this.props.subject[0]
+        const index = parseInt(subjectTile.length % 12);
+
 
         this.setState({
-            selected: this.state.colors[this.props.index]
+            selected: this.state.colors[index]
         })
     }
 
     render() {
         const { selected } = this.state;
-        return <SubjectPresenter selected={selected} subject={this.props.subject} />
+        const { colorMatches } = this.props;
+        return <SubjectPresenter colorMatches={colorMatches} selected={selected} subject={this.props.subject} />
     }
 
     getRandomInt(min, max) {

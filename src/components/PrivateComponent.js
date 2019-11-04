@@ -21,7 +21,7 @@ import Cafeteria from './private/Cafeteria';
 import Notice from './private/Notice';
 import Chapel from './private/Chapel';
 
-
+let i = 0;
 
 class PrivateComponent extends React.Component {
 
@@ -51,7 +51,9 @@ class PrivateComponent extends React.Component {
         lecture: {
             schedule: [],
             loading: true,
-            error: ""
+            error: "",
+            colorMatches: {},
+            colorSamples: ['#C2F3C6', '#ff9ff3', '#DCFFEC', '#B9E6F1', '#2D1E2F', '#F7B32B', '#FCF6B1', '#A9E5BB', '#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#54a0ff', '#6a89cc', '#fad390', '#f8c291', '#FFC6ED', '#81ecec', '#f6e58d']
         },
         location: "",
         mileage: {
@@ -145,13 +147,40 @@ class PrivateComponent extends React.Component {
                 .then(res => res.data)
                 .then(data => {
                     if (data.is_ok) {
+                        console.log('schedules:', data.result)
                         this.setState({
                             lecture: {
                                 ...this.state.lecture,
                                 schedule: data.result.table_body,
+                                // loading: false
+                            }
+                        })
+
+                        for (let index = 0; index < data.result.table_body.length; index++) {
+                            const element = data.result.table_body[index];
+                            for (let index = 0; index < element.length; index++) {
+                                const element2 = element[index];
+
+                                this.setState({
+                                    lecture: {
+                                        ...this.state.lecture,
+                                        colorMatches: {
+                                            ...this.state.lecture.colorMatches,
+                                            [element2[4]]: this.state.lecture.colorSamples[i]
+                                        }
+                                    }
+                                })
+                                i++;
+                            }
+                        }
+
+                        this.setState({
+                            lecture: {
+                                ...this.state.lecture,
                                 loading: false
                             }
                         })
+
                     } else {
                         this.setState({
                             lecture: {
@@ -263,7 +292,7 @@ class PrivateComponent extends React.Component {
                     <KBUCampus />
                 </Route>
                 <Route path={'/lecture'}>
-                    <Lecture lecture={lecture} />
+                    <Lecture lecture={lecture} colorMatches={this.state.lecture.colorMatches} />
                 </Route>
                 <Route path={'/mileage'}>
                     <Mileage mileage={mileage} />
