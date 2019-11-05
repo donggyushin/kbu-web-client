@@ -91,7 +91,7 @@ export default function MileagePresenter({ rows, loading }) {
                                     <Location>{row.SHOP_NM}</Location>
                                 </Row>
                             </History>
-                            <Price>{row.CST_USE_POINT}</Price>
+                            <Price>{parseInt(parseFloat(row.CST_USE_POINT) + 0.5)}</Price>
                         </Row>
                     }
                 })}
