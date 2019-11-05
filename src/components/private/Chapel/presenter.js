@@ -64,11 +64,12 @@ const ButtonText = styled.div`
 `
 
 const SmallText = styled.div`
-    font-family:'1997';
+    /* font-family:'1997'; */
     font-size: 15px;
     margin-right:4px;
     font-weight:bolder;
     color:rgba(0, 0, 0, 0.65);
+    margin-right:23px;
 `
 
 const InfoTextContainer = styled.div`
@@ -105,12 +106,12 @@ const TextRow = styled.div`
     width:100%;
     font-family: sans-serif;
     align-items:center;
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
     border-bottom: 1px solid gainsboro;
-    margin-bottom: 13px;
+    /* margin-bottom: 13px; */
     padding-left:4px;
     justify-content:space-between;
-    height: 80px;
+    height: 90px;
 `
 
 const ContentAndResultContainer = styled.div`
@@ -144,10 +145,10 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                         </Button>
                     </ButtonContainer> */}
                     <InfoTextContainer>
-                        <SmallText>출석: {summary.attendance}</SmallText>
-                        <SmallText>지각: {summary.late}</SmallText>
-                        <SmallText>확정: {summary.sure}</SmallText>
-                        <SmallText>남은 일수: {summary.duty - summary.sure}</SmallText>
+                        <SmallText>출석:{summary.attendance}</SmallText>
+                        <SmallText>지각:{summary.late}</SmallText>
+                        <SmallText>확정:{summary.sure}</SmallText>
+                        <SmallText>남은 일수:{summary.duty - summary.sure}</SmallText>
                     </InfoTextContainer>
                 </Row>
                 <BodyContainer>
@@ -158,10 +159,10 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             const minute = time.substr(3, 2);
                             const late = chapel[7] !== '출석'
                             console.log(chapelLength - i);
-                            return <TextRow><CountNumber>{chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i}.</CountNumber>  <ContentAndResultContainer><Text>{chapel[1]}월 {chapel[2]}일 <span style={{
+                            return <TextRow><CountNumber>{chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i}.</CountNumber>  <ContentAndResultContainer><Text>{chapel[1]}월 {chapel[2]}일 &nbsp;<span style={{
                                 fontSize: 20,
                                 fontWeight: 900
-                            }}>({chapel[4]})</span> {hour}시 {minute}분</Text><Text style={{
+                            }}>({chapel[4]})</span>&nbsp; {hour}시 {minute}분</Text><Text style={{
                                 marginRight: 20,
                                 // fontWeight: 900
                             }} late={late}>{chapel[7]}</Text></ContentAndResultContainer></TextRow>

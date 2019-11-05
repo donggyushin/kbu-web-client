@@ -40,12 +40,19 @@ const TitleLabel = styled.div`
 `
 
 const Row = styled.div`
-    display:flex;
-    align-items:flex-start;
-    margin-bottom:10px;
-    height: 100px;
+position:relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* margin-bottom: 10px; */
+    height: 120px;
     border-bottom: 1px solid gainsboro;
-    padding-left:10px;
+    padding-left: 10px;
     &:active {
         background: rgba(0,0,0,0.15);
 
@@ -53,36 +60,40 @@ const Row = styled.div`
 `
 
 const Writer = styled.div`
-    width: 30%;
+    /* width: 30%; */
     padding-left: 10px;
     display:flex;
     align-items:center;
     font-family: 'irop';
+    margin-right: 10px;
+    font-weight: 700;
 `
 
 const TitleContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
+    display: flex;
+    
     width: 100%;
     padding-left: 5px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    flex-direction: column;
 `
 
 const Title = styled.div`
-    width: 92%;
+    width: 100%;
     overflow:hidden;
       white-space:nowrap;
     font-family: 'Noto Sans KR', sans-serif;
     text-overflow:ellipsis;
+    font-size: 16px;
 `
 
 const Date = styled.div`
-    width:100%;
+    /* width: 100%; */
     font-family: 'irop';
-    font-size: 10px;
-    margin-top: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 25px;
+    
 `
 
 const DownButton = styled.div`
@@ -100,6 +111,20 @@ const DownButton = styled.div`
 const DownArrowIcon = styled.i`
     font-size:30px;
 `
+
+const DateAndWriterContainer = styled.div`
+    display:flex;
+    align-items: flex-end;
+    width:100%;
+    justify-content: flex-end;
+    margin-top: 7px;
+    position:absolute;
+    bottom:10px;
+    right:0;
+    
+`
+
+
 
 export default function NoticePresenter({ notices, loading,
     nextRequest,
@@ -121,7 +146,10 @@ export default function NoticePresenter({ notices, loading,
                     }} href={notice[5]} target="_blank" >
                         <TitleContainer >
                             <Title>{notice[1]}</Title>
-                            <Date>{notice[3]}</Date>
+                            <DateAndWriterContainer>
+                                <Writer>{notice[2]}</Writer>
+                                <Date>{notice[3]}</Date>
+                            </DateAndWriterContainer>
                         </TitleContainer>
                     </a>
                 </Row>)}

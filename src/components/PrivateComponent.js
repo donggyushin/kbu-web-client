@@ -121,6 +121,7 @@ class PrivateComponent extends React.Component {
             }).then(res => res.data)
                 .then(data => {
                     if (data.is_ok) {
+                        console.log('notice data: ', data)
                         this.setState({
                             notice: {
                                 notices: data.result.table_body,
