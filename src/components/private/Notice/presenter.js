@@ -61,12 +61,14 @@ position:relative;
 
 const Writer = styled.div`
     /* width: 30%; */
+    font-weight: 100;
+    font-size: 12px;
     padding-left: 10px;
     display:flex;
     align-items:center;
-    font-family: 'irop';
+    /* font-family: 'irop'; */
     margin-right: 10px;
-    font-weight: 700;
+    /* font-weight: 700; */
 `
 
 const TitleContainer = styled.div`
@@ -78,12 +80,15 @@ const TitleContainer = styled.div`
 `
 
 const Title = styled.div`
+word-break: break-word;
+    white-space: initial !important;
+    padding-right: 10px;
     width: 100%;
-    overflow:hidden;
-      white-space:nowrap;
-    font-family: 'Noto Sans KR', sans-serif;
-    text-overflow:ellipsis;
-    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 17px;
+    font-weight: 900;
 `
 
 const Date = styled.div`

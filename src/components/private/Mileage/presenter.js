@@ -46,18 +46,25 @@ const Date = styled.div`
     width:20%;
     font-size:11px;
     padding-left:4px;
+    display:flex;
+    align-items:center;
 `
 
 const History = styled.div`
     display:flex;
     flex-direction:column;
+    justify-content:center;
     width:60%;
 `
-const Story = styled.div``
+const Story = styled.div`
+    font-size: 16px;
+    font-weight: 600;
+`
 const Row = styled.div`
     display:flex;
-    margin-bottom: 12px;
-    height: 79px;
+    
+    /* margin-bottom: 12px;
+    height: 79px; */
     
 `
 const Quantity = styled.div`
@@ -67,7 +74,10 @@ const Location = styled.div`
 font-size:11px;
 `
 
-const Price = styled.div``
+const Price = styled.div`
+    display: flex;
+    align-items: center;
+`
 
 const Divider = styled.div`
     widows:100%;
@@ -89,7 +99,8 @@ export default function MileagePresenter({ rows, loading }) {
                     if (row.CST_USE_POINT !== "0") {
 
                         return <Row style={{
-                            borderBottom: '1px solid gainsboro'
+                            borderBottom: '1px solid gainsboro',
+                            height: 90
                         }}>
                             <Date>{row.SALE_DATE}</Date>
                             <History>
@@ -97,8 +108,9 @@ export default function MileagePresenter({ rows, loading }) {
                                     {row.PROD_NM}
                                 </Story>
                                 <Row>
-                                    <Quantity>{row.SALE_QTY}</Quantity>
-                                    <Location>{row.SHOP_NM}</Location>
+                                    <Quantity>수량:{row.SALE_QTY}</Quantity>
+                                    &nbsp;&nbsp;
+                                    <Location>구입처:{row.SHOP_NM}</Location>
                                 </Row>
                             </History>
                             <Price>{Math.round(parseInt(parseFloat(row.CST_USE_POINT) + 0.5) / 10) * 10}</Price>

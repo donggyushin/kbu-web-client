@@ -27,12 +27,23 @@ const NormalText = styled.div`
 
 `
 
+const TimeContainer = styled.div`
+    display:flex;
+`
+
 export default function SubjectPresenter({ subject, colorMatches }) {
     console.log('color matches: ', colorMatches)
     return <Box selected={colorMatches[subject[0]]}>
         <BigText>{subject[0]}</BigText>
+        <NormalText style={{
+            position: 'relative',
+            bottom: 10
+        }}>{subject[4]}</NormalText>
         <NormalText>{subject[1]}</NormalText>
-        <NormalText>{subject[2]}</NormalText>
-        <NormalText>{subject[3]}</NormalText>
+        <TimeContainer>
+            <NormalText>{subject[2]}</NormalText>
+            <NormalText>-</NormalText>
+            <NormalText>{subject[3]}</NormalText>
+        </TimeContainer>
     </Box>
 }
