@@ -26,9 +26,9 @@ const NormalText = styled.div`
 
 `
 
-export default function SubjectPresenter({ subject, selected, colorMatches }) {
+export default function SubjectPresenter({ subject, colorMatches }) {
     console.log('color matches: ', colorMatches)
-    return <Box selected={colorMatches[subject[4]]}>
+    return <Box selected={colorMatches[subject[0]]}>
         <BigText>{subject[0]}</BigText>
         <NormalText>{subject[1]}</NormalText>
         <NormalText>{subject[2]}</NormalText>

@@ -7,20 +7,10 @@ class SubjectContainer extends React.Component {
         selected: ''
     }
 
-    componentDidMount() {
-        const subjectTile = this.props.subject[0]
-        const index = parseInt(subjectTile.length % 12);
-
-
-        this.setState({
-            selected: this.state.colors[index]
-        })
-    }
 
     render() {
-        const { selected } = this.state;
         const { colorMatches } = this.props;
-        return <SubjectPresenter colorMatches={colorMatches} selected={selected} subject={this.props.subject} />
+        return <SubjectPresenter colorMatches={colorMatches} subject={this.props.subject} />
     }
 
     getRandomInt(min, max) {

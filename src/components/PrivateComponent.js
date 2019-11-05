@@ -52,8 +52,10 @@ class PrivateComponent extends React.Component {
             schedule: [],
             loading: true,
             error: "",
+            selected: "",
+            semesters: [],
             colorMatches: {},
-            colorSamples: ['#C2F3C6', '#ff9ff3', '#DCFFEC', '#B9E6F1', '#2D1E2F', '#F7B32B', '#FCF6B1', '#A9E5BB', '#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#54a0ff', '#6a89cc', '#fad390', '#f8c291', '#FFC6ED', '#81ecec', '#f6e58d']
+            colorSamples: ['#C2F3C6', '#ff9ff3', '#00b894', '#B9E6F1', '#0984e3', '#F7B32B', '#FCF6B1', '#A9E5BB', '#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#54a0ff', '#6a89cc', '#fad390', '#f8c291', '#FFC6ED', '#81ecec', '#f6e58d']
         },
         location: "",
         mileage: {
@@ -156,6 +158,8 @@ class PrivateComponent extends React.Component {
                             }
                         })
 
+                        console.log('lecture: ', data.result.table_body)
+
                         for (let index = 0; index < data.result.table_body.length; index++) {
                             const element = data.result.table_body[index];
                             for (let index = 0; index < element.length; index++) {
@@ -166,7 +170,7 @@ class PrivateComponent extends React.Component {
                                         ...this.state.lecture,
                                         colorMatches: {
                                             ...this.state.lecture.colorMatches,
-                                            [element2[4]]: this.state.lecture.colorSamples[i]
+                                            [element2[0]]: this.state.lecture.colorSamples[i]
                                         }
                                     }
                                 })
