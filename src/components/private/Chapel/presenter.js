@@ -110,6 +110,7 @@ const TextRow = styled.div`
     margin-bottom: 13px;
     padding-left:4px;
     justify-content:space-between;
+    height: 80px;
 `
 
 const ContentAndResultContainer = styled.div`

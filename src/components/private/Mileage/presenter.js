@@ -57,6 +57,8 @@ const Story = styled.div``
 const Row = styled.div`
     display:flex;
     margin-bottom: 12px;
+    height: 79px;
+    
 `
 const Quantity = styled.div`
 font-size:11px;
@@ -66,6 +68,12 @@ font-size:11px;
 `
 
 const Price = styled.div``
+
+const Divider = styled.div`
+    widows:100%;
+    height:1px;
+    background:gainsboro;
+`
 
 export default function MileagePresenter({ rows, loading }) {
 
@@ -80,7 +88,9 @@ export default function MileagePresenter({ rows, loading }) {
                 {rows.map(row => {
                     if (row.CST_USE_POINT !== "0") {
 
-                        return <Row>
+                        return <Row style={{
+                            borderBottom: '1px solid gainsboro'
+                        }}>
                             <Date>{row.SALE_DATE}</Date>
                             <History>
                                 <Story>
