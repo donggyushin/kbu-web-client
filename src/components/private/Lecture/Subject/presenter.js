@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Box = styled.div`
+opacity: 0.8;
     width:98%;
     display:flex;
     flex-direction:column;
