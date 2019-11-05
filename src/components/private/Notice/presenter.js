@@ -41,8 +41,11 @@ const TitleLabel = styled.div`
 
 const Row = styled.div`
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     margin-bottom:10px;
+    height: 100px;
+    border-bottom: 1px solid gainsboro;
+    padding-left:10px;
     &:active {
         background: rgba(0,0,0,0.15);
 
@@ -79,6 +82,7 @@ const Date = styled.div`
     width:100%;
     font-family: 'irop';
     font-size: 10px;
+    margin-top: 20px;
 `
 
 const DownButton = styled.div`
