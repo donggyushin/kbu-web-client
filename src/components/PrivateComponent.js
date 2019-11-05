@@ -55,7 +55,7 @@ class PrivateComponent extends React.Component {
             selected: "",
             semesters: [],
             colorMatches: {},
-            colorSamples: ['#C2F3C6', '#ff9ff3', '#00b894', '#B9E6F1', '#0984e3', '#F7B32B', '#B33771', '#A9E5BB', '#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#54a0ff', '#6a89cc', '#fad390', '#f8c291', '#FFC6ED', '#81ecec', '#f6e58d']
+            colorSamples: ['#C2F3C6', '#ff9ff3', '#00b894', '#B9E6F1', '#0984e3', '#F7B32B', '#B33771', '#e66767', '#9c88ff', '#f6e58d', '#ffbe76', '#ff7979', '#badc58', '#54a0ff', '#6a89cc', '#fad390', '#f8c291', '#FFC6ED', '#81ecec', '#f6e58d']
         },
         location: "",
         mileage: {
