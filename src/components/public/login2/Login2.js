@@ -12,13 +12,13 @@ import ThemeColor from 'constants/themeColor';
 
 const Container = styled.div`
     width:100%;
-    
+    height: 100vh;
     display:flex;
     padding-top:85px;
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
-    background:${ThemeColor.theme};
+    background:white;
     padding-bottom:150px;
 `
 
@@ -32,7 +32,7 @@ const LogoContainer = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    margin-bottom: 100px;
+    margin-bottom: 43px;
     /* position: relative; */
     /* bottom: 73px; */
 `
@@ -72,7 +72,7 @@ class Login2Component extends React.Component {
             <InputContainer>
 
                 <LogoContainer>
-                    <LogoText>성서봇2</LogoText>
+                    {/* <LogoText>성서봇2</LogoText> */}
                     <KbuCardLogo src={require('../../../assets/logo.png')} />
                 </LogoContainer>
                 <Input

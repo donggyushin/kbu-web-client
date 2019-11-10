@@ -33,8 +33,8 @@ const Container = styled.div`
 `
 
 const CardContainer = styled.div`
-    width:80%;
-    height: 70%;
+    width:90%;
+    height: 84%;
     min-height: 488px;
     display:flex;
     flex-direction:column;
