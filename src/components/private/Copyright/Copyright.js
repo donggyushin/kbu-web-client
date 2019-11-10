@@ -17,7 +17,7 @@ const Container = styled.div`
 `
 
 const CopyrightComponent = () => <Container>
-    copyright korean bible university all rights reserved
+    copyright Impel Company all rights reserved
 </Container>
 
 export default CopyrightComponent
