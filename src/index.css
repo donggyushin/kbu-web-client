@@ -55,9 +55,9 @@ code {
 }
 
 .ant-btn {
-  height: 50px !important;
+  /* height: 50px !important; */
   font-size: 23px !important;
-  
+  height: 65px !important;
 }
 
 .ant-input-prefix {
