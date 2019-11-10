@@ -25,7 +25,7 @@ const Timer = styled.div`
     font-size: 20px;
     font-weight: 500;
     font-family:'1997';
-    margin-top:-15px;
+    margin-top:0px;
 `
 
 export default function QrcodePresenter({ img, timer,

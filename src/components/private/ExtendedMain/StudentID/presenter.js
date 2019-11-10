@@ -29,18 +29,20 @@ const Container = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
-    padding-top:35px;
+    padding-top:25px;
+    /* overflow:scroll; */
 `
 
 const CardContainer = styled.div`
     width:90%;
-    height: 70%;
-    min-height: 588px !important;
+    height: 80%;
+    /* min-height: 588px !important; */
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     position: relative;
+
 `
 
 const WatermarkBottom = styled.img`
