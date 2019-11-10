@@ -77,6 +77,7 @@ const WaterMarkContainer = styled.div`
 
 const WaterMark = styled.img`
     width:80%;
+    max-width: 420px;
     opacity: 0.1;
 `
 

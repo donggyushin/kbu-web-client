@@ -85,7 +85,7 @@ class PrivateComponent extends React.Component {
 
     componentDidMount() {
 
-
+        console.log('api 요청!')
 
         const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
         const userId = decoded.id;
