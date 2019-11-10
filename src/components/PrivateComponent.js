@@ -274,10 +274,10 @@ class PrivateComponent extends React.Component {
         } = this;
         const { logout } = this.props;
         return <Router>
-            <DrawerComponent mainClicked={mainClicked} location={location} user={user} logout={logout} />
-            {/* <RedLine /> */}
+
             <Switch>
                 <Route exact path="/">
+                    <DrawerComponent mainClicked={mainClicked} location={""} user={user} logout={logout} />
                     <ExtendedMain
                         chapelClicked={chapelClicked}
                         scheduleClicked={scheduleClicked}
@@ -286,32 +286,42 @@ class PrivateComponent extends React.Component {
                         mapClicked={mapClicked}
                         cafeteriaClicked={cafeteriaClicked}
                         noticeClicked={noticeClicked} handleLocation={handleLocation} loading={loading} user={user} />
+
                 </Route>
                 <Route path="/admin">
+                    <DrawerComponent mainClicked={mainClicked} location={"관리자 페이지"} user={user} logout={logout} />
                     <AdminPage user={user} />
                 </Route>
                 <Route path={'/schedule'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"학사 일정"} user={user} logout={logout} />
                     <ShedulePDF />
                 </Route>
                 <Route path={'/map'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"학교지도"} user={user} logout={logout} />
                     <KBUCampus />
                 </Route>
                 <Route path={'/lecture'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"수업"} user={user} logout={logout} />
                     <Lecture lecture={lecture} colorMatches={this.state.lecture.colorMatches} />
                 </Route>
                 <Route path={'/mileage'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"마일리지"} user={user} logout={logout} />
                     <Mileage mileage={mileage} />
                 </Route>
                 <Route path={'/cafeteria'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"학식"} user={user} logout={logout} />
                     <Cafeteria />
                 </Route>
                 <Route path={'/notice'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"공지사항"} user={user} logout={logout} />
                     <Notice noticeRequestNext={noticeRequestNext} notice={notice} />
                 </Route>
                 <Route path={'/chapel'}>
+                    <DrawerComponent mainClicked={mainClicked} location={"채플"} user={user} logout={logout} />
                     <Chapel chapel={chapel} />
                 </Route>
                 <Route>
+                    <DrawerComponent mainClicked={mainClicked} location={""} user={user} logout={logout} />
                     <Main />
                 </Route>
 
