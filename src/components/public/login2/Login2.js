@@ -37,6 +37,15 @@ const LogoContainer = styled.div`
     /* bottom: 73px; */
 `
 
+const CustomButton = styled.button`
+    background: ${props => props.disabled ? '#b2bec3' : '#0984e3'} ;
+    border: 0;
+    color: white;
+    height: 71px;
+    font-size: 25px;
+    border-radius: 4px;
+`
+
 
 const KbuCardLogo = styled.img`
     width: 150px;
@@ -102,7 +111,8 @@ class Login2Component extends React.Component {
 
                 <br />
                 <br />
-                <Button onClick={loginButtonClicked} className={'button'} disabled={buttonDisabled} type={"primary"}>LOGIN</Button>
+
+                <CustomButton onClick={loginButtonClicked} disabled={buttonDisabled}>LOGIN</CustomButton>
             </InputContainer>
         </Container>
     }
