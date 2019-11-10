@@ -1,7 +1,6 @@
 import React from 'react';
 import StudentID from './presenter';
-import axios from 'axios'
-import REST_API_ENDPOINT from 'constants/endpoint';
+import anime from 'animejs/lib/anime.es.js';
 
 class StudentIDContainer extends React.Component {
     state = {
@@ -9,12 +8,48 @@ class StudentIDContainer extends React.Component {
         qrcodeimg: ""
     }
 
+
+    constructor(props) {
+        super(props);
+
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
+
+    /**
+     * Set the wrapper ref
+     */
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+    /**
+     * Alert if clicked on outside of element
+     */
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.props.TurnOffStudentIDCard()
+        }
+    }
+
     componentDidMount() {
         document.body.style.overflow = 'hidden';
+        document.addEventListener('mousedown', this.handleClickOutside);
+        anime({
+            targets: '.studentidcard',
+            translateY: -700
+        })
+
     }
 
     componentWillUnmount() {
         document.body.style.overflow = 'unset';
+        document.removeEventListener('mousedown', this.handleClickOutside);
+        anime({
+            targets: '.studentidcard',
+            translateY: 700
+        })
     }
 
     render() {
@@ -29,6 +64,7 @@ class StudentIDContainer extends React.Component {
             qrcodeimg={qrcodeimg}
             user={user}
             loading={loading}
+            setWrapperRef={this.setWrapperRef}
         />
     }
 

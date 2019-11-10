@@ -200,11 +200,16 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
     qrcode,
     qrcodeimg,
     user,
-    loading
+    loading,
+    setWrapperRef
 }) {
     const classes = useStyles();
-    return <Container>
-        <CardContainer>
+    return <Container  >
+        <CardContainer
+            ref={setWrapperRef}
+            style={{
+                top: 700
+            }} className={'studentidcard'}>
             <WaterMarkContainer>
                 <WaterMark src={require('assets/biblelogo-removebg-preview.png')} />
             </WaterMarkContainer>
@@ -247,6 +252,9 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
             </Card>
             <WatermarkBottom src={require('assets/watermark.png')} />
         </CardContainer>
-        <XButton onClick={TurnOffStudentIDCard}><XIcon className={'fas fa-times'} /></XButton>
+        <XButton style={{
+            top: 700,
+            position: 'relative'
+        }} className={'studentidcard'} onClick={TurnOffStudentIDCard}><XIcon className={'fas fa-times'} /></XButton>
     </Container>
 }
