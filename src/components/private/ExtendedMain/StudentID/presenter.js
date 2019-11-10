@@ -82,7 +82,7 @@ const WaterMark = styled.img`
 
 const RedLine = styled.div`
     width:100%;
-    height:70px;
+    height:53px;
     color:white;
     background:${themeColor.theme};
     display:flex;
