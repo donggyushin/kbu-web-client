@@ -36,6 +36,7 @@ class StudentIDContainer extends React.Component {
     componentDidMount() {
         document.body.style.overflow = 'hidden';
         document.addEventListener('touchend', this.handleClickOutside);
+        document.addEventListener('mousedown', this.handleClickOutside);
         anime({
             targets: '.studentidcard',
             translateY: -700
@@ -46,6 +47,7 @@ class StudentIDContainer extends React.Component {
     componentWillUnmount() {
         document.body.style.overflow = 'unset';
         document.removeEventListener('touchend', this.handleClickOutside);
+        document.removeEventListener('mousedown', this.handleClickOutside);
         anime({
             targets: '.studentidcard',
             translateY: 700

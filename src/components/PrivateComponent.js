@@ -308,7 +308,7 @@ class PrivateComponent extends React.Component {
 
         // this.requestNotice()
 
-        // this.requestLecture()
+        this.requestLecture()
 
         // this.requestMileage()
 
