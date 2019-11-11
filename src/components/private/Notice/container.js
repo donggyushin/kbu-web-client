@@ -7,7 +7,9 @@ import REST_API_ENDPOINT from 'constants/endpoint';
 class NoticeContainer extends React.Component {
 
 
-
+    componentDidMount() {
+        this.props.requestNotice()
+    }
 
     render() {
 

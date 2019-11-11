@@ -5,6 +5,10 @@ import ChapelPresenter from './presenter';
 
 class ChapelContainer extends React.Component {
 
+    componentDidMount() {
+        this.props.requestChapel()
+    }
+
 
     render() {
         const { chapels, summary, chapelLength, loading } = this.props.chapel;

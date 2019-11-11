@@ -79,41 +79,51 @@ class PrivateComponent extends React.Component {
     }
 
 
+    requestUserInfo = () => {
 
 
 
+        if (this.state.user.sid === "") {
 
-    componentDidMount() {
 
-        console.log('api 요청!')
+            const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
+            const userId = decoded.id;
+            const userPassword = decoded.password;
+            if (userId && userPassword) {
+                Axios.post(REST_API_ENDPOINT + 'user/getuser', {
+                    id: userId,
+                    password: userPassword
+                }).then(res => res.data)
+                    .then(data => {
+                        localStorage.setItem('kbu', data.token);
 
-        const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
-        const userId = decoded.id;
-        const userPassword = decoded.password;
-        if (userId && userPassword) {
-            Axios.post(REST_API_ENDPOINT + 'user/getuser', {
-                id: userId,
-                password: userPassword
-            }).then(res => res.data)
-                .then(data => {
-                    localStorage.setItem('kbu', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.result))
+                        let cachedata = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
+                        localStorage.setItem('cachedate', cachedata)
+                        if (data.is_ok) {
+                            this.setState({
+                                user: data.result,
+                                loading: false
+                            })
 
-                    localStorage.setItem('user', JSON.stringify(data.result))
-                    let cachedata = (new Date().getMonth() + 1).toString() + new Date().getDate().toString();
-                    localStorage.setItem('cachedate', cachedata)
-                    if (data.is_ok) {
-                        this.setState({
-                            user: data.result,
-                            loading: false
-                        })
+                        } else {
+                            alert('정보를 불러오는데 실패하였습니다. ')
+                            window.localStorage.removeItem('token');
+                            window.location.href = '/'
+                        }
+                    })
+                    .catch(err => console.error(err))
+            }
 
-                    } else {
-                        alert('정보를 불러오는데 실패하였습니다. ')
-                        window.localStorage.removeItem('token');
-                        window.location.href = '/'
-                    }
-                })
-                .catch(err => console.error(err))
+        }
+
+    }
+
+
+    requestNotice = () => {
+
+
+        if (this.state.notice.notices.length === 0) {
 
             const { page } = this.state.notice;
             Axios.post(REST_API_ENDPOINT + 'notice', {
@@ -141,6 +151,17 @@ class PrivateComponent extends React.Component {
                     }
                 })
                 .catch(err => console.error(err))
+
+
+        }
+
+    }
+
+    requestLecture = () => {
+
+
+        if (this.state.lecture.schedule.length === 0) {
+            const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
 
 
             Axios.post(REST_API_ENDPOINT + 'lecture', {
@@ -196,6 +217,14 @@ class PrivateComponent extends React.Component {
                     }
                 })
                 .catch(err => console.error(err))
+        }
+    }
+
+
+    requestMileage = () => {
+
+        if (this.state.mileage.rows.length === 0) {
+            const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
 
             Axios.post(REST_API_ENDPOINT + 'mileage', {
                 id: decoded.id,
@@ -222,6 +251,17 @@ class PrivateComponent extends React.Component {
                     }
                 })
                 .catch(err => console.error(err))
+        }
+
+
+
+    }
+
+    requestChapel = () => {
+
+
+        if (this.state.chapel.chapels.length === 0) {
+            const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
 
             Axios.post(REST_API_ENDPOINT + 'chapel', {
                 id: decoded.id,
@@ -254,11 +294,31 @@ class PrivateComponent extends React.Component {
                     }
                 })
                 .catch(err => console.error(err))
-
         }
 
 
+
     }
+
+
+    componentDidMount() {
+
+
+        this.requestUserInfo()
+
+        // this.requestNotice()
+
+        // this.requestLecture()
+
+        // this.requestMileage()
+
+        // this.requestChapel()
+
+
+    }
+
+
+
 
     render() {
         const { QRCode, user, loading, notice, lecture, location, mileage,
@@ -270,7 +330,11 @@ class PrivateComponent extends React.Component {
             scheduleClicked,
             chapelClicked,
             mapClicked,
-            cafeteriaClicked
+            cafeteriaClicked,
+            requestLecture,
+            requestNotice,
+            requestMileage,
+            requestChapel
         } = this;
         const { logout } = this.props;
         return <Router>
@@ -302,11 +366,11 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route path={'/lecture'}>
                     <DrawerComponent mainClicked={mainClicked} location={"수업"} user={user} logout={logout} />
-                    <Lecture lecture={lecture} colorMatches={this.state.lecture.colorMatches} />
+                    <Lecture requestLecture={requestLecture} lecture={lecture} colorMatches={this.state.lecture.colorMatches} />
                 </Route>
                 <Route path={'/mileage'}>
                     <DrawerComponent mainClicked={mainClicked} location={"마일리지"} user={user} logout={logout} />
-                    <Mileage mileage={mileage} />
+                    <Mileage requestMileage={requestMileage} mileage={mileage} />
                 </Route>
                 <Route path={'/cafeteria'}>
                     <DrawerComponent mainClicked={mainClicked} location={"학식"} user={user} logout={logout} />
@@ -314,11 +378,11 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route path={'/notice'}>
                     <DrawerComponent mainClicked={mainClicked} location={"공지사항"} user={user} logout={logout} />
-                    <Notice noticeRequestNext={noticeRequestNext} notice={notice} />
+                    <Notice requestNotice={requestNotice} noticeRequestNext={noticeRequestNext} notice={notice} />
                 </Route>
                 <Route path={'/chapel'}>
                     <DrawerComponent mainClicked={mainClicked} location={"채플"} user={user} logout={logout} />
-                    <Chapel chapel={chapel} />
+                    <Chapel requestChapel={requestChapel} chapel={chapel} />
                 </Route>
                 <Route>
                     <DrawerComponent mainClicked={mainClicked} location={""} user={user} logout={logout} />

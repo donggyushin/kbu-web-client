@@ -3,7 +3,9 @@ import LecturePresenter from './presenter';
 
 class LectureContainer extends React.Component {
 
-
+    componentDidMount() {
+        this.props.requestLecture()
+    }
 
 
     render() {
