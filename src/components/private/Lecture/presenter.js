@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Subject from './Subject';
 import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
+import { convertStringToTimeInteger } from 'utils/convertStringToTimeInteger';
+
 
 let counter = 0;
 
@@ -75,7 +77,11 @@ const LoadingContainer = styled.div`
     align-items:center;
 `
 
-export default function LecturePresenter({ schedule, loading, error, colorMatches }) {
+const BreakTime = styled.div`
+    height:1px;
+`
+
+export default function LecturePresenter({ schedule, loading, error, colorMatches, firstClassTime }) {
     if (error) {
         alert(error);
         window.location.href = '/'
@@ -92,10 +98,35 @@ export default function LecturePresenter({ schedule, loading, error, colorMatche
                 </Header>
                 {loading ? <LoadingContainer><ReactLoading color={themeColor.theme} /></LoadingContainer> : <Body>
                     {schedule.map(day => {
-                        return <Column>{day.map(subject => {
+                        return <Column>{day.map((subject, i) => {
                             const index = Math.floor(counter % 10);
                             counter = counter + 1;
-                            return <Subject colorMatches={colorMatches} index={index} subject={subject} />
+                            return <>
+                                {(() => {
+                                    let array = []
+                                    if (i === 0) {
+                                        const firstClassTimeOfThisSubject = subject[2]
+                                        const convertedClassTimeOfThisSubject = convertStringToTimeInteger(firstClassTimeOfThisSubject)
+                                        const times = (convertedClassTimeOfThisSubject - firstClassTime)
+                                        for (let index = 0; index < times; index++) {
+
+                                            array.push(<BreakTime />)
+                                        }
+                                    } else {
+                                        const previousLastTime = day[i - 1][3]
+                                        const previous = convertStringToTimeInteger(previousLastTime)
+                                        const thisTime = convertStringToTimeInteger(subject[2])
+                                        const times = thisTime - previous
+                                        for (let index = 0; index < times; index++) {
+
+                                            array.push(<BreakTime />)
+
+                                        }
+                                    }
+                                    return array
+                                })()}
+                                <Subject colorMatches={colorMatches} index={index} subject={subject} />
+                            </>
                         })}</Column>
                     })}
                 </Body>}

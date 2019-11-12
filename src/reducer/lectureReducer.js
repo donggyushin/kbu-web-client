@@ -7,7 +7,8 @@ const initialState = {
     selected: "",
     semesters: [],
     colorMatches: {},
-
+    arrayFirstSchedule: [],
+    firstClassTime: 0
 }
 
 export default function (state = initialState, action) {
@@ -29,6 +30,8 @@ function fetchLectureReducer(state, action) {
         error: action.error,
         selected: action.selected,
         semesters: action.semesters,
-        colorMatches: action.colorMatches
+        colorMatches: action.colorMatches,
+        arrayFirstSchedule: action.arrayFirstSchedule,
+        firstClassTime: action.firstClassTime
     }
 }
