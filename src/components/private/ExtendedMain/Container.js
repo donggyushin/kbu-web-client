@@ -5,6 +5,11 @@ class ExtendedMainContainer extends React.Component {
     state = {
         studentId: false
     }
+
+    componentDidMount() {
+        console.log('user: ', this.props.user)
+    }
+
     render() {
         const { studentId } = this.state;
         const { TurnOffStudentIDCard,

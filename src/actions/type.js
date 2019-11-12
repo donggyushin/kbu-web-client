@@ -1,0 +1,15 @@
+export const FETCH_USER = 'FETCH_USER'
+
+
+export const FETCH_NOTICE = 'FETCH_NOTICE'
+export const FETCH_NEXT_NOTICE = 'FETCH_NEXT_NOTICE'
+export const NOTICE_LOADING = 'NOTICE_LOADING'
+export const NOTICE_ERROR = "NOTICE_ERROR"
+
+export const FETCH_LECTURE = 'FETCH_LECTURE'
+
+export const FETCH_MILEAGE = 'FETCH_MILEAGE'
+export const MILEAGE_ERROR = 'MILEAGE_ERROR'
+
+export const FETCH_CHAPEL = 'FETCH_CHAPEL'
+export const CHAPEL_ERROR = 'CHAPEL_ERROR'
