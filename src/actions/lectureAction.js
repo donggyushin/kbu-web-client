@@ -21,6 +21,16 @@ function convertFromStringToIntegerArray(arrayFirstSchedule) {
 
 }
 
+function getLargestNumber(array) {
+    let maximum = array[0]
+    array.map(element => {
+        if (maximum < element) {
+            maximum = element
+        }
+    })
+    return maximum
+}
+
 function getSmallestNumber(array) {
     let minimum = array[0]
     array.map(element => {
@@ -34,6 +44,7 @@ function getSmallestNumber(array) {
 
 export const fetchLecture = () => (dispatch, getState) => {
     let arrayFirstSchedule = []
+    let arrayLastSchedule = []
     const { lecture } = getState()
     if (lecture.schedule.length === 0) {
         const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
@@ -50,10 +61,14 @@ export const fetchLecture = () => (dispatch, getState) => {
                     }
                     for (let index = 0; index < data.result.table_body.length; index++) {
                         const element = data.result.table_body[index];
-                        // 매 요일마다 가장 첫수업의 시간들을 담는다.
+
 
                         if (element[0]) {
+                            // 매 요일마다 가장 첫수업의 시간들을 담는다.
                             arrayFirstSchedule.push(element[0][2])
+                            // 매 요일마다 가장 마지막 수업의 시간들을 담는다. 
+
+                            arrayLastSchedule.push(element[element.length - 1][3])
                         }
 
 
@@ -73,8 +88,9 @@ export const fetchLecture = () => (dispatch, getState) => {
                     }
 
                     const integerArray = convertFromStringToIntegerArray(arrayFirstSchedule)
+                    const integerArray2 = convertFromStringToIntegerArray(arrayLastSchedule)
                     const firstClassTime = getSmallestNumber(integerArray)
-
+                    const lastClassTime = getLargestNumber(integerArray2)
 
 
                     dispatch({
@@ -85,7 +101,8 @@ export const fetchLecture = () => (dispatch, getState) => {
                         semesters: data.result.semesters,
                         colorMatches: lecture.colorMatches,
                         arrayFirstSchedule,
-                        firstClassTime
+                        firstClassTime,
+                        lastClassTime
                     })
 
 

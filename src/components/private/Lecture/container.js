@@ -12,14 +12,15 @@ class LectureContainer extends React.Component {
     render() {
         // const { schedule, loading } = this.state;
         const { schedule, loading, error } = this.props.lecture;
-        const { colorMatches, firstClassTime } = this.props;
-        return <LecturePresenter firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
+        const { colorMatches, firstClassTime, lastClassTime } = this.props;
+        return <LecturePresenter lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        firstClassTime: state.lecture.firstClassTime
+        firstClassTime: state.lecture.firstClassTime,
+        lastClassTime: state.lecture.lastClassTime
     }
 }
 

@@ -8,7 +8,8 @@ const initialState = {
     semesters: [],
     colorMatches: {},
     arrayFirstSchedule: [],
-    firstClassTime: 0
+    firstClassTime: 0,
+    lastClassTime: 0
 }
 
 export default function (state = initialState, action) {
@@ -32,6 +33,7 @@ function fetchLectureReducer(state, action) {
         semesters: action.semesters,
         colorMatches: action.colorMatches,
         arrayFirstSchedule: action.arrayFirstSchedule,
-        firstClassTime: action.firstClassTime
+        firstClassTime: action.firstClassTime,
+        lastClassTime: action.lastClassTime
     }
 }

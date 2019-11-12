@@ -3,20 +3,18 @@ import styled from 'styled-components';
 import { convertStringToTimeInteger } from 'utils/convertStringToTimeInteger';
 
 const Box = styled.div`
-opacity: 0.8;
-    width:98%;
+    opacity: 1;
+    width:100%;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
-    /* padding-left:4px;
-    padding-top:3px; */
+    padding-left:4px;
     justify-content:flex-start;
-    /* height:75px; */
-    border: 0.1px solid rgba(0,0,0,0.1);
     background: ${props => props.selected};
     color:white;
     position:relative;
-    overflow:hidden;        
+    overflow:hidden;   
+    
 `
 
 const ContentBox = styled.div`
