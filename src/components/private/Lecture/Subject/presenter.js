@@ -69,10 +69,6 @@ export default function SubjectPresenter({ subject, colorMatches }) {
         })()}
         <ContentBox>
             <BigText>{subject[0]}</BigText>
-            <NormalText style={{
-                position: 'relative',
-                bottom: 10
-            }}>{subject[4]}</NormalText>
             <NormalText>{subject[1]}</NormalText>
             <TimeContainer>
                 <NormalText>{subject[2]}</NormalText>
