@@ -27,7 +27,9 @@ class NoticeContainer extends React.Component {
     }
 
     isBottom(el) {
-        return el.getBoundingClientRect().bottom <= window.innerHeight;
+        console.log('el.getBoundingClientRect().bottom: ', el.getBoundingClientRect().bottom)
+        console.log('window.innerHeight: ', window.innerHeight);
+        return el.getBoundingClientRect().bottom - window.innerHeight < 50 ? true : false
     }
 
 
@@ -35,7 +37,8 @@ class NoticeContainer extends React.Component {
         const wrappedElement = document.getElementById('noticecontainer');
         if (this.isBottom(wrappedElement)) {
             this.props.fetchNextNotice()
-            document.removeEventListener('scroll', this.trackScrolling);
+
+            // document.removeEventListener('scroll', this.trackScrolling);
         }
     }
 
