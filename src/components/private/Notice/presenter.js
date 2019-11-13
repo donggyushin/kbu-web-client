@@ -40,17 +40,11 @@ const TitleLabel = styled.div`
 `
 
 const Row = styled.div`
-position:relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+    position:relative;
     display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     /* margin-bottom: 10px; */
-    height: 120px;
+    height: 89px !important;
     border-bottom: 1px solid gainsboro;
     padding-left: 10px;
     &:active {
@@ -132,16 +126,16 @@ const DateAndWriterContainer = styled.div`
 
 
 export default function NoticePresenter({ notices, loading,
-    nextRequest,
     loading2,
     noticeRequestNext,
-    error
+    error,
+
 }) {
     if (error) {
         alert(error);
         window.location.href = '/'
     } else {
-        return <Container>
+        return <Container id={'noticecontainer'}>
             {loading === false && <Paper>
 
                 {notices.map(notice => <Row>

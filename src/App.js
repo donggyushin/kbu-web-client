@@ -20,7 +20,7 @@ class App extends React.Component {
     const { logout } = this;
     return (
 
-      <Container>
+      <Container >
         {isLoggedIn ? <PrivateComponent logout={logout} /> : <PublicComponent />}
       </Container>
 
@@ -34,6 +34,9 @@ class App extends React.Component {
     window.localStorage.removeItem('token')
     window.location.href = "/"
   }
+
+
+
 }
 
 export default App;
