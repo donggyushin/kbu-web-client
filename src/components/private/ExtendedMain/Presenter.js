@@ -202,7 +202,7 @@ export default function ExtendedMainPresenter({ studentId,
         <Row>
             <Link onClick={scheduleClicked} style={{
                 width: '46%'
-            }} to={'/schedule'}>
+            }} to={'/calendar'}>
                 <NormalCard style={{
                     width: '100%'
                 }}>
