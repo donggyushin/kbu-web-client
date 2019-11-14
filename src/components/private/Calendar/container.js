@@ -1,10 +1,10 @@
 /* global gapi */
 import React from 'react'
-import mobiscroll from '@mobiscroll/react';
-import '@mobiscroll/react/dist/css/mobiscroll.min.css';
 import styled from 'styled-components'
 import Presenter from './presenter'
 import { getEvents } from './gcal'
+import { connect } from 'react-redux'
+import { fetchEvents, selectEvent, turnDownCalendarDetailView } from 'actions/calendarAction'
 
 // this weird syntax is just a shorthand way of specifying loaders
 
@@ -19,24 +19,41 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 const Container = styled.div``
 
-export default class CalendarContainer extends React.Component {
+class CalendarContainer extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            events: [
-
-            ],
-        };
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     componentDidMount() {
+
+        document.addEventListener('mousedown', this.handleClickOutside);
+
         getEvents((events) => {
+            const { fetchEvents } = this.props;
             console.log('events')
-            this.setState({ events })
+            fetchEvents(events)
         })
 
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.outsideOfDetailViewClicked()
+        }
     }
 
 
@@ -44,10 +61,35 @@ export default class CalendarContainer extends React.Component {
 
 
     render() {
-        return <Presenter />
+        const { onEventSelected, outsideOfDetailViewClicked, setWrapperRef } = this;
+        const { events, detailView, event } = this.props;
+        return <Presenter wrapper={setWrapperRef} outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} detailView={detailView} events={events} onEventSelected={onEventSelected} />
+    }
+
+
+    onEventSelected = (event, e) => {
+        const { selectEvent } = this.props;
+        selectEvent(event)
+    }
+
+    outsideOfDetailViewClicked = () => {
+        this.props.turnDownCalendarDetailView()
     }
 
 
 
 }
 
+const mapStateToProps = state => {
+    return {
+        events: state.calendar.events,
+        detailView: state.calendar.detailView,
+        event: state.calendar.event
+    }
+}
+
+export default connect(mapStateToProps, {
+    fetchEvents,
+    selectEvent,
+    turnDownCalendarDetailView
+})(CalendarContainer)

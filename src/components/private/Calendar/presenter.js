@@ -4,6 +4,7 @@ import sampleEvents from './events'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import CalendarDetailView from './EventDetail';
 
 const localizer = momentLocalizer(moment)
 
@@ -11,7 +12,7 @@ const Container = styled.div``
 
 
 
-export default function ({ events }) {
+export default function ({ events, onEventSelected, event, detailView, outsideOfDetailViewClicked }) {
     console.log('sampleEvents:', sampleEvents)
     return <Container>
         <Calendar
@@ -20,6 +21,8 @@ export default function ({ events }) {
             startAccessor="start"
             endAccessor="end"
             style={{ height: '100vh' }}
+            onSelectEvent={onEventSelected}
         />
+        {detailView && <CalendarDetailView outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} />}
     </Container>
 }
