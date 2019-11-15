@@ -58,59 +58,76 @@ const Divider = styled.div`
 `
 
 
-export default function CafeteriaPresenter({ today }) {
+export default function CafeteriaPresenter({ today,
+    dinner,
+    lunch,
+    fix,
+    daily,
+    loading,
+    error,
+}) {
     return <Container>
         <HeaderImage src={require('./menu-template.jpg')} />
         <BlackBoard>
-            {today}
-            <MarginHeight />
-            <MarginHeight />
-            <MarginHeight />
-            <Row>
-                <Card>
-                    <TitleText>중식</TitleText>
-                    <MarginHeight />
-                    <NormalText>큐브목살스테이크덮밥</NormalText>
-                    <NormalText>유부장국</NormalText>
-                    <NormalText>그린샐러드&케찹</NormalText>
-                    <NormalText>배추김치</NormalText>
-                </Card>
-                <Card>
-                    <TitleText>석식</TitleText>
-                    <MarginHeight />
-                    <NormalText>쌀밥</NormalText>
-                    <NormalText>청국장찌개</NormalText>
-                    <NormalText>메추리알조림</NormalText>
-                    <NormalText>쏘야볶음</NormalText>
-                    <NormalText>미역줄기볶음</NormalText>
-                    <NormalText>깍두기</NormalText>
-                </Card>
-            </Row>
-            <MarginHeight />
-            <MarginHeight />
-            <Divider />
-            <MarginHeight />
-            <MarginHeight />
-            <Row>
-                <Card>
-                    <TitleText>데일리</TitleText>
-                    <MarginHeight />
-                    {/* <NormalText>북어국</NormalText>
-                    <NormalText>흰 밥</NormalText>
-                    <NormalText>돈육야채볶음</NormalText>
-                    <NormalText>가지무침</NormalText>
-                    <NormalText>오이소박이</NormalText> */}
-                </Card>
-                <Card>
-                    <TitleText>고정 메뉴</TitleText>
-                    <MarginHeight />
-                    {/* <NormalText>북어국</NormalText>
-                    <NormalText>흰 밥</NormalText>
-                    <NormalText>돈육야채볶음</NormalText>
-                    <NormalText>가지무침</NormalText>
-                    <NormalText>오이소박이</NormalText> */}
-                </Card>
-            </Row>
+            {loading && 'loading...'}
+            {error && error}
+            {(loading === false && error === null) && <>
+                {today}
+                <MarginHeight />
+                <MarginHeight />
+                <MarginHeight />
+                <Row>
+                    <Card>
+                        <TitleText>중식</TitleText>
+                        <MarginHeight />
+                        <NormalText>{lunch[0].food1}</NormalText>
+                        <NormalText>{lunch[0].food2}</NormalText>
+                        <NormalText>{lunch[0].food3}</NormalText>
+                        <NormalText>{lunch[0].food4}</NormalText>
+                        <NormalText>{lunch[0].food5}</NormalText>
+                        <NormalText>{lunch[0].food6}</NormalText>
+                    </Card>
+                    <Card>
+                        <TitleText>석식</TitleText>
+                        <MarginHeight />
+                        <NormalText>{dinner[0].food1}</NormalText>
+                        <NormalText>{dinner[0].food2}</NormalText>
+                        <NormalText>{dinner[0].food3}</NormalText>
+                        <NormalText>{dinner[0].food4}</NormalText>
+                        <NormalText>{dinner[0].food5}</NormalText>
+                        <NormalText>{dinner[0].food6}</NormalText>
+                    </Card>
+                </Row>
+                <MarginHeight />
+                <MarginHeight />
+                <Divider />
+                <MarginHeight />
+                <MarginHeight />
+                <Row>
+                    <Card>
+                        <TitleText>데일리</TitleText>
+                        <MarginHeight />
+                        <NormalText>{daily[0].food1}</NormalText>
+                        <NormalText>{daily[0].food2}</NormalText>
+                        <NormalText>{daily[0].food3}</NormalText>
+                        <NormalText>{daily[0].food4}</NormalText>
+                        <NormalText>{daily[0].food5}</NormalText>
+                        <NormalText>{daily[0].food6}</NormalText>
+                    </Card>
+                    <Card>
+                        <TitleText>고정 메뉴</TitleText>
+                        <MarginHeight />
+                        <NormalText>{fix[0].food1}</NormalText>
+                        <NormalText>{fix[0].food2}</NormalText>
+                        <NormalText>{fix[0].food3}</NormalText>
+                        <NormalText>{fix[0].food4}</NormalText>
+                        <NormalText>{fix[0].food5}</NormalText>
+                        <NormalText>{fix[0].food6}</NormalText>
+                    </Card>
+                </Row>
+            </>}
+
+
         </BlackBoard>
 
     </Container>

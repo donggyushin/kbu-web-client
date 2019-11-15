@@ -1,5 +1,7 @@
 import React from 'react';
 import CafeteriaPresenter from './presenter';
+import { fetchCafeteria } from 'actions/cafeteriaAction'
+import { connect } from 'react-redux'
 
 class CafeteriaContainer extends React.Component {
     state = {
@@ -10,12 +12,24 @@ class CafeteriaContainer extends React.Component {
         this.setState({
             today: this.getTodayLabel()
         })
+        const { fetchCafeteria } = this.props;
+        fetchCafeteria()
     }
 
     render() {
         const { today } = this.state;
+        const { dinner, lunch, fix, daily, loading,
+            error } = this.props;
 
-        return <CafeteriaPresenter today={today} />
+        return <CafeteriaPresenter
+            dinner={dinner}
+            lunch={lunch}
+            fix={fix}
+            daily={daily}
+            today={today}
+            loading={loading}
+            error={error}
+        />
     }
 
     getTodayLabel() {
@@ -33,4 +47,17 @@ class CafeteriaContainer extends React.Component {
 
 }
 
-export default CafeteriaContainer
+const mapStateToProps = state => {
+    return {
+        lunch: state.cafeteria.lunch,
+        fix: state.cafeteria.fix,
+        daily: state.cafeteria.daily,
+        dinner: state.cafeteria.dinner,
+        loading: state.cafeteria.loading,
+        error: state.cafeteria.error
+    }
+}
+
+export default connect(mapStateToProps, {
+    fetchCafeteria
+})(CafeteriaContainer)

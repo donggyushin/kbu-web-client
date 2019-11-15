@@ -6,6 +6,7 @@ import lecture from './lectureReducer'
 import mileage from './mileageReducer'
 import chapel from './chapelReducer'
 import calendar from './calendarReducer'
+import cafeteria from './cafeteriaReducer'
 
 const initialState = {};
 
@@ -15,7 +16,8 @@ const allReducers = combineReducers({
     lecture,
     mileage,
     chapel,
-    calendar
+    calendar,
+    cafeteria
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
