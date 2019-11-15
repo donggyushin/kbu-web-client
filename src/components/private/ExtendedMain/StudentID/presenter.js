@@ -56,7 +56,7 @@ const WatermarkBottom = styled.img`
 const Card = styled.div`
     width:100%;
     height:100%;
-    background:white;
+    background-color:white;
     border-radius:7px;
     display:flex;
     flex-direction:column;

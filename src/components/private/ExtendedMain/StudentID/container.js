@@ -37,10 +37,12 @@ class StudentIDContainer extends React.Component {
         document.body.style.overflow = 'hidden';
         document.addEventListener('touchend', this.handleClickOutside);
         document.addEventListener('mousedown', this.handleClickOutside);
+        console.log('1')
         anime({
             targets: '.studentidcard',
             translateY: -700
         })
+        console.log('2')
 
     }
 
