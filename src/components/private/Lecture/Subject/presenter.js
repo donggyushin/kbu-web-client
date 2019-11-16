@@ -14,7 +14,6 @@ const Box = styled.div`
     color:white;
     position:relative;
     overflow:hidden;   
-    
 `
 
 const ContentBox = styled.div`
@@ -26,18 +25,19 @@ const ContentBox = styled.div`
     display:flex;
     flex-direction:column;
     padding-top:1.5px;
-    padding-left:1.5px;
+    padding-left:2.5px;
+
 `
 
 const BigText = styled.div`
     text-align:start;
     margin-bottom:2px;
     font-size: 12px;
+    font-weight:700;
 `
 const NormalText = styled.div`
     text-align:start;
-    font-size:10px;
-
+    font-size:8px;
 `
 
 const TimeContainer = styled.div`
@@ -67,7 +67,6 @@ export default function SubjectPresenter({ subject, colorMatches }) {
         })()}
         <ContentBox>
             <BigText>{subject[0]}</BigText>
-            <NormalText>{subject[1]}</NormalText>
             <TimeContainer>
                 <NormalText>{subject[2]}</NormalText>
                 <NormalText>-</NormalText>

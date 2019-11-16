@@ -123,9 +123,10 @@ const DayContainer = styled.div`
 
 const VerticalLine = styled.div`
     width:1px;
-    height:100vh;
+    height:1000vh;
     position: absolute;
     background:rgba(0,0,0,0.1);
+    z-index: 2;
 `
 
 export default function LecturePresenter({ schedule, loading, error, colorMatches, firstClassTime, lastClassTime }) {
@@ -178,15 +179,6 @@ export default function LecturePresenter({ schedule, loading, error, colorMatche
                             return array
 
                         })()}
-                        {/* <Time>9</Time>
-                        <Time>10</Time>
-                        <Time>11</Time>
-                        <Time>12</Time>
-                        <Time>13</Time>
-                        <Time>14</Time>
-                        <Time>15</Time>
-                        <Time>16</Time> */}
-
                     </TimeBar>
                     {schedule.map(day => {
                         return <Column>

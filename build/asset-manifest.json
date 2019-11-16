@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.d83735d9.chunk.css",
-    "main.js": "/static/js/main.863cdd84.chunk.js",
-    "main.js.map": "/static/js/main.863cdd84.chunk.js.map",
+    "main.js": "/static/js/main.f447c000.chunk.js",
+    "main.js.map": "/static/js/main.f447c000.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8c3aebd6.js",
     "runtime-main.js.map": "/static/js/runtime-main.8c3aebd6.js.map",
-    "static/css/2.cf6ad4c5.chunk.css": "/static/css/2.cf6ad4c5.chunk.css",
+    "static/css/2.53e488af.chunk.css": "/static/css/2.53e488af.chunk.css",
     "static/js/2.b9d04981.chunk.js": "/static/js/2.b9d04981.chunk.js",
     "static/js/2.b9d04981.chunk.js.map": "/static/js/2.b9d04981.chunk.js.map",
     "5d4b37252c9002237db3.worker.js": "/5d4b37252c9002237db3.worker.js",
     "5d4b37252c9002237db3.worker.js.map": "/5d4b37252c9002237db3.worker.js.map",
     "index.html": "/index.html",
-    "precache-manifest.9bf8839a14497606ee997104728b3ee5.js": "/precache-manifest.9bf8839a14497606ee997104728b3ee5.js",
+    "precache-manifest.31c1e0679cb5cf5d52baeb824d022710.js": "/precache-manifest.31c1e0679cb5cf5d52baeb824d022710.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.cf6ad4c5.chunk.css.map": "/static/css/2.cf6ad4c5.chunk.css.map",
+    "static/css/2.53e488af.chunk.css.map": "/static/css/2.53e488af.chunk.css.map",
     "static/css/main.d83735d9.chunk.css.map": "/static/css/main.d83735d9.chunk.css.map",
     "static/media/index.css": "/static/media/typossangmoondong.0e451c0b.ttf",
     "static/media/biblelogo-removebg-preview.png": "/static/media/biblelogo-removebg-preview.649e1f74.png",
@@ -25,9 +25,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8c3aebd6.js",
-    "static/css/2.cf6ad4c5.chunk.css",
+    "static/css/2.53e488af.chunk.css",
     "static/js/2.b9d04981.chunk.js",
     "static/css/main.d83735d9.chunk.css",
-    "static/js/main.863cdd84.chunk.js"
+    "static/js/main.f447c000.chunk.js"
   ]
 }

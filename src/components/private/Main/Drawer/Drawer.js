@@ -101,7 +101,7 @@ class DrawerComponent extends React.Component {
         const { refresh } = this;
         const { darkBlue } = this.state;
         return (
-            <Container darkBlue={darkBlue} >
+            <Container darkBlue={darkBlue}>
                 <TitleContainer>
                     <Link onClick={mainClicked} style={{
                         display: 'flex',
