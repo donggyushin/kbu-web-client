@@ -50,14 +50,16 @@ const BackgroundColor = styled.div`
     height:1px;
 `
 
-export default function SubjectPresenter({ subject, colorMatches }) {
-    return <Box selected={colorMatches[subject[0]]}>
+export default function SubjectPresenter({ subject, colorMatches, subjectClicked }) {
+    return <Box onClick={() => {
+        console.log('colorMatches[subject[0]]: ', colorMatches[subject[0]])
+        subjectClicked(subject, colorMatches[subject[0]])
+    }} selected={colorMatches[subject[0]]}>
         {(() => {
             let array = []
             const from = convertStringToTimeInteger(subject[2])
             const to = convertStringToTimeInteger(subject[3])
             const times = to - from
-            console.log('times should be 75: ', times)
             for (let index = 0; index < times; index++) {
 
                 array.push(<BackgroundColor />)

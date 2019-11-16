@@ -1,33 +1,33 @@
 {
   "files": {
-    "main.css": "/static/css/main.d83735d9.chunk.css",
-    "main.js": "/static/js/main.f447c000.chunk.js",
-    "main.js.map": "/static/js/main.f447c000.chunk.js.map",
+    "main.css": "/static/css/main.2224d9d3.chunk.css",
+    "main.js": "/static/js/main.24eecea0.chunk.js",
+    "main.js.map": "/static/js/main.24eecea0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8c3aebd6.js",
     "runtime-main.js.map": "/static/js/runtime-main.8c3aebd6.js.map",
-    "static/css/2.53e488af.chunk.css": "/static/css/2.53e488af.chunk.css",
-    "static/js/2.b9d04981.chunk.js": "/static/js/2.b9d04981.chunk.js",
-    "static/js/2.b9d04981.chunk.js.map": "/static/js/2.b9d04981.chunk.js.map",
+    "static/css/2.aa66828a.chunk.css": "/static/css/2.aa66828a.chunk.css",
+    "static/js/2.a850182e.chunk.js": "/static/js/2.a850182e.chunk.js",
+    "static/js/2.a850182e.chunk.js.map": "/static/js/2.a850182e.chunk.js.map",
     "5d4b37252c9002237db3.worker.js": "/5d4b37252c9002237db3.worker.js",
     "5d4b37252c9002237db3.worker.js.map": "/5d4b37252c9002237db3.worker.js.map",
     "index.html": "/index.html",
-    "precache-manifest.31c1e0679cb5cf5d52baeb824d022710.js": "/precache-manifest.31c1e0679cb5cf5d52baeb824d022710.js",
+    "precache-manifest.c40c52246f528bc8523841aa75a1b393.js": "/precache-manifest.c40c52246f528bc8523841aa75a1b393.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.53e488af.chunk.css.map": "/static/css/2.53e488af.chunk.css.map",
-    "static/css/main.d83735d9.chunk.css.map": "/static/css/main.d83735d9.chunk.css.map",
+    "static/css/2.aa66828a.chunk.css.map": "/static/css/2.aa66828a.chunk.css.map",
+    "static/css/main.2224d9d3.chunk.css.map": "/static/css/main.2224d9d3.chunk.css.map",
     "static/media/index.css": "/static/media/typossangmoondong.0e451c0b.ttf",
     "static/media/biblelogo-removebg-preview.png": "/static/media/biblelogo-removebg-preview.649e1f74.png",
     "static/media/kbumap.png": "/static/media/kbumap.e7f56b05.png",
     "static/media/leo.png": "/static/media/leo.705b72f5.png",
     "static/media/logo.png": "/static/media/logo.c3445181.png",
-    "static/media/menu-template.jpg": "/static/media/menu-template.db989613.jpg",
+    "static/media/menu-template.jpg": "/static/media/menu-template.324da6e0.jpg",
     "static/media/watermark.png": "/static/media/watermark.6950fdc0.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8c3aebd6.js",
-    "static/css/2.53e488af.chunk.css",
-    "static/js/2.b9d04981.chunk.js",
-    "static/css/main.d83735d9.chunk.css",
-    "static/js/main.f447c000.chunk.js"
+    "static/css/2.aa66828a.chunk.css",
+    "static/js/2.a850182e.chunk.js",
+    "static/css/main.2224d9d3.chunk.css",
+    "static/js/main.24eecea0.chunk.js"
   ]
 }

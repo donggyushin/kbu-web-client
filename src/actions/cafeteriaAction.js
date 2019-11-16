@@ -3,11 +3,11 @@ import { FETCH_CAFETERIA } from './type'
 import REST_API_ENDPOINT, { KBU_CAFETERIA_ENDPOINT } from 'constants/endpoint';
 
 
-export const fetchCafeteria = () => (dispatch, getState) => {
+export const fetchCafeteria = (date) => (dispatch, getState) => {
     const { cafeteria } = getState()
     console.log('rest api endpoint : ', REST_API_ENDPOINT)
     if (cafeteria.loading) {
-        axios.get(REST_API_ENDPOINT + 'cafeteria')
+        axios.get(REST_API_ENDPOINT + 'cafeteria/' + date)
             .then(res => res.data)
             .then(data => {
                 const daily = data.data.menu.daily

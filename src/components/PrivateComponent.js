@@ -22,6 +22,7 @@ import { fetchLecture } from '../actions/lectureAction'
 import { fetchMileage } from '../actions/mileageAction'
 import { fetchChapel } from '../actions/chapelAction'
 import Calendar from './private/Calendar';
+import Login2Component from './public/login2/Login2';
 
 
 
@@ -29,7 +30,9 @@ class PrivateComponent extends React.Component {
 
     componentDidMount() {
 
-        this.props.fetchUser()
+        if (this.props.isLoggedIn) {
+            this.props.fetchUser()
+        }
 
     }
 
@@ -46,13 +49,14 @@ class PrivateComponent extends React.Component {
             cafeteriaClicked
         } = this;
 
-        const { logout, user, fetchNotice, notice, fetchNextNotice, fetchLecture, lecture, mileage, fetchMileage, fetchChapel, chapel } = this.props;
+        const { isLoggedIn, logout, user, fetchNotice, notice, fetchNextNotice, fetchLecture, lecture, mileage, fetchMileage, fetchChapel, chapel } = this.props;
         return <Router>
 
             <Switch>
                 <Route exact path="/">
-                    <DrawerComponent mainClicked={mainClicked} location={""} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={""} user={user} logout={logout} />
                     <ExtendedMain
+                        isLoggedIn={isLoggedIn}
                         chapelClicked={chapelClicked}
                         scheduleClicked={scheduleClicked}
                         mileageClicked={mileageClicked}
@@ -63,43 +67,47 @@ class PrivateComponent extends React.Component {
 
                 </Route>
                 <Route path="/admin">
-                    <DrawerComponent mainClicked={mainClicked} location={"관리자 페이지"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"관리자 페이지"} user={user} logout={logout} />
                     <AdminPage user={user} />
                 </Route>
                 <Route path={'/schedule'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"학사 일정"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학사 일정"} user={user} logout={logout} />
                     <ShedulePDF />
                 </Route>
                 <Route path={'/map'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"학교지도"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학교지도"} user={user} logout={logout} />
                     <KBUCampus />
                 </Route>
                 <Route path={'/lecture'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"수업"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"수업"} user={user} logout={logout} />
                     <Lecture requestLecture={fetchLecture} lecture={lecture} colorMatches={lecture.colorMatches} />
                 </Route>
                 <Route path={'/mileage'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"마일리지"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"마일리지"} user={user} logout={logout} />
                     <Mileage requestMileage={fetchMileage} mileage={mileage} />
                 </Route>
                 <Route path={'/cafeteria'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"학식"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학식"} user={user} logout={logout} />
                     <Cafeteria />
                 </Route>
                 <Route path={'/notice'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"공지사항"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"공지사항"} user={user} logout={logout} />
                     <Notice requestNotice={fetchNotice} noticeRequestNext={fetchNextNotice} notice={notice} />
                 </Route>
                 <Route path={'/chapel'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"채플"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"채플"} user={user} logout={logout} />
                     <Chapel requestChapel={fetchChapel} chapel={chapel} />
                 </Route>
                 <Route path={'/calendar'}>
-                    <DrawerComponent mainClicked={mainClicked} location={"학사일정"} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학사일정"} user={user} logout={logout} />
                     <Calendar />
                 </Route>
+                <Route path={'/login'}>
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"로그인"} user={user} logout={logout} />
+                    <Login2Component />
+                </Route>
                 <Route>
-                    <DrawerComponent mainClicked={mainClicked} location={""} user={user} logout={logout} />
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={""} user={user} logout={logout} />
                     <Main />
                 </Route>
 

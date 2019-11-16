@@ -18,10 +18,11 @@ class App extends React.Component {
   render() {
     const { isLoggedIn } = this.state;
     const { logout } = this;
+
     return (
 
       <Container >
-        {isLoggedIn ? <PrivateComponent logout={logout} /> : <PublicComponent />}
+        <PrivateComponent isLoggedIn={isLoggedIn} logout={logout} />
       </Container>
 
     );

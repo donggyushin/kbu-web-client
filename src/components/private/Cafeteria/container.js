@@ -13,7 +13,7 @@ class CafeteriaContainer extends React.Component {
             today: this.getTodayLabel()
         })
         const { fetchCafeteria } = this.props;
-        fetchCafeteria()
+        fetchCafeteria(this.getTodayDate())
     }
 
     render() {
@@ -30,6 +30,14 @@ class CafeteriaContainer extends React.Component {
             loading={loading}
             error={error}
         />
+    }
+
+    getTodayDate() {
+        const date = new Date()
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        return year.toString() + month.toString() + day.toString()
     }
 
     getTodayLabel() {

@@ -66,6 +66,13 @@ display: flex;
     
 `
 
+const UserIcon = styled.i`
+    right: 17px;
+    color: white;
+    font-size: 21px;
+    position: absolute;
+`
+
 class DrawerComponent extends React.Component {
     state = {
         visible: false,
@@ -97,7 +104,7 @@ class DrawerComponent extends React.Component {
     };
 
     render() {
-        const { logout, user, location, mainClicked } = this.props;
+        const { logout, user, location, mainClicked, isLoggedIn } = this.props;
         const { refresh } = this;
         const { darkBlue } = this.state;
         return (
@@ -108,22 +115,15 @@ class DrawerComponent extends React.Component {
                         alignItems: 'center'
                     }} to={'/'} href={'/'}>
                         <Logo src={require('../../../../assets/logo.png')} />
-                        {/* <KBUImage src={require('assets/한국성서대학교2.png')} /> */}
-                        {/* <KBUText>성서봇2</KBUText> */}
                     </Link>
                     <PageTitle>
-                        {/* {pageTitle === 'schedule' && '학사일정'}
-                        {pageTitle === 'map' && '캠퍼스 맵'}
-                        {pageTitle === 'cafeteria' && '학식'}
-                        {pageTitle === 'notice' && '공지사항'}
-                        {pageTitle === 'lecture' && '수업'}
-                        {pageTitle === 'mileage' && '마일리지'}
-                        {pageTitle === 'chapel' && '채플'} */}
                         {location}
                     </PageTitle>
                 </TitleContainer>
 
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />
+                {(!location && isLoggedIn) && <UserIcon className={'fas fa-user'} />}
+                {(!location && !isLoggedIn) && <UserIcon className={'fas fa-user-slash'} />}
 
                 <Drawer
                     title="MENU"
@@ -143,9 +143,14 @@ class DrawerComponent extends React.Component {
                         <MenuItem>관리자 페이지</MenuItem>
                     </Link>}
                     <MenuItem onClick={refresh}>새로고침</MenuItem>
-                    <MenuItem style={{
+                    {isLoggedIn ? <MenuItem style={{
                         color: '#e74c3c'
-                    }} onClick={logout}>로그아웃</MenuItem>
+                    }} onClick={logout}>로그아웃</MenuItem> : <Link onClick={this.onClose} to={'/login'}>
+                            <MenuItem style={{
+                                color: '#2ecc71'
+                            }}>로그인</MenuItem>
+                        </Link>}
+
                 </Drawer>
             </Container>
         );

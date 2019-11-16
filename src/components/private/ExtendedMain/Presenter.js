@@ -26,7 +26,8 @@ const Column = styled.div`
 `
 
 const HorizontalCard = styled.div`
-    background:white;
+    background:${props => props.isLoggedIn ? 'white' : 'rgba(255,255,255,0.3)'};
+    background:${props => props.whatever && 'white'};
     width:100%;
     height:100px;
     box-shadow: 0px 2px 3px 1px rgba(163,163,163,1);
@@ -72,7 +73,8 @@ const Icon = styled.img`
 
 
 const VerticalCard = styled.div`
-    background:white;
+    background:${props => props.isLoggedIn ? 'white' : 'rgba(255,255,255,0.3)'};
+    background:${props => props.whatever && 'white'};
     width:32%;
     height:210px;
     box-shadow: 0px 2px 3px 1px rgba(163,163,163,1);
@@ -108,7 +110,8 @@ const MarginVertical = styled.div`
 `
 
 const NormalCard = styled.div`
-    background:white;
+    background:${props => props.isLoggedIn ? 'white' : 'rgba(255,255,255,0.3)'};
+    background:${props => props.whatever && 'white'};
     width:46%;
     height:120px;
     display:flex;
@@ -137,10 +140,11 @@ const IconContainerForNormalCard = styled.div`
 `
 
 export default function ExtendedMainPresenter({ studentId,
+    askGoToLoginPage,
     TurnOffStudentIDCard,
     TurnOnStudentIDCard,
     user,
-
+    isLoggedIn,
     scheduleClicked,
     mapClicked,
     cafeteriaClicked,
@@ -156,7 +160,7 @@ export default function ExtendedMainPresenter({ studentId,
         <Row>
             <Column>
                 <Link onClick={noticeClicked} to={'/notice'}>
-                    <HorizontalCard >
+                    <HorizontalCard whatever={true} isLoggedIn={isLoggedIn} >
                         <TextContainer>
                             <MainText>공지사항</MainText>
                             <SubText>Notice</SubText>
@@ -167,8 +171,8 @@ export default function ExtendedMainPresenter({ studentId,
                     </HorizontalCard>
                 </Link>
                 <MarginVertical />
-                <Link onClick={lectureClicked} to={'/lecture'}>
-                    <HorizontalCard >
+                {isLoggedIn ? <Link onClick={lectureClicked} to={'/lecture'}>
+                    <HorizontalCard isLoggedIn={isLoggedIn} >
                         <TextContainer>
                             <MainText>수업</MainText>
                             <SubText>Lecture</SubText>
@@ -177,13 +181,24 @@ export default function ExtendedMainPresenter({ studentId,
                             <Icon src={require('assets/lecture.png')} />
                         </IconContainer>
                     </HorizontalCard>
-                </Link>
+                </Link> :
+                    <HorizontalCard onClick={askGoToLoginPage} isLoggedIn={isLoggedIn} >
+                        <TextContainer>
+                            <MainText>수업</MainText>
+                            <SubText>Lecture</SubText>
+                        </TextContainer>
+                        <IconContainer>
+                            <Icon src={require('assets/lecture.png')} />
+                        </IconContainer>
+                    </HorizontalCard>
+                }
+
             </Column>
             <MarginHorizontal />
-            <Link onClick={mileageClicked} style={{
+            {isLoggedIn ? <Link onClick={mileageClicked} style={{
                 width: '32%'
             }} to={'/mileage'}>
-                <VerticalCard style={{ width: '100%' }} >
+                <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
                     <TextContainerForVerticalCard>
                         <MainText>
                             마일리지
@@ -196,14 +211,32 @@ export default function ExtendedMainPresenter({ studentId,
                         <Icon src={require('assets/mileage.png')} />
                     </IconContainerForVerticalCard>
                 </VerticalCard>
-            </Link>
+            </Link> : <div onClick={askGoToLoginPage} style={{
+                width: '32%'
+            }}>
+                    <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                        <TextContainerForVerticalCard>
+                            <MainText>
+                                마일리지
+                    </MainText>
+                            <SubText>
+                                Mileage
+                    </SubText>
+                        </TextContainerForVerticalCard>
+                        <IconContainerForVerticalCard>
+                            <Icon src={require('assets/mileage.png')} />
+                        </IconContainerForVerticalCard>
+                    </VerticalCard>
+                </div>}
+
+
         </Row>
         <MarginVertical />
         <Row>
             <Link onClick={scheduleClicked} style={{
                 width: '46%'
             }} to={'/calendar'}>
-                <NormalCard style={{
+                <NormalCard whatever={true} isLoggedIn={isLoggedIn} style={{
                     width: '100%'
                 }}>
                     <TextContainerForNomralCard>
@@ -216,10 +249,10 @@ export default function ExtendedMainPresenter({ studentId,
                 </NormalCard>
             </Link>
             <MarginHorizontal />
-            <Link onClick={chapelClicked} style={{
+            {isLoggedIn ? <Link onClick={chapelClicked} style={{
                 width: '46%'
             }} to={'/chapel'}>
-                <NormalCard style={{ width: '100%' }} >
+                <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
                     <TextContainerForNomralCard>
                         <MainText>채플</MainText>
                         <SubText>Chapel</SubText>
@@ -228,12 +261,25 @@ export default function ExtendedMainPresenter({ studentId,
                         <Icon src={require('assets/chapel.png')} />
                     </IconContainerForNormalCard>
                 </NormalCard>
-            </Link>
+            </Link> : <div onClick={askGoToLoginPage} style={{
+                width: '46%'
+            }}>
+                    <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                        <TextContainerForNomralCard>
+                            <MainText>채플</MainText>
+                            <SubText>Chapel</SubText>
+                        </TextContainerForNomralCard>
+                        <IconContainerForNormalCard>
+                            <Icon src={require('assets/chapel.png')} />
+                        </IconContainerForNormalCard>
+                    </NormalCard>
+                </div>}
+
         </Row>
         <MarginVertical />
         <Row>
             <Link onClick={mapClicked} to={'/map'} style={{ width: '32%' }}>
-                <VerticalCard style={{ width: '100%' }}>
+                <VerticalCard whatever={true} isLoggedIn={isLoggedIn} style={{ width: '100%' }}>
                     <TextContainerForVerticalCard>
                         <MainText>캠퍼스 맵</MainText>
                         <SubText>Campus Map</SubText>
@@ -246,7 +292,7 @@ export default function ExtendedMainPresenter({ studentId,
             <MarginHorizontal />
             <Column>
                 <Link onClick={cafeteriaClicked} to={'/cafeteria'}>
-                    <HorizontalCard >
+                    <HorizontalCard whatever={true} isLoggedIn={isLoggedIn}>
                         <TextContainer>
                             <MainText>교내식당</MainText>
                             <SubText>Cafeteria</SubText>
@@ -257,7 +303,7 @@ export default function ExtendedMainPresenter({ studentId,
                     </HorizontalCard>
                 </Link>
                 <MarginVertical />
-                <HorizontalCard onClick={TurnOnStudentIDCard} >
+                {isLoggedIn ? <HorizontalCard isLoggedIn={isLoggedIn} onClick={isLoggedIn && TurnOnStudentIDCard} >
                     <TextContainer>
                         <MainText>모바일 학생증</MainText>
                         <SubText>Student ID</SubText>
@@ -265,7 +311,16 @@ export default function ExtendedMainPresenter({ studentId,
                     <IconContainer>
                         <Icon src={require('assets/idcard.png')} />
                     </IconContainer>
-                </HorizontalCard>
+                </HorizontalCard> : <HorizontalCard isLoggedIn={isLoggedIn} onClick={askGoToLoginPage} >
+                        <TextContainer>
+                            <MainText>모바일 학생증</MainText>
+                            <SubText>Student ID</SubText>
+                        </TextContainer>
+                        <IconContainer>
+                            <Icon src={require('assets/idcard.png')} />
+                        </IconContainer>
+                    </HorizontalCard>}
+
             </Column>
         </Row>
         <CopyrightComponent />

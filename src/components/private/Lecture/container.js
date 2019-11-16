@@ -4,6 +4,12 @@ import { connect } from 'react-redux'
 
 class LectureContainer extends React.Component {
 
+    state = {
+        detail: false,
+        subject: [],
+        background: ""
+    }
+
     componentDidMount() {
         this.props.requestLecture()
     }
@@ -13,7 +19,25 @@ class LectureContainer extends React.Component {
         // const { schedule, loading } = this.state;
         const { schedule, loading, error } = this.props.lecture;
         const { colorMatches, firstClassTime, lastClassTime } = this.props;
-        return <LecturePresenter lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
+        const { detail, subject, background } = this.state;
+        const { subjectClicked, closeDetailView } = this;
+        return <LecturePresenter closeDetailView={closeDetailView} background={background} subject={subject} subjectClicked={subjectClicked} detail={detail} lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
+    }
+
+    closeDetailView = () => {
+        this.setState({
+            detail: false,
+            subject: [],
+            background: ""
+        })
+    }
+
+    subjectClicked = (subject, background) => {
+        this.setState({
+            detail: true,
+            subject,
+            background
+        })
     }
 }
 

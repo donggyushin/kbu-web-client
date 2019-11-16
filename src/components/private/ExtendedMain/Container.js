@@ -1,33 +1,29 @@
 import React from 'react';
 import ExtendedMainPresenter from './Presenter';
+import PresentModal from '../Modal';
 
 class ExtendedMainContainer extends React.Component {
     state = {
         studentId: false
     }
 
-    componentDidMount() {
-        console.log('user: ', this.props.user)
-    }
 
     render() {
         const { studentId } = this.state;
         const { TurnOffStudentIDCard,
             TurnOnStudentIDCard,
-
-
-
-
-
+            askGoToLoginPage
         } = this;
         const { user, loading, handleLocation, noticeClicked, lectureClicked
             , mileageClicked,
             scheduleClicked,
             chapelClicked,
             mapClicked,
-            cafeteriaClicked
+            cafeteriaClicked,
+            isLoggedIn
         } = this.props;
         return <ExtendedMainPresenter
+            askGoToLoginPage={askGoToLoginPage}
             loading={loading}
             TurnOffStudentIDCard={TurnOffStudentIDCard}
             TurnOnStudentIDCard={TurnOnStudentIDCard}
@@ -41,6 +37,7 @@ class ExtendedMainContainer extends React.Component {
             noticeClicked={noticeClicked}
             chapelClicked={chapelClicked}
             handleLocation={handleLocation}
+            isLoggedIn={isLoggedIn}
         />
     }
 
@@ -48,7 +45,9 @@ class ExtendedMainContainer extends React.Component {
 
 
 
-
+    askGoToLoginPage = () => {
+        PresentModal('로그인이 필요한 페이지입니다. ', '로그인 페이지로 이동하시겠습니까?')
+    }
 
 
 

@@ -4,6 +4,7 @@ import Subject from './Subject';
 import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
 import { convertStringToTimeInteger, convertTimeIntToString, convertMinutesToHour } from 'utils/convertStringToTimeInteger';
+import SubjectDetail from './SubjectDetail';
 
 
 let counter = 0;
@@ -14,6 +15,7 @@ const Container = styled.div`
     align-items:center;
     width:100%;
     overflow: hidden;
+    position: relative;
 `
 
 const Schedule = styled.div`
@@ -129,7 +131,7 @@ const VerticalLine = styled.div`
     z-index: 2;
 `
 
-export default function LecturePresenter({ schedule, loading, error, colorMatches, firstClassTime, lastClassTime }) {
+export default function LecturePresenter({ closeDetailView, background, subject, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
     if (error) {
         alert(error);
         window.location.href = '/'
@@ -210,12 +212,13 @@ export default function LecturePresenter({ schedule, loading, error, colorMatche
                                         }
                                         return array
                                     })()}
-                                    <Subject colorMatches={colorMatches} index={index} subject={subject} />
+                                    <Subject subjectClicked={subjectClicked} colorMatches={colorMatches} index={index} subject={subject} />
                                 </>
                             })}</Column>
                     })}
                 </Body>}
             </Schedule>
+            {detail && <SubjectDetail closeDetailView={closeDetailView} background={background} subject={subject} />}
         </Container>
     }
 }

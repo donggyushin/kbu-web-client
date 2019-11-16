@@ -80,22 +80,28 @@ export default function CafeteriaPresenter({ today,
                     <Card>
                         <TitleText>중식</TitleText>
                         <MarginHeight />
-                        <NormalText>{lunch[0].food1}</NormalText>
-                        <NormalText>{lunch[0].food2}</NormalText>
-                        <NormalText>{lunch[0].food3}</NormalText>
-                        <NormalText>{lunch[0].food4}</NormalText>
-                        <NormalText>{lunch[0].food5}</NormalText>
-                        <NormalText>{lunch[0].food6}</NormalText>
+                        {lunch[0] ? <>
+                            <NormalText>{lunch[0].food1}</NormalText>
+                            <NormalText>{lunch[0].food2}</NormalText>
+                            <NormalText>{lunch[0].food3}</NormalText>
+                            <NormalText>{lunch[0].food4}</NormalText>
+                            <NormalText>{lunch[0].food5}</NormalText>
+                            <NormalText>{lunch[0].food6}</NormalText>
+                        </> : '나도 좀 쉬자'}
+
                     </Card>
                     <Card>
                         <TitleText>석식</TitleText>
                         <MarginHeight />
-                        <NormalText>{dinner[0].food1}</NormalText>
-                        <NormalText>{dinner[0].food2}</NormalText>
-                        <NormalText>{dinner[0].food3}</NormalText>
-                        <NormalText>{dinner[0].food4}</NormalText>
-                        <NormalText>{dinner[0].food5}</NormalText>
-                        <NormalText>{dinner[0].food6}</NormalText>
+                        {dinner[0] ? <>
+                            <NormalText>{dinner[0].food1}</NormalText>
+                            <NormalText>{dinner[0].food2}</NormalText>
+                            <NormalText>{dinner[0].food3}</NormalText>
+                            <NormalText>{dinner[0].food4}</NormalText>
+                            <NormalText>{dinner[0].food5}</NormalText>
+                            <NormalText>{dinner[0].food6}</NormalText>
+                        </> : '나도 좀 쉬자'}
+
                     </Card>
                 </Row>
                 <MarginHeight />
@@ -107,22 +113,28 @@ export default function CafeteriaPresenter({ today,
                     <Card>
                         <TitleText>데일리</TitleText>
                         <MarginHeight />
-                        <NormalText>{daily[0].food1}</NormalText>
-                        <NormalText>{daily[0].food2}</NormalText>
-                        <NormalText>{daily[0].food3}</NormalText>
-                        <NormalText>{daily[0].food4}</NormalText>
-                        <NormalText>{daily[0].food5}</NormalText>
-                        <NormalText>{daily[0].food6}</NormalText>
+                        {daily[0] ? <>
+                            <NormalText>{daily[0].food1}</NormalText>
+                            <NormalText>{daily[0].food2}</NormalText>
+                            <NormalText>{daily[0].food3}</NormalText>
+                            <NormalText>{daily[0].food4}</NormalText>
+                            <NormalText>{daily[0].food5}</NormalText>
+                            <NormalText>{daily[0].food6}</NormalText>
+                        </> : '나도 좀 쉬자'}
+
                     </Card>
                     <Card>
                         <TitleText>고정 메뉴</TitleText>
                         <MarginHeight />
-                        <NormalText>{fix[0].food1}</NormalText>
-                        <NormalText>{fix[0].food2}</NormalText>
-                        <NormalText>{fix[0].food3}</NormalText>
-                        <NormalText>{fix[0].food4}</NormalText>
-                        <NormalText>{fix[0].food5}</NormalText>
-                        <NormalText>{fix[0].food6}</NormalText>
+                        {fix[0] ? <>
+                            <NormalText>{fix[0].food1}</NormalText>
+                            <NormalText>{fix[0].food2}</NormalText>
+                            <NormalText>{fix[0].food3}</NormalText>
+                            <NormalText>{fix[0].food4}</NormalText>
+                            <NormalText>{fix[0].food5}</NormalText>
+                            <NormalText>{fix[0].food6}</NormalText>
+                        </> : '나도 좀 쉬자'}
+
                     </Card>
                 </Row>
             </>}
