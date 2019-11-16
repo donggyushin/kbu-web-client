@@ -122,8 +122,8 @@ class DrawerComponent extends React.Component {
                 </TitleContainer>
 
                 <Icon className={'fas fa-bars'} onClick={this.showDrawer} />
-                {(!location && isLoggedIn) && <UserIcon className={'fas fa-user'} />}
-                {(!location && !isLoggedIn) && <UserIcon className={'fas fa-user-slash'} />}
+                {/* {(!location && isLoggedIn) && <UserIcon className={'fas fa-user'} />}
+                {(!location && !isLoggedIn) && <UserIcon className={'fas fa-user-slash'} />} */}
 
                 <Drawer
                     title="MENU"

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     width:100%;
@@ -12,6 +12,7 @@ const Container = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
+    z-index:3;
 `
 
 const Card = styled.div`
@@ -36,13 +37,12 @@ const XButtonContainer = styled.div`
 
 const XButton = styled.div`
     font-size: 22px;
-    /* margin-right: 3px; */
     background: rgba(255,255,255,0.3);
-    width: 30px;
+    width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 40px;
     border-radius: 50%;
 `
 
