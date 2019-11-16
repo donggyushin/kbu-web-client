@@ -1,6 +1,8 @@
 import React from 'react';
 import ExtendedMainPresenter from './Presenter';
 import PresentModal from '../Modal';
+import { connect } from 'react-redux'
+import { touchable, untouchable } from 'actions/touchableAction'
 
 class ExtendedMainContainer extends React.Component {
     state = {
@@ -20,9 +22,11 @@ class ExtendedMainContainer extends React.Component {
             chapelClicked,
             mapClicked,
             cafeteriaClicked,
-            isLoggedIn
+            isLoggedIn,
+            touch
         } = this.props;
         return <ExtendedMainPresenter
+            touchable={touch}
             askGoToLoginPage={askGoToLoginPage}
             loading={loading}
             TurnOffStudentIDCard={TurnOffStudentIDCard}
@@ -52,16 +56,30 @@ class ExtendedMainContainer extends React.Component {
 
 
     TurnOnStudentIDCard = () => {
+        this.props.untouchable();
         this.setState({
             studentId: true
         })
     }
 
     TurnOffStudentIDCard = () => {
+
         this.setState({
             studentId: false
         })
+        setTimeout(() => {
+            this.props.touchable();
+        }, 500);
     }
 }
 
-export default ExtendedMainContainer;
+const mapStateToProps = state => {
+    return {
+        touch: state.touchable.touchable
+    }
+}
+
+export default connect(mapStateToProps, {
+    touchable,
+    untouchable
+})(ExtendedMainContainer);

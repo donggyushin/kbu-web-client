@@ -6,8 +6,8 @@ class SubjectContainer extends React.Component {
 
 
     render() {
-        const { colorMatches, subjectClicked } = this.props;
-        return <SubjectPresenter subjectClicked={subjectClicked} colorMatches={colorMatches} subject={this.props.subject} />
+        const { colorMatches, subjectClicked, touch } = this.props;
+        return <SubjectPresenter touch={touch} subjectClicked={subjectClicked} colorMatches={colorMatches} subject={this.props.subject} />
     }
 
     getRandomInt(min, max) {

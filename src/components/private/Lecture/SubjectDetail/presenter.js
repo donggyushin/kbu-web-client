@@ -65,11 +65,11 @@ const RightText = styled.div`
     width:70%;
 `
 
-export default function ({ subject, background, closeDetailView }) {
+export default function ({ wrapper, subject, background, closeDetailView }) {
     console.log('subject: ', subject)
     console.log('background: ', background)
     return <Container>
-        <Card background={background}>
+        <Card ref={wrapper} background={background}>
             <XButtonContainer>
                 <XButton onClick={closeDetailView}>X</XButton>
             </XButtonContainer>

@@ -140,6 +140,7 @@ const IconContainerForNormalCard = styled.div`
 `
 
 export default function ExtendedMainPresenter({ studentId,
+    touchable,
     askGoToLoginPage,
     TurnOffStudentIDCard,
     TurnOnStudentIDCard,
@@ -155,171 +156,324 @@ export default function ExtendedMainPresenter({ studentId,
     mileageClicked
 
 }) {
+    console.log('touchable:', touchable)
     return <Container>
         <MarginVertical />
         <Row>
             <Column>
-                <Link onClick={noticeClicked} to={'/notice'}>
-                    <HorizontalCard whatever={true} isLoggedIn={isLoggedIn} >
-                        <TextContainer>
-                            <MainText>공지사항</MainText>
-                            <SubText>Notice</SubText>
-                        </TextContainer>
-                        <IconContainer>
-                            <Icon src={require('assets/notice.png')} />
-                        </IconContainer>
-                    </HorizontalCard>
-                </Link>
+                {(() => {
+                    if (touchable === false) {
+                        return <HorizontalCard whatever={true} isLoggedIn={isLoggedIn} >
+                            <TextContainer>
+                                <MainText>공지사항</MainText>
+                                <SubText>Notice</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/notice.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+
+                    } else {
+                        return <Link onClick={noticeClicked} to={'/notice'}>
+                            <HorizontalCard whatever={true} isLoggedIn={isLoggedIn} >
+                                <TextContainer>
+                                    <MainText>공지사항</MainText>
+                                    <SubText>Notice</SubText>
+                                </TextContainer>
+                                <IconContainer>
+                                    <Icon src={require('assets/notice.png')} />
+                                </IconContainer>
+                            </HorizontalCard>
+                        </Link>
+                    }
+                })()}
+
                 <MarginVertical />
-                {isLoggedIn ? <Link onClick={lectureClicked} to={'/lecture'}>
-                    <HorizontalCard isLoggedIn={isLoggedIn} >
-                        <TextContainer>
-                            <MainText>수업</MainText>
-                            <SubText>Lecture</SubText>
-                        </TextContainer>
-                        <IconContainer>
-                            <Icon src={require('assets/lecture.png')} />
-                        </IconContainer>
-                    </HorizontalCard>
-                </Link> :
-                    <HorizontalCard onClick={askGoToLoginPage} isLoggedIn={isLoggedIn} >
-                        <TextContainer>
-                            <MainText>수업</MainText>
-                            <SubText>Lecture</SubText>
-                        </TextContainer>
-                        <IconContainer>
-                            <Icon src={require('assets/lecture.png')} />
-                        </IconContainer>
-                    </HorizontalCard>
-                }
+                {(() => {
+                    if (touchable === false) {
+                        return <HorizontalCard onClick={askGoToLoginPage} isLoggedIn={isLoggedIn} >
+                            <TextContainer>
+                                <MainText>수업</MainText>
+                                <SubText>Lecture</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/lecture.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+                    } else if (isLoggedIn) {
+                        return <Link onClick={lectureClicked} to={'/lecture'}>
+                            <HorizontalCard isLoggedIn={isLoggedIn} >
+                                <TextContainer>
+                                    <MainText>수업</MainText>
+                                    <SubText>Lecture</SubText>
+                                </TextContainer>
+                                <IconContainer>
+                                    <Icon src={require('assets/lecture.png')} />
+                                </IconContainer>
+                            </HorizontalCard>
+                        </Link>
+                    } else {
+                        return <HorizontalCard onClick={askGoToLoginPage} isLoggedIn={isLoggedIn} >
+                            <TextContainer>
+                                <MainText>수업</MainText>
+                                <SubText>Lecture</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/lecture.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+                    }
+                })()}
+
 
             </Column>
             <MarginHorizontal />
-            {isLoggedIn ? <Link onClick={mileageClicked} style={{
-                width: '32%'
-            }} to={'/mileage'}>
-                <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
-                    <TextContainerForVerticalCard>
-                        <MainText>
-                            마일리지
-                    </MainText>
-                        <SubText>
-                            Mileage
-                    </SubText>
-                    </TextContainerForVerticalCard>
-                    <IconContainerForVerticalCard>
-                        <Icon src={require('assets/mileage.png')} />
-                    </IconContainerForVerticalCard>
-                </VerticalCard>
-            </Link> : <div onClick={askGoToLoginPage} style={{
-                width: '32%'
-            }}>
-                    <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
-                        <TextContainerForVerticalCard>
-                            <MainText>
-                                마일리지
-                    </MainText>
-                            <SubText>
-                                Mileage
-                    </SubText>
-                        </TextContainerForVerticalCard>
-                        <IconContainerForVerticalCard>
-                            <Icon src={require('assets/mileage.png')} />
-                        </IconContainerForVerticalCard>
-                    </VerticalCard>
-                </div>}
+            {(() => {
+                if (touchable === false) {
+                    return <div onClick={askGoToLoginPage} style={{
+                        width: '32%'
+                    }}>
+                        <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                            <TextContainerForVerticalCard>
+                                <MainText>
+                                    마일리지
+                            </MainText>
+                                <SubText>
+                                    Mileage
+                            </SubText>
+                            </TextContainerForVerticalCard>
+                            <IconContainerForVerticalCard>
+                                <Icon src={require('assets/mileage.png')} />
+                            </IconContainerForVerticalCard>
+                        </VerticalCard>
+                    </div>
+                } else if (isLoggedIn) {
+                    return <Link onClick={mileageClicked} style={{
+                        width: '32%'
+                    }} to={'/mileage'}>
+                        <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                            <TextContainerForVerticalCard>
+                                <MainText>
+                                    마일리지
+                            </MainText>
+                                <SubText>
+                                    Mileage
+                            </SubText>
+                            </TextContainerForVerticalCard>
+                            <IconContainerForVerticalCard>
+                                <Icon src={require('assets/mileage.png')} />
+                            </IconContainerForVerticalCard>
+                        </VerticalCard>
+                    </Link>
+                } else {
+                    return <div onClick={askGoToLoginPage} style={{
+                        width: '32%'
+                    }}>
+                        <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                            <TextContainerForVerticalCard>
+                                <MainText>
+                                    마일리지
+                            </MainText>
+                                <SubText>
+                                    Mileage
+                            </SubText>
+                            </TextContainerForVerticalCard>
+                            <IconContainerForVerticalCard>
+                                <Icon src={require('assets/mileage.png')} />
+                            </IconContainerForVerticalCard>
+                        </VerticalCard>
+                    </div>
+                }
+            })()}
+
 
 
         </Row>
         <MarginVertical />
         <Row>
-            <Link onClick={scheduleClicked} style={{
-                width: '46%'
-            }} to={'/calendar'}>
-                <NormalCard whatever={true} isLoggedIn={isLoggedIn} style={{
-                    width: '100%'
-                }}>
-                    <TextContainerForNomralCard>
-                        <MainText>학사일정</MainText>
-                        <SubText>Schedule</SubText>
-                    </TextContainerForNomralCard>
-                    <IconContainerForNormalCard>
-                        <Icon src={require('assets/schedule.png')} />
-                    </IconContainerForNormalCard>
-                </NormalCard>
-            </Link>
+            {(() => {
+                if (touchable) {
+                    return <Link onClick={scheduleClicked} style={{
+                        width: '46%'
+                    }} to={'/calendar'}>
+                        <NormalCard whatever={true} isLoggedIn={isLoggedIn} style={{
+                            width: '100%'
+                        }}>
+                            <TextContainerForNomralCard>
+                                <MainText>학사일정</MainText>
+                                <SubText>Schedule</SubText>
+                            </TextContainerForNomralCard>
+                            <IconContainerForNormalCard>
+                                <Icon src={require('assets/schedule.png')} />
+                            </IconContainerForNormalCard>
+                        </NormalCard>
+                    </Link>
+                } else {
+                    return <div style={{
+                        width: '46%'
+                    }} >
+                        <NormalCard whatever={true} isLoggedIn={isLoggedIn} style={{
+                            width: '100%'
+                        }}>
+                            <TextContainerForNomralCard>
+                                <MainText>학사일정</MainText>
+                                <SubText>Schedule</SubText>
+                            </TextContainerForNomralCard>
+                            <IconContainerForNormalCard>
+                                <Icon src={require('assets/schedule.png')} />
+                            </IconContainerForNormalCard>
+                        </NormalCard>
+                    </div>
+                }
+            })()}
+
             <MarginHorizontal />
-            {isLoggedIn ? <Link onClick={chapelClicked} style={{
-                width: '46%'
-            }} to={'/chapel'}>
-                <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
-                    <TextContainerForNomralCard>
-                        <MainText>채플</MainText>
-                        <SubText>Chapel</SubText>
-                    </TextContainerForNomralCard>
-                    <IconContainerForNormalCard>
-                        <Icon src={require('assets/chapel.png')} />
-                    </IconContainerForNormalCard>
-                </NormalCard>
-            </Link> : <div onClick={askGoToLoginPage} style={{
-                width: '46%'
-            }}>
-                    <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
-                        <TextContainerForNomralCard>
-                            <MainText>채플</MainText>
-                            <SubText>Chapel</SubText>
-                        </TextContainerForNomralCard>
-                        <IconContainerForNormalCard>
-                            <Icon src={require('assets/chapel.png')} />
-                        </IconContainerForNormalCard>
-                    </NormalCard>
-                </div>}
+            {(() => {
+                if (touchable === false) {
+                    return <div style={{
+                        width: '46%'
+                    }}>
+                        <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                            <TextContainerForNomralCard>
+                                <MainText>채플</MainText>
+                                <SubText>Chapel</SubText>
+                            </TextContainerForNomralCard>
+                            <IconContainerForNormalCard>
+                                <Icon src={require('assets/chapel.png')} />
+                            </IconContainerForNormalCard>
+                        </NormalCard>
+                    </div>
+                } else if (isLoggedIn === true) {
+                    return <Link onClick={chapelClicked} style={{
+                        width: '46%'
+                    }} to={'/chapel'}>
+                        <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                            <TextContainerForNomralCard>
+                                <MainText>채플</MainText>
+                                <SubText>Chapel</SubText>
+                            </TextContainerForNomralCard>
+                            <IconContainerForNormalCard>
+                                <Icon src={require('assets/chapel.png')} />
+                            </IconContainerForNormalCard>
+                        </NormalCard>
+                    </Link>
+                } else {
+                    return <div onClick={askGoToLoginPage} style={{
+                        width: '46%'
+                    }}>
+                        <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
+                            <TextContainerForNomralCard>
+                                <MainText>채플</MainText>
+                                <SubText>Chapel</SubText>
+                            </TextContainerForNomralCard>
+                            <IconContainerForNormalCard>
+                                <Icon src={require('assets/chapel.png')} />
+                            </IconContainerForNormalCard>
+                        </NormalCard>
+                    </div>
+                }
+            })()}
+
 
         </Row>
         <MarginVertical />
         <Row>
-            <Link onClick={mapClicked} to={'/map'} style={{ width: '32%' }}>
-                <VerticalCard whatever={true} isLoggedIn={isLoggedIn} style={{ width: '100%' }}>
-                    <TextContainerForVerticalCard>
-                        <MainText>캠퍼스 맵</MainText>
-                        <SubText>Campus Map</SubText>
-                    </TextContainerForVerticalCard>
-                    <IconContainerForVerticalCard>
-                        <Icon src={require('assets/map.png')} />
-                    </IconContainerForVerticalCard>
-                </VerticalCard>
-            </Link>
+            {(() => {
+                if (touchable) {
+                    return <Link onClick={mapClicked} to={'/map'} style={{ width: '32%' }}>
+                        <VerticalCard whatever={true} isLoggedIn={isLoggedIn} style={{ width: '100%' }}>
+                            <TextContainerForVerticalCard>
+                                <MainText>캠퍼스 맵</MainText>
+                                <SubText>Campus Map</SubText>
+                            </TextContainerForVerticalCard>
+                            <IconContainerForVerticalCard>
+                                <Icon src={require('assets/map.png')} />
+                            </IconContainerForVerticalCard>
+                        </VerticalCard>
+                    </Link>
+                } else {
+                    return <div style={{ width: '32%' }}>
+                        <VerticalCard whatever={true} isLoggedIn={isLoggedIn} style={{ width: '100%' }}>
+                            <TextContainerForVerticalCard>
+                                <MainText>캠퍼스 맵</MainText>
+                                <SubText>Campus Map</SubText>
+                            </TextContainerForVerticalCard>
+                            <IconContainerForVerticalCard>
+                                <Icon src={require('assets/map.png')} />
+                            </IconContainerForVerticalCard>
+                        </VerticalCard>
+                    </div>
+                }
+            })()}
+
             <MarginHorizontal />
             <Column>
-                <Link onClick={cafeteriaClicked} to={'/cafeteria'}>
-                    <HorizontalCard whatever={true} isLoggedIn={isLoggedIn}>
-                        <TextContainer>
-                            <MainText>교내식당</MainText>
-                            <SubText>Cafeteria</SubText>
-                        </TextContainer>
-                        <IconContainer>
-                            <Icon src={require('assets/cafeteria.png')} />
-                        </IconContainer>
-                    </HorizontalCard>
-                </Link>
+                {(() => {
+                    if (touchable === false) {
+                        return <HorizontalCard whatever={true} isLoggedIn={isLoggedIn}>
+                            <TextContainer>
+                                <MainText>교내식당</MainText>
+                                <SubText>Cafeteria</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/cafeteria.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+
+
+                    } else {
+                        return <Link onClick={cafeteriaClicked} to={'/cafeteria'}>
+                            <HorizontalCard whatever={true} isLoggedIn={isLoggedIn}>
+                                <TextContainer>
+                                    <MainText>교내식당</MainText>
+                                    <SubText>Cafeteria</SubText>
+                                </TextContainer>
+                                <IconContainer>
+                                    <Icon src={require('assets/cafeteria.png')} />
+                                </IconContainer>
+                            </HorizontalCard>
+                        </Link>
+                    }
+                })()}
+
                 <MarginVertical />
-                {isLoggedIn ? <HorizontalCard isLoggedIn={isLoggedIn} onClick={isLoggedIn && TurnOnStudentIDCard} >
-                    <TextContainer>
-                        <MainText>모바일 학생증</MainText>
-                        <SubText>Student ID</SubText>
-                    </TextContainer>
-                    <IconContainer>
-                        <Icon src={require('assets/idcard.png')} />
-                    </IconContainer>
-                </HorizontalCard> : <HorizontalCard isLoggedIn={isLoggedIn} onClick={askGoToLoginPage} >
-                        <TextContainer>
-                            <MainText>모바일 학생증</MainText>
-                            <SubText>Student ID</SubText>
-                        </TextContainer>
-                        <IconContainer>
-                            <Icon src={require('assets/idcard.png')} />
-                        </IconContainer>
-                    </HorizontalCard>}
+                {(() => {
+
+                    if (touchable === false) {
+                        return <HorizontalCard isLoggedIn={isLoggedIn}>
+                            <TextContainer>
+                                <MainText>모바일 학생증</MainText>
+                                <SubText>Student ID</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/idcard.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+                    }
+                    else if (isLoggedIn === true) {
+                        return <HorizontalCard isLoggedIn={isLoggedIn} onClick={isLoggedIn && TurnOnStudentIDCard} >
+                            <TextContainer>
+                                <MainText>모바일 학생증</MainText>
+                                <SubText>Student ID</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/idcard.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+                    } else {
+                        return <HorizontalCard isLoggedIn={isLoggedIn} onClick={askGoToLoginPage} >
+                            <TextContainer>
+                                <MainText>모바일 학생증</MainText>
+                                <SubText>Student ID</SubText>
+                            </TextContainer>
+                            <IconContainer>
+                                <Icon src={require('assets/idcard.png')} />
+                            </IconContainer>
+                        </HorizontalCard>
+                    }
+
+                })()}
+
 
             </Column>
         </Row>

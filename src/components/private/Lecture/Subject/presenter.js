@@ -50,10 +50,13 @@ const BackgroundColor = styled.div`
     height:1px;
 `
 
-export default function SubjectPresenter({ subject, colorMatches, subjectClicked }) {
+export default function SubjectPresenter({ touch, subject, colorMatches, subjectClicked }) {
     return <Box onClick={() => {
-        console.log('colorMatches[subject[0]]: ', colorMatches[subject[0]])
-        subjectClicked(subject, colorMatches[subject[0]])
+        console.log('touch: ', touch)
+        if (touch) {
+            subjectClicked(subject, colorMatches[subject[0]])
+        }
+
     }} selected={colorMatches[subject[0]]}>
         {(() => {
             let array = []

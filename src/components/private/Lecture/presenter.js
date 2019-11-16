@@ -131,7 +131,7 @@ const VerticalLine = styled.div`
     z-index: 2;
 `
 
-export default function LecturePresenter({ closeDetailView, background, subject, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
+export default function LecturePresenter({ wrapper, touch, closeDetailView, background, subject, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
     if (error) {
         alert(error);
         window.location.href = '/'
@@ -212,13 +212,13 @@ export default function LecturePresenter({ closeDetailView, background, subject,
                                         }
                                         return array
                                     })()}
-                                    <Subject subjectClicked={subjectClicked} colorMatches={colorMatches} index={index} subject={subject} />
+                                    <Subject touch={touch} subjectClicked={subjectClicked} colorMatches={colorMatches} index={index} subject={subject} />
                                 </>
                             })}</Column>
                     })}
                 </Body>}
             </Schedule>
-            {detail && <SubjectDetail closeDetailView={closeDetailView} background={background} subject={subject} />}
+            {detail && <SubjectDetail wrapper={wrapper} closeDetailView={closeDetailView} background={background} subject={subject} />}
         </Container>
     }
 }

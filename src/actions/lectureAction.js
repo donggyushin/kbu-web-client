@@ -54,7 +54,7 @@ export const fetchLecture = () => (dispatch, getState) => {
         })
             .then(res => res.data)
             .then(data => {
-                console.log('lecture data: ', data)
+
                 if (data.is_ok) {
                     let lecture = {
                         schedule: data.result.table_body,
