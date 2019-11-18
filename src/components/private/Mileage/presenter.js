@@ -16,7 +16,8 @@ export default function MileagePresenter({ rows, loading }) {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        button: false
     };
 
     return <Container>

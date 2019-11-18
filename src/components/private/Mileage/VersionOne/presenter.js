@@ -47,6 +47,7 @@ export const PriceContainer = styled.div`
 
 export default function ({ rows, loading }) {
 
+
     return <Container>
 
         <Card>
