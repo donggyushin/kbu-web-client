@@ -160,6 +160,7 @@ export default function ExtendedMainPresenter({ studentId,
     return <Container>
         <MarginVertical />
         <Row>
+
             <Column>
                 {(() => {
                     if (touchable === false) {

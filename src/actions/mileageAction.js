@@ -6,6 +6,7 @@ import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 export const fetchMileage = () => (dispatch, getState) => {
     const { mileage } = getState()
     const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
+
     if (mileage.rows.length === 0) {
         axios.post(REST_API_ENDPOINT + 'mileage', {
             id: decoded.id,
@@ -13,6 +14,7 @@ export const fetchMileage = () => (dispatch, getState) => {
         })
             .then(res => res.data)
             .then(data => {
+                console.log('mileage data: ', data.result)
                 if (data.is_ok) {
                     dispatch({
                         type: FETCH_MILEAGE,

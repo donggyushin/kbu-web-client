@@ -11,7 +11,6 @@ export function getEvents(callback) {
         .get(url)
         .end((err, resp) => {
             if (!err) {
-
                 const events = []
                 JSON.parse(resp.text).items.map((event) => {
                     events.push({

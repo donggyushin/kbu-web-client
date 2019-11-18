@@ -37,6 +37,8 @@ class CalendarContainer extends React.Component {
         document.querySelectorAll(".rbc-btn-group > button")[4].textContent = "주간"
         document.querySelectorAll(".rbc-btn-group > button")[5].textContent = "일간"
         document.querySelectorAll(".rbc-btn-group > button")[6].textContent = "요약"
+        document.querySelectorAll(".rbc-btn-group > button")[4].style.display = "none";
+
 
         document.querySelector(".rbc-btn-group").style.width = "100%"
         document.querySelector(".rbc-btn-group").style.display = "flex"
@@ -55,7 +57,6 @@ class CalendarContainer extends React.Component {
 
         getEvents((events) => {
             const { fetchEvents } = this.props;
-            console.log('events')
             fetchEvents(events)
         })
 

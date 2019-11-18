@@ -13,7 +13,7 @@ const Container = styled.div``
 
 
 export default function ({ events, onEventSelected, event, detailView, outsideOfDetailViewClicked }) {
-    console.log('sampleEvents:', sampleEvents)
+
     return <Container>
         <Calendar
             localizer={localizer}

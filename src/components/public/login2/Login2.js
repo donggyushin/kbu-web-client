@@ -6,6 +6,7 @@ import axios from 'axios'
 import REST_API_ENDPOINT from 'constants/endpoint';
 import { generateJsonWebToken } from 'utils/jsonwebtoken';
 import ThemeColor from 'constants/themeColor';
+import NormalLoading from 'components/global/normalLoading';
 
 
 
@@ -70,11 +71,12 @@ class Login2Component extends React.Component {
     state = {
         id: "",
         password: "",
-        buttonDisabled: true
+        buttonDisabled: true,
+        loginLoading: false
     }
 
     render() {
-        const { id, password, buttonDisabled } = this.state;
+        const { id, password, buttonDisabled, loginLoading } = this.state;
         const { handleInput, loginButtonClicked } = this;
         return <Container>
             {/* <LoginDrawer /> */}
@@ -114,6 +116,7 @@ class Login2Component extends React.Component {
 
                 <CustomButton onClick={loginButtonClicked} disabled={buttonDisabled}>LOGIN</CustomButton>
             </InputContainer>
+            {loginLoading && <NormalLoading />}
         </Container>
     }
 
@@ -125,6 +128,9 @@ class Login2Component extends React.Component {
 
     loginButtonClicked = () => {
         const { id, password } = this.state;
+        this.setState({
+            loginLoading: true
+        })
         axios.post(REST_API_ENDPOINT + `user/login`, {
             id,
             password
@@ -134,13 +140,16 @@ class Login2Component extends React.Component {
                 if (result.is_ok) {
                     const token = generateJsonWebToken(id, password);
                     console.log('token: ', token);
+                    this.setState({
+                        loginLoading: false
+                    })
                     window.localStorage.setItem('token', token)
                     window.location.href = '/'
                 } else {
                     alert(result.result)
                     this.setState({
-                        id: "",
-                        password: ""
+                        password: "",
+                        loginLoading: false
                     })
                     return;
                 }
