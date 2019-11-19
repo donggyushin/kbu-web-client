@@ -68,7 +68,8 @@ class LectureContainer extends React.Component {
         this.setState({
             detail: false,
             subject: [],
-            background: ""
+            background: "",
+            list: false
         })
         setTimeout(() => {
             this.props.touchable()
