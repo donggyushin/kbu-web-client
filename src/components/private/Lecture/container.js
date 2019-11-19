@@ -3,6 +3,7 @@ import LecturePresenter from './presenter';
 import { connect } from 'react-redux'
 import { touchable, untouchable } from 'actions/touchableAction'
 import { getchOneLectureDetail, selectLecture } from 'actions/lectureAction'
+import { element } from 'prop-types';
 
 class LectureContainer extends React.Component {
 
@@ -21,6 +22,8 @@ class LectureContainer extends React.Component {
     componentDidMount() {
         this.props.requestLecture()
         document.addEventListener('touchend', this.handleClickOutside);
+        console.log(document.getElementsByClassName("height25"))
+
     }
 
     componentWillUnmount() {

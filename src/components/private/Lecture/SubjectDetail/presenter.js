@@ -59,6 +59,8 @@ const InfoContainer = styled.div`
 export const Row = styled.div`
     display:flex;
     width:100%;
+    flex-shrink:0;
+    height:21px !important;
 `
 
 export const LeftText = styled.div`
@@ -73,7 +75,7 @@ export const Date = styled.div`
 width:20%;
 padding-left:7px;
 height:21px !important;
-flex-shrink: 0;  
+
 `
 
 export const Time = styled.div`
@@ -85,21 +87,21 @@ export const Attendance = styled.div`
     width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink: 0;  
+
 `
 
 export const NormalAbsence = styled.div`
 width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink: 0;  
+
 `
 
 export const Late = styled.div`
 width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink: 0;  
+
 `
 
 export const ETC = styled.div`
@@ -143,19 +145,19 @@ export default function ({ selectedLecture, lectureDetail, wrapper, background, 
                 <XButton onClick={closeDetailView}>X</XButton>
             </XButtonContainer>
             <InfoContainer>
-                <Row>
+                <Row className={'height25'}>
                     <LeftText>과목명</LeftText>
                     <RightText>{selectedLecture.name}</RightText>
                 </Row>
-                <Row>
+                <Row className={'height25'}>
                     <LeftText>장소</LeftText>
                     <RightText>{selectedLecture.location}</RightText>
                 </Row>
-                <Row>
+                <Row className={'height25'}>
                     <LeftText>시작시간</LeftText>
                     <RightText>{selectedLecture.start}</RightText>
                 </Row>
-                <Row>
+                <Row className={'height25'}>
                     <LeftText>끝나는 시간</LeftText>
                     <RightText>{selectedLecture.end}</RightText>
                 </Row>

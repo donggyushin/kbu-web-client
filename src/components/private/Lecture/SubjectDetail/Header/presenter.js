@@ -6,10 +6,12 @@ const Container = styled.div`
     width:100%;
     display:flex;
     align-items:center;
+    height:21px !important;
+    flex-shrink:0;
 `
 
 export default function () {
-    return <Container>
+    return <Container className={'height25'}>
         <Date style={{
             borderBottom: '1px solid white',
             borderRight: '1px solid white'
