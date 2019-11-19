@@ -43,7 +43,7 @@ class CalendarContainer extends React.Component {
         document.querySelector(".rbc-btn-group").style.width = "100%"
         document.querySelector(".rbc-btn-group").style.display = "flex"
         document.querySelector(".rbc-btn-group").style.justifyContent = "center"
-        document.querySelector(".rbc-calendar").style.background = "white"
+
 
         document.addEventListener('mousedown', this.handleClickOutside);
         document.querySelector(".rbc-toolbar-label").style.width = "100%"

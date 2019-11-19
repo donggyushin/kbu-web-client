@@ -32,6 +32,9 @@ const Row = styled.div`
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    opacity:1;
+    position:absolute;
+    top:50px;
 `
 
 const ButtonContainer = styled.div`
@@ -101,44 +104,31 @@ const Body = styled.div`
     flex-direction: column;
 `
 
-
-const TextRow = styled.div`
-    display:flex;
-    width:100%;
-    font-family: sans-serif;
-    align-items:center;
-    /* padding-bottom: 5px; */
-    border-bottom: 1px solid gainsboro;
-    /* margin-bottom: 13px; */
-    padding-left:4px;
-    justify-content:space-between;
-    height: 90px;
+const TopButton = styled.div`
+    position:fixed;
+    bottom: 55px;
+    right: 31px;
+    background-color:#3498db;
+    width: 28px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    opacity: 0;
+    transition-duration:2s;
 `
 
-const ContentAndResultContainer = styled.div`
-    display:flex;
-    justify-content:space-between;
-    width:100%;
+const TopIcon = styled.i`
+    color:white;
+    font-size: 23px;
 `
 
-const Text = styled.div`
-    font-size:16px;
-    color:${props => props.late && '#e74c3c'};
-`
-
-const CountNumber = styled.div`
-    margin-right:10px;
-`
-
-const Line = styled.div`
-    display:flex;
-`
-
-export default function ChapelPresenter({ summary, chapels, chapelLength, loading }) {
+export default function ChapelPresenter({ summary, chapels, chapelLength, loading, buttonToTopClicked }) {
     return <Container>
         <Paper>
             {loading ? <ReactLoading color={themeColor.theme} /> : <>
-                <Row>
+                <Row id={'infotextcontainerrow'}>
                     <InfoTextContainer>
                         <SmallText>출석:{summary.attendance}</SmallText>
                         <SmallText>지각:{summary.late}</SmallText>
@@ -146,7 +136,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                         <SmallText>남은 일수:{summary.duty - summary.sure}</SmallText>
                     </InfoTextContainer>
                 </Row>
-                <BodyContainer>
+                <BodyContainer style={{ marginTop: 50 }}>
                     <Body>
                         {chapels.map((chapel, i) => {
                             const time = chapel[3];
@@ -168,6 +158,6 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
 
             </>}
         </Paper>
-
+        <TopButton onClick={buttonToTopClicked} id={'topbutton'}><TopIcon className={'fas fa-angle-up'} /></TopButton>
     </Container>
 }

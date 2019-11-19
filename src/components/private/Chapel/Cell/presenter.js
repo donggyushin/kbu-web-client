@@ -8,6 +8,7 @@ const Container = styled.div`
     margin-bottom:11px;
     padding-bottom:5px;
     font-size:16px;
+    height:50px;
 `
 
 const Count = styled.div`

@@ -35,8 +35,8 @@ const Container = styled.div`
 
 const CardContainer = styled.div`
     width:90%;
-    height: 80%;
-    /* min-height: 588px !important; */
+    height: 70%;
+    min-height: 513px;
     display:flex;
     flex-direction:column;
     align-items:center;
