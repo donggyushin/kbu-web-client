@@ -57,7 +57,7 @@ const Card = styled.div`
     width:100%;
     height:100%;
     background-color:white;
-    border-radius:7px;
+    border-radius: 23px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -236,14 +236,20 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                         <ProfileImage src={user.sid === '201303024' ? require('assets/leo.png') : base64formatter(user.img)} />
                     </ProfileImageContainer>
                 </Row>}
-
+                {qrcode === false && <NormalText style={{
+                    fontWeight: 'bolder',
+                    position: 'relative',
+                    top: 20
+                }}>아래의 코드로 서비스 이용이 가능합니다.</NormalText>}
 
                 <MarginHeight />
                 <QrcodeContainer>
                     {qrcode ? <QRCode user={user} shutdownQrcode={shutdownQrcode} img={qrcodeimg} /> : <Fab style={{
-                        zIndex: 3
+                        zIndex: 3,
+                        background: themeColor.theme,
+                        color: 'white'
                     }} onClick={requestQrcode} variant="extended" aria-label="delete" className={classes.fab}>
-                        <NavigationIcon className={classes.extendedIcon} />
+                        <NavigationIcon style={{ color: 'white' }} className={classes.extendedIcon} />
                         QR CODE
                     </Fab>}
 
