@@ -156,7 +156,6 @@ export default function ExtendedMainPresenter({ studentId,
     mileageClicked
 
 }) {
-    console.log('touchable:', touchable)
     return <Container>
         <MarginVertical />
         <Row>

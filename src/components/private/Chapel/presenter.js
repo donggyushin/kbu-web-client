@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
+import OneCell from './Cell';
 
 
 const Container = styled.div`
@@ -129,21 +130,15 @@ const CountNumber = styled.div`
     margin-right:10px;
 `
 
+const Line = styled.div`
+    display:flex;
+`
+
 export default function ChapelPresenter({ summary, chapels, chapelLength, loading }) {
     return <Container>
         <Paper>
             {loading ? <ReactLoading color={themeColor.theme} /> : <>
                 <Row>
-                    {/* <ButtonContainer>
-                        <Button>
-                            <WhiteCardButton />
-                            <ButtonText>출석</ButtonText>
-                        </Button>
-                        <Button>
-                            <YellowCardButton />
-                            <ButtonText>지각</ButtonText>
-                        </Button>
-                    </ButtonContainer> */}
                     <InfoTextContainer>
                         <SmallText>출석:{summary.attendance}</SmallText>
                         <SmallText>지각:{summary.late}</SmallText>
@@ -157,15 +152,15 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             const time = chapel[3];
                             const hour = time.substr(0, 2);
                             const minute = time.substr(3, 2);
+
+                            const countNumber = chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i;
+                            const date = `${chapel[1]}월 ${chapel[2]}일 ${hour}시 ${minute}분`
+                            const day = chapel[4]
+                            // 출석 지각 여부
                             const late = chapel[7] !== '출석'
-                            console.log(chapelLength - i);
-                            return <TextRow><CountNumber>{chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i}.</CountNumber>  <ContentAndResultContainer><Text>{chapel[1]}월 {chapel[2]}일 &nbsp;<span style={{
-                                fontSize: 20,
-                                fontWeight: 900
-                            }}>({chapel[4]})</span>&nbsp; {hour}시 {minute}분</Text><Text style={{
-                                marginRight: 20,
-                                // fontWeight: 900
-                            }} late={late}>{chapel[7]}</Text></ContentAndResultContainer></TextRow>
+                            const comment = chapel[8]
+
+                            return <OneCell comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
                         })}
 
                     </Body>

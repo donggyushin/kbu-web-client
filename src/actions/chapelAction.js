@@ -15,6 +15,7 @@ export const fetchChapel = () => (dispatch, getState) => {
             .then(res => res.data)
             .then(data => {
                 if (data.is_ok) {
+
                     dispatch({
                         type: FETCH_CHAPEL,
                         summary: {

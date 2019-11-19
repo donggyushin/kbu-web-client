@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Input, Tooltip, Icon, Button } from 'antd';
-import LoginDrawer from './LoginDrawer/LoginDrawer';
 import axios from 'axios'
 import REST_API_ENDPOINT from 'constants/endpoint';
 import { generateJsonWebToken } from 'utils/jsonwebtoken';
@@ -34,8 +33,6 @@ const LogoContainer = styled.div`
     align-items:center;
     justify-content:center;
     margin-bottom: 43px;
-    /* position: relative; */
-    /* bottom: 73px; */
 `
 
 const CustomButton = styled.button`

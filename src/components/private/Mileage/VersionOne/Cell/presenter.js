@@ -17,8 +17,6 @@ const TextLabel = styled.div``
 
 
 export default function ({ row }) {
-    console.log('row:', row)
-
     if (Math.ceil(row.CST_USE_POINT) > 0) {
         return <Container>
             <DateContainer style={{ fontSize: 12 }}>
