@@ -16,7 +16,8 @@ class LectureContainer extends React.Component {
 
     state = {
         detail: false,
-        background: ""
+        background: "",
+        list: false
     }
 
     componentDidMount() {
@@ -51,9 +52,15 @@ class LectureContainer extends React.Component {
         // const { schedule, loading } = this.state;
         const { schedule, loading, error } = this.props.lecture;
         const { colorMatches, firstClassTime, lastClassTime, touch, lectureDetail, selectedLecture } = this.props;
-        const { detail, background } = this.state;
-        const { subjectClicked, closeDetailView } = this;
-        return <LecturePresenter wrapper={this.setWrapperRef} selectedLecture={selectedLecture} lectureDetail={lectureDetail} touch={touch} closeDetailView={closeDetailView} background={background} subjectClicked={subjectClicked} detail={detail} lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
+        const { detail, background, list } = this.state;
+        const { subjectClicked, closeDetailView, showDataList } = this;
+        return <LecturePresenter showDataList={showDataList} list={list} wrapper={this.setWrapperRef} selectedLecture={selectedLecture} lectureDetail={lectureDetail} touch={touch} closeDetailView={closeDetailView} background={background} subjectClicked={subjectClicked} detail={detail} lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
+    }
+
+    showDataList = () => {
+        this.setState({
+            list: true
+        })
     }
 
     closeDetailView = () => {

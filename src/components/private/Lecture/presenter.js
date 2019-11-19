@@ -132,7 +132,7 @@ const VerticalLine = styled.div`
 `
 
 export default function LecturePresenter({
-    selectedLecture,
+    selectedLecture, list, showDataList,
     lectureDetail, wrapper, touch, closeDetailView, background, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
     if (error) {
         alert(error);
@@ -220,7 +220,7 @@ export default function LecturePresenter({
                     })}
                 </Body>}
             </Schedule>
-            {detail && <SubjectDetail selectedLecture={selectedLecture} lectureDetail={lectureDetail} wrapper={wrapper} closeDetailView={closeDetailView} background={background} />}
+            {detail && <SubjectDetail showDataList={showDataList} list={list} selectedLecture={selectedLecture} lectureDetail={lectureDetail} wrapper={wrapper} closeDetailView={closeDetailView} background={background} />}
         </Container>
     }
 }

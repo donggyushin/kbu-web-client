@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Header from './Header';
 import SmallLoading from 'components/global/SmallLoading';
 import Summary from './Summary';
@@ -31,6 +31,7 @@ const Card = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius:20px;
 `
 
 const XButtonContainer = styled.div`
@@ -110,18 +111,31 @@ text-align:center;
 flex: 1 0 auto;
 `
 
+const boxFade = keyframes`
+    0% {
+    height:0px;
+  }
+  100% {
+    height:300px;
+  }
+`
+
 const DataListContainer = styled.div`
     width:90%;
     border-radius:7px;
     border:1px solid white;
     height:300px;
+    /* height:300px; */
     margin-top:20px;
     display:flex;
     flex-direction:column;
     align-items:center;
     overflow:scroll;
     justify-content: flex-start;
+    animation: ${boxFade} 0.5s linear;
 `
+
+
 
 const SummaryContainer = styled.div`
     width:100%;
@@ -130,13 +144,20 @@ const SummaryContainer = styled.div`
     margin-top:20px;
 `
 
-const LoadingContainer = styled.div`
-    display:flex;
-    justify-content:center;
-    align-items:center;
+
+const Button = styled.div`
+        background: rgba(255,255,255,0.3);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    margin-top: 30px;
+    font-size: 20px;
+
 `
 
-export default function ({ selectedLecture, lectureDetail, wrapper, background, closeDetailView }) {
+export default function ({ showDataList, list, selectedLecture, lectureDetail, wrapper, background, closeDetailView }) {
 
     return <Container>
         <Card ref={wrapper} background={background}>
@@ -165,13 +186,13 @@ export default function ({ selectedLecture, lectureDetail, wrapper, background, 
                         <SmallLoading />
                         : <Summary summary={lectureDetail.summary} />}
                 </SummaryContainer>
-
             </InfoContainer>
-            <DataListContainer>
+            {(!lectureDetail.loading && list === false) && <Button onClick={showDataList}>더불러오기</Button>}
+            {list && <DataListContainer>
                 <Header />
-                {lectureDetail.loading ? <LoadingContainer><SmallLoading /></LoadingContainer> : <DataList lectureDetail={lectureDetail} />}
+                <DataList lectureDetail={lectureDetail} />
+            </DataListContainer>}
 
-            </DataListContainer>
         </Card>
     </Container>
 }

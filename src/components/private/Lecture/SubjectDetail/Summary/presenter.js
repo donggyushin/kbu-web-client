@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Row, LeftText, RightText } from '../presenter'
+import { Row, LeftText, RightText, Attendance, NormalAbsence, Late, ETC } from '../presenter'
 
 const Container = styled.div`
     width:100%;
@@ -11,22 +11,18 @@ const Container = styled.div`
 
 export default function ({ summary }) {
 
-    return <Container>
-        <Row className={'height25'}>
-            <LeftText>출석</LeftText>
-            <RightText>{summary.attendance}</RightText>
+    return <Container style={{ borderRadius: 7, border: '1px solid white' }}>
+        <Row style={{ borderBottom: '1px solid white' }}>
+            <Attendance>출석</Attendance>
+            <NormalAbsence style={{ borderRight: '1px solid white', borderLeft: '1px solid white' }}>결석</NormalAbsence>
+            <Late style={{ borderRight: '1px solid white' }}>지각</Late>
+            <ETC>기타</ETC>
         </Row>
-        <Row className={'height25'}>
-            <LeftText>일반결석</LeftText>
-            <RightText>{summary.normalAbsence}</RightText>
-        </Row>
-        <Row className={'height25'}>
-            <LeftText>지각</LeftText>
-            <RightText>{summary.late}</RightText>
-        </Row>
-        <Row className={'height25'}>
-            <LeftText>기타</LeftText>
-            <RightText>{summary.etcAbsence}</RightText>
+        <Row>
+            <Attendance>{summary.attendance}</Attendance>
+            <NormalAbsence style={{ borderRight: '1px solid white', borderLeft: '1px solid white' }}>{summary.normalAbsence}</NormalAbsence>
+            <Late style={{ borderRight: '1px solid white' }}>{summary.late}</Late>
+            <ETC>{summary.etcAbsence}</ETC>
         </Row>
     </Container>
 }

@@ -16,7 +16,6 @@ const Row = styled.div`
 `
 
 export default function ({ lectureDetail }) {
-    console.log('lectureDetail:', lectureDetail)
     return <Container>
         {lectureDetail.datas.map(data => {
             return <Row>
