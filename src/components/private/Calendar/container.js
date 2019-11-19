@@ -30,6 +30,8 @@ class CalendarContainer extends React.Component {
 
     componentDidMount() {
 
+
+
         document.querySelectorAll(".rbc-btn-group > button")[0].textContent = "오늘"
         document.querySelectorAll(".rbc-btn-group > button")[1].textContent = "이전"
         document.querySelectorAll(".rbc-btn-group > button")[2].textContent = "다음"
