@@ -122,7 +122,7 @@ font-size: 20px;
 color:black;
 `
 const NormalText = styled.div`
-font-family: 'irop';
+/* font-family: 'irop'; */
     letter-spacing: 1px;
     font-size: 13px;
     color:${props => props.red ? '#e74c3c' : '#2f3640'};
