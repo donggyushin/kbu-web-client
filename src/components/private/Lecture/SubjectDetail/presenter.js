@@ -74,7 +74,7 @@ export const Date = styled.div`
 width:20%;
 padding-left:7px;
 height:21px !important;
-flex-shrink:1 0 auto;
+flex: 1 0 auto;
 `
 
 export const Time = styled.div`
@@ -86,28 +86,28 @@ export const Attendance = styled.div`
     width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink:1 0 auto;
+flex: 1 0 auto;
 `
 
 export const NormalAbsence = styled.div`
 width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink:1 0 auto;
+flex: 1 0 auto;
 `
 
 export const Late = styled.div`
 width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink:1 0 auto;
+flex: 1 0 auto;
 `
 
 export const ETC = styled.div`
 width:20%;
 height:21px !important;
 text-align:center;
-flex-shrink:1 0 auto;
+flex: 1 0 auto;
 `
 
 const DataListContainer = styled.div`

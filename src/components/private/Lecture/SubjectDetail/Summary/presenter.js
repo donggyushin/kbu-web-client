@@ -6,8 +6,7 @@ const Container = styled.div`
     width:100%;
     display:flex;
     flex-direction:column;
-    flex-shrink:0;
-    height:21px !important;
+    
 `
 
 export default function ({ summary }) {
