@@ -73,9 +73,9 @@ export const RightText = styled.div`
 
 export const Date = styled.div`
 width:20%;
-padding-left:7px;
 height:21px !important;
 flex: 1 0 auto;
+text-align:center;
 `
 
 export const Time = styled.div`
@@ -122,17 +122,19 @@ const boxFade = keyframes`
 
 const DataListContainer = styled.div`
     width:90%;
-    border-radius:7px;
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
     border:1px solid white;
     height:300px;
     /* height:300px; */
-    margin-top:20px;
+    
     display:flex;
     flex-direction:column;
     align-items:center;
     overflow:scroll;
     justify-content: flex-start;
     animation: ${boxFade} 0.5s linear;
+    position: relative;
 `
 
 
@@ -188,10 +190,20 @@ export default function ({ showDataList, list, selectedLecture, lectureDetail, w
                 </SummaryContainer>
             </InfoContainer>
             {(!lectureDetail.loading && list === false) && <Button onClick={showDataList}>더불러오기</Button>}
-            {list && <DataListContainer>
+            {(() => {
+                if (list) {
+                    return <>
+                        <Header />
+                        <DataListContainer>
+                            <DataList lectureDetail={lectureDetail} />
+                        </DataListContainer>
+                    </>
+                }
+            })()}
+            {/* {list && <DataListContainer>
                 <Header />
                 <DataList lectureDetail={lectureDetail} />
-            </DataListContainer>}
+            </DataListContainer>} */}
 
         </Card>
     </Container>
