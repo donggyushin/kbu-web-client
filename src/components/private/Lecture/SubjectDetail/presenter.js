@@ -61,6 +61,7 @@ export const Row = styled.div`
     width:100%;
     flex-shrink:0;
     height:21px !important;
+    flex:1;
 `
 
 export const LeftText = styled.div`
