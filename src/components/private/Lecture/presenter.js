@@ -131,7 +131,9 @@ const VerticalLine = styled.div`
     z-index: 2;
 `
 
-export default function LecturePresenter({ wrapper, touch, closeDetailView, background, subject, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
+export default function LecturePresenter({
+    selectedLecture,
+    lectureDetail, wrapper, touch, closeDetailView, background, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
     if (error) {
         alert(error);
         window.location.href = '/'
@@ -218,7 +220,7 @@ export default function LecturePresenter({ wrapper, touch, closeDetailView, back
                     })}
                 </Body>}
             </Schedule>
-            {detail && <SubjectDetail wrapper={wrapper} closeDetailView={closeDetailView} background={background} subject={subject} />}
+            {detail && <SubjectDetail selectedLecture={selectedLecture} lectureDetail={lectureDetail} wrapper={wrapper} closeDetailView={closeDetailView} background={background} />}
         </Container>
     }
 }

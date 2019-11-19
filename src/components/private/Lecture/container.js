@@ -2,6 +2,7 @@ import React from 'react';
 import LecturePresenter from './presenter';
 import { connect } from 'react-redux'
 import { touchable, untouchable } from 'actions/touchableAction'
+import { getchOneLectureDetail, selectLecture } from 'actions/lectureAction'
 
 class LectureContainer extends React.Component {
 
@@ -14,7 +15,6 @@ class LectureContainer extends React.Component {
 
     state = {
         detail: false,
-        subject: [],
         background: ""
     }
 
@@ -47,10 +47,10 @@ class LectureContainer extends React.Component {
     render() {
         // const { schedule, loading } = this.state;
         const { schedule, loading, error } = this.props.lecture;
-        const { colorMatches, firstClassTime, lastClassTime, touch } = this.props;
-        const { detail, subject, background } = this.state;
+        const { colorMatches, firstClassTime, lastClassTime, touch, lectureDetail, selectedLecture } = this.props;
+        const { detail, background } = this.state;
         const { subjectClicked, closeDetailView } = this;
-        return <LecturePresenter wrapper={this.setWrapperRef} touch={touch} closeDetailView={closeDetailView} background={background} subject={subject} subjectClicked={subjectClicked} detail={detail} lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
+        return <LecturePresenter wrapper={this.setWrapperRef} selectedLecture={selectedLecture} lectureDetail={lectureDetail} touch={touch} closeDetailView={closeDetailView} background={background} subjectClicked={subjectClicked} detail={detail} lastClassTime={lastClassTime} firstClassTime={firstClassTime} colorMatches={colorMatches} error={error} loading={loading} schedule={schedule} />
     }
 
     closeDetailView = () => {
@@ -70,9 +70,15 @@ class LectureContainer extends React.Component {
         this.props.untouchable()
         this.setState({
             detail: true,
-            subject,
             background
         })
+        const lectureName = subject[0]
+        const location = subject[1]
+        const start = subject[2]
+        const end = subject[3]
+        const code = subject[4]
+        this.props.getchOneLectureDetail(lectureName)
+        this.props.selectLecture(lectureName, location, start, end, code)
     }
 }
 
@@ -80,11 +86,15 @@ const mapStateToProps = (state) => {
     return {
         firstClassTime: state.lecture.firstClassTime,
         lastClassTime: state.lecture.lastClassTime,
-        touch: state.touchable.touchable
+        touch: state.touchable.touchable,
+        lectureDetail: state.lecture.detail,
+        selectedLecture: state.lecture.selectedLecture
     }
 }
 
 export default connect(mapStateToProps, {
     touchable,
-    untouchable
+    untouchable,
+    getchOneLectureDetail,
+    selectLecture
 })(LectureContainer)

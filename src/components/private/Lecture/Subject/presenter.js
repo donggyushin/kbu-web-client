@@ -52,7 +52,7 @@ const BackgroundColor = styled.div`
 
 export default function SubjectPresenter({ touch, subject, colorMatches, subjectClicked }) {
     return <Box onClick={() => {
-        console.log('touch: ', touch)
+
         if (touch) {
             subjectClicked(subject, colorMatches[subject[0]])
         }

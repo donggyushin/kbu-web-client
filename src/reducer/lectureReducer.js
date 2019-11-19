@@ -1,4 +1,4 @@
-import { FETCH_LECTURE } from "actions/type";
+import { FETCH_LECTURE, FETCH_ONE_LECTURE_DATA, SELECT_LECTURE, LECTURE_LOADING } from "actions/type";
 
 const initialState = {
     schedule: [],
@@ -9,7 +9,25 @@ const initialState = {
     colorMatches: {},
     arrayFirstSchedule: [],
     firstClassTime: 0,
-    lastClassTime: 0
+    lastClassTime: 0,
+    detail: {
+        summary: {
+            etcAbsence: "",
+            normalAbsence: "",
+            late: "",
+            attendance: ""
+        },
+        datas: [],
+        head: [],
+        loading: true,
+        error: ""
+    },
+    selectedLecture: {
+        name: "",
+        location: "",
+        start: "",
+        end: ""
+    }
 }
 
 export default function (state = initialState, action) {
@@ -17,9 +35,50 @@ export default function (state = initialState, action) {
         case FETCH_LECTURE:
 
             return fetchLectureReducer(state, action)
-
+        case FETCH_ONE_LECTURE_DATA:
+            return fetchOneLectureDetailReducer(state, action)
+        case SELECT_LECTURE:
+            return selectLectureReducer(state, action)
+        case LECTURE_LOADING:
+            return {
+                ...state,
+                detail: {
+                    ...state.detail,
+                    loading: true
+                }
+            }
         default:
             return state;
+    }
+}
+
+function selectLectureReducer(state, action) {
+    const { name, location, start, end } = action;
+    return {
+        ...state,
+        selectedLecture: {
+            name,
+            location,
+            start,
+            end
+        }
+    }
+}
+
+function fetchOneLectureDetailReducer(state, action) {
+    return {
+        ...state,
+        detail: {
+            summary: {
+                etcAbsence: action.etcAbsence,
+                normalAbsence: action.normalAbsence,
+                late: action.late,
+                attendance: action.attendance
+            },
+            datas: action.datas,
+            error: action.error,
+            head: action.head
+        }
     }
 }
 

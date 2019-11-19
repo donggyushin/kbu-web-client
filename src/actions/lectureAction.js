@@ -1,7 +1,8 @@
 import { decodeJsonWebToken } from "utils/jsonwebtoken"
 import axios from 'axios'
 import REST_API_ENDPOINT from "constants/endpoint";
-import { FETCH_LECTURE } from "./type";
+import { FETCH_LECTURE, FETCH_ONE_LECTURE_DATA, SELECT_LECTURE, LECTURE_LOADING } from "./type";
+
 
 let i = 0;
 const colorSamples = ['#2980b9', '#ff9ff3', '#00b894', '#d35400', '#0984e3', '#F7B32B', '#B33771', '#e66767', '#9c88ff', '#c23616', '#ffbe76', '#ff7979', '#badc58', '#54a0ff', '#6a89cc', '#fad390', '#f8c291', '#FFC6ED', '#81ecec', '#f6e58d']
@@ -41,6 +42,62 @@ function getSmallestNumber(array) {
     return minimum
 }
 
+export const selectLecture = (name, location, start, end) => (dispatch, getState) => {
+    dispatch({
+        type: SELECT_LECTURE,
+        name,
+        location,
+        start,
+        end
+    })
+}
+
+export const getchOneLectureDetail = (lectureName) => (dispatch, getState) => {
+    const { lecture } = getState()
+    const selectedLecture = lecture.selectedLecture
+
+    if (lectureName === selectedLecture.name) {
+
+    } else {
+        dispatch({
+            type: LECTURE_LOADING
+        })
+        axios.post(REST_API_ENDPOINT + `lecture/${lectureName}`, {
+            token: window.localStorage.getItem("token")
+        })
+            .then(res => res.data)
+            .then(data => {
+
+                if (data.is_ok) {
+                    dispatch({
+                        type: FETCH_ONE_LECTURE_DATA,
+                        etcAbsence: data.result.summary.기타,
+                        normalAbsence: data.result.summary.일반결석,
+                        late: data.result.summary.지각,
+                        attendance: data.result.summary.출석,
+                        datas: data.result.table_body,
+                        head: data.result.table_head,
+                        error: ""
+                    })
+
+                } else {
+                    dispatch({
+                        type: FETCH_ONE_LECTURE_DATA,
+                        etcAbsence: null,
+                        normalAbsence: null,
+                        late: null,
+                        attendance: null,
+                        datas: null,
+                        head: null,
+                        error: "LMS 로부터 데이터를 가져오는데 실패하였습니다 ㅠㅠ",
+                    })
+                }
+            })
+            .catch(err => console.error(err))
+    }
+
+
+}
 
 export const fetchLecture = () => (dispatch, getState) => {
     let arrayFirstSchedule = []
