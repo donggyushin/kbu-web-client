@@ -119,6 +119,7 @@ const DataListContainer = styled.div`
     flex-direction:column;
     align-items:center;
     overflow:scroll;
+    justify-content: flex-start;
 `
 
 const SummaryContainer = styled.div`
