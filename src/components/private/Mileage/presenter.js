@@ -23,7 +23,7 @@ const Card = styled.div`
     width:90%;
     border-radius:20px;
     border:1px solid gainsboro;
-    height:138px !important;
+    
     padding-top:10px;
     padding-bottom:10px;
     padding-left:20px;
@@ -67,8 +67,6 @@ export default function MileagePresenter({ rows, loading }) {
     return <Container>
         <Card>
             <MyMileage>내마일리지</MyMileage>
-            <Mileage>915 P</Mileage>
-            <Mileage>915 P</Mileage>
             <Mileage>915 P</Mileage>
         </Card>
         <Usage style={{
