@@ -12,7 +12,7 @@ import NormalLoading from 'components/global/normalLoading';
 
 const Container = styled.div`
     width:100%;
-    height: 100vh;
+    height: 120vh;
     display:flex;
     padding-top:85px;
     flex-direction:column;

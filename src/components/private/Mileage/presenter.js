@@ -9,7 +9,7 @@ const Red = '#e74c3c'
 
 const Container = styled.div`
     width:100%;
-    height:130%;
+    height:120%;
     background:white;
     position:absolute;
     top:0;
