@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const Container = styled.div`
     position:fixed;
-    top:60;
+    top:0;
     left:0;
     width:100%;
     height:100vh;
@@ -43,7 +43,7 @@ const CardContainer = styled.div`
     align-items:center;
     justify-content:center;
     position: relative;
-
+    top:20px;
 `
 
 const WatermarkBottom = styled.img`
@@ -171,7 +171,7 @@ const XButton = styled.div`
     display: flex;
     justify-content: center;
     align-items:center;
-    margin-top:20px;
+    margin-top:30px;
 `
 
 const XIcon = styled.i`
