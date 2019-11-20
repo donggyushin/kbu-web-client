@@ -26,6 +26,7 @@ const Date = styled.div`
 const Row = styled.div`
     display:flex;
     margin-bottom:11px;
+    border-bottom:1px solid gainsboro;
 `
 
 const LeftText = styled.div`
@@ -48,11 +49,15 @@ const Image = styled.img`
 `
 
 const Left = styled.div`
-    width:60%;
+    width:65%;
 `
 
 const Right = styled.div`
     width:30%;
+`
+
+const Except = styled.div`
+    color:#2ecc71;
 `
 
 export default function ({
@@ -63,8 +68,8 @@ export default function ({
     late,
     year,
     month,
-    time
-
+    time,
+    sure
 }) {
     return <Container>
         <Left>
@@ -75,7 +80,29 @@ export default function ({
             </Row>
             <Row>
                 <LeftText>출석</LeftText>
-                <RightText>{late ? <RedText>지각</RedText> : '출석 인정'}</RightText>
+                <RightText>{(() => {
+                    if (late === '출석') {
+                        return '출석'
+                    } else if (late === '지각') {
+                        return <RedText>지각</RedText>
+                    } else {
+                        return <RedText>결석</RedText>
+                    }
+                })()}</RightText>
+            </Row>
+            <Row>
+                <LeftText>확정</LeftText>
+                <RightText>{(() => {
+                    if (sure === '출석') {
+                        return '출석'
+                    } else if (sure === '지각') {
+                        return <RedText>지각</RedText>
+                    } else if (sure === '결석') {
+                        return <RedText>결석</RedText>
+                    } else {
+                        return <Except>예외</Except>
+                    }
+                })()}</RightText>
             </Row>
             <Row>
                 <LeftText>비고</LeftText>
@@ -84,7 +111,7 @@ export default function ({
         </Left>
         <Right>
             <ImageContainer>
-                <Image src={late ? require('./bad.png') : require('./good.png')} />
+                <Image src={late === '출석' ? require('./good.png') : require('./bad.png')} />
             </ImageContainer>
         </Right>
     </Container>

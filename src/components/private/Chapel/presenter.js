@@ -112,7 +112,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             const time = chapel[3];
                             const hour = time.substr(0, 2);
                             const minute = time.substr(3, 2);
-                            console.log('time: ', time)
+
 
 
                             const countNumber = chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i;
@@ -122,10 +122,14 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             const month = chapel[1]
                             const day = chapel[2]
                             // 출석 지각 여부
-                            const late = chapel[7] !== '출석'
+                            const late = chapel[6]
+                            const sure = chapel[7]
                             const comment = chapel[8]
 
-                            return <ExpandedCell time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
+                            console.log('chapel: ', chapel)
+
+
+                            return <ExpandedCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
 
                         })}
 

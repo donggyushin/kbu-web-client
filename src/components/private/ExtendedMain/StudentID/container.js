@@ -37,12 +37,12 @@ class StudentIDContainer extends React.Component {
         document.body.style.overflow = 'hidden';
         document.addEventListener('touchend', this.handleClickOutside);
         document.addEventListener('mousedown', this.handleClickOutside);
-        console.log('1')
-        anime({
-            targets: '.studentidcard',
-            translateY: -700
-        })
-        console.log('2')
+        // console.log('1')
+        // anime({
+        //     targets: '.studentidcard',
+        //     translateY: -600
+        // })
+        // console.log('2')
 
     }
 
@@ -50,10 +50,10 @@ class StudentIDContainer extends React.Component {
         document.body.style.overflow = 'unset';
         document.removeEventListener('touchend', this.handleClickOutside);
         document.removeEventListener('mousedown', this.handleClickOutside);
-        anime({
-            targets: '.studentidcard',
-            translateY: 700
-        })
+        // anime({
+        //     targets: '.studentidcard',
+        //     translateY: 600
+        // })
     }
 
     render() {

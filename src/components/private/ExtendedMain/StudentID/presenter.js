@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const Container = styled.div`
     position:fixed;
-    top:0;
+    top:60;
     left:0;
     width:100%;
     height:100vh;
@@ -29,7 +29,8 @@ const Container = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
-    padding-top:25px;
+    z-index:3;
+    padding-top:3px;
     /* overflow:scroll; */
 `
 
@@ -208,7 +209,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
         <CardContainer
             ref={setWrapperRef}
             style={{
-                top: 700
+                // top: 772
             }} className={'studentidcard'}>
             <WaterMarkContainer>
                 <WaterMark src={require('assets/biblelogo-removebg-preview.png')} />
@@ -259,7 +260,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
             <WatermarkBottom src={require('assets/watermark.png')} />
         </CardContainer>
         <XButton style={{
-            top: 700,
+            // top: 700,
             position: 'relative'
         }} className={'studentidcard'} onClick={TurnOffStudentIDCard}><XIcon className={'fas fa-times'} /></XButton>
     </Container>
