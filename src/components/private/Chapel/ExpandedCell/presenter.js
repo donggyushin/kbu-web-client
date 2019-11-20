@@ -47,6 +47,8 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
     width:100%;
+    position: relative;
+    top: 28px;
 `
 
 const Left = styled.div`
