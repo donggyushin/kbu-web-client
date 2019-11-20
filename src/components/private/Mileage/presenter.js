@@ -23,6 +23,7 @@ const Card = styled.div`
     width:90%;
     border-radius:20px;
     border:1px solid gainsboro;
+    height:138px;
     padding-top:10px;
     padding-bottom:10px;
     padding-left:20px;
