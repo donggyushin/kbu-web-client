@@ -99,6 +99,7 @@ const DateAndWriterContainer = styled.div`
 
 const Num = styled.div`
     width:100%;
+    color: rgba(0,0,0,0.7);
 `
 
 
