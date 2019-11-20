@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display:flex;
-    flex-direction:column;
+    
     background:white;
     margin-bottom:20px;
     padding:10px;
@@ -35,6 +35,26 @@ const LeftText = styled.div`
 
 const RightText = styled.div``
 
+const ImageContainer = styled.div`
+    display:flex;
+    width:100%;
+    height:100%;
+    align-items:center;
+    justify-content:center;
+`
+
+const Image = styled.img`
+    width:100%;
+`
+
+const Left = styled.div`
+    width:60%;
+`
+
+const Right = styled.div`
+    width:30%;
+`
+
 export default function ({
     comment,
     countNumber,
@@ -47,18 +67,25 @@ export default function ({
 
 }) {
     return <Container>
-        <Date>{year.substr(2)}/{month}/{day} ({date})</Date>
-        <Row>
-            <LeftText>시각</LeftText>
-            <RightText>{time}</RightText>
-        </Row>
-        <Row>
-            <LeftText>출석</LeftText>
-            <RightText>{late ? <RedText>지각</RedText> : '출석 인정'}</RightText>
-        </Row>
-        <Row>
-            <LeftText>비고</LeftText>
-            <RightText>{comment}</RightText>
-        </Row>
+        <Left>
+            <Date>{year.substr(2)}/{month}/{day} ({date})</Date>
+            <Row>
+                <LeftText>시각</LeftText>
+                <RightText>{time}</RightText>
+            </Row>
+            <Row>
+                <LeftText>출석</LeftText>
+                <RightText>{late ? <RedText>지각</RedText> : '출석 인정'}</RightText>
+            </Row>
+            <Row>
+                <LeftText>비고</LeftText>
+                <RightText>{comment}</RightText>
+            </Row>
+        </Left>
+        <Right>
+            <ImageContainer>
+                <Image src={late ? require('./bad.png') : require('./good.png')} />
+            </ImageContainer>
+        </Right>
     </Container>
 }

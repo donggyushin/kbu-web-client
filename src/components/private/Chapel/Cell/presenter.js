@@ -9,6 +9,7 @@ const Container = styled.div`
     padding-bottom:5px;
     font-size:16px;
     height:50px;
+    
 `
 
 const Count = styled.div`
@@ -41,6 +42,7 @@ const RedText = styled.div`
     color:#eb4d4b;
 `
 
+
 export default function ({
     comment,
     countNumber,
@@ -58,5 +60,6 @@ export default function ({
             <Remark>{comment}</Remark>
         </DateAndRemarkContainer>
         <Late>{late ? <RedText>지각</RedText> : '출석'}</Late>
+
     </Container>
 }
