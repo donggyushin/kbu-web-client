@@ -68,6 +68,8 @@ export default function MileagePresenter({ rows, loading }) {
         <Card>
             <MyMileage>내마일리지</MyMileage>
             <Mileage>915 P</Mileage>
+            <Mileage>915 P</Mileage>
+            <Mileage>915 P</Mileage>
         </Card>
         <Usage style={{
             fontWeight: 600
