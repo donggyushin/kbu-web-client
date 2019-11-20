@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
 import OneCell from './Cell';
+import ExpandedCell from './ExpandedCell';
 
 
 const Container = styled.div`
@@ -37,36 +38,6 @@ const Row = styled.div`
     top:50px;
 `
 
-const ButtonContainer = styled.div`
-    display:flex;
-    opacity:0;
-`
-
-const Button = styled.div`
-    display:flex;
-    align-items:center;
-    margin-right:10px;
-`
-
-const WhiteCardButton = styled.div`
-    width:30px;
-    height:20px;
-    border-radius:4px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    margin-right:5px;
-`
-const YellowCardButton = styled.div`
-    width:30px;
-    height:20px;
-    border-radius:4px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    margin-right:5px;
-    background: #bdc3c7;
-`
-const ButtonText = styled.div`
-    color:black;
-`
-
 const SmallText = styled.div`
     /* font-family:'1997'; */
     font-size: 15px;
@@ -96,9 +67,8 @@ const Body = styled.div`
     width: 100%;
     padding-top: 10px;
     padding-bottom: 30px;
-    padding-left: 19px;
-    padding-right: 10px;
-    background: white;
+    align-items:center;
+    background: rgba(255,255,255,0.3);
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -142,15 +112,21 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                             const time = chapel[3];
                             const hour = time.substr(0, 2);
                             const minute = time.substr(3, 2);
+                            console.log('time: ', time)
+
 
                             const countNumber = chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i;
-                            const date = `${chapel[1]}월 ${chapel[2]}일 ${hour}시 ${minute}분`
-                            const day = chapel[4]
+
+                            const date = chapel[4]
+                            const year = chapel[0]
+                            const month = chapel[1]
+                            const day = chapel[2]
                             // 출석 지각 여부
                             const late = chapel[7] !== '출석'
                             const comment = chapel[8]
 
-                            return <OneCell comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
+                            return <ExpandedCell time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
+
                         })}
 
                     </Body>

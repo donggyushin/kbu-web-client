@@ -9,7 +9,7 @@ class MileageContainer extends React.Component {
 
     componentDidMount() {
         this.props.requestMileage()
-        window.document.getElementsByClassName("slick-arrow slick-next")[0].style.display = 'none'
+
     }
 
     render() {
