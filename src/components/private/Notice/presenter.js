@@ -18,33 +18,13 @@ const Paper = styled.div`
     margin-top:30px;
 `
 
-const Header = styled.div`
-    display:flex;
-    align-items:center;
-`
-
-const WriterLabel = styled.div`
-    width: 30%;
-    padding-left: 10px;
-    padding-top: 10px;
-    font-weight: 700;
-    font-family: 'irop';
-`
-
-const TitleLabel = styled.div`
-    font-weight: 700;
-    width: 70%;
-    padding-left: 10px;
-    padding-top: 10px;
-    font-family: 'irop';
-`
 
 const Row = styled.div`
     position:relative;
     display: flex;
     align-items: center;
-    /* margin-bottom: 10px; */
-    height: 89px !important;
+    
+    height: 170px !important;
     border-bottom: 1px solid gainsboro;
     padding-left: 10px;
     &:active {
@@ -57,7 +37,7 @@ const Writer = styled.div`
     /* width: 30%; */
     font-weight: 100;
     font-size: 12px;
-    padding-left: 10px;
+    
     display:flex;
     align-items:center;
     /* font-family: 'irop'; */
@@ -67,10 +47,10 @@ const Writer = styled.div`
 
 const TitleContainer = styled.div`
     display: flex;
-    
     width: 100%;
     padding-left: 5px;
     flex-direction: column;
+    align-items:center;
 `
 
 const Title = styled.div`
@@ -112,17 +92,14 @@ const DownArrowIcon = styled.i`
 `
 
 const DateAndWriterContainer = styled.div`
-    display:flex;
-    align-items: flex-end;
     width:100%;
-    justify-content: flex-end;
-    margin-top: 7px;
-    position:absolute;
-    bottom:10px;
-    right:0;
-    
+    display:flex;
+    margin-top:20px;
 `
 
+const Num = styled.div`
+    width:100%;
+`
 
 
 export default function NoticePresenter({ notices, loading,
@@ -138,20 +115,27 @@ export default function NoticePresenter({ notices, loading,
         return <Container id={'noticecontainer'}>
             {loading === false && <Paper>
 
-                {notices.map(notice => <Row>
-                    <a style={{
-                        color: '#2c3e50',
-                        width: '100%'
-                    }} href={notice[5]} target="_blank" >
-                        <TitleContainer >
-                            <Title>{notice[1]}</Title>
-                            <DateAndWriterContainer>
-                                <Writer>{notice[2]}</Writer>
-                                <Date>{notice[3]}</Date>
-                            </DateAndWriterContainer>
-                        </TitleContainer>
-                    </a>
-                </Row>)}
+                {notices.map(notice => {
+
+                    console.log('noticeL: ', notice)
+
+                    return <Row>
+
+                        <a style={{
+                            color: '#2c3e50',
+                            width: '100%'
+                        }} href={notice[5]} target="_blank" >
+                            <TitleContainer >
+                                <Num>{notice[0]}</Num>
+                                <Title>{notice[1]}</Title>
+                                <DateAndWriterContainer>
+                                    <Writer>{notice[2]}</Writer>
+                                    <Date>{notice[3]}</Date>
+                                </DateAndWriterContainer>
+                            </TitleContainer>
+                        </a>
+                    </Row>
+                })}
 
             </Paper>}
             {loading2 && <ReactLoading color={themeColor.theme} height={64} width={64} />}
