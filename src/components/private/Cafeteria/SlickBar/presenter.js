@@ -31,17 +31,21 @@ const Icon = styled.i``
 export default function ({
     year,
     month,
-    day
+    day,
+    name,
+    previousButtonClicked,
+    nextButtonClicked
 }) {
+
     return <Container>
         <Left>
-            <Icon className={'fas fa-chevron-left'} />
+            <Icon onClick={previousButtonClicked} className={'fas fa-chevron-left'} />
         </Left>
         <Center>
-            {month}월 {day}일 (수)
+            {month}월 {day}일 ({name.substr(0, 1)})
         </Center>
         <Right>
-            <Icon className={'fas fa-chevron-right'} />
+            <Icon onClick={nextButtonClicked} className={'fas fa-chevron-right'} />
         </Right>
     </Container>
 }

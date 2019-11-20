@@ -53,10 +53,19 @@ export default function ({ fix }) {
         </RowOne>
         <RedLine />
         <RowTwo>
-            <Row>{fix[0].food1}</Row>
-            <Row>{fix[0].food2}</Row>
-            <Row>{fix[0].food3}</Row>
-            <Row>{fix[0].food4}</Row>
+            {(() => {
+                if (fix[0]) {
+                    return <>
+                        <Row>{fix[0].food1}</Row>
+                        <Row>{fix[0].food2}</Row>
+                        <Row>{fix[0].food3}</Row>
+                        <Row>{fix[0].food4}</Row>
+                    </>
+                } else {
+                    return <Row>금일은 학식이 없습니다. </Row>
+                }
+            })()}
+
         </RowTwo>
     </Container>
 }

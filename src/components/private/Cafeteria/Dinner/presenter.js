@@ -52,12 +52,21 @@ export default function ({ dinner }) {
         </RowOne>
         <RedLine />
         <RowTwo>
-            <Row>{dinner[0].food1}</Row>
-            <Row>{dinner[0].food2}</Row>
-            <Row>{dinner[0].food3}</Row>
-            <Row>{dinner[0].food4}</Row>
-            <Row>{dinner[0].food5}</Row>
-            <Row>{dinner[0].food6}</Row>
+            {(() => {
+                if (dinner[0]) {
+                    return <>
+                        <Row>{dinner[0].food1}</Row>
+                        <Row>{dinner[0].food2}</Row>
+                        <Row>{dinner[0].food3}</Row>
+                        <Row>{dinner[0].food4}</Row>
+                        <Row>{dinner[0].food5}</Row>
+                        <Row>{dinner[0].food6}</Row>
+                    </>
+                } else {
+                    return <Row>금일은 학식이 없습니다. </Row>
+                }
+            })()}
+
         </RowTwo>
     </Container>
 }

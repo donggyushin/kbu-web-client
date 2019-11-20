@@ -2,6 +2,7 @@ import React from 'react';
 import CafeteriaPresenter from './presenter';
 import { fetchCafeteria } from 'actions/cafeteriaAction'
 import { connect } from 'react-redux'
+import InfoModal from 'components/global/Modal';
 
 
 
@@ -28,9 +29,9 @@ class CafeteriaContainer extends React.Component {
 
     render() {
         const { dinner, lunch, fix, daily, loading,
-            error } = this.props;
-        const { mode, year, month, day } = this.state;
-        const { moonClicked, sunClicked } = this;
+            error, year, month, day, name } = this.props;
+        const { mode } = this.state;
+        const { moonClicked, sunClicked, previousButtonClicked, nextButtonClicked } = this;
         return <CafeteriaPresenter
             dinner={dinner}
             lunch={lunch}
@@ -44,7 +45,48 @@ class CafeteriaContainer extends React.Component {
             year={year}
             month={month}
             day={day}
+            name={name}
+            previousButtonClicked={previousButtonClicked}
+            nextButtonClicked={nextButtonClicked}
         />
+    }
+
+    previousButtonClicked = () => {
+        const { year, month, day } = this.state;
+        let numDay = parseInt(day)
+        numDay = numDay - 1
+        if (this.props.name === '월요일') {
+            numDay = numDay - 2
+        }
+        console.log('year: ', year)
+        console.log('month: ', month)
+        console.log('day: ', day)
+        if (numDay > 0) {
+            this.setState({
+                day: numDay
+            })
+            this.props.fetchCafeteria(year.toString() + month.toString() + numDay.toString())
+        } else {
+            InfoModal('경고', '이번 달 내역까지만 불러오기 가능합니다. ')
+        }
+
+    }
+
+    nextButtonClicked = () => {
+        const { year, month, day } = this.state;
+        let numDay = parseInt(day)
+        numDay = numDay + 1
+        if (this.props.name === '금요일') {
+            numDay = numDay + 2
+        }
+        if (numDay > 30) {
+            InfoModal('경고', '이번 달 내역까지만 불러오기 가능합니다. ')
+        } else {
+            this.setState({
+                day: numDay
+            })
+            this.props.fetchCafeteria(year.toString() + month.toString() + numDay.toString())
+        }
     }
 
     moonClicked = () => {
@@ -101,7 +143,11 @@ const mapStateToProps = state => {
         daily: state.cafeteria.daily,
         dinner: state.cafeteria.dinner,
         loading: state.cafeteria.loading,
-        error: state.cafeteria.error
+        error: state.cafeteria.error,
+        year: state.cafeteria.year,
+        month: state.cafeteria.month,
+        day: state.cafeteria.day,
+        name: state.cafeteria.name
     }
 }
 

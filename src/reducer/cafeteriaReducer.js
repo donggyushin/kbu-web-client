@@ -1,4 +1,4 @@
-import { FETCH_CAFETERIA } from "actions/type";
+import { FETCH_CAFETERIA, CAFETERIA_LOADING } from "actions/type";
 
 const initialState = {
     lunch: [],
@@ -6,20 +6,33 @@ const initialState = {
     dinner: [],
     daily: [],
     error: "",
-    loading: true
+    loading: true,
+    year: "",
+    month: "",
+    day: "",
+    name: ""
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_CAFETERIA:
             return fetchCafeteriaReducer(state, action)
+        case CAFETERIA_LOADING:
+            return loading(state, action)
         default:
             return state;
     }
 }
 
-function fetchCafeteriaReducer(state, action) {
+function loading(state, action) {
+    return {
+        ...state,
+        loading: true
+    }
+}
 
+function fetchCafeteriaReducer(state, action) {
+    const { year, month, day, name } = action;
     return {
         ...state,
         daily: action.daily,
@@ -27,6 +40,10 @@ function fetchCafeteriaReducer(state, action) {
         fix: action.fix,
         lunch: action.lunch,
         error: action.error,
-        loading: false
+        loading: false,
+        year,
+        month,
+        day,
+        name
     }
 }

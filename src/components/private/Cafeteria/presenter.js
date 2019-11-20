@@ -35,13 +35,19 @@ export default function CafeteriaPresenter({
     sunClicked,
     year,
     month,
-    day
+    day,
+    name,
+    previousButtonClicked,
+    nextButtonClicked
 }) {
     return <Container>
         <SlickBar
             year={year}
             month={month}
             day={day}
+            name={name}
+            previousButtonClicked={previousButtonClicked}
+            nextButtonClicked={nextButtonClicked}
         />
         <SunAndMoon
             moonClicked={moonClicked}
