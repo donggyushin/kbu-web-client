@@ -45,7 +45,9 @@ export default function CafeteriaPresenter({
     name,
     previousButtonClicked,
     nextButtonClicked,
-    onSwipe
+    onSwipe,
+    iconClicked,
+
 }) {
     return <Container>
         <SlickBar
@@ -59,6 +61,7 @@ export default function CafeteriaPresenter({
         <SunAndMoon
             moonClicked={moonClicked}
             sunClicked={sunClicked}
+            iconClicked={iconClicked}
             mode={mode} />
         {(() => {
             if (loading) {
@@ -76,12 +79,8 @@ export default function CafeteriaPresenter({
                 return <>
                     <SlideContainer>
                         <Slider onSwipe={onSwipe} {...settings}>
-
                             <LunchBox lunch={lunch} />
-
-
                             <Dinner dinner={dinner} />
-
                         </Slider>
                     </SlideContainer>
                     <Fix fix={fix} />

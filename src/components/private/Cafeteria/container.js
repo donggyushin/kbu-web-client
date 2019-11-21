@@ -6,6 +6,37 @@ import InfoModal from 'components/global/Modal';
 
 
 
+import styled from 'styled-components';
+import Daily from './Daily'
+import SlickBar from './SlickBar';
+import SunAndMoon from './SunAndMoon';
+import LunchBox from './Lunch';
+import Fix from './Fix';
+import Dinner from './Dinner';
+import SmallLoading from 'components/global/SmallLoading';
+import Slider from 'react-slick'
+
+
+
+const Container = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    height:100vh;
+    width:100%;
+`
+
+const LoadingContainer = styled.div`
+    margin-top:50px;
+`
+
+const SlideContainer = styled.div`
+    width:100%;
+    text-align:center;
+`
+
+
 class CafeteriaContainer extends React.Component {
 
     state = {
@@ -33,25 +64,68 @@ class CafeteriaContainer extends React.Component {
         const { mode } = this.state;
         const { moonClicked,
             onSwipe,
-            sunClicked, previousButtonClicked, nextButtonClicked } = this;
-        return <CafeteriaPresenter
-            dinner={dinner}
-            lunch={lunch}
-            fix={fix}
-            daily={daily}
-            loading={loading}
-            error={error}
-            mode={mode}
-            moonClicked={moonClicked}
-            sunClicked={sunClicked}
-            year={year}
-            month={month}
-            day={day}
-            name={name}
-            previousButtonClicked={previousButtonClicked}
-            nextButtonClicked={nextButtonClicked}
-            onSwipe={onSwipe}
-        />
+            sunClicked, previousButtonClicked, nextButtonClicked, iconClicked } = this;
+        // return <CafeteriaPresenter
+        //     dinner={dinner}
+        //     lunch={lunch}
+        //     fix={fix}
+        //     daily={daily}
+        //     loading={loading}
+        //     error={error}
+        //     mode={mode}
+        //     moonClicked={moonClicked}
+        //     sunClicked={sunClicked}
+        //     year={year}
+        //     month={month}
+        //     day={day}
+        //     name={name}
+        //     previousButtonClicked={previousButtonClicked}
+        //     nextButtonClicked={nextButtonClicked}
+        //     onSwipe={onSwipe}
+        //     iconClicked={iconClicked}
+
+        // />
+        return <Container>
+            <SlickBar
+                year={year}
+                month={month}
+                day={day}
+                name={name}
+                previousButtonClicked={previousButtonClicked}
+                nextButtonClicked={nextButtonClicked}
+            />
+            <SunAndMoon
+                moonClicked={moonClicked}
+                sunClicked={sunClicked}
+                iconClicked={iconClicked}
+                mode={mode} />
+            {(() => {
+                if (loading) {
+                    return <LoadingContainer>
+                        <SmallLoading />
+                    </LoadingContainer>
+                } else {
+                    const settings = {
+                        dots: false,
+                        infinite: true,
+                        speed: 500,
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                    return <>
+                        <SlideContainer>
+                            <Slider ref={c => (this.slider = c)} onSwipe={onSwipe} {...settings}>
+                                <LunchBox lunch={lunch} />
+                                <Dinner dinner={dinner} />
+                            </Slider>
+                        </SlideContainer>
+                        <Fix fix={fix} />
+                        <Daily daily={daily} />
+                    </>
+                }
+            })()}
+
+        </Container>
     }
 
     onSwipe = () => {
@@ -74,9 +148,6 @@ class CafeteriaContainer extends React.Component {
         if (this.props.name === '월요일') {
             numDay = numDay - 2
         }
-        console.log('year: ', year)
-        console.log('month: ', month)
-        console.log('day: ', day)
         if (numDay > 0) {
             this.setState({
                 day: numDay
@@ -103,6 +174,23 @@ class CafeteriaContainer extends React.Component {
                 day: numDay
             })
             this.props.fetchCafeteria(year.toString() + month.toString() + numDay.toString())
+        }
+    }
+
+    iconClicked = () => {
+
+
+
+        if (this.state.mode === 'lunch') {
+            this.slider.slickNext()
+            this.setState({
+                mode: 'dinner'
+            })
+        } else {
+            this.slider.slickPrev()
+            this.setState({
+                mode: 'lunch'
+            })
         }
     }
 

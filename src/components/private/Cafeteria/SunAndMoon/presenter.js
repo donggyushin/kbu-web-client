@@ -22,10 +22,11 @@ color:${props => props.mode === 'dinner' && '#3498db'};
 
 export default function ({ mode,
     moonClicked,
-    sunClicked
+    sunClicked,
+    iconClicked
 }) {
     return <Container>
-        <Sun mode={mode} className={'fas fa-sun'} />
-        <Moon mode={mode} className={'fas fa-moon'} />
+        <Sun mode={mode} onClick={iconClicked} className={'fas fa-sun'} />
+        <Moon mode={mode} onClick={iconClicked} className={'fas fa-moon'} />
     </Container>
 }
