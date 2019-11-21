@@ -23,7 +23,6 @@ const Card = styled.div`
     width:90%;
     border-radius:20px;
     border:1px solid gainsboro;
-    
     padding-top:10px;
     padding-bottom:10px;
     padding-left:20px;
@@ -43,7 +42,7 @@ const Mileage = styled.div`
     color:${Red};
     font-weight:900;
     font-size:25px;
-    margin-top:28px;
+    margin-top:7px;
     margin-bottom:30px;
 `
 

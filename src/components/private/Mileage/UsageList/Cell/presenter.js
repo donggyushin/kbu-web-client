@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { LeftText } from 'components/private/Lecture/SubjectDetail/presenter'
+import getDayLabel from 'utils/getInputDayLabel'
 
 const Container = styled.div`
     padding-left: 15px;
@@ -37,7 +37,13 @@ const RedText = styled.div`
     color:#e74c3c;
 `
 
+const DayLabel = styled.div`
+    margin-left:7px;
+    font-weight:600;
+`
+
 export default function (cell) {
+    console.log('cell: ', cell)
     if (around(cell.cell.CST_USE_POINT) === 0) {
         return <div />
     } else {
@@ -55,6 +61,9 @@ export default function (cell) {
                     fontWeight: 200
                 }}>
                     {cell.cell.SALE_DATE}
+                    <DayLabel>
+                        ({getDayLabel(cell.cell.SALE_DATE.substr(0, 4), cell.cell.SALE_DATE.substr(4, 2), cell.cell.SALE_DATE.substr(6, 2))})
+                    </DayLabel>
                 </Row>
             </Left>
             <Right>

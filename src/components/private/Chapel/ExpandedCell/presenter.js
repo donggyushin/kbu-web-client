@@ -47,6 +47,7 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
     width:100%;
+    max-width: 120px;
     position: relative;
     top: 28px;
 `
@@ -112,7 +113,7 @@ export default function ({
                 <RightText>{comment}</RightText>
             </Row>
         </Left>
-        <Right>
+        <Right >
             <ImageContainer>
                 <Image src={late === '출석' ? require('./good.png') : require('./bad.png')} />
             </ImageContainer>

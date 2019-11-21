@@ -30,12 +30,13 @@ const Row = styled.div`
     background:white;
     justify-content:space-around;
     width:100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     opacity:1;
     position:absolute;
     top:50px;
+    z-index:3;
 `
 
 const SmallText = styled.div`

@@ -13,8 +13,10 @@ const Container = styled.div`
 
 
 export default function ({ rows }) {
+
     return <Container>
         {rows.map(cell => {
+
             return <Cell cell={cell} />
         })}
     </Container>
