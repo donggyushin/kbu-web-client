@@ -11,6 +11,7 @@ const Container = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
+    background:white;
 `
 
 const Paper = styled.div`
@@ -55,11 +56,12 @@ const InfoTextContainer = styled.div`
 
 const BodyContainer = styled.div`
     width:100%;
-    padding-top:20px;
+    padding-top:42px;
     padding-bottom:20px;
     display:flex;
     flex-direction:column;
     align-items:center;
+    background: rgba(255,255,255,0.1);
 `
 
 const Body = styled.div`
@@ -69,7 +71,7 @@ const Body = styled.div`
     padding-top: 10px;
     padding-bottom: 30px;
     align-items:center;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -107,7 +109,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
                         <SmallText>남은 일수:{summary.duty - summary.sure}</SmallText>
                     </InfoTextContainer>
                 </Row>
-                <BodyContainer style={{ marginTop: 50 }}>
+                <BodyContainer >
                     <Body>
                         {chapels.map((chapel, i) => {
                             const time = chapel[3];

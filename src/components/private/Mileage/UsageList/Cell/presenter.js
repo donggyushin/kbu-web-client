@@ -40,6 +40,7 @@ const RedText = styled.div`
 const DayLabel = styled.div`
     margin-left:7px;
     font-weight:600;
+    color:rgba(0,0,0,0.4);
 `
 
 export default function (cell) {
