@@ -146,11 +146,18 @@ class DrawerComponent extends React.Component {
                     <MenuItem onClick={refresh}>새로고침</MenuItem>
                     {isLoggedIn ? <MenuItem style={{
                         color: '#e74c3c'
-                    }} onClick={logout}>로그아웃</MenuItem> : <Link onClick={this.onClose} to={'/login'}>
-                            <MenuItem style={{
-                                color: '#2ecc71'
-                            }}>로그인</MenuItem>
-                        </Link>}
+                    }} onClick={logout}>로그아웃</MenuItem> : <>
+                            <Link onClick={this.onClose} to={'/login'}>
+                                <MenuItem style={{
+                                    color: '#2ecc71'
+                                }}>로그인</MenuItem>
+                            </Link>
+                            <Link onClick={this.onClose} to={'/signup'}>
+                                <MenuItem style={{
+                                    color: '#d35400'
+                                }}>회원가입</MenuItem>
+                            </Link>
+                        </>}
 
                 </Drawer>
             </Container>

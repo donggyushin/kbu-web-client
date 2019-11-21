@@ -1,5 +1,6 @@
 export const FETCH_USER = 'FETCH_USER'
-
+export const LOGOUT = 'LOGOUT'
+export const LOGIN_USER = 'LOGIN_USER'
 
 export const FETCH_NOTICE = 'FETCH_NOTICE'
 export const FETCH_NEXT_NOTICE = 'FETCH_NEXT_NOTICE'

@@ -1,4 +1,4 @@
-import { FETCH_USER } from "actions/type";
+import { FETCH_USER, LOGOUT, USER_LOGIN_LOADING, LOGIN_USER } from "actions/type";
 
 const initialState = {
     email: "",
@@ -12,16 +12,44 @@ const initialState = {
     phone: "",
     status: "",
     name: "",
-    loading: true
+    loading: true,
+    isLoggedIn: window.localStorage.getItem('token') ? true : false,
+    loginLoading: false
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_USER:
             return fetchUserReducer(state, action)
-
+        case LOGOUT:
+            return logoutUserReducer(state, action)
+        case LOGIN_USER:
+            return loginUserReducer(state, action);
         default:
             return state;
+    }
+}
+
+function loginUserReducer(state, action) {
+    return {
+        ...state,
+        isLoggedIn: true
+    }
+}
+
+function userLoginLoadingReducer(state, action) {
+    return {
+        ...state,
+        loginLoading: true
+    }
+}
+
+function logoutUserReducer(state, action) {
+    window.localStorage.removeItem('token')
+    window.location.href = "/"
+    return {
+        ...state,
+        isLoggedIn: false
     }
 }
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PrivateComponent from 'components/PrivateComponent';
-import PublicComponent from 'components/PublicComponent';
+import { connect } from 'react-redux'
+import { logoutUser } from 'actions/userAction'
 
 const Container = styled.div``
 
@@ -16,13 +17,12 @@ class App extends React.Component {
 
 
   render() {
-    const { isLoggedIn } = this.state;
-    const { logout } = this;
+    const { logoutUser, isLoggedIn } = this.props;
 
     return (
 
       <Container >
-        <PrivateComponent isLoggedIn={isLoggedIn} logout={logout} />
+        <PrivateComponent isLoggedIn={isLoggedIn} logout={logoutUser} />
       </Container>
 
     );
@@ -40,4 +40,12 @@ class App extends React.Component {
 
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.user.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps, {
+  logoutUser
+})(App);

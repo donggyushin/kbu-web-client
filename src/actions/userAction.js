@@ -1,7 +1,22 @@
 import axios from 'axios';
-import { FETCH_USER } from './type'
+import { FETCH_USER, LOGOUT, LOGIN_USER } from './type'
 import { decodeJsonWebToken } from '../utils/jsonwebtoken'
 import REST_API_ENDPOINT from '../constants/endpoint'
+
+
+
+export const loginUser = () => (dispatch, getState) => {
+    dispatch({
+        type: LOGIN_USER
+    })
+}
+
+
+export const logoutUser = () => (dispatch, getState) => {
+    dispatch({
+        type: LOGOUT
+    })
+}
 
 
 export const fetchUser = () => (dispatch, getState) => {

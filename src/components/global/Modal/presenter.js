@@ -1,15 +1,18 @@
 import React from 'react'
 import { Modal } from 'antd'
 
-export default function (title, message) {
+export default function (title, message, callback) {
     Modal.info({
         title,
         content: (
             <div>
                 <p>{message}</p>
-
             </div>
         ),
-        onOk() { },
+        onOk() {
+            if (callback) {
+                callback()
+            }
+        },
     });
 }

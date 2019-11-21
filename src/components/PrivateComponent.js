@@ -23,6 +23,7 @@ import { fetchMileage } from '../actions/mileageAction'
 import { fetchChapel } from '../actions/chapelAction'
 import Calendar from './private/Calendar';
 import Login2Component from './public/login2/Login2';
+import SignUpPage from './public/SignUp';
 
 
 
@@ -105,6 +106,10 @@ class PrivateComponent extends React.Component {
                 <Route path={'/login'}>
                     <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"로그인"} user={user} logout={logout} />
                     <Login2Component />
+                </Route>
+                <Route path={'/signup'}>
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"회원가입"} user={user} logout={logout} />
+                    <SignUpPage />
                 </Route>
                 <Route>
                     <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={""} user={user} logout={logout} />

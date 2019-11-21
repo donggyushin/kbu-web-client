@@ -4,11 +4,11 @@ import { Input, Tooltip, Icon, Button } from 'antd';
 import axios from 'axios'
 import REST_API_ENDPOINT from 'constants/endpoint';
 import { generateJsonWebToken } from 'utils/jsonwebtoken';
-import ThemeColor from 'constants/themeColor';
 import NormalLoading from 'components/global/normalLoading';
-
-
-
+import { Link } from 'react-router-dom'
+import InfoModal from 'components/global/Modal';
+import { connect } from 'react-redux'
+import { loginUser } from 'actions/userAction'
 
 const Container = styled.div`
     width:100%;
@@ -49,17 +49,12 @@ const KbuCardLogo = styled.img`
     width: 150px;
 `
 
-const LogoText = styled.div`
-    color:${ThemeColor.theme};
-    font-size: 26px;
-    font-weight: 600;
-    color: white;
-    font-size: 26px;
-    font-weight: 600;
-    display:flex;
-    justify-content:center;
-    font-family: baemin;
-    font-size: 33px;
+
+const LinkToSignUp = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+    font-size: 18px;
 `
 
 
@@ -71,6 +66,15 @@ class Login2Component extends React.Component {
         buttonDisabled: true,
         loginLoading: false
     }
+
+    componentDidMount() {
+        if (this.props.isLoggedIn) {
+            InfoModal('경고', '로그인 한 유저는 들어올 수 없는 페이지입니다. ', () => {
+                window.location.href = '/'
+            })
+        }
+    }
+
 
     render() {
         const { id, password, buttonDisabled, loginLoading } = this.state;
@@ -112,6 +116,9 @@ class Login2Component extends React.Component {
                 <br />
 
                 <CustomButton onClick={loginButtonClicked} disabled={buttonDisabled}>LOGIN</CustomButton>
+                <Link to={'/signup'}>
+                    <LinkToSignUp>아직 회원이 아니신가요?</LinkToSignUp>
+                </Link>
             </InputContainer>
             {loginLoading && <NormalLoading />}
         </Container>
@@ -133,7 +140,6 @@ class Login2Component extends React.Component {
             password
         }).then(res => res.data)
             .then(result => {
-                console.log(result);
                 if (result.is_ok) {
                     const token = generateJsonWebToken(id, password);
                     console.log('token: ', token);
@@ -143,7 +149,8 @@ class Login2Component extends React.Component {
                     window.localStorage.setItem('token', token)
                     window.location.href = '/'
                 } else {
-                    alert(result.result)
+                    InfoModal('로그인에 실패하였습니다. ', result.result)
+
                     this.setState({
                         password: "",
                         loginLoading: false
@@ -173,4 +180,12 @@ class Login2Component extends React.Component {
     }
 }
 
-export default Login2Component;
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.user.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps, {
+    loginUser
+})(Login2Component);
