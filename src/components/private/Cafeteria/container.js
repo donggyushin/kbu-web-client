@@ -90,12 +90,13 @@ class CafeteriaContainer extends React.Component {
 
     nextButtonClicked = () => {
         const { year, month, day } = this.state;
+        const lastDay = (new Date(year, month, 0)).getDate();
         let numDay = parseInt(day)
         numDay = numDay + 1
         if (this.props.name === '금요일') {
             numDay = numDay + 2
         }
-        if (numDay > 30) {
+        if (numDay > lastDay) {
             InfoModal('경고', '이번 달 내역까지만 불러오기 가능합니다. ')
         } else {
             this.setState({

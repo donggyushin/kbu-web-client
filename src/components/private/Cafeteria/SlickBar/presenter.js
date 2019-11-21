@@ -10,6 +10,7 @@ const Container = styled.div`
     background:white;
     height:50px;
     color:${themeColor.theme};
+    flex-shrink:0;
 `
 
 const Left = styled.div`
