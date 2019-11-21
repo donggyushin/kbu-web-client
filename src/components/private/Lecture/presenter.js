@@ -5,6 +5,7 @@ import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
 import { convertStringToTimeInteger, convertTimeIntToString, convertMinutesToHour } from 'utils/convertStringToTimeInteger';
 import SubjectDetail from './SubjectDetail';
+import SmallLoading from 'components/global/SmallLoading';
 
 
 let counter = 0;
@@ -79,6 +80,8 @@ const LoadingContainer = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    margin-top:20px;
+    margin-bottom:20px;
 `
 
 const BreakTime = styled.div`
@@ -164,7 +167,7 @@ export default function LecturePresenter({
                         <VerticalLine />
                     </DayContainer>
                 </Header>
-                {loading ? <LoadingContainer><ReactLoading color={themeColor.theme} /></LoadingContainer> : <Body>
+                {loading ? <LoadingContainer><SmallLoading black={true} /></LoadingContainer> : <Body>
                     <TimeBar>
                         {(() => {
                             let array = []

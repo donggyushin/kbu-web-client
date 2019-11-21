@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
+import SmallLoading from 'components/global/SmallLoading';
 const Container = styled.div`
     display:flex;
     width:100%;
@@ -102,6 +103,11 @@ const Num = styled.div`
     color: rgba(0,0,0,0.7);
 `
 
+const LoadingContainer = styled.div`
+    margin-top:20px;
+    margin-bottom:20px;
+`
+
 
 export default function NoticePresenter({ notices, loading,
     loading2,
@@ -139,7 +145,7 @@ export default function NoticePresenter({ notices, loading,
                 })}
 
             </Paper>}
-            {loading2 && <ReactLoading color={themeColor.theme} height={64} width={64} />}
+            {loading2 && <LoadingContainer><SmallLoading black={true} /></LoadingContainer>}
             {loading2 === false && <DownButton onClick={noticeRequestNext}>
                 <DownArrowIcon className={'fas fa-chevron-down'} />
             </DownButton>}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { FETCH_CAFETERIA, CAFETERIA_LOADING } from './type'
 import REST_API_ENDPOINT, { KBU_CAFETERIA_ENDPOINT } from 'constants/endpoint';
-
+import getInputDayLabel from 'utils/getInputDayLabel'
 
 export const fetchCafeteria = (date) => (dispatch, getState) => {
     const { cafeteria } = getState()
@@ -23,10 +23,7 @@ export const fetchCafeteria = (date) => (dispatch, getState) => {
             const month = date.substr(4, 2)
             const day = date.substr(6, 2)
 
-            let name = ""
-            if (lunch[0]) {
-                name = lunch[0].day
-            }
+            const name = getInputDayLabel(year, month, day) + '요일'
 
 
             dispatch({

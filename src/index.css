@@ -14,6 +14,10 @@ background: rgba(0,0,0,0.05) !important;
 
 }
 
+button.slick-arrow.slick-next {
+  display: none !important;
+}
+
 .MuiTable-root {
   width: 100vw !important;
 }

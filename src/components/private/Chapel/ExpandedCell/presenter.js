@@ -50,6 +50,11 @@ const Image = styled.img`
     max-width: 120px;
     position: relative;
     top: 28px;
+user-select: none;
+-moz-user-select: none;
+-webkit-user-drag: none;
+-webkit-user-select: none;
+-ms-user-select: none;
 `
 
 const Left = styled.div`

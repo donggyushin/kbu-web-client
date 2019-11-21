@@ -26,7 +26,9 @@ const Right = styled.div`
     font-size:20px;
 `
 
-const Icon = styled.i``
+const Icon = styled.i`
+    width:50px;
+`
 
 export default function ({
     year,
@@ -45,7 +47,9 @@ export default function ({
             {month}월 {day}일 ({name.substr(0, 1)})
         </Center>
         <Right>
-            <Icon onClick={nextButtonClicked} className={'fas fa-chevron-right'} />
+            <Icon style={{
+                textAlign: 'end'
+            }} onClick={nextButtonClicked} className={'fas fa-chevron-right'} />
         </Right>
     </Container>
 }

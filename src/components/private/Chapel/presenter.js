@@ -4,6 +4,7 @@ import ReactLoading from 'react-loading';
 import themeColor from 'constants/themeColor';
 import OneCell from './Cell';
 import ExpandedCell from './ExpandedCell';
+import SmallLoading from 'components/global/SmallLoading';
 
 
 const Container = styled.div`
@@ -97,49 +98,56 @@ const TopIcon = styled.i`
     font-size: 23px;
 `
 
+const LoadingContainer = styled.div`
+    margin-top:20px;
+    margin-bottom:20px;
+`
+
 export default function ChapelPresenter({ summary, chapels, chapelLength, loading, buttonToTopClicked }) {
     return <Container>
         <Paper>
-            {loading ? <ReactLoading color={themeColor.theme} /> : <>
-                <Row id={'infotextcontainerrow'}>
-                    <InfoTextContainer>
-                        <SmallText>출석:{summary.attendance}</SmallText>
-                        <SmallText>지각:{summary.late}</SmallText>
-                        <SmallText>확정:{summary.sure}</SmallText>
-                        <SmallText>남은 일수:{summary.duty - summary.sure}</SmallText>
-                    </InfoTextContainer>
-                </Row>
-                <BodyContainer >
-                    <Body>
-                        {chapels.map((chapel, i) => {
-                            const time = chapel[3];
-                            const hour = time.substr(0, 2);
-                            const minute = time.substr(3, 2);
+            {loading ? <LoadingContainer>
+                <SmallLoading black={true} />
+            </LoadingContainer> : <>
+                    <Row id={'infotextcontainerrow'}>
+                        <InfoTextContainer>
+                            <SmallText>출석:{summary.attendance}</SmallText>
+                            <SmallText>지각:{summary.late}</SmallText>
+                            <SmallText>확정:{summary.sure}</SmallText>
+                            <SmallText>남은 일수:{summary.duty - summary.sure}</SmallText>
+                        </InfoTextContainer>
+                    </Row>
+                    <BodyContainer >
+                        <Body>
+                            {chapels.map((chapel, i) => {
+                                const time = chapel[3];
+                                const hour = time.substr(0, 2);
+                                const minute = time.substr(3, 2);
 
 
 
-                            const countNumber = chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i;
+                                const countNumber = chapelLength - i < 10 ? '0' + (chapelLength - i).toString() : chapelLength - i;
 
-                            const date = chapel[4]
-                            const year = chapel[0]
-                            const month = chapel[1]
-                            const day = chapel[2]
-                            // 출석 지각 여부
-                            const late = chapel[6]
-                            const sure = chapel[7]
-                            const comment = chapel[8]
+                                const date = chapel[4]
+                                const year = chapel[0]
+                                const month = chapel[1]
+                                const day = chapel[2]
+                                // 출석 지각 여부
+                                const late = chapel[6]
+                                const sure = chapel[7]
+                                const comment = chapel[8]
 
-                            console.log('chapel: ', chapel)
+                                console.log('chapel: ', chapel)
 
 
-                            return <ExpandedCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
+                                return <ExpandedCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
 
-                        })}
+                            })}
 
-                    </Body>
-                </BodyContainer>
+                        </Body>
+                    </BodyContainer>
 
-            </>}
+                </>}
         </Paper>
         <TopButton onClick={buttonToTopClicked} id={'topbutton'}><TopIcon className={'fas fa-angle-up'} /></TopButton>
     </Container>

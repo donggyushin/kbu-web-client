@@ -31,7 +31,9 @@ class CafeteriaContainer extends React.Component {
         const { dinner, lunch, fix, daily, loading,
             error, year, month, day, name } = this.props;
         const { mode } = this.state;
-        const { moonClicked, sunClicked, previousButtonClicked, nextButtonClicked } = this;
+        const { moonClicked,
+            onSwipe,
+            sunClicked, previousButtonClicked, nextButtonClicked } = this;
         return <CafeteriaPresenter
             dinner={dinner}
             lunch={lunch}
@@ -48,7 +50,21 @@ class CafeteriaContainer extends React.Component {
             name={name}
             previousButtonClicked={previousButtonClicked}
             nextButtonClicked={nextButtonClicked}
+            onSwipe={onSwipe}
         />
+    }
+
+    onSwipe = () => {
+        if (this.state.mode === 'lunch') {
+            this.setState({
+                mode: 'dinner'
+            })
+        } else {
+            this.setState({
+                mode: 'lunch'
+            })
+        }
+
     }
 
     previousButtonClicked = () => {

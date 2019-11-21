@@ -7,6 +7,7 @@ import LunchBox from './Lunch';
 import Fix from './Fix';
 import Dinner from './Dinner';
 import SmallLoading from 'components/global/SmallLoading';
+import Slider from 'react-slick'
 
 
 const Container = styled.div`
@@ -20,6 +21,11 @@ const Container = styled.div`
 
 const LoadingContainer = styled.div`
     margin-top:50px;
+`
+
+const SlideContainer = styled.div`
+    width:100%;
+    text-align:center;
 `
 
 
@@ -38,7 +44,8 @@ export default function CafeteriaPresenter({
     day,
     name,
     previousButtonClicked,
-    nextButtonClicked
+    nextButtonClicked,
+    onSwipe
 }) {
     return <Container>
         <SlickBar
@@ -59,9 +66,24 @@ export default function CafeteriaPresenter({
                     <SmallLoading />
                 </LoadingContainer>
             } else {
+                const settings = {
+                    dots: false,
+                    infinite: true,
+                    speed: 500,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
                 return <>
-                    {mode === 'lunch' && <LunchBox lunch={lunch} />}
-                    {mode === 'dinner' && <Dinner dinner={dinner} />}
+                    <SlideContainer>
+                        <Slider onSwipe={onSwipe} {...settings}>
+
+                            <LunchBox lunch={lunch} />
+
+
+                            <Dinner dinner={dinner} />
+
+                        </Slider>
+                    </SlideContainer>
                     <Fix fix={fix} />
                     <Daily daily={daily} />
                 </>
