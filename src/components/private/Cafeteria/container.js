@@ -195,15 +195,24 @@ class CafeteriaContainer extends React.Component {
     }
 
     moonClicked = () => {
-        this.setState({
-            mode: 'dinner'
-        })
+
+        if (this.state.mode === 'lunch') {
+
+            this.slider.slickNext()
+            this.setState({
+                mode: 'dinner'
+            })
+        }
     }
 
     sunClicked = () => {
-        this.setState({
-            mode: 'lunch'
-        })
+        if (this.state.mode === 'dinner') {
+
+            this.slider.slickPrev()
+            this.setState({
+                mode: 'lunch'
+            })
+        }
     }
 
     getTodayObject() {

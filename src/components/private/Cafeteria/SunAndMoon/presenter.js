@@ -26,7 +26,7 @@ export default function ({ mode,
     iconClicked
 }) {
     return <Container>
-        <Sun mode={mode} onClick={iconClicked} className={'fas fa-sun'} />
-        <Moon mode={mode} onClick={iconClicked} className={'fas fa-moon'} />
+        <Sun mode={mode} onClick={sunClicked} className={'fas fa-sun'} />
+        <Moon mode={mode} onClick={moonClicked} className={'fas fa-moon'} />
     </Container>
 }
