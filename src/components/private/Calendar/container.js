@@ -32,31 +32,31 @@ class CalendarContainer extends React.Component {
 
 
 
-        document.querySelectorAll(".rbc-btn-group > button")[0].textContent = "오늘"
-        document.querySelectorAll(".rbc-btn-group > button")[1].textContent = "이전"
-        document.querySelectorAll(".rbc-btn-group > button")[2].textContent = "다음"
-        document.querySelectorAll(".rbc-btn-group > button")[3].textContent = "월간"
-        document.querySelectorAll(".rbc-btn-group > button")[4].textContent = "주간"
-        document.querySelectorAll(".rbc-btn-group > button")[5].textContent = "일간"
-        document.querySelectorAll(".rbc-btn-group > button")[6].textContent = "요약"
-        document.querySelectorAll(".rbc-btn-group > button")[4].style.display = "none";
+        // document.querySelectorAll(".rbc-btn-group > button")[0].textContent = "오늘"
+        // document.querySelectorAll(".rbc-btn-group > button")[1].textContent = "이전"
+        // document.querySelectorAll(".rbc-btn-group > button")[2].textContent = "다음"
+        // document.querySelectorAll(".rbc-btn-group > button")[3].textContent = "월간"
+        // document.querySelectorAll(".rbc-btn-group > button")[4].textContent = "주간"
+        // document.querySelectorAll(".rbc-btn-group > button")[5].textContent = "일간"
+        // document.querySelectorAll(".rbc-btn-group > button")[6].textContent = "요약"
+        // document.querySelectorAll(".rbc-btn-group > button")[4].style.display = "none";
 
 
-        document.querySelector(".rbc-btn-group").style.width = "100%"
-        document.querySelector(".rbc-btn-group").style.display = "flex"
-        document.querySelector(".rbc-btn-group").style.justifyContent = "center"
+        // document.querySelector(".rbc-btn-group").style.width = "100%"
+        // document.querySelector(".rbc-btn-group").style.display = "flex"
+        // document.querySelector(".rbc-btn-group").style.justifyContent = "center"
 
 
-        document.addEventListener('mousedown', this.handleClickOutside);
-        document.querySelector(".rbc-toolbar-label").style.width = "100%"
+        // document.addEventListener('mousedown', this.handleClickOutside);
+        // document.querySelector(".rbc-toolbar-label").style.width = "100%"
 
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[0].textContent = "일"
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[1].textContent = "월"
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[2].textContent = "화"
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[3].textContent = "수"
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[4].textContent = "목"
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[5].textContent = "금"
-        document.querySelectorAll(".rbc-month-header > .rbc-header > span")[6].textContent = "토"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[0].textContent = "일"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[1].textContent = "월"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[2].textContent = "화"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[3].textContent = "수"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[4].textContent = "목"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[5].textContent = "금"
+        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[6].textContent = "토"
 
         getEvents((events) => {
             const { fetchEvents } = this.props;

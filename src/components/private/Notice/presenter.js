@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReactLoading from 'react-loading';
-import themeColor from 'constants/themeColor';
 import SmallLoading from 'components/global/SmallLoading';
 const Container = styled.div`
     display:flex;
