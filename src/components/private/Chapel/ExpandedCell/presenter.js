@@ -8,7 +8,7 @@ const Container = styled.div`
     margin-bottom:20px;
     padding:10px;
     padding-bottom:6px;
-    padding-left:13px;
+    padding-left:23px;
     width:100%;
     box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.75);
 `
@@ -55,6 +55,8 @@ user-select: none;
 -webkit-user-drag: none;
 -webkit-user-select: none;
 -ms-user-select: none;
+opacity: 0.2;
+transform: skew(30deg, -30deg);
 `
 
 const Left = styled.div`
@@ -69,6 +71,18 @@ const Except = styled.div`
     color:#2ecc71;
 `
 
+const Left2 = styled.div`
+    width:90%;
+    position:relative;
+`
+
+const ImageContainer2 = styled.div`
+    position: absolute;
+    right: 10%;
+    top: -1%;
+    width: 121px;
+`
+
 export default function ({
     comment,
     countNumber,
@@ -81,7 +95,7 @@ export default function ({
     sure
 }) {
     return <Container>
-        <Left>
+        {/* <Left>
             <Date>{year.substr(2)}/{month}/{day} ({date})</Date>
             <Row>
                 <LeftText>시각</LeftText>
@@ -122,6 +136,46 @@ export default function ({
             <ImageContainer>
                 <Image src={late === '출석' ? require('./good.png') : require('./bad.png')} />
             </ImageContainer>
-        </Right>
+        </Right> */}
+        <Left2>
+            <Date>{year.substr(2)}/{month}/{day} ({date})</Date>
+            <Row>
+                <LeftText>시각</LeftText>
+                <RightText>{time}</RightText>
+            </Row>
+            <Row>
+                <LeftText>출석</LeftText>
+                <RightText>{(() => {
+                    if (late === '출석') {
+                        return '출석'
+                    } else if (late === '지각') {
+                        return <RedText>지각</RedText>
+                    } else {
+                        return <RedText>결석</RedText>
+                    }
+                })()}</RightText>
+            </Row>
+            <Row>
+                <LeftText>확정</LeftText>
+                <RightText>{(() => {
+                    if (sure === '출석') {
+                        return '출석'
+                    } else if (sure === '지각') {
+                        return <RedText>지각</RedText>
+                    } else if (sure === '결석') {
+                        return <RedText>결석</RedText>
+                    } else {
+                        return <Except>예외</Except>
+                    }
+                })()}</RightText>
+            </Row>
+            <Row>
+                <LeftText>비고</LeftText>
+                <RightText>{comment}</RightText>
+            </Row>
+            <ImageContainer2>
+                <Image src={late === '출석' ? require('./good.png') : require('./bad.png')} />
+            </ImageContainer2>
+        </Left2>
     </Container>
 }

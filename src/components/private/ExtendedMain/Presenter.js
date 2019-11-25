@@ -26,7 +26,7 @@ const Column = styled.div`
 `
 
 const HorizontalCard = styled.div`
-    background:${props => props.isLoggedIn ? 'white' : 'rgba(255,255,255,0.3)'};
+    background:${props => props.isLoggedIn ? 'white' : 'rgba(0,0,0,0.1)'};
     background:${props => props.whatever && 'white'};
     width:100%;
     height:100px;
@@ -73,7 +73,7 @@ const Icon = styled.img`
 
 
 const VerticalCard = styled.div`
-    background:${props => props.isLoggedIn ? 'white' : 'rgba(255,255,255,0.3)'};
+    background:${props => props.isLoggedIn ? 'white' : 'rgba(0,0,0,0.1)'};
     background:${props => props.whatever && 'white'};
     width:32%;
     height:210px;
@@ -110,7 +110,7 @@ const MarginVertical = styled.div`
 `
 
 const NormalCard = styled.div`
-    background:${props => props.isLoggedIn ? 'white' : 'rgba(255,255,255,0.3)'};
+    background:${props => props.isLoggedIn ? 'white' : 'rgba(0,0,0,0.1)'};
     background:${props => props.whatever && 'white'};
     width:46%;
     height:120px;

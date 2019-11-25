@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/5d4b37252c9002237db3.worker.js"
   },
   {
-    "revision": "22bc73e55831c8b2cb594aa7d61fd662",
+    "revision": "563c0e49496481063b43409beea4195b",
     "url": "/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/2.df288a86.chunk.css"
   },
   {
-    "revision": "bf3504ce9bd4bd67c71c",
+    "revision": "69b2f75d68e7574cc08c",
     "url": "/static/css/main.e6cdcf11.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.6afb3216.chunk.js"
   },
   {
-    "revision": "bf3504ce9bd4bd67c71c",
-    "url": "/static/js/main.ca606a2c.chunk.js"
+    "revision": "69b2f75d68e7574cc08c",
+    "url": "/static/js/main.25c3de4c.chunk.js"
   },
   {
     "revision": "5a77a9200fa308e56fc0",
@@ -40,16 +40,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/IropkeBatangM.d9be11d1.eot"
   },
   {
-    "revision": "18c5275715d2fc661cd05bae6148777f",
-    "url": "/static/media/bad.18c52757.png"
+    "revision": "e02eb5bbaffea8ab2db28d64a013fb37",
+    "url": "/static/media/bad.e02eb5bb.png"
   },
   {
     "revision": "649e1f744c35d6f270e7dfc26407775e",
     "url": "/static/media/biblelogo-removebg-preview.649e1f74.png"
   },
   {
-    "revision": "420cb8cb16084953148eab18d7c0d4ea",
-    "url": "/static/media/good.420cb8cb.png"
+    "revision": "e1de70e4f5aaef44e8386af6f86516f3",
+    "url": "/static/media/good.e1de70e4.png"
   },
   {
     "revision": "e7f56b05bf545e1cd055bf337c8af353",

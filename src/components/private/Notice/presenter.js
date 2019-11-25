@@ -61,9 +61,9 @@ word-break: break-word;
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    font-family: 'Noto Sans KR',sans-serif;
-    font-size: 17px;
-    font-weight: 900;
+    /* font-family: 'Noto Sans KR',sans-serif; */
+    font-size: 16px;
+    /* font-weight: 900; */
 `
 
 const Date = styled.div`

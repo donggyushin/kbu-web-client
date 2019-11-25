@@ -145,6 +145,9 @@ class CafeteriaContainer extends React.Component {
         const { year, month, day } = this.state;
         let numDay = parseInt(day)
         numDay = numDay - 1
+        this.setState({
+            mode: 'lunch'
+        })
         if (this.props.name === '월요일') {
             numDay = numDay - 2
         }
@@ -164,6 +167,9 @@ class CafeteriaContainer extends React.Component {
         const lastDay = (new Date(year, month, 0)).getDate();
         let numDay = parseInt(day)
         numDay = numDay + 1
+        this.setState({
+            mode: 'lunch'
+        })
         if (this.props.name === '금요일') {
             numDay = numDay + 2
         }
