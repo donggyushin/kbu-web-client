@@ -7,7 +7,7 @@ const Container = styled.div`
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,0.55);
     color:white;
     z-index:10;
     display:flex;
@@ -15,62 +15,22 @@ const Container = styled.div`
     align-items:center;
 `
 
-const XButton = styled.div`
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    font-size: 20px;
-    font-weight: 300;
-    margin-top: 30px;
-    cursor: pointer;
+const Card = styled.div`
+    width:80%;
+    border-radius:15px;
+    min-height:100px;
+    background:white;
+    margin-top:20px;
 `
 
-const TextCard = styled.div`
-    display:flex;
-    flex-direction:column;
-    margin-top: 50px;
-`
-
-const Row = styled.div`
-    display:flex;
-`
-
-const Label = styled.div`
-    font-size: 13px;
-`
-
-const Title = styled.div`
-    font-size:21px;
-    margin-bottom:20px;
-`
-
-const Date = styled.div`
-    font-size: 13px;
-`
 
 export default function ({ outsideOfDetailViewClicked, event }) {
-    console.log('event: ', event)
+
     return (
         <Container>
-            Event Detail View
-            <XButton onClick={outsideOfDetailViewClicked}>X</XButton>
-            <TextCard>
-                <Row>
-                    <Title>{event.title}</Title>
-                </Row>
-                <Row>
-                    <Label>From:</Label>
-                    <Date>{formatterFromDate(event.start)}</Date>
-                </Row>
-                <Row>
-                    <Label>To:</Label>
-                    <Date>{formatterFromDate(event.end)}</Date>
-                </Row>
-            </TextCard>
+            <Card>
+                Detail View
+            </Card>
         </Container>
     )
 }
