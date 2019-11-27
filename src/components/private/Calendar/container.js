@@ -344,7 +344,7 @@ class CalendarContainer extends React.Component {
         setTimeout(() => {
 
             this.props.turnDownCalendarDetailView()
-        }, 100);
+        }, 10);
     }
 
 
