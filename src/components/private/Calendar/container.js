@@ -25,6 +25,7 @@ const Container = styled.div``
 
 class CalendarContainer extends React.Component {
 
+
     constructor(props) {
         super(props);
 
@@ -33,6 +34,10 @@ class CalendarContainer extends React.Component {
     }
 
     async componentDidMount() {
+
+
+        document.addEventListener('touchend', this.handleClickOutside);
+
 
         let eventsList = []
 
@@ -185,7 +190,13 @@ class CalendarContainer extends React.Component {
         document.querySelectorAll(".rbc-btn-group > button")[2].style.textAlign = "end"
 
 
-
+        document.querySelectorAll(".rbc-header > span")[0].innerHTML = "일"
+        document.querySelectorAll(".rbc-header > span")[1].innerHTML = "월"
+        document.querySelectorAll(".rbc-header > span")[2].innerHTML = "화"
+        document.querySelectorAll(".rbc-header > span")[3].innerHTML = "수"
+        document.querySelectorAll(".rbc-header > span")[4].innerHTML = "목"
+        document.querySelectorAll(".rbc-header > span")[5].innerHTML = "금"
+        document.querySelectorAll(".rbc-header > span")[6].innerHTML = "토"
 
 
         // document.querySelector(".rbc-btn-group").style.width = "100%"
@@ -210,7 +221,7 @@ class CalendarContainer extends React.Component {
     }
 
     componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('touchend', this.handleClickOutside);
     }
 
 
@@ -232,7 +243,7 @@ class CalendarContainer extends React.Component {
     render() {
         const { onEventSelected, outsideOfDetailViewClicked, setWrapperRef, eventPropGetter, onNavigation } = this;
         const { events, detailView, event } = this.props;
-        return <Presenter onNavigation={onNavigation} eventPropGetter={eventPropGetter} wrapper={setWrapperRef} outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} detailView={detailView} events={events} onEventSelected={onEventSelected} />
+        return <Presenter refer={this.setWrapperRef} onNavigation={onNavigation} eventPropGetter={eventPropGetter} wrapper={setWrapperRef} outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} detailView={detailView} events={events} onEventSelected={onEventSelected} />
     }
 
     onNavigation = () => {
@@ -302,11 +313,12 @@ class CalendarContainer extends React.Component {
         let style = {}
         if (event.from === 'google') {
             style = {
-                background: '#e84393'
+                background: '#00b894',
             }
         } else if (event.from === 'offday') {
             style = {
-                background: '#00b894'
+
+                background: '#e84393'
             }
         }
         const result = {
@@ -319,11 +331,20 @@ class CalendarContainer extends React.Component {
 
     onEventSelected = (event, e) => {
         const { selectEvent } = this.props;
-        selectEvent(event)
+
+
+        if (this.props.detailView === false) {
+
+            selectEvent(event)
+        }
+
     }
 
     outsideOfDetailViewClicked = () => {
-        this.props.turnDownCalendarDetailView()
+        setTimeout(() => {
+
+            this.props.turnDownCalendarDetailView()
+        }, 100);
     }
 
 

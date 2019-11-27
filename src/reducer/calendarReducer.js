@@ -30,6 +30,7 @@ function selectEventReducer(state, action) {
 }
 
 function turnDownEventDetailView(state, action) {
+
     return {
         ...state,
         detailView: false,

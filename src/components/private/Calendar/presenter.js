@@ -12,7 +12,7 @@ const Container = styled.div``
 
 
 
-export default function ({ onNavigation, events, onEventSelected, event, detailView, outsideOfDetailViewClicked, eventPropGetter }) {
+export default function ({ refer, onNavigation, events, onEventSelected, event, detailView, outsideOfDetailViewClicked, eventPropGetter }) {
 
     return <Container>
         <Calendar
@@ -26,7 +26,7 @@ export default function ({ onNavigation, events, onEventSelected, event, detailV
             onNavigate={onNavigation}
             popup={true}
         />
-        {detailView && <CalendarDetailView outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} />}
+        {detailView && <CalendarDetailView refer={refer} outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} />}
         {/* <iframe src="https://calendar.google.com/calendar/embed?src=4tjtr23q6bcevh6no8q040eue8%40group.calendar.google.com&ctz=Asia%2FSeoul" style={{ border: "0" }} width="100%" height="600" frameBorder="0" scrolling="no"></iframe> */}
     </Container>
 }
