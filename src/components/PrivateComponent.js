@@ -100,7 +100,7 @@ class PrivateComponent extends React.Component {
                     <Chapel requestChapel={fetchChapel} chapel={chapel} />
                 </Route>
                 <Route path={'/calendar'}>
-                    {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학사일정"} user={user} logout={logout} /> */}
+                    <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학사일정"} user={user} logout={logout} />
                     <Calendar />
                 </Route>
                 <Route path={'/login'}>
