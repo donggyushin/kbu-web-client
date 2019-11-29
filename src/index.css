@@ -119,3 +119,13 @@ code {
   margin-top: -7px;
     font-size: 11px;
 }
+
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #3e98c7 !important;
+}
+
+.MuiFormControl-root {
+  width: 80% !important;
+  margin-bottom: 33px !important;
+}

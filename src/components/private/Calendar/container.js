@@ -357,7 +357,7 @@ class CalendarContainer extends React.Component {
         let style = {}
         if (event.from === 'KBU') {
             style = {
-                background: themeColor.theme,
+                background: '#1abc9c',
             }
         } else if (event.from === 'offday') {
             style = {
@@ -388,8 +388,6 @@ class CalendarContainer extends React.Component {
 
     outsideOfDetailViewClicked = () => {
 
-
-        console.log('asd')
 
         this.props.turnDownCalendarDetailView()
         setTimeout(() => {

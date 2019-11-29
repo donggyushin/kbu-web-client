@@ -10229,6 +10229,11 @@ react-big-calendar@^0.23.0:
     uncontrollable "^7.0.0"
     warning "^4.0.2"
 
+react-circular-progressbar@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-2.0.3.tgz#fa8eb59f8db168d2904bae4590641792c80f5991"
+  integrity sha512-YKN+xAShXA3gYihevbQZbavfiJxo83Dt1cUxqg/cltj4VVsRQpDr7Fg1mvjDG3x1KHGtd9NmYKvJ2mMrPwbKyw==
+
 react-dev-utils@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.1.0.tgz#3ad2bb8848a32319d760d0a84c56c14bdaae5e81"
@@ -10348,6 +10353,13 @@ react-pdf@^4.1.0:
     merge-class-names "^1.1.1"
     pdfjs-dist "2.1.266"
     prop-types "^15.6.2"
+
+react-progress-steps@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/react-progress-steps/-/react-progress-steps-0.0.8.tgz#b8f41a7cb26cec9ce324d8db2b4bdc17daf9fa0a"
+  integrity sha1-uPQafLJs7JzjJNjbK0vcF9r5+go=
+  dependencies:
+    classnames "^2.2.3"
 
 react-qr-reader@^2.2.1:
   version "2.2.1"

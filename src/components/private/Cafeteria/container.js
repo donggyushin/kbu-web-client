@@ -1,11 +1,7 @@
 import React from 'react';
-import CafeteriaPresenter from './presenter';
 import { fetchCafeteria } from 'actions/cafeteriaAction'
 import { connect } from 'react-redux'
 import InfoModal from 'components/global/Modal';
-
-
-
 import styled from 'styled-components';
 import Daily from './Daily'
 import SlickBar from './SlickBar';

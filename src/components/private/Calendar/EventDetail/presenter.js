@@ -89,7 +89,7 @@ function get_color(from) {
 
     switch (from) {
         case 'KBU':
-            return themeColor.theme
+            return '#1abc9c'
         case 'offday':
             return '#e84393'
 
