@@ -110,3 +110,12 @@ code {
   src: url('./fonts/IropkeBatangM.eot'),
   url('./fonts/IropkeBatangM.woff');
 }
+
+.kbu__month__label {
+  font-size: 24px;
+}
+
+.kbu__year__label {
+  margin-top: -7px;
+    font-size: 11px;
+}

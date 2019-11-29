@@ -10,6 +10,9 @@ import themeColor from 'constants/themeColor'
 let Month
 let Year
 
+let monthLabel
+let yearLabel
+
 
 // this weird syntax is just a shorthand way of specifying loaders
 
@@ -207,6 +210,15 @@ class CalendarContainer extends React.Component {
             this.disableLinks()
         }, 1000);
 
+
+        document.querySelector(".rbc-toolbar-label").style.display = "flex"
+        document.querySelector(".rbc-toolbar-label").style.flexDirection = "column"
+        document.querySelector(".rbc-toolbar-label").style.alignItems = "center"
+
+        this.translateDate()
+
+
+
     }
 
     componentWillUnmount() {
@@ -235,11 +247,25 @@ class CalendarContainer extends React.Component {
         return <Presenter refer={this.setWrapperRef} onNavigation={onNavigation} eventPropGetter={eventPropGetter} wrapper={setWrapperRef} outsideOfDetailViewClicked={outsideOfDetailViewClicked} event={event} detailView={detailView} events={events} onEventSelected={onEventSelected} />
     }
 
-    onNavigation = () => {
-        console.log('on navigation')
-        const label = document.querySelector(".rbc-toolbar-label").textContent.split(' ');
-        let monthNumber = "";
-        switch (label[0].toLowerCase()) {
+
+    translateDate = () => {
+
+        const label = document.querySelector(".rbc-toolbar-label")
+
+        const InitialText = label.innerHTML;
+
+        const month = InitialText.split(' ')[0]
+        const year = InitialText.split(' ')[1]
+
+        const MonthLabel = document.createElement('div')
+        const YearLabel = document.createElement('div')
+
+        MonthLabel.className = 'kbu__month__label'
+        YearLabel.className = 'kbu__year__label'
+
+        let monthNumber = ""
+
+        switch (month.toLowerCase()) {
             case "january":
                 monthNumber = "1"
                 break;
@@ -292,10 +318,22 @@ class CalendarContainer extends React.Component {
             default:
                 break;
         }
-        console.log('monthNumber: ', monthNumber)
-        console.log('year: ', label[1])
-        Month.innerText = monthNumber
-        Year.innerText = label[1]
+
+
+        MonthLabel.innerHTML = monthNumber
+        YearLabel.innerHTML = year
+
+        label.innerHTML = ""
+        label.appendChild(MonthLabel)
+        label.appendChild(YearLabel)
+    }
+
+
+    onNavigation = () => {
+        console.log('on navigation')
+        setTimeout(() => {
+            this.translateDate()
+        }, 100);
     }
 
     disableLinks = () => {
