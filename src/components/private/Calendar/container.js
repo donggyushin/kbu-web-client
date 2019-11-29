@@ -42,10 +42,6 @@ class CalendarContainer extends React.Component {
 
         console.log('window.document.body.scrollHeight: ', window.document.body.scrollHeight)
 
-        window.scrollTo({
-            top: 1000,
-            behavior: 'smooth'
-        })
 
 
 
@@ -77,7 +73,7 @@ class CalendarContainer extends React.Component {
 
 
 
-        document.querySelector(".rbc-calendar").style.height = "91vh"
+        document.querySelector(".rbc-calendar").style.height = "92vh"
 
         document.querySelectorAll(".rbc-btn-group > button")[0].textContent = "오늘"
         document.querySelectorAll(".rbc-btn-group > button")[1].textContent = "<"
@@ -113,7 +109,7 @@ class CalendarContainer extends React.Component {
             case "january":
                 monthNumber = "1"
                 break;
-            case "februry":
+            case "february":
                 monthNumber = "2"
                 break;
 
@@ -264,12 +260,12 @@ class CalendarContainer extends React.Component {
         YearLabel.className = 'kbu__year__label'
 
         let monthNumber = ""
-
+        console.log('month.toLowerCase():', month.toLowerCase())
         switch (month.toLowerCase()) {
             case "january":
                 monthNumber = "1"
                 break;
-            case "februry":
+            case "february":
                 monthNumber = "2"
                 break;
 
@@ -333,7 +329,7 @@ class CalendarContainer extends React.Component {
         setTimeout(() => {
 
             this.disableLinks()
-        }, 1500);
+        }, 500);
         setTimeout(() => {
             this.translateDate()
         }, 100);
