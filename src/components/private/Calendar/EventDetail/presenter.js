@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Cell from './Cell';
+import themeColor from 'constants/themeColor';
 
 const Container = styled.div`
     position:fixed;
@@ -75,7 +76,7 @@ export default function ({ refer, outsideOfDetailViewClicked, event }) {
             <Card ref={refer}>
                 <Day>6일</Day>
                 <Date>수요일 10월 10일</Date>
-                <Cell from={from} title={title} start={start} end={end} />
+                <Cell backgroundColor={backgroundColor} from={from} title={title} start={start} end={end} />
                 <XButton onClick={outsideOfDetailViewClicked} backgroundColor={backgroundColor}>
                     <Icon className={'fas fa-times'} />
                 </XButton>
@@ -87,8 +88,8 @@ export default function ({ refer, outsideOfDetailViewClicked, event }) {
 function get_color(from) {
 
     switch (from) {
-        case 'google':
-            return '#00b894'
+        case 'KBU':
+            return themeColor.theme
         case 'offday':
             return '#e84393'
 

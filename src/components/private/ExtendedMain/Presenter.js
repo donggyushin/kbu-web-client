@@ -213,7 +213,7 @@ export default function ExtendedMainPresenter({ studentId,
                             </HorizontalCard>
                         </Link>
                     } else {
-                        return <HorizontalCard onClick={askGoToLoginPage} isLoggedIn={isLoggedIn} >
+                        return <HorizontalCard onClick={() => askGoToLoginPage('/lecture')} isLoggedIn={isLoggedIn} >
                             <TextContainer>
                                 <MainText>수업</MainText>
                                 <SubText>Lecture</SubText>
@@ -266,7 +266,7 @@ export default function ExtendedMainPresenter({ studentId,
                         </VerticalCard>
                     </Link>
                 } else {
-                    return <div onClick={askGoToLoginPage} style={{
+                    return <div onClick={() => askGoToLoginPage('/mileage')} style={{
                         width: '32%'
                     }}>
                         <VerticalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >
@@ -358,7 +358,7 @@ export default function ExtendedMainPresenter({ studentId,
                         </NormalCard>
                     </Link>
                 } else {
-                    return <div onClick={askGoToLoginPage} style={{
+                    return <div onClick={() => askGoToLoginPage('/chapel')} style={{
                         width: '46%'
                     }}>
                         <NormalCard isLoggedIn={isLoggedIn} style={{ width: '100%' }} >

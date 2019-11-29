@@ -49,7 +49,10 @@ class ExtendedMainContainer extends React.Component {
 
 
 
-    askGoToLoginPage = () => {
+    askGoToLoginPage = (nextPage) => {
+        if (nextPage) {
+            window.localStorage.setItem('nextPage', nextPage)
+        }
         PresentModal('로그인이 필요한 페이지입니다. ', '로그인 페이지로 이동하시겠습니까?')
     }
 

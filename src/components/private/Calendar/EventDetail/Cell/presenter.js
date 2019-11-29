@@ -35,11 +35,11 @@ const Period = styled.div`
     font-weight: 300;
 `
 
-export default function ({ from, title, start, end }) {
-    const circle_color = get_color(from)
+export default function ({ from, title, start, end, backgroundColor }) {
+
     return <Container>
         <Row>
-            <Circle backgroundColor={circle_color} />
+            <Circle backgroundColor={backgroundColor} />
             <Title>{title}</Title>
         </Row>
         <Period>{get_month(start)}월 {get_day(start)}일 - {get_month(end)}월 {get_day(end)}일</Period>

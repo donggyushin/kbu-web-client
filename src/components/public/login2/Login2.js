@@ -147,7 +147,14 @@ class Login2Component extends React.Component {
                         loginLoading: false
                     })
                     window.localStorage.setItem('token', token)
-                    window.location.href = '/'
+                    if (window.localStorage.getItem("nextPage")) {
+                        const nextPage = window.localStorage.getItem("nextPage")
+                        window.localStorage.removeItem("nextPage")
+                        window.location.href = nextPage
+                    } else {
+
+                        window.location.href = '/'
+                    }
                 } else {
                     InfoModal('로그인에 실패하였습니다. ', result.result)
 

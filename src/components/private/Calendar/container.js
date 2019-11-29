@@ -2,9 +2,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import Presenter from './presenter'
-import { getEvents, getNationalOffDay } from './gcal'
+import { getEvents, getNationalOffDay, get2020Events } from './gcal'
 import { connect } from 'react-redux'
 import { fetchEvents, selectEvent, turnDownCalendarDetailView } from 'actions/calendarAction'
+import themeColor from 'constants/themeColor'
 
 let Month
 let Year
@@ -33,30 +34,36 @@ class CalendarContainer extends React.Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
+
+    state = {
+        touchable: true
+    }
+
+
     async componentDidMount() {
 
 
         document.addEventListener('touchend', this.handleClickOutside);
-
-
-        let eventsList = []
+        console.log('rbc calendar: ', document.querySelector(".rbc-calendar").style.height)
+        document.querySelector(".rbc-calendar").style.height = "100px;"
 
         if (this.props.events.length === 0) {
 
             getEvents((events) => {
-                console.log('get events: ', events)
-                eventsList.push(events)
-                eventsList = [
-                    ...eventsList,
-                    ...events
-                ]
+
+
+                this.props.fetchEvents(events)
+
                 getNationalOffDay((events) => {
-                    console.log('get events2: ', events)
-                    eventsList = [
-                        ...eventsList,
-                        ...events
-                    ]
-                    this.props.fetchEvents(eventsList)
+
+                    this.props.fetchEvents(events)
+
+
+                    get2020Events(events => {
+
+                        this.props.fetchEvents(events)
+                    })
+
                 })
 
 
@@ -150,7 +157,7 @@ class CalendarContainer extends React.Component {
             default:
                 break;
         }
-        // document.querySelector(".rbc-toolbar-label").style.display = "none";
+
 
         document.querySelector(".rbc-btn-group").style.width = "100%"
         document.querySelector(".rbc-btn-group").style.position = "relative"
@@ -171,9 +178,7 @@ class CalendarContainer extends React.Component {
         Year.style.textAlign = "center"
         Year.style.position = "relative"
         Year.style.bottom = "5px"
-        // document.querySelector(".rbc-toolbar").appendChild(Container)
-        // Container.appendChild(Month)
-        // Container.appendChild(Year)
+
         document.querySelectorAll(".rbc-btn-group > button")[1].style.position = "absolute"
         document.querySelectorAll(".rbc-btn-group > button")[1].style.left = "0"
         document.querySelectorAll(".rbc-btn-group > button")[1].style.top = "7px"
@@ -198,25 +203,9 @@ class CalendarContainer extends React.Component {
         document.querySelectorAll(".rbc-header > span")[5].innerHTML = "금"
         document.querySelectorAll(".rbc-header > span")[6].innerHTML = "토"
 
-
-        // document.querySelector(".rbc-btn-group").style.width = "100%"
-        // document.querySelector(".rbc-btn-group").style.display = "flex"
-        // document.querySelector(".rbc-btn-group").style.justifyContent = "center"
-        // document.querySelectorAll(".rbc-btn-group > button")[5].style.display = "none"
-
-
-        // document.addEventListener('mousedown', this.handleClickOutside);
-        // document.querySelector(".rbc-toolbar-label").style.width = "100%"
-
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[0].textContent = "일"
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[1].textContent = "월"
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[2].textContent = "화"
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[3].textContent = "수"
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[4].textContent = "목"
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[5].textContent = "금"
-        // document.querySelectorAll(".rbc-month-header > .rbc-header > span")[6].textContent = "토"
-
-
+        setTimeout(() => {
+            this.disableLinks()
+        }, 1000);
 
     }
 
@@ -309,11 +298,28 @@ class CalendarContainer extends React.Component {
         Year.innerText = label[1]
     }
 
+    disableLinks = () => {
+        const cellsContainer = document.querySelectorAll(".rbc-date-cell")
+        const cellsToGoToDailySchdule = document.querySelectorAll(".rbc-date-cell > a")
+        for (let index = 0; index < cellsToGoToDailySchdule.length; index++) {
+            const element = cellsToGoToDailySchdule[index];
+
+            const day = element.innerHTML
+            console.log('here!')
+            console.log('element: ', element.innerHTML)
+            const newHtmlTag = document.createElement('div')
+            newHtmlTag.innerHTML = day
+            element.style.display = "none"
+            console.log('container: ', cellsContainer[index])
+            cellsContainer[index].appendChild(newHtmlTag)
+        }
+    }
+
     eventPropGetter = (event, start, end, isSelected) => {
         let style = {}
-        if (event.from === 'google') {
+        if (event.from === 'KBU') {
             style = {
-                background: '#00b894',
+                background: themeColor.theme,
             }
         } else if (event.from === 'offday') {
             style = {
@@ -332,19 +338,27 @@ class CalendarContainer extends React.Component {
     onEventSelected = (event, e) => {
         const { selectEvent } = this.props;
 
-
-        if (this.props.detailView === false) {
-
+        if (this.state.touchable) {
             selectEvent(event)
+            this.setState({
+                touchable: false
+            })
         }
+
 
     }
 
     outsideOfDetailViewClicked = () => {
-        setTimeout(() => {
 
-            this.props.turnDownCalendarDetailView()
-        }, 50);
+
+        console.log('asd')
+
+        this.props.turnDownCalendarDetailView()
+        setTimeout(() => {
+            this.setState({
+                touchable: true
+            })
+        }, 100);
     }
 
 

@@ -48,6 +48,10 @@ function turnOnEventDetailReducer(state, action) {
 function fetchEventsReducer(state, action) {
     return {
         ...state,
-        events: action.events
+        // events: action.events
+        events: [
+            ...state.events,
+            ...action.events
+        ]
     }
 }
