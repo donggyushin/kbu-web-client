@@ -36,7 +36,8 @@ const Period = styled.div`
 `
 
 export default function ({ from, title, start, end, backgroundColor }) {
-
+    console.log('start:', start)
+    console.log('end: ', end)
     return <Container>
         <Row>
             <Circle backgroundColor={backgroundColor} />
@@ -58,11 +59,14 @@ function get_color(from) {
 }
 
 function get_month(date_str) {
+
+
+
     const part = date_str.split('-');
     return part[1]
 }
 
 function get_day(date_str) {
     const part = date_str.split('-');
-    return part[2]
+    return part[2].substr(0, 2)
 }
