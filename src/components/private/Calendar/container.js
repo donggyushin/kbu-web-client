@@ -5,14 +5,9 @@ import Presenter from './presenter'
 import { getEvents, getNationalOffDay, get2020Events } from './gcal'
 import { connect } from 'react-redux'
 import { fetchEvents, selectEvent, turnDownCalendarDetailView } from 'actions/calendarAction'
-import themeColor from 'constants/themeColor'
 
 let Month
 let Year
-
-let monthLabel
-let yearLabel
-
 
 // this weird syntax is just a shorthand way of specifying loaders
 
@@ -45,9 +40,16 @@ class CalendarContainer extends React.Component {
 
     async componentDidMount() {
 
+        console.log('window.document.body.scrollHeight: ', window.document.body.scrollHeight)
+
+        window.scrollTo({
+            top: 1000,
+            behavior: 'smooth'
+        })
+
+
 
         document.addEventListener('touchend', this.handleClickOutside);
-        console.log('rbc calendar: ', document.querySelector(".rbc-calendar").style.height)
         document.querySelector(".rbc-calendar").style.height = "100px;"
 
         if (this.props.events.length === 0) {
@@ -75,7 +77,7 @@ class CalendarContainer extends React.Component {
 
 
 
-        document.querySelector(".rbc-calendar").style.height = "100vh"
+        document.querySelector(".rbc-calendar").style.height = "91vh"
 
         document.querySelectorAll(".rbc-btn-group > button")[0].textContent = "오늘"
         document.querySelectorAll(".rbc-btn-group > button")[1].textContent = "<"
@@ -94,7 +96,7 @@ class CalendarContainer extends React.Component {
 
         today.style.position = "absolute"
         today.style.left = "67%"
-        today.style.top = "7px"
+        today.style.top = "5px"
         today.style.borderRadius = "50%"
         today.style.width = "48px"
         today.style.height = "48px"
@@ -217,8 +219,6 @@ class CalendarContainer extends React.Component {
 
         this.translateDate()
 
-
-
     }
 
     componentWillUnmount() {
@@ -330,7 +330,10 @@ class CalendarContainer extends React.Component {
 
 
     onNavigation = () => {
-        console.log('on navigation')
+        setTimeout(() => {
+
+            this.disableLinks()
+        }, 1500);
         setTimeout(() => {
             this.translateDate()
         }, 100);
@@ -343,12 +346,9 @@ class CalendarContainer extends React.Component {
             const element = cellsToGoToDailySchdule[index];
 
             const day = element.innerHTML
-            console.log('here!')
-            console.log('element: ', element.innerHTML)
             const newHtmlTag = document.createElement('div')
             newHtmlTag.innerHTML = day
             element.style.display = "none"
-            console.log('container: ', cellsContainer[index])
             cellsContainer[index].appendChild(newHtmlTag)
         }
     }
