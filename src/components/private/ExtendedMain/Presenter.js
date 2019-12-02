@@ -478,6 +478,6 @@ export default function ExtendedMainPresenter({ studentId,
             </Column>
         </Row>
         <CopyrightComponent />
-        {studentId && <StudentID loading={loading} user={user} TurnOffStudentIDCard={TurnOffStudentIDCard} />}
+        {/* {studentId && <StudentID loading={loading} user={user} TurnOffStudentIDCard={TurnOffStudentIDCard} />} */}
     </Container>
 }
