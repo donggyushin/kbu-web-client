@@ -7,7 +7,7 @@ const Container = styled.div`
     align-items:center;
     justify-content:center;
     width:100%;
-    height:100px;
+    height:50px;
     text-transform:uppercase;
     font-weight: 300;
     font-size:12px;

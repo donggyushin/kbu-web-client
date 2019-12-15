@@ -5,7 +5,8 @@ import anime from 'animejs/lib/anime.es.js';
 class StudentIDContainer extends React.Component {
     state = {
         qrcode: false,
-        qrcodeimg: ""
+        qrcodeimg: "",
+
     }
 
 
@@ -29,7 +30,10 @@ class StudentIDContainer extends React.Component {
      */
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.props.TurnOffStudentIDCard()
+            setTimeout(() => {
+
+                this.props.TurnOffStudentIDCard()
+            }, 200);
         }
     }
 

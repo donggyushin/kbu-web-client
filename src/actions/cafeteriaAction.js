@@ -5,7 +5,7 @@ import getInputDayLabel from 'utils/getInputDayLabel'
 
 export const fetchCafeteria = (date) => (dispatch, getState) => {
     const { cafeteria } = getState()
-    console.log('date: ', date)
+
     dispatch({
         type: CAFETERIA_LOADING
     })

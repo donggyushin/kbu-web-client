@@ -3,27 +3,37 @@ import ExtendedMainPresenter from './Presenter';
 import PresentModal from '../Modal';
 import { connect } from 'react-redux'
 import { touchable, untouchable } from 'actions/touchableAction'
+import { fetchChapel } from 'actions/chapelAction'
+import InfoModal from 'components/global/Modal';
 
 class ExtendedMainContainer extends React.Component {
     state = {
-        studentId: false
+        studentId: false,
+        cardTypeOneHeight: 0,
+        cardTypeTwoHeight: 0,
+        cardTypeFourHeight: 0
+    }
+
+    componentDidMount() {
+        this.setCardsHeight()
+        if (this.props.isLoggedIn) {
+
+            this.props.fetchChapel()
+        }
     }
 
 
     render() {
-        const { studentId } = this.state;
+        const { studentId, cardTypeOneHeight, cardTypeTwoHeight, cardTypeFourHeight } = this.state;
         const { TurnOffStudentIDCard,
             TurnOnStudentIDCard,
-            askGoToLoginPage
+            askGoToLoginPage,
+            redirectToLoginPage
         } = this;
-        const { user, loading, handleLocation, noticeClicked, lectureClicked
-            , mileageClicked,
-            scheduleClicked,
-            chapelClicked,
-            mapClicked,
-            cafeteriaClicked,
+        const { user, loading,
             isLoggedIn,
-            touch
+            touch,
+            extendedQrCode
         } = this.props;
         return <ExtendedMainPresenter
             touchable={touch}
@@ -33,20 +43,49 @@ class ExtendedMainContainer extends React.Component {
             TurnOnStudentIDCard={TurnOnStudentIDCard}
             studentId={studentId}
             user={user}
-            scheduleClicked={scheduleClicked}
-            mapClicked={mapClicked}
-            cafeteriaClicked={cafeteriaClicked}
-            mileageClicked={mileageClicked}
-            lectureClicked={lectureClicked}
-            noticeClicked={noticeClicked}
-            chapelClicked={chapelClicked}
-            handleLocation={handleLocation}
             isLoggedIn={isLoggedIn}
+            cardTypeOneHeight={cardTypeOneHeight}
+            cardTypeTwoHeight={cardTypeTwoHeight}
+            cardTypeFourHeight={cardTypeFourHeight}
+            redirectToLoginPage={redirectToLoginPage}
+            extendedQrCode={extendedQrCode}
         />
     }
 
 
+    setCardsHeight = () => {
+        let browserHeight = 0
+        if (typeof (window.innerWidth) == 'number') {
+            //Non-IE
+            browserHeight = window.innerHeight;
+        } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+            //IE 6+ in 'standards compliant mode'
 
+            browserHeight = document.documentElement.clientHeight;
+        } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+            //IE 4 compatible
+
+            browserHeight = document.body.clientHeight;
+        }
+
+        const cardTypeOneHeight = parseInt(browserHeight / 3) - 20;
+        const cardTypeTwoHeight = parseInt(browserHeight / 3) - 20;
+        const cardTypeFourHeight = parseInt(browserHeight / 6);
+        this.setState({
+            cardTypeOneHeight,
+            cardTypeTwoHeight,
+            cardTypeFourHeight
+        })
+    }
+
+    redirectToLoginPage = (nextPage) => {
+        if (nextPage) {
+            window.localStorage.setItem('nextPage', nextPage)
+        }
+        InfoModal('잠시만요!', '해당 페이지로 이동하려면 로그인해주세요!', () => {
+            window.location.href = '/login'
+        })
+    }
 
 
     askGoToLoginPage = (nextPage) => {
@@ -66,23 +105,26 @@ class ExtendedMainContainer extends React.Component {
     }
 
     TurnOffStudentIDCard = () => {
-
         this.setState({
             studentId: false
         })
+
         setTimeout(() => {
             this.props.touchable();
-        }, 500);
+
+        }, 250);
     }
 }
 
 const mapStateToProps = state => {
     return {
-        touch: state.touchable.touchable
+        touch: state.touchable.touchable,
+        extendedQrCode: state.qrcode.extendedQrCode
     }
 }
 
 export default connect(mapStateToProps, {
     touchable,
-    untouchable
+    untouchable,
+    fetchChapel
 })(ExtendedMainContainer);

@@ -43,7 +43,7 @@ class ChapelContainer extends React.Component {
             document.documentElement.scrollHeight - document.documentElement.clientHeight
 
         if (this.state.top) {
-            if (winScroll > 49) {
+            if (winScroll > 69) {
                 this.setState({
                     top: false
                 })
@@ -60,13 +60,13 @@ class ChapelContainer extends React.Component {
 
 
         } else {
-            if (winScroll < 50) {
+            if (winScroll < 70) {
                 this.setState({
                     top: true
                 })
                 document.getElementById('infotextcontainerrow').style.position = "absolute"
                 document.getElementById('infotextcontainerrow').style.opacity = 1
-                document.getElementById('infotextcontainerrow').style.top = '50px'
+                document.getElementById('infotextcontainerrow').style.top = '71px'
             }
 
             if (winScroll > 150) {

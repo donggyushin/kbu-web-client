@@ -5,6 +5,8 @@ import axios from 'axios';
 import REST_API_ENDPOINT from 'constants/endpoint';
 import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 import { base64formatter } from 'utils/base64formatter';
+import { connect } from 'react-redux'
+import { decreaseTimer, turnOnExtendedQrCode } from 'actions/qrcodeAction'
 
 class QRCodeContainer extends React.Component {
 
@@ -40,9 +42,7 @@ class QRCodeContainer extends React.Component {
                     })
 
                     setInterval(() => {
-                        this.setState({
-                            timer: this.state.timer - 1
-                        })
+                        this.props.decreaseTimer()
                     }, 1000);
 
                     setTimeout(() => {
@@ -73,13 +73,27 @@ class QRCodeContainer extends React.Component {
     }
 
     render() {
-        const { timer, qrcodeImgUrl, loading } = this.state;
-        const { img } = this.props;
+        const { qrcodeImgUrl, loading } = this.state;
+        const { img, timer } = this.props;
+        const { qrcodeClicked } = this;
         return <QrcodePresenter
             qrcodeImgUrl={qrcodeImgUrl}
             loading={loading}
-            timer={timer} img={img} />
+            timer={timer} img={img}
+            qrcodeClicked={qrcodeClicked}
+        />
+    }
+
+    qrcodeClicked = () => {
+        this.props.turnOnExtendedQrCode()
+    }
+
+}
+
+const mapStateToProps = state => {
+    return {
+        timer: state.qrcode.timer
     }
 }
 
-export default QRCodeContainer
+export default connect(mapStateToProps, { decreaseTimer, turnOnExtendedQrCode })(QRCodeContainer)

@@ -10,7 +10,7 @@ font-family: 'Nanum Gothic', sans-serif;
 font-size:19px;
 font-style:normal;
 letter-spacing:normal; */
-background: rgba(0,0,0,0.05) !important;
+/* background: rgba(0,0,0,0.05) !important; */
 
 }
 
@@ -128,4 +128,11 @@ code {
 .MuiFormControl-root {
   width: 80% !important;
   margin-bottom: 33px !important;
+}
+
+#container {
+  margin-top: 6px;
+    width: 120.77px;
+    position: absolute;
+    transform: rotate(216deg);
 }

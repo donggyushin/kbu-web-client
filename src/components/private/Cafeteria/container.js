@@ -45,13 +45,28 @@ class CafeteriaContainer extends React.Component {
     componentDidMount() {
 
         const { fetchCafeteria } = this.props;
-        fetchCafeteria(this.getTodayDate())
+
         const todayObject = this.getTodayObject()
+        console.log(typeof (todayObject.month))
         this.setState({
             year: todayObject.year,
             month: todayObject.month,
             day: todayObject.day
         })
+        let year = todayObject.year.toString()
+        let month = todayObject.month
+        let day = todayObject.day
+
+        if (month < 10) {
+            month = '0' + month.toString()
+        }
+
+        if (day < 10) {
+            day = '0' + day.toString()
+        }
+
+        const today = year + month + day
+        fetchCafeteria(today)
     }
 
     render() {
@@ -61,26 +76,7 @@ class CafeteriaContainer extends React.Component {
         const { moonClicked,
             onSwipe,
             sunClicked, previousButtonClicked, nextButtonClicked, iconClicked } = this;
-        // return <CafeteriaPresenter
-        //     dinner={dinner}
-        //     lunch={lunch}
-        //     fix={fix}
-        //     daily={daily}
-        //     loading={loading}
-        //     error={error}
-        //     mode={mode}
-        //     moonClicked={moonClicked}
-        //     sunClicked={sunClicked}
-        //     year={year}
-        //     month={month}
-        //     day={day}
-        //     name={name}
-        //     previousButtonClicked={previousButtonClicked}
-        //     nextButtonClicked={nextButtonClicked}
-        //     onSwipe={onSwipe}
-        //     iconClicked={iconClicked}
 
-        // />
         return <Container>
             <SlickBar
                 year={year}

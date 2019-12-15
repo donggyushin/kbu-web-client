@@ -9,7 +9,7 @@ const Container = styled.div`
     width:100%;
     background:white;
     height:50px;
-    color:${themeColor.theme};
+    color:#353b48;
     flex-shrink:0;
 `
 
@@ -31,6 +31,7 @@ const Icon = styled.i`
     width:50px;
 `
 
+
 export default function ({
     year,
     month,
@@ -43,6 +44,7 @@ export default function ({
     return <Container>
         <Left>
             <Icon onClick={previousButtonClicked} className={'fas fa-chevron-left'} />
+
         </Left>
         <Center>
             {month}월 {day}일 ({name.substr(0, 1)})

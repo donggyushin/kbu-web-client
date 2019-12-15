@@ -29,7 +29,7 @@ const Date = styled.div`
 const RedLine = styled.div`
     width:100%;
     height:3px;
-    background:${themeColor.theme};
+    background:#353b48;
 `
 
 const RowTwo = styled.div`

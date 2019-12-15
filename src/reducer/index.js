@@ -8,6 +8,7 @@ import chapel from './chapelReducer'
 import calendar from './calendarReducer'
 import cafeteria from './cafeteriaReducer'
 import touchable from './touchableReducer'
+import qrcode from './qrcodeReducer'
 
 const initialState = {};
 
@@ -19,7 +20,8 @@ const allReducers = combineReducers({
     chapel,
     calendar,
     cafeteria,
-    touchable
+    touchable,
+    qrcode
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

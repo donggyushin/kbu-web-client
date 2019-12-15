@@ -5,51 +5,65 @@ import getDayLabel from 'utils/getInputDayLabel'
 const Container = styled.div`
     padding-left: 15px;
     padding-right:15px;
-    height: 94px;
+    height: 44px;
     flex-shrink: 0;
-    border-bottom: 1px solid gainsboro;
     display: flex;
     align-items: center;
+    position: relative;
 `
 
-const Left = styled.div`
-display:flex;
-flex-direction:column;
-width:50%;
+
+const Image = styled.img`
+    width:20px;
+    margin-right:20px;
 `
 
-const Row = styled.div`
+const ShopAndDateContainer = styled.div`
+    position:relative;
+    height:100%;
     display:flex;
+    flex-direction:column;
+    justify-content:center;
 `
 
-const Right = styled.div`
-display:flex;
-flex-direction:column;
-width:50%;
-align-items:flex-end;
+const Shop = styled.div`
+    color:black;
 `
 
-const GrayText = styled.div`
-    color:gray;
+const Date = styled.div`
+    position:absolute;
+    bottom:0;
+    font-size:10px;
 `
 
-const RedText = styled.div`
-    color:#e74c3c;
+const Money = styled.div`
+    position:absolute;
+    right:20px;
+    font-size:12px;
 `
 
-const DayLabel = styled.div`
-    margin-left:7px;
-    font-weight:600;
-    color:rgba(0,0,0,0.4);
-`
 
 export default function (cell) {
-    console.log('cell: ', cell)
+    console.log('Used money: ', cell.cell.CST_USE_POINT)
     if (around(cell.cell.CST_USE_POINT) === 0) {
         return <div />
     } else {
         return <Container>
-            <Left>
+            <Image src={require('./images/bluecard.png')} />
+            <ShopAndDateContainer>
+                <Shop>
+                    {cell.cell.SHOP_NM}
+                </Shop>
+                <Date>
+                    {cell.cell.SALE_DATE}
+                    ({getDayLabel(cell.cell.SALE_DATE.substr(0, 4), cell.cell.SALE_DATE.substr(4, 2), cell.cell.SALE_DATE.substr(6, 2))})
+                </Date>
+            </ShopAndDateContainer>
+            <Money>
+                {around(cell.cell.CST_USE_POINT)}
+            </Money>
+            {/* <Left>
+
                 <Row style={{
 
                     fontSize: 16,
@@ -80,7 +94,7 @@ export default function (cell) {
                 }}>
                     {'제품 구매'}
                 </Row>
-            </Right>
+            </Right> */}
         </Container>
     }
 

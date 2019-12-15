@@ -19,6 +19,10 @@ const Moon = styled.i`
 color:${props => props.mode === 'dinner' && '#3498db'};
 `
 
+const Image = styled.img`
+    width:35px;
+`
+
 
 export default function ({ mode,
     moonClicked,
@@ -26,7 +30,15 @@ export default function ({ mode,
     iconClicked
 }) {
     return <Container>
+        {mode === 'lunch' ? <>
+            <Image style={{ marginRight: 50 }} src={require('./images/sun_picked.png')} />
+            <Image onClick={moonClicked} src={require('./images/crescent_moons.png')} />
+        </> : <>
+                <Image onClick={sunClicked} style={{ marginRight: 50 }} src={require('./images/sun.png')} />
+                <Image src={require('./images/crescent_moon_picked.png')} />
+            </>}
+        {/*         
         <Sun mode={mode} onClick={sunClicked} className={'fas fa-sun'} />
-        <Moon mode={mode} onClick={moonClicked} className={'fas fa-moon'} />
+        <Moon mode={mode} onClick={moonClicked} className={'fas fa-moon'} /> */}
     </Container>
 }

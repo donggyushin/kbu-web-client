@@ -31,11 +31,12 @@ const Timer = styled.div`
 
 export default function QrcodePresenter({ img, timer,
     qrcodeImgUrl,
-    loading
+    loading,
+    qrcodeClicked
 }) {
     return <Container className={'qrcodecontainer'}>
         {loading ? 'QR code 읽어오는중...' : <>
-            <QRCodeImage src={qrcodeImgUrl} />
+            <QRCodeImage onClick={qrcodeClicked} src={qrcodeImgUrl} />
 
             <Timer>{timer}</Timer>
         </>}

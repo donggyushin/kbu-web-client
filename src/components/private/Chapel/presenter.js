@@ -34,10 +34,10 @@ const Row = styled.div`
     width:100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    
     opacity:1;
     position:absolute;
-    top:50px;
+    top:71px;
     z-index:3;
 `
 

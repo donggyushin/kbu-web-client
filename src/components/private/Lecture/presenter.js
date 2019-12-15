@@ -17,6 +17,7 @@ const Container = styled.div`
     width:100%;
     overflow: hidden;
     position: relative;
+    border-bottom:1px solid gainsboro;
 `
 
 const Schedule = styled.div`

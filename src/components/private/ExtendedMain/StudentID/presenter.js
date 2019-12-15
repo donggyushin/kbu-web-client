@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import themeColor from 'constants/themeColor';
 import QRCode from './QRCode';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,6 +34,15 @@ const Container = styled.div`
     /* overflow:scroll; */
 `
 
+const ShowUpFromBottom = keyframes`
+    0% {
+        top:100vh;
+    },
+    100% {
+        top:20px;
+    }
+`
+
 const CardContainer = styled.div`
     width:90%;
     height: 70%;
@@ -44,6 +53,7 @@ const CardContainer = styled.div`
     justify-content:center;
     position: relative;
     top:20px;
+    animation:${ShowUpFromBottom} 0.5s ease-in-out;
 `
 
 const WatermarkBottom = styled.img`
@@ -85,14 +95,13 @@ const WaterMark = styled.img`
 const RedLine = styled.div`
     width:100%;
     height:53px;
-    color:white;
-    background:${themeColor.theme};
+    color:black;
     display:flex;
     justify-content:center;
     font-size: 22px;
     align-items:center;
     font-family: 'Nanum Gothic',sans-serif;
-    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.75);
+    
 `
 const Row = styled.div`
     display:flex;
@@ -129,9 +138,12 @@ const NormalText = styled.div`
     color:${props => props.red ? '#e74c3c' : '#2f3640'};
 `
 const ProfileImageContainer = styled.div`
-margin-top:3px;
+margin-top: 3px;
     width: 48%;
     height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -139,13 +151,20 @@ margin-top:3px;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    border-top-right-radius: 16px;
+    /* border-top-right-radius: 16px; */
     overflow: hidden;
+    margin-right: 2px;
     /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
     
 `
@@ -155,7 +174,6 @@ const ProfileImage = styled.img`
     /* margin-top:5px; */
     padding-right:5px;
     object-fit:cover;
-    border-top-right-radius: 16px;
     z-index:1;
     /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
 `
@@ -247,7 +265,7 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                 <QrcodeContainer>
                     {qrcode ? <QRCode user={user} shutdownQrcode={shutdownQrcode} img={qrcodeimg} /> : <Fab style={{
                         zIndex: 3,
-                        background: themeColor.theme,
+                        background: '#2f3542',
                         color: 'white'
                     }} onClick={requestQrcode} variant="extended" aria-label="delete" className={classes.fab}>
                         <NavigationIcon style={{ color: 'white' }} className={classes.extendedIcon} />
