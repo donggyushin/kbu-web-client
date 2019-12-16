@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { touchable, untouchable } from 'actions/touchableAction'
 import { fetchChapel } from 'actions/chapelAction'
 import InfoModal from 'components/global/Modal';
+import { initQrCode } from 'actions/qrcodeAction'
 
 class ExtendedMainContainer extends React.Component {
     state = {
@@ -105,14 +106,12 @@ class ExtendedMainContainer extends React.Component {
     }
 
     TurnOffStudentIDCard = () => {
+
+
         this.setState({
             studentId: false
         })
 
-        setTimeout(() => {
-            this.props.touchable();
-
-        }, 250);
     }
 }
 
@@ -126,5 +125,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
     touchable,
     untouchable,
-    fetchChapel
+    fetchChapel,
+    initQrCode
 })(ExtendedMainContainer);

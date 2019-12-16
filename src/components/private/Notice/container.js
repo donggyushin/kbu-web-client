@@ -9,6 +9,11 @@ class NoticeContainer extends React.Component {
 
     componentDidMount() {
         this.props.requestNotice()
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll)
     }
 
 
@@ -19,6 +24,22 @@ class NoticeContainer extends React.Component {
         const { noticeRequestNext } = this.props;
 
         return <NoticePresenter noticeRequestNext={noticeRequestNext} error={error} loading2={loading2} loading={loading} notices={notices} />
+    }
+
+    isBottom(el) {
+        console.log('el.getBoundingClientRect().bottom: ', el.getBoundingClientRect().bottom)
+        console.log('window.innerHeight: ', window.innerHeight);
+        return el.getBoundingClientRect().bottom - window.innerHeight < 50 ? true : false
+    }
+
+
+    handleScroll = () => {
+        const wrappedElement = document.getElementById('noticecontainer');
+        if (this.isBottom(wrappedElement)) {
+            this.props.fetchNextNotice()
+
+            // document.removeEventListener('scroll', this.trackScrolling);
+        }
     }
 
 

@@ -22,6 +22,14 @@ const Paper = styled.div`
     padding-top:5px;
 `
 
+const Paper2 = styled.div`
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    background:white;
+    padding-top:5px;
+`
+
 
 const DownButton = styled.div`
     padding: 5px;
@@ -64,7 +72,7 @@ export default function NoticePresenter({ notices, loading,
             <a target={'blank'} href={'http://www.bible.ac.kr/bible_report/college_notice.aspx'}>
                 <Representative />
             </a>
-            {loading === false && <Paper id={'noticecontainer'}>
+            {loading === false && <Paper2 id={'noticecontainer'}>
 
                 {notices.map(notice => {
 
@@ -72,7 +80,7 @@ export default function NoticePresenter({ notices, loading,
 
                 })}
 
-            </Paper>}
+            </Paper2>}
             {loading2 && <LoadingContainer><SmallLoading black={true} /></LoadingContainer>}
             {loading2 === false && <DownButton onClick={noticeRequestNext}>
                 <DownArrowIcon className={'fas fa-chevron-down'} />

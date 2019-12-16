@@ -1,6 +1,6 @@
 import React from 'react';
 import ChapelPresenter from './presenter';
-
+import { connect } from 'react-redux'
 
 
 class ChapelContainer extends React.Component {
@@ -23,8 +23,8 @@ class ChapelContainer extends React.Component {
     render() {
         const { chapels, summary, chapelLength, loading } = this.props.chapel;
         const { buttonToTopClicked } = this;
-
-        return <ChapelPresenter buttonToTopClicked={buttonToTopClicked} loading={loading} chapelLength={chapelLength} summary={summary} chapels={chapels} />
+        const { imageName } = this.props;
+        return <ChapelPresenter imageName={imageName} buttonToTopClicked={buttonToTopClicked} loading={loading} chapelLength={chapelLength} summary={summary} chapels={chapels} />
     }
 
     buttonToTopClicked = () => {
@@ -47,10 +47,10 @@ class ChapelContainer extends React.Component {
                 this.setState({
                     top: false
                 })
-                document.getElementById('infotextcontainerrow').style.position = "fixed"
-                document.getElementById('infotextcontainerrow').style.top = 0
-                document.getElementById('infotextcontainerrow').style.left = 0
-                document.getElementById('infotextcontainerrow').style.opacity = 0.7
+                // document.getElementById('infotextcontainerrow').style.position = "fixed"
+                // document.getElementById('infotextcontainerrow').style.top = 0
+                // document.getElementById('infotextcontainerrow').style.left = 0
+                // document.getElementById('infotextcontainerrow').style.opacity = 0.7
             }
 
             if (winScroll < 150) {
@@ -64,9 +64,9 @@ class ChapelContainer extends React.Component {
                 this.setState({
                     top: true
                 })
-                document.getElementById('infotextcontainerrow').style.position = "absolute"
-                document.getElementById('infotextcontainerrow').style.opacity = 1
-                document.getElementById('infotextcontainerrow').style.top = '71px'
+                // document.getElementById('infotextcontainerrow').style.position = "absolute"
+                // document.getElementById('infotextcontainerrow').style.opacity = 1
+                // document.getElementById('infotextcontainerrow').style.top = '71px'
             }
 
             if (winScroll > 150) {
@@ -79,4 +79,10 @@ class ChapelContainer extends React.Component {
 
 }
 
-export default ChapelContainer;
+const mapStateToProps = state => {
+    return {
+        imageName: state.chapel.cardImage
+    }
+}
+
+export default connect(mapStateToProps, {})(ChapelContainer);

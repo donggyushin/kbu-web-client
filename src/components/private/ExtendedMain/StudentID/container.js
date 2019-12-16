@@ -1,6 +1,6 @@
 import React from 'react';
 import StudentID from './presenter';
-import anime from 'animejs/lib/anime.es.js';
+import { connect } from 'react-redux'
 
 class StudentIDContainer extends React.Component {
     state = {
@@ -29,12 +29,12 @@ class StudentIDContainer extends React.Component {
      * Alert if clicked on outside of element
      */
     handleClickOutside(event) {
-        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            setTimeout(() => {
+        // if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+        //     setTimeout(() => {
 
-                this.props.TurnOffStudentIDCard()
-            }, 200);
-        }
+        //         this.props.TurnOffStudentIDCard()
+        //     }, 200);
+        // }
     }
 
     componentDidMount() {
@@ -61,7 +61,7 @@ class StudentIDContainer extends React.Component {
     }
 
     render() {
-        const { TurnOffStudentIDCard, user, loading } = this.props;
+        const { TurnOffStudentIDCard, user, loading, img } = this.props;
         const { requestQrcode, shutdownQrcode } = this;
         const { qrcode, qrcodeimg } = this.state;
         return <StudentID
@@ -72,6 +72,7 @@ class StudentIDContainer extends React.Component {
             qrcodeimg={qrcodeimg}
             user={user}
             loading={loading}
+            img={img}
             setWrapperRef={this.setWrapperRef}
         />
     }
@@ -87,6 +88,8 @@ class StudentIDContainer extends React.Component {
             qrcode: true,
             qrcodeimg: "qrcode base64 code"
         })
+
+
     }
 
     shutdownQrcode = () => {
@@ -97,4 +100,10 @@ class StudentIDContainer extends React.Component {
     }
 }
 
-export default StudentIDContainer
+const mapStateToProps = state => {
+    return {
+        img: state.qrcode.img
+    }
+}
+
+export default connect(mapStateToProps, {})(StudentIDContainer)

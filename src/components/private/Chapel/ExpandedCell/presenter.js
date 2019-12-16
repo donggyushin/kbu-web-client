@@ -95,48 +95,6 @@ export default function ({
     sure
 }) {
     return <Container>
-        {/* <Left>
-            <Date>{year.substr(2)}/{month}/{day} ({date})</Date>
-            <Row>
-                <LeftText>시각</LeftText>
-                <RightText>{time}</RightText>
-            </Row>
-            <Row>
-                <LeftText>출석</LeftText>
-                <RightText>{(() => {
-                    if (late === '출석') {
-                        return '출석'
-                    } else if (late === '지각') {
-                        return <RedText>지각</RedText>
-                    } else {
-                        return <RedText>결석</RedText>
-                    }
-                })()}</RightText>
-            </Row>
-            <Row>
-                <LeftText>확정</LeftText>
-                <RightText>{(() => {
-                    if (sure === '출석') {
-                        return '출석'
-                    } else if (sure === '지각') {
-                        return <RedText>지각</RedText>
-                    } else if (sure === '결석') {
-                        return <RedText>결석</RedText>
-                    } else {
-                        return <Except>예외</Except>
-                    }
-                })()}</RightText>
-            </Row>
-            <Row>
-                <LeftText>비고</LeftText>
-                <RightText>{comment}</RightText>
-            </Row>
-        </Left>
-        <Right >
-            <ImageContainer>
-                <Image src={late === '출석' ? require('./good.png') : require('./bad.png')} />
-            </ImageContainer>
-        </Right> */}
         <Left2>
             <Date>{year.substr(2)}/{month}/{day} ({date})</Date>
             <Row>

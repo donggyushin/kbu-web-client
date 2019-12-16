@@ -1,7 +1,16 @@
 import axios from 'axios'
 import REST_API_ENDPOINT from '../constants/endpoint'
-import { FETCH_CHAPEL, CHAPEL_ERROR } from './type'
+import { FETCH_CHAPEL, CHAPEL_ERROR, SET_IMAGE_NAME } from './type'
 import { decodeJsonWebToken } from 'utils/jsonwebtoken'
+
+export const setChapelImage = (imageName) => (dispatch) => {
+
+    console.log('chapel action')
+    dispatch({
+        type: SET_IMAGE_NAME,
+        imageName
+    })
+}
 
 export const fetchChapel = () => (dispatch, getState) => {
     const { chapel } = getState()

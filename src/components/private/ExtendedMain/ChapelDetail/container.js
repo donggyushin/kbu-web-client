@@ -2,6 +2,7 @@ import React from 'react'
 import Presenter from './presenter'
 import { connect } from 'react-redux'
 import ProgressBar from 'progressbar.js'
+import { setChapelImage } from 'actions/chapelAction'
 
 var bar;
 
@@ -38,21 +39,25 @@ class Container extends React.Component {
             this.setState({
                 image: "flower1.png"
             })
+            this.props.setChapelImage("flower1.png")
         } else if (percentage <= 0.6) {
             // image 2
             this.setState({
                 image: "flower2.png"
             })
+            this.props.setChapelImage("flower2.png")
         } else if (percentage === 1.0) {
             // image 4
             this.setState({
                 image: "flower4.png"
             })
+            this.props.setChapelImage("flower4.png")
         } else {
             // image 3
             this.setState({
                 image: "flower3.png"
             })
+            this.props.setChapelImage("flower3.png")
         }
 
 
@@ -75,21 +80,25 @@ class Container extends React.Component {
                 this.setState({
                     image: "flower1.png"
                 })
+                this.props.setChapelImage("flower1.png")
             } else if (percentage <= 0.6) {
                 // image 2
                 this.setState({
                     image: "flower2.png"
                 })
+                this.props.setChapelImage("flower2.png")
             } else if (percentage === 1.0) {
                 // image 4
                 this.setState({
                     image: "flower4.png"
                 })
+                this.props.setChapelImage("flower4.png")
             } else {
                 // image 3
                 this.setState({
                     image: "flower3.png"
                 })
+                this.props.setChapelImage("flower3.png")
             }
         }
     }
@@ -109,4 +118,6 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(Container);
+export default connect(mapStateToProps, {
+    setChapelImage
+})(Container);

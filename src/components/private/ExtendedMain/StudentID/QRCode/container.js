@@ -6,7 +6,9 @@ import REST_API_ENDPOINT from 'constants/endpoint';
 import { decodeJsonWebToken } from 'utils/jsonwebtoken';
 import { base64formatter } from 'utils/base64formatter';
 import { connect } from 'react-redux'
-import { decreaseTimer, turnOnExtendedQrCode } from 'actions/qrcodeAction'
+import { decreaseTimer, fetchQrcode, turnOnExtendedQrCode, initQrCode } from 'actions/qrcodeAction'
+
+var repeat;
 
 class QRCodeContainer extends React.Component {
 
@@ -17,54 +19,61 @@ class QRCodeContainer extends React.Component {
     }
 
     componentDidMount() {
-        const { user } = this.props;
+        if (this.props.loading) {
+            const { user } = this.props;
 
-        const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
-        // qrcode image 요청
-        axios.post(REST_API_ENDPOINT + 'qr/', {
-            id: decoded.id,
-            token: localStorage.getItem('kbu'),
-            sid: this.props.user.sid,
-            name: user.name
-        })
-            .then(res => res.data)
-            .then(data => {
-                const { is_ok, result } = data;
-                if (is_ok) {
-                    const { img } = result;
-                    this.setState({
-                        qrcodeImgUrl: base64formatter(img),
-                        loading: false
-                    })
-                    anime({
-                        targets: '.qrcodecontainer',
-                        translateY: -300
-                    })
-
-                    setInterval(() => {
-                        this.props.decreaseTimer()
-                    }, 1000);
-
-                    setTimeout(() => {
-                        // turn off qrcode
-                        this.props.shutdownQrcode()
-                    }, 15000);
-                } else {
-                    alert('QR CODE 를 불러오는데 실패하였습니다! 관리자에게 문의해주세요!');
-                    window.location.href = '/'
-                }
-
+            const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
+            // qrcode image 요청
+            axios.post(REST_API_ENDPOINT + 'qr/', {
+                id: decoded.id,
+                token: localStorage.getItem('kbu'),
+                sid: this.props.user.sid,
+                name: user.name
             })
-            .catch(err => console.error(err))
+                .then(res => res.data)
+                .then(data => {
+                    const { is_ok, result } = data;
+                    if (is_ok) {
+                        const { img } = result;
+                        // this.setState({
+                        //     qrcodeImgUrl: base64formatter(img),
+                        //     loading: false
+                        // })
+                        this.props.fetchQrcode(base64formatter(img))
+                        anime({
+                            targets: '.qrcodecontainer',
+                            translateY: -300
+                        })
+
+                        repeat = setInterval(() => {
+                            this.props.decreaseTimer()
+                        }, 1000);
+
+                        setTimeout(() => {
+                            // turn off qrcode
+                            if (this.props.timer < 1) {
+
+                                this.props.shutdownQrcode()
+                                clearInterval(repeat)
+                                this.props.initQrCode()
+                            }
+                        }, 15000);
+                    } else {
+                        alert('QR CODE 를 불러오는데 실패하였습니다! 관리자에게 문의해주세요!');
+                        window.location.href = '/'
+                    }
+
+                })
+                .catch(err => console.error(err))
+        }
+
 
     }
 
     componentWillUnmount() {
-        this.setState({
-            loading: true,
-            timer: 15,
-            qrcodeImgUrl: ''
-        })
+        this.props.initQrCode();
+
+        clearInterval(repeat);
         // anime({
         //     targets: '.qrcodecontainer',
         //     translateY: 300
@@ -73,13 +82,12 @@ class QRCodeContainer extends React.Component {
     }
 
     render() {
-        const { qrcodeImgUrl, loading } = this.state;
-        const { img, timer } = this.props;
+        const { img, timer, loading } = this.props;
         const { qrcodeClicked } = this;
         return <QrcodePresenter
-            qrcodeImgUrl={qrcodeImgUrl}
+            qrcodeImgUrl={img}
             loading={loading}
-            timer={timer} img={img}
+            timer={timer}
             qrcodeClicked={qrcodeClicked}
         />
     }
@@ -92,8 +100,10 @@ class QRCodeContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        timer: state.qrcode.timer
+        timer: state.qrcode.timer,
+        img: state.qrcode.img,
+        loading: state.qrcode.loading
     }
 }
 
-export default connect(mapStateToProps, { decreaseTimer, turnOnExtendedQrCode })(QRCodeContainer)
+export default connect(mapStateToProps, { decreaseTimer, turnOnExtendedQrCode, initQrCode, fetchQrcode })(QRCodeContainer)

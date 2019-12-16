@@ -1,4 +1,4 @@
-import { FETCH_CHAPEL, CHAPEL_ERROR } from "actions/type";
+import { FETCH_CHAPEL, CHAPEL_ERROR, SET_IMAGE_NAME } from "actions/type";
 
 const initialState = {
     chapels: [],
@@ -10,7 +10,8 @@ const initialState = {
     },
     chapelLength: 0,
     loading: true,
-    error: ""
+    error: "",
+    cardImage: ""
 }
 
 export default function (state = initialState, action) {
@@ -24,8 +25,20 @@ export default function (state = initialState, action) {
 
             return chapelErrorReducer(state, action)
 
+        case SET_IMAGE_NAME:
+
+            return setImageNameReducer(state, action)
+
         default:
             return state;
+    }
+}
+
+function setImageNameReducer(state, action) {
+    console.log("reducer function")
+    return {
+        ...state,
+        cardImage: action.imageName
     }
 }
 

@@ -5,6 +5,8 @@ import themeColor from 'constants/themeColor';
 import OneCell from './Cell';
 import ExpandedCell from './ExpandedCell';
 import SmallLoading from 'components/global/SmallLoading';
+import ChapelImage from './ChapelImage';
+import Summary from './Summary';
 
 
 const Container = styled.div`
@@ -21,39 +23,8 @@ const Paper = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    background:white;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    background: #ecf0f1;
 `
 
-const Row = styled.div`
-    display:flex;
-    align-items:center;
-    background:white;
-    justify-content:space-around;
-    width:100%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    
-    opacity:1;
-    position:absolute;
-    top:71px;
-    z-index:3;
-`
-
-const SmallText = styled.div`
-    /* font-family:'1997'; */
-    font-size: 15px;
-    margin-right:4px;
-    font-weight:bolder;
-    color:rgba(0, 0, 0, 0.65);
-    margin-right:23px;
-`
-
-const InfoTextContainer = styled.div`
-    display:flex;
-    margin-right:5px;
-`
 
 const BodyContainer = styled.div`
     width:100%;
@@ -72,7 +43,6 @@ const Body = styled.div`
     padding-top: 10px;
     padding-bottom: 30px;
     align-items:center;
-    background: rgba(255,255,255,0.1);
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -103,20 +73,16 @@ const LoadingContainer = styled.div`
     margin-bottom:20px;
 `
 
-export default function ChapelPresenter({ summary, chapels, chapelLength, loading, buttonToTopClicked }) {
+export default function ChapelPresenter({ imageName, summary, chapels, chapelLength, loading, buttonToTopClicked }) {
+
+    const { attendance, late, sure, duty } = summary;
     return <Container>
         <Paper>
             {loading ? <LoadingContainer>
                 <SmallLoading black={true} />
             </LoadingContainer> : <>
-                    <Row id={'infotextcontainerrow'}>
-                        <InfoTextContainer>
-                            <SmallText>출석:{summary.attendance}</SmallText>
-                            <SmallText>지각:{summary.late}</SmallText>
-                            <SmallText>확정:{summary.sure}</SmallText>
-                            <SmallText>남은 일수:{summary.duty - summary.sure}</SmallText>
-                        </InfoTextContainer>
-                    </Row>
+                    <ChapelImage imageName={imageName} />
+                    <Summary duty={duty} sure={sure} />
                     <BodyContainer >
                         <Body>
                             {chapels.map((chapel, i) => {
@@ -139,7 +105,7 @@ export default function ChapelPresenter({ summary, chapels, chapelLength, loadin
 
                                 console.log('chapel: ', chapel)
 
-
+                                return <OneCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
                                 return <ExpandedCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
 
                             })}

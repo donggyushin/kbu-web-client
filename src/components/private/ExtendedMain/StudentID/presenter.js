@@ -180,16 +180,26 @@ const ProfileImage = styled.img`
 
 
 const XButton = styled.div`
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 84%;
+    height: 17vh;
+    border-radius: 5px;
     background: rgba(0,0,0,0,2);
     color: white;
     background: rgba(255,255,255,0.3);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
-    align-items:center;
-    margin-top:30px;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size:25px;
 `
 
 const XIcon = styled.i`
@@ -220,7 +230,8 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
     qrcodeimg,
     user,
     loading,
-    setWrapperRef
+    setWrapperRef,
+    img
 }) {
     const classes = useStyles();
     return <Container  >
@@ -263,13 +274,15 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
 
                 <MarginHeight />
                 <QrcodeContainer>
-                    {qrcode ? <QRCode user={user} shutdownQrcode={shutdownQrcode} img={qrcodeimg} /> : <Fab style={{
+                    {qrcode ? <QRCode user={user} shutdownQrcode={shutdownQrcode}
+                    // img={qrcodeimg}
+                    /> : <Fab style={{
                         zIndex: 3,
                         background: '#2f3542',
                         color: 'white'
                     }} onClick={requestQrcode} variant="extended" aria-label="delete" className={classes.fab}>
-                        <NavigationIcon style={{ color: 'white' }} className={classes.extendedIcon} />
-                        QR CODE
+                            <NavigationIcon style={{ color: 'white' }} className={classes.extendedIcon} />
+                            QR CODE
                     </Fab>}
 
                 </QrcodeContainer>
@@ -280,6 +293,10 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
         <XButton style={{
             // top: 700,
             position: 'relative'
-        }} className={'studentidcard'} onClick={TurnOffStudentIDCard}><XIcon className={'fas fa-times'} /></XButton>
+        }} className={'studentidcard'} onClick={TurnOffStudentIDCard}>완료</XButton>
+        {/* <XButton style={{
+            // top: 700,
+            position: 'relative'
+        }} className={'studentidcard'} onClick={TurnOffStudentIDCard}><XIcon className={'fas fa-times'} /></XButton> */}
     </Container>
 }

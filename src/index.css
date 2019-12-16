@@ -95,6 +95,16 @@ code {
   color: white !important;
 }
 
+@font-face {
+  font-family: 'applesdBold';
+  src:url('./fonts/AppleSDGothicNeoSB.ttf');
+}
+
+@font-face {
+  font-family: 'applesdLight';
+  src:url('./fonts/AppleSDGothicNeoL.ttf');
+}
+
 @font-face{
   font-family: '1997';
   src: url('./fonts/typossangmoondong.ttf');
