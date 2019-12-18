@@ -67,11 +67,15 @@ export default function ({ refer, isLoggedIn, logout, slideTabBarToLeft }) {
     return <Container>
         {slideTabBarToLeft ? <Tab2>
             <Text>관리자 페이지</Text>
-            <Text>학교 맵</Text>
+            <Link to={'/map'}>
+                <Text>학교 맵</Text>
+            </Link>
             {isLoggedIn ? <Text onClick={logout}>로그아웃</Text> : <Link to={'/login'}><Text>로그인</Text></Link>}
         </Tab2> : <Tab ref={refer}>
                 <Text>관리자 페이지</Text>
-                <Text>학교 맵</Text>
+                <Link to={'/map'}>
+                    <Text>학교 맵</Text>
+                </Link>
                 {isLoggedIn ? <Text onClick={logout}>로그아웃</Text> : <Link to={'/login'}><Text>로그인</Text></Link>}
             </Tab>}
 

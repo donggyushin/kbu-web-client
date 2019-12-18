@@ -1,8 +1,13 @@
 import React from 'react';
 import SubjectPresenter from './presenter';
+import { connect } from 'react-redux'
+import { touchable } from 'actions/touchableAction'
 
 class SubjectContainer extends React.Component {
 
+    componentDidMount() {
+        this.props.touchable()
+    }
 
 
     render() {
@@ -17,4 +22,10 @@ class SubjectContainer extends React.Component {
     }
 }
 
-export default SubjectContainer
+const mapStateToProps = state => {
+    return {}
+}
+
+export default connect(mapStateToProps, {
+    touchable
+})(SubjectContainer)
