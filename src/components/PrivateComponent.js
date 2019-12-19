@@ -24,6 +24,7 @@ import Calendar from './private/Calendar';
 import SignUpPage from './public/SignUp';
 import NavigationBar from './global/NavigationBar';
 import LoginPage from './public/login';
+import TodaysPrayerForm from './private/TodaysPrayerForm';
 
 
 
@@ -96,9 +97,12 @@ class PrivateComponent extends React.Component {
                     <Chapel requestChapel={fetchChapel} chapel={chapel} />
                 </Route>
                 <Route path={'/calendar'}>
-                    {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"학사일정"} user={user} logout={logout} /> */}
                     <NavigationBar location={'학사일정'} logout={logout} isLoggedIn={isLoggedIn} />
                     <Calendar />
+                </Route>
+                <Route path={'/prayerform'}>
+                    <NavigationBar location={'오늘의 기도(관리자)'} logout={logout} isLoggedIn={isLoggedIn} />
+                    <TodaysPrayerForm />
                 </Route>
                 <Route path={'/login'}>
                     {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"로그인"} user={user} logout={logout} /> */}
@@ -110,6 +114,7 @@ class PrivateComponent extends React.Component {
                 </Route>
                 <Route>
                     {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={""} user={user} logout={logout} /> */}
+                    <NavigationBar location={'성서봇'} logout={logout} isLoggedIn={isLoggedIn} />
                     <Main />
                 </Route>
 

@@ -94,6 +94,9 @@ export default function ({ refer, isLoggedIn, logout, slideTabBarToLeft }) {
             <Link to={'/map'}>
                 <Text>학교 맵</Text>
             </Link>
+            <Link to={'/prayerform'}>
+                <Text>오늘의 말씀(관리자)</Text>
+            </Link>
             {isLoggedIn ? <Text onClick={logout}>로그아웃</Text> : <Link to={'/login'}><Text>로그인</Text></Link>}
         </Tab2> : <Tab ref={refer}>
                 <Text>관리자 페이지</Text>
@@ -120,6 +123,9 @@ export default function ({ refer, isLoggedIn, logout, slideTabBarToLeft }) {
                 </Link>
                 <Link to={'/map'}>
                     <Text>학교 맵</Text>
+                </Link>
+                <Link to={'/prayerform'}>
+                    <Text>오늘의 말씀(관리자)</Text>
                 </Link>
                 {isLoggedIn ? <Text onClick={logout}>로그아웃</Text> : <Link to={'/login'}><Text>로그인</Text></Link>}
             </Tab>}

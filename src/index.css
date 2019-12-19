@@ -146,3 +146,14 @@ code {
     position: absolute;
     transform: rotate(216deg);
 }
+
+.textareaautosize {
+  border: 2px solid #6D7278;
+  border-radius: 3px;
+  min-height: 113px;
+}
+
+.textareaautosize:focus {
+  border: 2px solid #83A6D0;
+  outline: none;
+}

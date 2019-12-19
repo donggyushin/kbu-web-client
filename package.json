@@ -39,6 +39,7 @@
     "react-scripts": "3.2.0",
     "react-slick": "^0.25.2",
     "react-spinners": "^0.6.1",
+    "react-textarea-autosize": "^7.1.2",
     "react_google_calendar": "^2.2.4444",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
