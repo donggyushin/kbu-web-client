@@ -6,6 +6,7 @@ import themeColor from 'constants/themeColor';
 import { convertStringToTimeInteger, convertTimeIntToString, convertMinutesToHour } from 'utils/convertStringToTimeInteger';
 import SubjectDetail from './SubjectDetail';
 import SmallLoading from 'components/global/SmallLoading';
+import Clock from './Clock';
 
 
 let counter = 0;
@@ -25,7 +26,7 @@ const Schedule = styled.div`
     flex-direction:column;
     width:100%;
     background:white;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    border-top: 1px solid gainsboro;
 `
 const Header = styled.div`
     display:flex;
@@ -137,13 +138,16 @@ const VerticalLine = styled.div`
 
 export default function LecturePresenter({
     selectedLecture, list, showDataList,
-    lectureDetail, wrapper, touch, closeDetailView, background, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
+    lectureDetail, wrapper,
+    clockMessage
+    , touch, closeDetailView, background, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
     if (error) {
         alert(error);
         window.location.href = '/'
     } else {
 
         return <Container>
+            <Clock clockMessage={clockMessage} />
             <Schedule>
                 <Header>
                     <TimeBar />

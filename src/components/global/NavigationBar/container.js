@@ -3,7 +3,6 @@ import Presenter from './presenter'
 
 
 
-
 class Container extends React.Component {
 
     state = {
@@ -42,7 +41,7 @@ class Container extends React.Component {
         const { tabBar, slideTabBarToLeft } = this.state;
         const { turnOnTab } = this;
         const { isLoggedIn, logout, location } = this.props;
-        return <Presenter location={location} slideTabBarToLeft={slideTabBarToLeft} logout={logout} isLoggedIn={isLoggedIn} refer={this.setWrapperRef} turnOnTab={turnOnTab} tabBar={tabBar} />
+        return <Presenter isLoggedIn={isLoggedIn} location={location} slideTabBarToLeft={slideTabBarToLeft} logout={logout} isLoggedIn={isLoggedIn} refer={this.setWrapperRef} turnOnTab={turnOnTab} tabBar={tabBar} />
     }
 
     turnDownTab = () => {
