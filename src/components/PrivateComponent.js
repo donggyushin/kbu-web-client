@@ -25,6 +25,7 @@ import SignUpPage from './public/SignUp';
 import NavigationBar from './global/NavigationBar';
 import LoginPage from './public/login';
 import TodaysPrayerForm from './private/TodaysPrayerForm';
+import TodaysPrayer from './private/TodaysPrayer';
 
 
 
@@ -104,14 +105,18 @@ class PrivateComponent extends React.Component {
                     <NavigationBar location={'오늘의 기도(관리자)'} logout={logout} isLoggedIn={isLoggedIn} />
                     <TodaysPrayerForm />
                 </Route>
+                <Route path={'/prayer'}>
+                    <NavigationBar location={'오늘의 기도'} logout={logout} isLoggedIn={isLoggedIn} />
+                    <TodaysPrayer />
+                </Route>
                 <Route path={'/login'}>
                     {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"로그인"} user={user} logout={logout} /> */}
                     <LoginPage />
                 </Route>
                 <Route path={'/signup'}>
-                    {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={"회원가입"} user={user} logout={logout} /> */}
                     <SignUpPage />
                 </Route>
+
                 <Route>
                     {/* <DrawerComponent isLoggedIn={isLoggedIn} mainClicked={mainClicked} location={""} user={user} logout={logout} /> */}
                     <NavigationBar location={'성서봇'} logout={logout} isLoggedIn={isLoggedIn} />

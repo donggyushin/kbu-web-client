@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TextField } from '@material-ui/core'
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from 'react-textarea-autosize'
+
 
 const Container = styled.div`
     width:100%;
     display:flex;
     flex-direction:column;
     margin-top:20px;
-    margin-bottom:20px;
 `
 
 const Card = styled.div`
@@ -18,34 +17,31 @@ const Card = styled.div`
     padding-top: 10px;
     padding-left: 10px;
     padding-right:10px;
+    position:relative;
+ 
 `
 
+const StudentName = styled.div``
+
 export default function ({
-    name,
-    prayerOfStudent,
-    handlePrayersOfStudent,
-    i
+    studentName,
+    prayer
 }) {
     return <Container>
         <Card>
-            <TextField name={'name'} value={name} onChange={(e) => {
-                handlePrayersOfStudent(i, e)
-            }} style={{ width: '100%' }} id="standard-basic" label="학우님 성명" />
+            <StudentName>{studentName}</StudentName>
             <TextareaAutosize
                 className={'textareaautosize'}
-                placeholder={'학우님의 기도문을 적어주세요'}
-                name={'prayerOfStudent'}
-                value={prayerOfStudent}
-                onChange={(e) => {
-                    handlePrayersOfStudent(i, e)
-                }}
+                value={prayer}
                 style={{
                     width: '100%',
                     resize: 'none',
                     marginBottom: 20,
                     minHeight: 20,
                     border: 0
-                }} />
+                }}
+                disabled={true}
+            />
         </Card>
     </Container>
 }

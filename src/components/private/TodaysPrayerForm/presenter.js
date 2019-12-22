@@ -4,6 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import StudentInput from './StudentInput';
+import NormalLoading from 'components/global/normalLoading';
 const Container = styled.div`
     width:100%;
     display:flex;
@@ -53,8 +54,11 @@ const SubmitButton = styled.div`
 export default function ({
     todaysPrayer,
     handleInput,
-    prayerForStudent,
-    addButtonClicked
+    prayersOfStudent,
+    addButtonClicked,
+    submitButtonClicked,
+    handlePrayersOfStudent,
+    loading
 }) {
     return <Container>
         <Form>
@@ -74,13 +78,14 @@ export default function ({
             <Label>
                 학생을 위한 기도
             </Label>
-            {prayerForStudent.map((cell, i) => {
+            {prayersOfStudent.map((cell, i) => {
                 const { name, prayerOfStudent } = cell;
                 return <StudentInput
                     key={i}
                     i={i}
                     name={name}
                     prayerOfStudent={prayerOfStudent}
+                    handlePrayersOfStudent={handlePrayersOfStudent}
                 />
             })}
             <AddButtonContainer>
@@ -92,7 +97,8 @@ export default function ({
                     <AddIcon />
                 </Fab>
             </AddButtonContainer>
-            <SubmitButton>작성</SubmitButton>
+            <SubmitButton onClick={submitButtonClicked}>작성</SubmitButton>
         </Form>
+        {loading && <NormalLoading />}
     </Container>
 }

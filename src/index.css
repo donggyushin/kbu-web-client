@@ -151,6 +151,19 @@ code {
   border: 2px solid #6D7278;
   border-radius: 3px;
   min-height: 113px;
+  line-height: 22px;
+  padding:10px;
+  
+}
+
+.blue {
+  border: 2px solid #83A6D0;
+  resize:none;
+  border-radius: 3px;
+  min-height: 113px;
+  line-height: 22px;
+  padding:10px;
+  margin-bottom: 20px;
 }
 
 .textareaautosize:focus {
