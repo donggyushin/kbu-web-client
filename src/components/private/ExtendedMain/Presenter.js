@@ -15,6 +15,7 @@ import NotLoggedInMileage from './NotLoggedInMileage';
 import NotLoggedInMobileCard from './NotLoggedInMobileCard';
 import NotLoggedInLecture from './NotLoggedInLecture';
 import ExtendedQrCode from './ExtendedQrCode';
+import TodaysPrayerDetail from './TodaysPrayerDetail';
 
 const Container = styled.div`
     width:100%;
@@ -90,11 +91,13 @@ export default function ExtendedMainPresenter({ studentId,
     cardTypeTwoHeight,
     cardTypeFourHeight,
     redirectToLoginPage,
-    extendedQrCode
+    extendedQrCode,
+    chapelTime
 }) {
 
     return <Container>
         <MarginVertical />
+        {chapelTime && <TodaysPrayerDetail />}
         <Row>
             {user.sid ? <Link style={{
                 width: '49%'

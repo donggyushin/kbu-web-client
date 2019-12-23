@@ -137,17 +137,37 @@ const VerticalLine = styled.div`
 `
 
 export default function LecturePresenter({
-    selectedLecture, list, showDataList,
-    lectureDetail, wrapper,
-    clockMessage
-    , touch, closeDetailView, background, subjectClicked, schedule, loading, error, colorMatches, firstClassTime, lastClassTime, detail }) {
+    selectedLecture,
+    list,
+    showDataList,
+    lectureDetail,
+    wrapper,
+    clockMessage,
+    touch,
+    closeDetailView,
+    background,
+    subjectClicked,
+    schedule,
+    loading,
+    error,
+    colorMatches,
+    firstClassTime,
+    lastClassTime,
+    detail,
+    date,
+    currentLecture
+}) {
     if (error) {
         alert(error);
         window.location.href = '/'
     } else {
 
         return <Container>
-            <Clock clockMessage={clockMessage} />
+            <Clock
+                date={date}
+                clockMessage={clockMessage}
+                currentLecture={currentLecture}
+            />
             <Schedule>
                 <Header>
                     <TimeBar />

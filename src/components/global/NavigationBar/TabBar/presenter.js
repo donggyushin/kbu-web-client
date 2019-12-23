@@ -31,7 +31,7 @@ const Container = styled.div`
 `
 
 const Tab = styled.div`
-    width:39%;
+    width:43%;
     height:100%;
     background:white;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -39,12 +39,13 @@ const Tab = styled.div`
     flex-direction:column;
     padding-top: 20px;
     padding-left: 9px;
+    padding-right:9px;
     position:relative;
     animation:${LeftToRight} 0.3s;
 `
 
 const Tab2 = styled.div`
-    width:39%;
+    width:43%;
     height:100%;
     background:white;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -52,88 +53,222 @@ const Tab2 = styled.div`
     flex-direction:column;
     padding-top: 20px;
     padding-left: 9px;
+    padding-right:9px;
     position:relative;
     animation:${RightToLeft} 0.3s;
     right:39%;
 `
 
+const TextButton = styled.div`
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:4px;
+    background:white;
+    padding-right:9px;
+    padding-left:9px;
+`
+
+const RedTextButton = styled.div`
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:4px;
+    background:#d63031;
+    padding-right:9px;
+    padding-left:9px;
+    margin-bottom:5px;
+`
+
+const GreenTextButton = styled.div`
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:4px;
+    background:#00b894;
+    padding-right:9px;
+    padding-left:9px;
+    margin-bottom:5px;
+`
+
 const Text = styled.div`
-        color: black;
+    color: black;
     margin-top: 3px;
     margin-bottom: 3px;
-    font-size: 17px;
+    font-size: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
     font-family:'applesdLight';
 `
+const Icon = styled.i`
+    color:black;
+`
+
 export default function ({ refer, isLoggedIn, logout, slideTabBarToLeft }) {
     return <Container>
         {slideTabBarToLeft ? <Tab2>
-            <Text>관리자 페이지</Text>
+            <Link to={'/'}>
+                <TextButton>
+                    <Text>홈</Text>
+                    <Icon className={'fas fa-home'} />
+                </TextButton>
+            </Link>
+            {/* <Text>관리자 페이지</Text> */}
             {isLoggedIn && <Link to={'/chapel'}>
-                <Text>채플</Text>
+                <TextButton>
+                    <Text>채플</Text>
+                    <Icon className={'fas fa-cross'} />
+                </TextButton>
             </Link>}
             {isLoggedIn && <Link to={'/mileage'}>
-                <Text>마일리지</Text>
+                <TextButton>
+                    <Text>마일리지</Text>
+                    <Icon className={'fas fa-coins'} />
+                </TextButton>
             </Link>}
             <Link to={'/notice'}>
-                <Text>공지사항</Text>
+                <TextButton>
+                    <Text>공지사항</Text>
+                    <Icon className={'fas fa-clipboard'} />
+                </TextButton>
             </Link>
             <Link to={'/cafeteria'}>
-                <Text>교내식당</Text>
+                <TextButton>
+                    <Text>교내식당</Text>
+                    <Icon className={'fas fa-utensils'} />
+                </TextButton>
             </Link>
             {isLoggedIn && <Link to={'/lecture'}>
-                <Text>수업</Text>
+                <TextButton>
+                    <Text>수업</Text>
+                    <Icon className={'fas fa-book'} />
+                </TextButton>
             </Link>}
             <Link to={'/calendar'}>
-                <Text>학사일정</Text>
+                <TextButton>
+                    <Text>학사일정</Text>
+                    <Icon className={'far fa-calendar'} />
+                </TextButton>
             </Link>
             <Link to={'/schedule'}>
-                <Text>학사일정(PDF)</Text>
+                <TextButton>
+                    <Text>학사일정(PDF)</Text>
+                    <Icon className={'fas fa-calendar'} />
+                </TextButton>
             </Link>
             <Link to={'/map'}>
-                <Text>학교 맵</Text>
+                <TextButton>
+                    <Text>학교 맵</Text>
+                    <Icon className={'fas fa-map-signs'} />
+                </TextButton>
             </Link>
             <Link to={'/prayerform'}>
-                <Text>오늘의 말씀(관리자)</Text>
+                <TextButton>
+                    <Text>오늘의 말씀<br />(관리자)</Text>
+                    <Icon className={'fas fa-praying-hands'} />
+                </TextButton>
             </Link>
             <Link to={'/prayer'}>
-                <Text>오늘의 말씀</Text>
+                <TextButton>
+                    <Text>오늘의 말씀</Text>
+                    <Icon className={'fas fa-pray'} />
+                </TextButton>
             </Link>
-            {isLoggedIn ? <Text onClick={logout}>로그아웃</Text> : <Link to={'/login'}><Text>로그인</Text></Link>}
+            {isLoggedIn ?
+                <RedTextButton>
+                    <Text style={{ color: 'white' }} onClick={logout}>로그아웃</Text>
+                    <Icon style={{ color: 'white' }} className={'fas fa-external-link-alt'} />
+                </RedTextButton>
+                :
+                <Link to={'/login'}>
+                    <GreenTextButton>
+                        <Text style={{ color: 'white' }}>로그인</Text>
+                        <Icon style={{ color: 'white' }} className={'fas fa-power-off'} />
+                    </GreenTextButton>
+                </Link>}
         </Tab2> : <Tab ref={refer}>
-                <Text>관리자 페이지</Text>
+                <Link to={'/'}>
+                    <TextButton>
+                        <Text>홈</Text>
+                        <Icon className={'fas fa-home'} />
+                    </TextButton>
+                </Link>
+                {/* <Text>관리자 페이지</Text> */}
                 {isLoggedIn && <Link to={'/chapel'}>
-                    <Text>채플</Text>
+                    <TextButton>
+                        <Text>채플</Text>
+                        <Icon className={'fas fa-cross'} />
+                    </TextButton>
                 </Link>}
                 {isLoggedIn && <Link to={'/mileage'}>
-                    <Text>마일리지</Text>
+                    <TextButton>
+                        <Text>마일리지</Text>
+                        <Icon className={'fas fa-coins'} />
+                    </TextButton>
                 </Link>}
                 <Link to={'/notice'}>
-                    <Text>공지사항</Text>
+                    <TextButton>
+                        <Text>공지사항</Text>
+                        <Icon className={'fas fa-clipboard'} />
+                    </TextButton>
                 </Link>
                 <Link to={'/cafeteria'}>
-                    <Text>교내식당</Text>
+                    <TextButton>
+                        <Text>교내식당</Text>
+                        <Icon className={'fas fa-utensils'} />
+                    </TextButton>
                 </Link>
                 {isLoggedIn && <Link to={'/lecture'}>
-                    <Text>수업</Text>
+                    <TextButton>
+                        <Text>수업</Text>
+                        <Icon className={'fas fa-book'} />
+                    </TextButton>
                 </Link>}
                 <Link to={'/calendar'}>
-                    <Text>학사일정</Text>
+                    <TextButton>
+                        <Text>학사일정</Text>
+                        <Icon className={'far fa-calendar'} />
+                    </TextButton>
                 </Link>
                 <Link to={'/schedule'}>
-                    <Text>학사일정(PDF)</Text>
+                    <TextButton>
+                        <Text>학사일정(PDF)</Text>
+                        <Icon className={'fas fa-calendar'} />
+                    </TextButton>
                 </Link>
                 <Link to={'/map'}>
-                    <Text>학교 맵</Text>
+                    <TextButton>
+                        <Text>학교 맵</Text>
+                        <Icon className={'fas fa-map-signs'} />
+                    </TextButton>
                 </Link>
                 <Link to={'/prayerform'}>
-                    <Text>오늘의 말씀(관리자)</Text>
+                    <TextButton>
+                        <Text>오늘의 말씀<br />(관리자)</Text>
+                        <Icon className={'fas fa-praying-hands'} />
+                    </TextButton>
                 </Link>
                 <Link to={'/prayer'}>
-                    <Text>오늘의 말씀</Text>
+                    <TextButton>
+                        <Text>오늘의 말씀</Text>
+                        <Icon className={'fas fa-pray'} />
+                    </TextButton>
                 </Link>
-                {isLoggedIn ? <Text onClick={logout}>로그아웃</Text> : <Link to={'/login'}><Text>로그인</Text></Link>}
+                {isLoggedIn ?
+                    <RedTextButton>
+                        <Text style={{ color: 'white' }} onClick={logout}>로그아웃</Text>
+                        <Icon style={{ color: 'white' }} className={'fas fa-external-link-alt'} />
+                    </RedTextButton>
+                    :
+                    <Link to={'/login'}>
+                        <GreenTextButton>
+                            <Text style={{ color: 'white' }}>로그인</Text>
+                            <Icon style={{ color: 'white' }} className={'fas fa-power-off'} />
+                        </GreenTextButton>
+                    </Link>}
             </Tab>}
 
     </Container>

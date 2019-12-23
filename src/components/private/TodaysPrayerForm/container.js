@@ -4,19 +4,73 @@ import axios from 'axios'
 import REST_API_ENDPOINT from 'constants/endpoint';
 import InfoModal from 'components/global/Modal';
 
+function gohome() {
+    window.location.href = '/'
+}
+
 class Container extends React.Component {
     state = {
         todaysPrayer: "",
         prayersOfStudent: [],
-        loading: false
+        loading: false,
+        loading2: true
     }
+
+    componentDidMount() {
+        const date = new Date()
+        const year = date.getFullYear()
+        const month = date.getMonth()
+        const day = date.getDate()
+        axios.get(REST_API_ENDPOINT + `prayer/${year}/${month}/${day}`)
+            .then(res => res.data)
+            .then(data => {
+
+                const {
+                    ok,
+                    error,
+                    todaysPrayer,
+                    prayersOfStudent
+                } = data
+                console.log('todaysPrayer: ', todaysPrayer)
+                console.log('prayersOfStudent: ', prayersOfStudent)
+                const convertedPrayersOfStudent = prayersOfStudent.map(cell => {
+                    return {
+                        name: cell.studentName,
+                        prayerOfStudent: cell.prayer
+                    }
+                })
+                if (ok) {
+                    this.setState({
+                        todaysPrayer,
+                        prayersOfStudent: convertedPrayersOfStudent,
+                        loading2: false
+                    })
+                } else {
+                    console.error(error)
+                    InfoModal('경고', error, gohome)
+                }
+            })
+            .catch(err => {
+                console.error(err)
+                InfoModal('경고', err.message, gohome)
+            })
+    }
+
     render() {
-        const { handleInput
-            , addButtonClicked,
+        const {
+            handleInput,
+            addButtonClicked,
             submitButtonClicked,
-            handlePrayersOfStudent
+            handlePrayersOfStudent,
+            deleteStudentPrayerCard
         } = this;
-        const { todaysPrayer, prayersOfStudent, loading } = this.state;
+        const {
+            todaysPrayer,
+            prayersOfStudent,
+            loading,
+            loading2
+        } = this.state;
+
         return <Presenter
             todaysPrayer={todaysPrayer}
             handleInput={handleInput}
@@ -25,7 +79,24 @@ class Container extends React.Component {
             submitButtonClicked={submitButtonClicked}
             handlePrayersOfStudent={handlePrayersOfStudent}
             loading={loading}
+            loading2={loading2}
+            deleteStudentPrayerCard={deleteStudentPrayerCard}
         />
+    }
+
+    deleteStudentPrayerCard = (i) => {
+
+        const updatedPrayersOfStudent = this.state.prayersOfStudent.filter((cell, index) => {
+            if (index === i) {
+                return false
+            }
+            else {
+                return true
+            }
+        })
+        this.setState({
+            prayersOfStudent: updatedPrayersOfStudent
+        })
     }
 
     handlePrayersOfStudent = (i, event) => {
@@ -90,5 +161,6 @@ class Container extends React.Component {
         })
     }
 }
+
 
 export default Container

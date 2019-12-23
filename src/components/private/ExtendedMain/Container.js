@@ -12,7 +12,8 @@ class ExtendedMainContainer extends React.Component {
         studentId: false,
         cardTypeOneHeight: 0,
         cardTypeTwoHeight: 0,
-        cardTypeFourHeight: 0
+        cardTypeFourHeight: 0,
+        chapelTime: false
     }
 
     componentDidMount() {
@@ -21,17 +22,34 @@ class ExtendedMainContainer extends React.Component {
 
             this.props.fetchChapel()
         }
+        const date = new Date()
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        const convertedTime = hour * 60 + minute
+        if (710 <= convertedTime && convertedTime <= 750) {
+            this.setState({
+                chapelTime: true
+            })
+        }
     }
 
 
     render() {
-        const { studentId, cardTypeOneHeight, cardTypeTwoHeight, cardTypeFourHeight } = this.state;
+        const {
+            studentId,
+            cardTypeOneHeight,
+            cardTypeTwoHeight,
+            cardTypeFourHeight,
+            chapelTime
+        } = this.state;
         const { TurnOffStudentIDCard,
             TurnOnStudentIDCard,
             askGoToLoginPage,
             redirectToLoginPage
         } = this;
-        const { user, loading,
+        const {
+            user,
+            loading,
             isLoggedIn,
             touch,
             extendedQrCode
@@ -50,6 +68,7 @@ class ExtendedMainContainer extends React.Component {
             cardTypeFourHeight={cardTypeFourHeight}
             redirectToLoginPage={redirectToLoginPage}
             extendedQrCode={extendedQrCode}
+            chapelTime={chapelTime}
         />
     }
 

@@ -20,7 +20,7 @@ const Form = styled.div`
     padding-top:29px;
     padding-left:23px;
     padding-right:23px;
-
+    margin-bottom: 10px;
 `
 
 const Label = styled.div`
@@ -58,7 +58,9 @@ export default function ({
     addButtonClicked,
     submitButtonClicked,
     handlePrayersOfStudent,
-    loading
+    loading,
+    loading2,
+    deleteStudentPrayerCard
 }) {
     return <Container>
         <Form>
@@ -86,6 +88,7 @@ export default function ({
                     name={name}
                     prayerOfStudent={prayerOfStudent}
                     handlePrayersOfStudent={handlePrayersOfStudent}
+                    deleteStudentPrayerCard={deleteStudentPrayerCard}
                 />
             })}
             <AddButtonContainer>
@@ -100,5 +103,6 @@ export default function ({
             <SubmitButton onClick={submitButtonClicked}>작성</SubmitButton>
         </Form>
         {loading && <NormalLoading />}
+        {loading2 && <NormalLoading />}
     </Container>
 }

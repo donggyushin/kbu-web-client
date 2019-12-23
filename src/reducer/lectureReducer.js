@@ -6,7 +6,9 @@ const initialState = {
     error: "",
     selected: "",
     semesters: [],
-    colorMatches: {},
+    colorMatches: {
+        empty: true
+    },
     arrayFirstSchedule: [],
     firstClassTime: 0,
     lastClassTime: 0,

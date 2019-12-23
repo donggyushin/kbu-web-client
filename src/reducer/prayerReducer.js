@@ -1,4 +1,4 @@
-import { FETCH_TODAYS_PRAYER, LOADING_PARYER } from "actions/type"
+import { FETCH_TODAYS_PRAYER, LOADING_PARYER, FETCH_SPECIFIC_PRAYER } from "actions/type"
 
 const initialState = {
     todaysPrayer: "",
@@ -12,8 +12,23 @@ export default function (state = initialState, action) {
             return fetchTodaysPrayer(state, action)
         case LOADING_PARYER:
             return loadingPrayer(state, action)
+        case FETCH_SPECIFIC_PRAYER:
+            return fetchSpecificPrayerReducer(state, action)
         default:
             return state
+    }
+}
+
+function fetchSpecificPrayerReducer(state, action) {
+    const {
+        todaysPrayer,
+        prayersOfStudent
+    } = action
+    return {
+        ...state,
+        todaysPrayer,
+        prayersOfStudent,
+        loading: false
     }
 }
 

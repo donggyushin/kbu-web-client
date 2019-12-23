@@ -21,7 +21,11 @@ const Card = styled.div`
  
 `
 
-const StudentName = styled.div``
+const StudentName = styled.div`
+    font-size: 13px;
+    font-weight: 700;
+    color: black;
+`
 
 export default function ({
     studentName,

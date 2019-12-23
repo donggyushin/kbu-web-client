@@ -18,13 +18,26 @@ const Card = styled.div`
     padding-top: 10px;
     padding-left: 10px;
     padding-right:10px;
+    position:relative;
+`
+
+const XButtonContainer = styled.div`
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    padding: 7px;
+`
+
+const XButton = styled.i`
+font-size: 18px;
 `
 
 export default function ({
     name,
     prayerOfStudent,
     handlePrayersOfStudent,
-    i
+    i,
+    deleteStudentPrayerCard
 }) {
     return <Container>
         <Card>
@@ -46,6 +59,11 @@ export default function ({
                     minHeight: 20,
                     border: 0
                 }} />
+            <XButtonContainer onClick={() => {
+                deleteStudentPrayerCard(i)
+            }}>
+                <XButton className={'fas fa-times'} />
+            </XButtonContainer>
         </Card>
     </Container>
 }

@@ -21,6 +21,7 @@ const Container = styled.div`
 `
 
 const Form = styled.div`
+    margin-top: 15px;
     width:90%;
     box-shadow: 0px 2px 4px #6D7278;
     display:flex;
