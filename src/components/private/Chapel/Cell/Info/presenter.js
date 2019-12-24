@@ -63,10 +63,12 @@ const LabelAndDataContainer = styled.div`
 const Label = styled.div`
     font-size:13px;
     margin-right:39px;
+    color:black;
 `
 
 const Data = styled.div`
     font-size:13px;
+    color:black;
 `
 
 
