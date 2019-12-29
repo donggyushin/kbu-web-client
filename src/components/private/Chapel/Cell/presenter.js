@@ -68,7 +68,6 @@ export default function ({
     turnOnInfo,
     first
 }) {
-    console.log('late: ' + late)
     return <ColumnContainer>
         <Container>
             <Image src={late === '출석' ? require('./good.png') : require('./bad.png')} />

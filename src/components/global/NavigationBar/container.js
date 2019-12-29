@@ -38,10 +38,27 @@ class Container extends React.Component {
     }
 
     render() {
-        const { tabBar, slideTabBarToLeft } = this.state;
-        const { turnOnTab } = this;
-        const { isLoggedIn, logout, location } = this.props;
-        return <Presenter isLoggedIn={isLoggedIn} location={location} slideTabBarToLeft={slideTabBarToLeft} logout={logout} isLoggedIn={isLoggedIn} refer={this.setWrapperRef} turnOnTab={turnOnTab} tabBar={tabBar} />
+        const {
+            tabBar,
+            slideTabBarToLeft
+        } = this.state;
+        const {
+            turnOnTab
+        } = this;
+        const {
+            isLoggedIn,
+            logout,
+            location
+        } = this.props;
+        return <Presenter
+            isLoggedIn={isLoggedIn}
+            location={location}
+            slideTabBarToLeft={slideTabBarToLeft}
+            logout={logout}
+            isLoggedIn={isLoggedIn}
+            refer={this.setWrapperRef}
+            turnOnTab={turnOnTab}
+            tabBar={tabBar} />
     }
 
     turnDownTab = () => {
@@ -70,4 +87,4 @@ class Container extends React.Component {
 }
 
 
-export default Container
+export default (Container)

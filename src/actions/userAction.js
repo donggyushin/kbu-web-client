@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { FETCH_USER, LOGOUT, LOGIN_USER } from './type'
+import { FETCH_USER, LOGOUT, LOGIN_USER, FETCH_SPECIFIC_PRAYER } from './type'
 import { decodeJsonWebToken } from '../utils/jsonwebtoken'
-import REST_API_ENDPOINT from '../constants/endpoint'
+import REST_API_ENDPOINT, { PYTHON_SERVER_ENDPOINT } from '../constants/endpoint'
 
 
 
@@ -26,35 +26,46 @@ export const fetchUser = () => (dispatch, getState) => {
 
     if (user.sid === "") {
 
-        const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
-        const userId = decoded.id;
-        const userPassword = decoded.password;
+        axios.get(`${PYTHON_SERVER_ENDPOINT}intranet/info/lms`, {
+            headers: {
+                'authorization': window.localStorage.getItem('intratoken')
+            }
+        })
+            .then(res => res.data)
+            .then(data => {
+                const { sid, name, major } = data;
 
-        if (userId && userPassword) {
-            axios.post(REST_API_ENDPOINT + 'user/getuser', {
-                id: userId,
-                password: userPassword
-            }).then(res => res.data)
-                .then(data => {
-
-                    if (data.is_ok) {
-                        localStorage.setItem('kbu', data.token);
-
+                axios.post(`${PYTHON_SERVER_ENDPOINT}intranet/image`, {
+                    sid
+                }, {
+                    headers: {
+                        'authorization': window.localStorage.getItem('intratoken')
+                    }
+                })
+                    .then(res => res.data)
+                    .then(data => {
+                        const { img } = data
                         dispatch({
                             type: FETCH_USER,
-                            user: data.result
+                            sid,
+                            name,
+                            major,
+                            img
                         })
-
-                    } else {
-                        alert('정보를 불러오는데 실패하였습니다. ')
-                        window.localStorage.removeItem('token')
-                        window.localStorage.removeItem('kbu')
-                        window.location.href = '/'
-                    }
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })
 
 
-                })
-        }
+            })
+            .catch(err => {
+                console.error(err)
+            })
+
+
+        return
+
 
 
     }

@@ -34,7 +34,9 @@ class PrivateComponent extends React.Component {
     componentDidMount() {
 
         if (this.props.isLoggedIn) {
+            console.log('?')
             this.props.fetchUser()
+
         }
 
     }

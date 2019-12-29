@@ -22,6 +22,10 @@ class QRCodeContainer extends React.Component {
         if (this.props.loading) {
             const { user } = this.props;
 
+
+
+            return
+
             const decoded = decodeJsonWebToken(window.localStorage.getItem('token'));
             // qrcode image 요청
             axios.post(REST_API_ENDPOINT + 'qr/', {

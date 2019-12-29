@@ -29,7 +29,8 @@ const initialState = {
         location: "",
         start: "",
         end: ""
-    }
+    },
+    lectureCodes: {}
 }
 
 export default function (state = initialState, action) {

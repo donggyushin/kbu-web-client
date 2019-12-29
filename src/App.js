@@ -7,9 +7,14 @@ import { logoutUser } from 'actions/userAction'
 const Container = styled.div``
 
 class App extends React.Component {
+
+
+
+
   state = {
     isLoggedIn: localStorage.getItem('token') ? true : false
   }
+
 
   componentWillUnmount() {
     window.localStorage.removeItem('user')

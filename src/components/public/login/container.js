@@ -1,7 +1,7 @@
 import React from 'react'
 import Presenter from './presenter'
 import axios from 'axios'
-import REST_API_ENDPOINT from 'constants/endpoint';
+import REST_API_ENDPOINT, { PYTHON_SERVER_ENDPOINT } from 'constants/endpoint';
 import { generateJsonWebToken } from 'utils/jsonwebtoken';
 import InfoModal from 'components/global/Modal';
 
@@ -36,29 +36,52 @@ class Container extends React.Component {
         this.setState({
             loading: true
         })
-        axios.post(REST_API_ENDPOINT + `user/login`, {
+
+        axios.post(`${PYTHON_SERVER_ENDPOINT}lms/login`, {
             id,
-            password: pw
-        }).then(res => res.data)
-            .then(result => {
-                if (result.is_ok) {
-                    const token = generateJsonWebToken(id, pw)
-                    window.localStorage.setItem('token', token)
-                    if (window.localStorage.getItem('nextPage')) {
-                        const nextPage = window.localStorage.getItem('nextPage')
-                        window.localStorage.removeItem('nextPage')
-                        window.location.href = nextPage
-                    } else {
-                        window.location.href = '/'
-                    }
-                } else {
-                    InfoModal('로그인에 실패하였습니다. ', result.result)
-                    this.setState({
-                        password: "",
-                        loading: false
+            pw
+        }, {
+            withCredentials: true
+        })
+            .then(res => {
+                const cookie = res.headers['authorization']
+                localStorage.setItem('lmstoken', cookie)
+                axios.post(`${PYTHON_SERVER_ENDPOINT}intranet/login`, {
+                    id,
+                    pw
+                }, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        const cookie = res.headers['authorization']
+                        localStorage.setItem('intratoken', cookie)
+
+                        if (window.localStorage.getItem('nextPage')) {
+                            const nextPage = window.localStorage.getItem('nextPage')
+                            window.localStorage.removeItem('nextPage')
+                            window.location.href = nextPage
+                        } else {
+                            window.location.href = '/'
+                        }
                     })
-                }
+                    .catch(err => {
+                        console.error(err)
+                        InfoModal('경고', '아이디 혹은 패스워드가 맞지 않습니다. ', () => {
+                            window.location.href = '/'
+                        })
+                        return;
+                    })
+                return
             })
+            .catch(err => {
+                console.error(err)
+                InfoModal('경고', 'LMS계정과 동기화 실패. ', () => {
+                    window.location.href = '/'
+                })
+                return;
+            })
+
+
     }
 
 }

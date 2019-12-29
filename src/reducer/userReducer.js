@@ -13,7 +13,7 @@ const initialState = {
     status: "",
     name: "",
     loading: true,
-    isLoggedIn: window.localStorage.getItem('token') ? true : false,
+    isLoggedIn: window.localStorage.getItem('intratoken') ? true : false,
     loginLoading: false
 }
 
@@ -45,7 +45,8 @@ function userLoginLoadingReducer(state, action) {
 }
 
 function logoutUserReducer(state, action) {
-    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('intratoken')
+    window.localStorage.removeItem('kbu')
     window.location.href = "/"
     return {
         ...state,
@@ -54,19 +55,18 @@ function logoutUserReducer(state, action) {
 }
 
 function fetchUserReducer(state, action) {
+    const {
+        sid,
+        name,
+        major,
+        img
+    } = action
     return {
         ...state,
-        email: action.user.email,
-        gender: action.user.gender,
-        grade: action.user.grade,
-        sid: action.user.sid,
-        img: action.user.img,
-        img_height: action.user.img_height,
-        img_width: action.user.img_width,
-        major: action.user.major,
-        phone: action.user.phone,
-        status: action.user.status,
-        name: action.user.name,
+        sid,
+        name,
+        major,
+        img,
         loading: false
     }
 }

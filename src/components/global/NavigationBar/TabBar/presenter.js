@@ -107,7 +107,12 @@ const Icon = styled.i`
     color:black;
 `
 
-export default function ({ refer, isLoggedIn, logout, slideTabBarToLeft }) {
+export default function ({
+    refer,
+    isLoggedIn,
+    logout,
+    slideTabBarToLeft
+}) {
     return <Container>
         {slideTabBarToLeft ? <Tab2>
             <Link to={'/'}>
@@ -258,8 +263,8 @@ export default function ({ refer, isLoggedIn, logout, slideTabBarToLeft }) {
                     </TextButton>
                 </Link>
                 {isLoggedIn ?
-                    <RedTextButton>
-                        <Text style={{ color: 'white' }} onClick={logout}>로그아웃</Text>
+                    <RedTextButton onClick={logout}>
+                        <Text style={{ color: 'white' }} >로그아웃</Text>
                         <Icon style={{ color: 'white' }} className={'fas fa-external-link-alt'} />
                     </RedTextButton>
                     :

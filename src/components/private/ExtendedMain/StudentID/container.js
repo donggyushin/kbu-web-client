@@ -84,6 +84,8 @@ class StudentIDContainer extends React.Component {
 
         // })
 
+        return
+
         this.setState({
             qrcode: true,
             qrcodeimg: "qrcode base64 code"

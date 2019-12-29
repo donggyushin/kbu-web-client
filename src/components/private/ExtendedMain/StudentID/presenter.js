@@ -257,10 +257,10 @@ export default function StudentIDPrenseter({ TurnOffStudentIDCard,
                         <StudentIDNumber>{user.sid}</StudentIDNumber>
                         <MarginHeight />
                         <NormalText>{user.major}</NormalText>
-                        <Row>
+                        {/* <Row>
                             <NormalText red={user.status !== '재학'}>{user.grade}학년&nbsp;</NormalText>
                             <NormalText red={user.status !== '재학'}>{user.status}</NormalText>
-                        </Row>
+                        </Row> */}
                     </StudentInfoContainer>
                     <ProfileImageContainer>
                         <ProfileImage src={user.sid === '201303024' ? require('assets/leo.png') : base64formatter(user.img)} />

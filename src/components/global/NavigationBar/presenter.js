@@ -24,12 +24,23 @@ const Cog = styled.i`
     font-size:23px;
 `
 
-export default function ({ location, slideTabBarToLeft, logout, tabBar, turnOnTab, refer, isLoggedIn }) {
+export default function ({
+    location,
+    slideTabBarToLeft,
+    logout,
+    tabBar,
+    turnOnTab,
+    refer,
+    isLoggedIn }) {
     return <Container>
         <Link to={'/'}>
             <Text>{location ? location : "성서봇"}</Text>
         </Link>
         <Cog onClick={turnOnTab} className={'fas fa-cog'} />
-        {tabBar && <TabBar slideTabBarToLeft={slideTabBarToLeft} logout={logout} isLoggedIn={isLoggedIn} refer={refer} />}
+        {tabBar && <TabBar
+            slideTabBarToLeft={slideTabBarToLeft}
+            logout={logout}
+            isLoggedIn={isLoggedIn}
+            refer={refer} />}
     </Container>
 }

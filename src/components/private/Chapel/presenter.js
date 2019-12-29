@@ -103,10 +103,8 @@ export default function ChapelPresenter({ imageName, summary, chapels, chapelLen
                                 const sure = chapel[7]
                                 const comment = chapel[8]
 
-                                console.log('chapel: ', chapel)
-
                                 return <OneCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
-                                return <ExpandedCell sure={sure} time={time} year={year} month={month} comment={comment} countNumber={countNumber} date={date} day={day} late={late} />
+
 
                             })}
 

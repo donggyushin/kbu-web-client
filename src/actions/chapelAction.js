@@ -1,5 +1,5 @@
 import axios from 'axios'
-import REST_API_ENDPOINT from '../constants/endpoint'
+import REST_API_ENDPOINT, { PYTHON_SERVER_ENDPOINT } from '../constants/endpoint'
 import { FETCH_CHAPEL, CHAPEL_ERROR, SET_IMAGE_NAME } from './type'
 import { decodeJsonWebToken } from 'utils/jsonwebtoken'
 
@@ -16,6 +16,33 @@ export const fetchChapel = () => (dispatch, getState) => {
     const { chapel } = getState()
 
     if (chapel.chapels.length === 0) {
+
+        axios.get(`${PYTHON_SERVER_ENDPOINT}intranet/chapel`, {
+            headers: {
+                'authorization': window.localStorage.getItem('intratoken')
+            }
+        })
+            .then(res => res.data)
+            .then(data => {
+                const chapels = data.tbody
+                const chapelLength = data.tbody.length
+                const summary = {
+                    attendance: data.summary.출석,
+                    late: data.summary.지각,
+                    sure: data.summary.확정,
+                    duty: data.summary.규정일수
+                }
+                dispatch({
+                    type: FETCH_CHAPEL,
+                    chapels,
+                    summary,
+                    chapelLength
+                })
+                return
+            })
+            .catch(err => console.error(err))
+
+        return
         const decoded = decodeJsonWebToken(window.localStorage.getItem("token"));
         axios.post(REST_API_ENDPOINT + 'chapel', {
             id: decoded.id,
